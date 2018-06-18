@@ -1,3 +1,8 @@
+# Seattle Mobility Index
+
+## Watch this space for updates on our project!
+
+
 
 ## seamo
 [![Build Status](https://travis-ci.org/uwescience/seamo.svg?branch=master)](https://travis-ci.org/uwescience/seamo)
@@ -509,7 +514,5 @@ your needs.
 At this point, make another commit, and continue to develop your own code based
 on this template.
 =======
-# Seattle Mobility Index
 
-## Watch this space for updates on our project!
 
