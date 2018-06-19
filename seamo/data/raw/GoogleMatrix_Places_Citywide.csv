@@ -1,0 +1,77 @@
+name,address,city,lat,lng,place_id,rating,class,type
+12th Avenue,,,47.60831512,-122.3173448,12th-Avenue,,urban village,
+23rd & Union-Jackson,,,47.60314511,-122.306682,23rd-&-Union-Jackson,,urban village,
+Admiral,,,47.58234954,-122.3864201,Admiral,,urban village,
+Aurora-Licton Springs,,,47.69685401,-122.3459766,Aurora-Licton-Springs,,urban village,
+Ballard,,,47.67059299,-122.3826035,Ballard,,urban village,
+Ballard-Interbay-Northend,,,47.65972606,-122.3720196,Ballard-Interbay-Northend,,urban village,
+Belltown,,,47.61443468,-122.3473412,Belltown,,urban village,
+Bitter Lake Village,,,47.72856031,-122.3506528,Bitter-Lake-Village,,urban village,
+Capitol Hill,,,47.62031626,-122.3198659,Capitol-Hill,,urban village,
+Chinatown-International District,,,47.59797954,-122.3253079,Chinatown-International-District,,urban village,
+Columbia City,,,47.55949393,-122.2885288,Columbia-City,,urban village,
+Commercial Core,,,47.60779193,-122.3357634,Commercial-Core,,urban village,
+Crown Hill,,,47.69012456,-122.377021,Crown-Hill,,urban village,
+Denny Triangle,,,47.61683573,-122.3319319,Denny-Triangle,,urban village,
+Eastlake,,,47.64085403,-122.3256253,Eastlake,,urban village,
+First Hill,,,47.60790794,-122.3260425,First-Hill,,urban village,
+Fremont,,,47.6518068,-122.3475812,Fremont,,urban village,
+Greater Duwamish,,,47.57516743,-122.3335259,Greater-Duwamish,,urban village,
+Green Lake,,,47.67949638,-122.3250026,Green-Lake,,urban village,
+Greenwood-Phinney Ridge,,,47.69147943,-122.3558872,Greenwood-Phinney-Ridge,,urban village,
+Lake City,,,47.71746596,-122.2949054,Lake-City,,urban village,
+MLK at Holly St,,,47.53917935,-122.2885706,MLK-at-Holly-St,,urban village,
+Madison-Miller,,,47.61973216,-122.3072317,Madison-Miller,,urban village,
+Morgan Junction,,,47.54401147,-122.3865405,Morgan-Junction,,urban village,
+North Beacon Hill,,,47.585549,-122.3143521,North-Beacon-Hill,,urban village,
+North Rainier,,,47.58542942,-122.2975735,North-Rainier,,urban village,
+Northgate,,,47.70609738,-122.3266853,Northgate,,urban village,
+Outside Seattle,,,47.56009396,-122.1843592,Outside-Seattle,,urban village,
+Outside Villages,,,47.63845644,-122.3352405,Outside-Villages,,urban village,
+Pike/Pine,,,47.61459624,-122.3210117,Pike/Pine,,urban village,
+Pioneer Square,,,47.60065827,-122.3324547,Pioneer-Square,,urban village,
+Rainier Beach,,,47.52619063,-122.2703821,Rainier-Beach,,urban village,
+Ravenna,,,47.66520562,-122.3038576,Ravenna,,urban village,
+Roosevelt,,,47.67705298,-122.3140814,Roosevelt,,urban village,
+South Lake Union,,,47.61880896,-122.3379719,South-Lake-Union,,urban village,
+South Park,,,47.52498328,-122.3203209,South-Park,,urban village,
+University Campus,,,47.65444945,-122.3095013,University-Campus,,urban village,
+University District Northwest,,,47.66148179,-122.3154694,University-District-Northwest,,urban village,
+Upper Queen Anne,,,47.63125611,-122.358828,Upper-Queen-Anne,,urban village,
+Uptown,,,47.62371752,-122.3565409,Uptown,,urban village,
+Wallingford,,,47.66116735,-122.3394145,Wallingford,,urban village,
+West Seattle Junction,,,47.5611362,-122.3824611,West-Seattle-Junction,,urban village,
+Westwood-Highland Park,,,47.52341843,-122.3629641,Westwood-Highland-Park,,urban village,
+Alki Beach Park,,,47.579763,-122.409572,Alki-Beach-Park,,destination park,
+Discovery Park,,,47.65814,-122.406333,Discovery-Park,,destination park,
+Golden Gardens Park,,,47.691806,-122.403889,Golden-Gardens-Park,,destination park,
+Madison Park,,,47.635897,-122.276901,Madison-Park,,destination park,
+Gasworks Park,,,47.64657,-122.335308,Gasworks-Park,,destination park,
+Seward Park,,,47.550034,-122.257778,Seward-Park,,destination park,
+Lincoln Park,,,47.530419,-122.393117,Lincoln-Park,,destination park,
+Volunteer Park,,,47.631061,-122.315451,Volunteer-Park,,destination park,
+Lake Union Park,,,47.6262,-122.337323,Lake-Union-Park,,destination park,
+Jefferson Park,,,47.568994,-122.308655,Jefferson-Park,,destination park,
+Magnusan Park,,,47.680326,-122.253198,Magnusan-Park,,destination park,
+Cal Anderson Park,,,47.61732,-122.31957,Cal-Anderson-Park,,destination park,
+Greenlake Park,,,47.68025,-122.328499,Greenlake-Park,,destination park,
+Olympic Sculpture Park,,,47.616675,-122.355396,Olympic-Sculpture-Park,,destination park,
+Madrona Park,,,47.610256,-122.283617,Madrona-Park,,destination park,
+Kubota Garden,,,47.513127,-122.266398,Kubota-Garden,,destination park,
+Carkeek Park,,,47.711609,-122.372217,Carkeek-Park,,destination park,
+Myrtle Edwards Park,,,47.619871,-122.361605,Myrtle-Edwards-Park,,destination park,
+Seattle Central College,,,47.616587,-122.321611,Seattle-Central-College,,citywide,College
+North Seattle College,,,47.699252,-122.33352,North-Seattle-College,,citywide,College
+South Seattle College,,,47.54841,-122.352194,South-Seattle-College,,citywide,College
+King Street Station,,,47.598939,-122.329158,King-Street-Station,,citywide,Transit Hub
+Westlake Center,,,47.611603,-122.33691,Westlake-Center,,citywide,Transit Hub
+Northgate Transit Center,,,47.702358,-122.32721,Northgate-Transit-Center,,citywide,Transit Hub
+Downtown Bellevue,,,47.615523,-122.199049,Bellevue-Square,,citywide,Major Employment Area
+Tukwila,,,47.455556,-122.254492,Tukwila,,citywide,Major Employment Area
+SODO,,,47.583574,-122.333555,SODO,,citywide,Major Employment Area
+Overlake-Redmond,,,47.641193,-122.128259,Overlake-Redmond,,citywide,Major Employment Area
+Downtown Pioneer Square,,,47.601651,-122.334226,Downtown-Pioneer-Square,,citywide,Major Employment Area
+Downtown Commercial Core,,,47.608001,-122.334658,Downtown-Commercial-Core,,citywide,Major Employment Area
+University of Washington,,,47.655614,-122.305211,University-of-Washington,,citywide,Major Employment Area
+First Hill,,,47.609422,-122.32512,First-Hill,,citywide,Major Employment Area
+South Lake Union,,,47.622933,-122.337105,South-Lake-Union,,citywide,Major Employment Area

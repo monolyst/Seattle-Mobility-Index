@@ -1,0 +1,1446 @@
+Whole Foods Market,2210 Westlake Avenue,Seattle,47.61834419999999,-122.3380965,ChIJyz9g9EkVkFQRutvXu56_BLk,4.3,supermarket,"0    2.232443
+Name: distance.value, dtype: float64"
+Uwajimaya,600 5th Avenue South,Seattle,47.59684299999999,-122.326929,ChIJq9nX27xqkFQRu05rxkrN7f4,4.5,supermarket,"0    2.699814
+Name: distance.value, dtype: float64"
+Trader Joe's,1700 East Madison Street,Seattle,47.6158665,-122.3099133,ChIJx0M1ztNqkFQRtgspEllQxk8,4.5,supermarket,"0    0.61156
+Name: distance.value, dtype: float64"
+Trader Joe's,4555 Roosevelt Way Northeast,Seattle,47.66267,-122.31762,ChIJq6Rq_l8UkFQRyDDI__HHS40,4.5,supermarket,"0    4.01243
+Name: distance.value, dtype: float64"
+Kress IGA Supermarket,1427 3rd Avenue,Seattle,47.60939569999999,-122.3378216,ChIJbdIhoLNqkFQRMTiHCN6W4nU,3.9,supermarket,"0    2.251088
+Name: distance.value, dtype: float64"
+Whole Foods Market,1026 Northeast 64th Street,Seattle,47.67519799999999,-122.316275,ChIJA3kY6m8UkFQR-CIE8erfUqs,4.1,supermarket,"0    5.401492
+Name: distance.value, dtype: float64"
+Metropolitan Market Uptown,100 Mercer Street,Seattle,47.624805,-122.354842,ChIJsY2q3UMVkFQRBAbqlwfTqdE,4.5,supermarket,"0    4.689869
+Name: distance.value, dtype: float64"
+Trader Joe's,4609 14th Avenue Northwest,Seattle,47.66280980000001,-122.37454809999998,ChIJ5-rfX7cVkFQR3R_VXqCAFys,4.5,supermarket,"0    7.628962
+Name: distance.value, dtype: float64"
+Whole Foods Market,2001 15th Avenue West,Seattle,47.6372223,-122.376892,ChIJOTwRwHAVkFQRYGVIWtpc7YQ,4.2,supermarket,"0    5.142324
+Name: distance.value, dtype: float64"
+Metropolitan Market Sand Point,5250 40th Avenue Northeast,Seattle,47.66818720000001,-122.2836221,ChIJ5W3fE34TkFQRNkqlEtO1Z48,4.4,supermarket,"0    4.573027
+Name: distance.value, dtype: float64"
+Trader Joe's,4545 Fauntleroy Way Southwest,Seattle,47.56196500000001,-122.3810101,ChIJp_YVBUNAkFQRe9kml96hW9g,4.5,supermarket,"0    7.434431
+Name: distance.value, dtype: float64"
+Metropolitan Market,2320 42nd Avenue Southwest,Seattle,47.5816325,-122.3846293,ChIJCS8FRG9AkFQRay47maLdNsc,4.6,supermarket,"0    7.687383
+Name: distance.value, dtype: float64"
+Grocery Outlet Bargain Market,1702 4th Avenue South,Seattle,47.5878704,-122.3286255,ChIJIWM_pp5qkFQRsh-E4oUVcIM,4.3,supermarket,"0    3.763207
+Name: distance.value, dtype: float64"
+Foulee Market,2050 South Columbian Way,Seattle,47.5599649,-122.30513159999998,ChIJmbwZA99BkFQRIACApE5YiTQ,4.2,supermarket,"0    4.382846
+Name: distance.value, dtype: float64"
+Double Dorjee,1501 Pike Street # 511,Seattle,47.608822,-122.3395702,ChIJkX3s-LJqkFQRQRexqCN0jQY,5.0,supermarket,"0    2.416408
+Name: distance.value, dtype: float64"
+Hillcrest Market,110 Summit Avenue East,Seattle,47.61884959999999,-122.3250047,ChIJt5emCTMVkFQR-BCgFDTvu9o,3.5,supermarket,"0    1.609074
+Name: distance.value, dtype: float64"
+Trader Joe's,1916 Queen Anne Avenue North,Seattle,47.6365817,-122.3567587,ChIJn-z5HhMVkFQR0APZKI1twvM,4.6,supermarket,"0    5.494717
+Name: distance.value, dtype: float64"
+Seattle Super Market,4801 Beacon Avenue South,Seattle,47.559427,-122.30489,ChIJjwx9VN5BkFQRWRSE9mEfmo0,3.9,supermarket,"0    4.357986
+Name: distance.value, dtype: float64"
+Seattle Public Library-Central Library,1000 4th Ave,Seattle,47.6067006,-122.3325009,ChIJ55fLWVtBkFQR0v31eadEoLM,4.7,library,"0    2.029211
+Name: distance.value, dtype: float64"
+Fremont Branch - The Seattle Public Library,731 North 35th Street,Seattle,47.65006210000001,-122.3484226,ChIJoz291gAVkFQR5-kw3WppwvU,4.6,library,"0    5.244873
+Name: distance.value, dtype: float64"
+Capitol Hill Branch - The Seattle Public Library,425 Harvard Avenue East,Seattle,47.6229294,-122.3223185,ChIJ1Y9IDC4VkFQRteLhIs-Bf4I,4.5,library,"0    1.662523
+Name: distance.value, dtype: float64"
+Columbia Branch - The Seattle Public Library,4721 Rainier Avenue South,Seattle,47.5599006,-122.2869591,ChIJv5x3_wxqkFQRs76P7-fM9GE,4.5,library,"0    4.172157
+Name: distance.value, dtype: float64"
+Douglass-Truth Branch - The Seattle Public Library,2300 East Yesler Way,Seattle,47.6019184,-122.3016502,ChIJz7j3fcJqkFQR4IjrnHLzv74,4.5,library,"0    1.31821
+Name: distance.value, dtype: float64"
+Beacon Hill Branch - The Seattle Public Library,2821 Beacon Avenue South,Seattle,47.5779907,-122.3114033,ChIJQ2xGQIdqkFQRDAwVMNgC7gI,4.5,library,"0    3.154755
+Name: distance.value, dtype: float64"
+University Branch - The Seattle Public Library,5009 Roosevelt Way Northeast,Seattle,47.6652442,-122.3178828,ChIJVZZq9mAUkFQRRAHfUiu_sc0,4.3,library,"0    4.379739
+Name: distance.value, dtype: float64"
+Montlake Branch - The Seattle Public Library,2401 24th Avenue East,Seattle,47.6405196,-122.3024015,ChIJU2vyhcMUkFQRG9TOL-sJups,4.4,library,"0    1.939714
+Name: distance.value, dtype: float64"
+Queen Anne Branch - The Seattle Public Library,400 West Garfield Street,Seattle,47.6338136,-122.362665,ChIJEw6qRGwVkFQRNJYY6wj_LXY,4.4,library,"0    5.554382
+Name: distance.value, dtype: float64"
+Wallingford Branch - The Seattle Public Library,1501 North 45th Street,Seattle,47.6611801,-122.3389307,ChIJxZL2KlcUkFQRvMj-zXRI3H0,4.4,library,"0    4.85954
+Name: distance.value, dtype: float64"
+International District/Chinatown Branch - The Seattle Public Library,713 8th Avenue South,Seattle,47.5962327,-122.32278429999998,ChIJn-krn71qkFQR54uojagWKD8,4.4,library,"0    2.398384
+Name: distance.value, dtype: float64"
+West Seattle Branch - The Seattle Public Library,2306 42nd Avenue Southwest,Seattle,47.58268870000001,-122.3846956,ChIJ3VcWbG9AkFQR-NsDgadjWO4,4.1,library,"0    7.762585
+Name: distance.value, dtype: float64"
+Magnolia Branch - The Seattle Public Library,2801 34th Avenue West,Seattle,47.645323,-122.4014357,ChIJVwuub4YVkFQRgmCNdfT17B4,4.4,library,"0    6.886265
+Name: distance.value, dtype: float64"
+Delridge Branch - The Seattle Public Library,5423 Delridge Way Southwest,Seattle,47.5531615,-122.3633638,ChIJ3aIMp6lBkFQRoIT0hrJlwwk,4.2,library,"0    7.472343
+Name: distance.value, dtype: float64"
+Madrona-Sally Goldmark Branch - The Seattle Public Library,1134 33rd Avenue,Seattle,47.61267480000001,-122.2900202,ChIJ3XHObSdrkFQR1ZG6wstVcZ8,4.9,library,"0    0.594158
+Name: distance.value, dtype: float64"
+Planned Parenthood - Seattle Health Center,2001 East Madison Street,Seattle,47.6173333,-122.3050597,ChIJs2HFItRqkFQR9wboXMU06zM,3.3,hospital,"0    0.395898
+Name: distance.value, dtype: float64"
+Kaiser Permanente Capitol Hill Campus,201 16th Avenue East,Seattle,47.6195658,-122.3124495,ChIJq8vdpSwVkFQRNNnO1BauR9k,4.0,hospital,"0    1.037912
+Name: distance.value, dtype: float64"
+Swedish Cherry Hill Campus,500 17th Avenue,Seattle,47.60717879999999,-122.3104306,ChIJK1HatMVqkFQR8L5hMyMoq90,4.3,hospital,"0    1.19826
+Name: distance.value, dtype: float64"
+Virginia Mason Hospital: Seattle,925 Seneca Street,Seattle,47.6099071,-122.3273292,ChIJgTtB_LVqkFQRk2T_2wRKgGg,4.3,hospital,"0    1.629584
+Name: distance.value, dtype: float64"
+Swedish First Hill Campus,747 Broadway,Seattle,47.6088943,-122.3220427,ChIJK1HatMVqkFQRLSEF-lkF5L8,3.7,hospital,"0    1.384711
+Name: distance.value, dtype: float64"
+Seattle Children's Odessa Brown Children's Clinic,2101 East Yesler Way,Seattle,47.60132900000001,-122.304629,ChIJpYOzD8JqkFQRD_eWTAzVfek,4.6,hospital,"0    1.211933
+Name: distance.value, dtype: float64"
+Seattle Cancer Care Alliance,825 Eastlake Avenue East,Seattle,47.626721,-122.329657,ChIJpdvcrzoVkFQRxOKA5KBrPYU,4.6,hospital,"0    2.804848
+Name: distance.value, dtype: float64"
+Swedish,747 Broadway,Seattle,47.6088664,-122.3219078,ChIJIaimVchqkFQROvSZca1wkjo,3.7,hospital,"0    1.385333
+Name: distance.value, dtype: float64"
+Planned Parenthood - Roosevelt Health Center,5020 Roosevelt Way Northeast Unit 1,Seattle,47.66560629999999,-122.3172158,ChIJ34vP-2AUkFQRfX000CN_DRM,3.9,hospital,"0    5.447483
+Name: distance.value, dtype: float64"
+VA Puget Sound Health Care System,1660 South Columbian Way,Seattle,47.5634483,-122.3089096,ChIJEQjS1thBkFQR-Vphs0JrVVA,3.9,hospital,"0    4.830329
+Name: distance.value, dtype: float64"
+Virginia Mason Hospital and Seattle Medical Center,1100 9th Avenue,Seattle,47.61003590000001,-122.327796,ChIJx3kMjY8NkFQR9nFRWgZ3Ypc,4.1,hospital,"0    1.648229
+Name: distance.value, dtype: float64"
+Planned Parenthood - First Hill Health Center,1229 Madison Street Suite 1040,Seattle,47.6101561,-122.3220829,ChIJs31noMlqkFQRgbwXi3JnaZo,4.5,hospital,"0    1.309509
+Name: distance.value, dtype: float64"
+Seattle Children's Gastroenterology and Hepatology,4800 Sand Point Way Northeast,Seattle,47.66263789999999,-122.283265,ChIJ89lAy4IUkFQRk-EpsV7W_XA,4.0,hospital,"0    4.426973
+Name: distance.value, dtype: float64"
+Endocrinology at Virginia Mason,1201 Terry Avenue,Seattle,47.6103512,-122.3279443,ChIJU2Vf-7VqkFQRNxFNCOkZep8,5.0,hospital,"0    1.642635
+Name: distance.value, dtype: float64"
+Seattle Children's Hospital- Heart Center,4800 Sand Point Way Northeast,Seattle,47.663071,-122.282807,ChIJ89lAy4IUkFQRARgqph2Pnp0,4.8,hospital,"0    4.339341
+Name: distance.value, dtype: float64"
+Facial Surgery Center of Seattle,509 Olive Way #1331,Seattle,47.6127103,-122.33665220000002,ChIJrdhDMksVkFQRlRJXgtraLVw,4.4,hospital,"0    2.509012
+Name: distance.value, dtype: float64"
+Downtown Seattle Medical Center | Kaiser Permanente Washington,1420 5th Avenue #375,Seattle,47.6106555,-122.3348011,ChIJ3bW1i7RqkFQRQ2SbjMh3RDQ,4.0,hospital,"0    2.050963
+Name: distance.value, dtype: float64"
+Immediate Clinic Queen Anne,610 1st Avenue North,Seattle,47.62501700000001,-122.354457,ChIJpZ3C10MVkFQRBVXqSRvgATk,4.2,hospital,"0    4.679304
+Name: distance.value, dtype: float64"
+Seattle Children's Neurology,4800 Sand Point Way Northeast,Seattle,47.662622,-122.28223090000002,ChIJ89lAy4IUkFQR7Of60-dn-r4,5.0,hospital,"0    4.401492
+Name: distance.value, dtype: float64"
+Psychiatric Medicine Associates,1505 Westlake Avenue North,Seattle,47.632348500000006,-122.34145320000002,ChIJtYa7gz0VkFQRZperXvIWxp4,3.6,hospital,"0    4.384089
+Name: distance.value, dtype: float64"
+Surgery Department at Virginia Mason,1100 9th Avenue,Seattle,47.6094749,-122.3279078,ChIJ7TVIC7ZqkFQRqaopdUR3SDE,5.0,hospital,"0    1.649472
+Name: distance.value, dtype: float64"
+Pacific Medical Center - First Hill,1101 Madison Street Suite 301,Seattle,47.60923999999999,-122.324199,ChIJZTs13clqkFQR3Wq9gIePNZQ,3.1,hospital,"0    1.420758
+Name: distance.value, dtype: float64"
+Swedish Physicians,2211 Queen Anne Avenue North,Seattle,47.638801,-122.357317,ChIJweRAeBIVkFQRALfhGKBUjlE,3.9,hospital,"0    5.688005
+Name: distance.value, dtype: float64"
+Virginia Mason Hospital & Seattle Medical Center​,1100 Seneca Street,Seattle,47.6100079,-122.327633,ChIJ7TVIC7ZqkFQR9i9t7_vnesU,4.5,hospital,"0    1.643257
+Name: distance.value, dtype: float64"
+University Of Washington Roosevelt Clinic,4245 Roosevelt Way Northeast,Seattle,47.6588389,-122.3182835,ChIJtZRBUPQUkFQRrha7Mf1oh6M,4.2,hospital,"0    3.830329
+Name: distance.value, dtype: float64"
+"David W Newell, MD - Seattle Neuroscience Institute",550 17th Avenue Ste 240,Seattle,47.6074024,-122.3097425,ChIJlydMOMRqkFQRg1VSvqplA7c,4.5,hospital,"0    0.99192
+Name: distance.value, dtype: float64"
+Rainier Medical Center | Kaiser Permanente Washington,5316 Rainier Avenue South,Seattle,47.5542189,-122.2796936,ChIJ7awmfA9qkFQReJ3wjo3MPg0,4.1,hospital,"0    4.760099
+Name: distance.value, dtype: float64"
+ZOOM+Care,Queen Anne Avenue North,Seattle,47.63636320000001,-122.3573163,ChIJg-UbHxMVkFQRRWA3nJ0s8Uw,4.4,hospital,"0    5.47918
+Name: distance.value, dtype: float64"
+Visions Northwest,1315 4th Avenue,Seattle,47.60858930000001,-122.3354827,ChIJP3GQ7bNqkFQRUJv6jqfiHCc,3.3,hospital,"0    2.087632
+Name: distance.value, dtype: float64"
+Swedish West Seattle Primary Care,3400 California Avenue Southwest #300,Seattle,47.57290099999999,-122.386411,ChIJBbR9W15AkFQR_rMzbQrKqSo,3.3,hospital,"0    8.200746
+Name: distance.value, dtype: float64"
+University of Washington: Department of Pediatrics,1959 Northeast Pacific Street,Seattle,47.6493393,-122.30676470000002,ChIJ89uGFOwUkFQReIDliJVN-Zw,5.0,hospital,"0    2.799876
+Name: distance.value, dtype: float64"
+Carolyn Downs Family Medical Center,2101 East Yesler Way,Seattle,47.60130669999999,-122.3045966,ChIJpYOzD8JqkFQRY4kVDWwCuo8,4.5,hospital,"0    1.213176
+Name: distance.value, dtype: float64"
+Emerald City Medical Arts,16 Roy Street,Seattle,47.625595,-122.356028,ChIJ04rJKkIVkFQRNwFUN1w19MU,4.4,hospital,"0    4.68614
+Name: distance.value, dtype: float64"
+Cabrini Pharmacy Services,901 Boren Avenue #100,Seattle,47.60877800000001,-122.324934,ChIJO2Jv2MlqkFQRi23SlTQHf30,5.0,pharmacy,"0    1.806712
+Name: distance.value, dtype: float64"
+Eastern's Pharmacy,515 Minor Avenue #120,Seattle,47.6064224,-122.3220492,ChIJf4OkAMhqkFQRRGRx8i3KTLQ,4.6,pharmacy,"0    1.594779
+Name: distance.value, dtype: float64"
+Bartell Drugs Downtown,1628 5th Avenue,Seattle,47.6126798,-122.337083,ChIJQaN1sbRqkFQRN6UD2WyVjPw,4.1,pharmacy,"0    2.490988
+Name: distance.value, dtype: float64"
+Kelley-Ross Pharmacy at the Polyclinic,904 7th Avenue #103,Seattle,47.60700620000001,-122.3289018,ChIJvy--5ctqkFQRKK47jj4EcJI,4.1,pharmacy,"0    2.041019
+Name: distance.value, dtype: float64"
+CVS Pharmacy Specialty Services,1001 Madison Street,Seattle,47.60905460000001,-122.3254753,ChIJTQA1PbZqkFQRD8UKq5oP6dE,2.7,pharmacy,"0    1.476072
+Name: distance.value, dtype: float64"
+Bartell Drugs University Way Store,4344 University Way Northeast,Seattle,47.6611103,-122.3129917,ChIJkT1x4IoUkFQRON2yO2N9FJk,3.6,pharmacy,"0    3.978869
+Name: distance.value, dtype: float64"
+Pharmaca Integrative Pharmacy,4130 East Madison Street,Seattle,47.6355614,-122.2787496,ChIJaxkF0rUUkFQR1SvPwUYWcyk,4.5,pharmacy,"0    2.123058
+Name: distance.value, dtype: float64"
+"Robert Santucci, RPH",325 9th Avenue,Seattle,47.60407599999999,-122.324203,ChIJsaW7rLlqkFQRMhrkt5Fj_v8,5.0,pharmacy,"0    1.83468
+Name: distance.value, dtype: float64"
+United States Postal Service,415 1st Avenue North,Seattle,47.62289000000001,-122.355808,ChIJ0ejyd0QVkFQR4WHjV3qZae0,2.6,post_office,"0    4.865755
+Name: distance.value, dtype: float64"
+Park Postal,4111 East Madison Street # 2,Seattle,47.6348424,-122.2789854,ChIJ5wpdx7UUkFQRYx3kOtnXANs,5.0,post_office,"0    1.83903
+Name: distance.value, dtype: float64"
+The Mailbox Seattle,300 Lenora Street,Seattle,47.613428000000006,-122.342249,ChIJ0QkxikwVkFQR9nNfmEbmCSg,4.6,post_office,"0    2.814792
+Name: distance.value, dtype: float64"
+US Post Office,4501 9th Avenue Northwest,Seattle,47.6617343,-122.369676,ChIJg5g_0LAVkFQRurF5mnEdUL4,1.4,post_office,"0    6.347421
+Name: distance.value, dtype: float64"
+Magnolia Mailbox,3213 West Wheeler Street,Seattle,47.6398944,-122.3990784,ChIJaf_E8IAVkFQRIGvkDvgo0-Y,5.0,post_office,"0    6.449347
+Name: distance.value, dtype: float64"
+United States Postal Service,409 Maynard Avenue South Ste 109,Seattle,47.5989524,-122.3252481,ChIJL7QGb7xqkFQRwAV4Qb4ljvg,2.6,post_office,"0    2.334369
+Name: distance.value, dtype: float64"
+United States Postal Service,1150 23rd Avenue,Seattle,47.6125599,-122.3021842,ChIJa7eVsdBqkFQRUPYjtq-M_do,2.2,post_office,"0    0.428838
+Name: distance.value, dtype: float64"
+United States Postal Service,Ste 25,Seattle,47.60614320000001,-122.33376409999998,ChIJYyyJPLFqkFQRJRHDsGCtXhc,3.8,post_office,"0    1.909882
+Name: distance.value, dtype: float64"
+United States Postal Service,212 Broadway East,Seattle,47.6204931,-122.3205079,ChIJ6zulfzIVkFQRpomgrAahnro,2.9,post_office,"0    1.430081
+Name: distance.value, dtype: float64"
+United States Postal Service,301 Union Street,Seattle,47.6086676,-122.3364571,ChIJlRZwlrNqkFQRKdEyR26ViKA,2.4,post_office,"0    2.174643
+Name: distance.value, dtype: float64"
+United States Postal Service,909 1st Avenue Ste 100,Seattle,47.604256,-122.3361989,ChIJJyE1MrBqkFQR7nbdOBif6f4,3.4,post_office,"0    2.08266
+Name: distance.value, dtype: float64"
+US Post Office,217 1st Avenue South,Seattle,47.6002614,-122.3344314,ChIJu3fGOqVqkFQRJoFbOJns17E,4.5,post_office,"0    2.691112
+Name: distance.value, dtype: float64"
+United States Postal Service,217 1st Avenue South,Seattle,47.6002388,-122.33459109999998,ChIJC-n4L6VqkFQRWWkqhFEXDFw,2.6,post_office,"0    2.719702
+Name: distance.value, dtype: float64"
+US Post Office,2512 5th Avenue,Seattle,47.6177646,-122.3457107,ChIJ82I21U4VkFQRFtd8qEtQ47Q,3.1,post_office,"0    2.694842
+Name: distance.value, dtype: float64"
+United States Postal Service,2420 4th Avenue South,Seattle,47.58151059999999,-122.3283716,ChIJq1b5AyhAkFQRP47iaCBvZw8,2.5,post_office,"0    4.28527
+Name: distance.value, dtype: float64"
+USPS Seattle Carrier Annex,2460 4th Ave S,Seattle,47.5809179,-122.3282879,ChIJi5Z4IihAkFQR3QTJazBozEo,2.3,post_office,"0    4.216905
+Name: distance.value, dtype: float64"
+United States Postal Service,4244 University Way Northeast,Seattle,47.65957239999999,-122.3128135,ChIJ942DrfQUkFQRZGAt56Ohmps,2.4,post_office,"0    3.882536
+Name: distance.value, dtype: float64"
+United States Postal Service,3727 South Alaska Street,Seattle,47.56027989999999,-122.2858223,ChIJz-KZGg1qkFQRo0Y-oSaIRb4,2.3,post_office,"0    4.154133
+Name: distance.value, dtype: float64"
+United States Postal Service,816 Evergreen Point Road,Medina,47.6179327,-122.2385665,ChIJd5j2RWZrkFQRPeiFwRyNrRc,2.3,post_office,"0    7.320075
+Name: distance.value, dtype: float64"
+United States Postal Service,620 South Orcas Street,Seattle,47.55215799999999,-122.3258137,ChIJRS6_QcBBkFQRlQtUIRGDdeo,3.0,post_office,"0    5.903667
+Name: distance.value, dtype: float64"
+United States Postal Service,1329 North 47th Street,Seattle,47.6624631,-122.3410231,ChIJ7TFoHVEUkFQRltvh5aJS3Jo,2.4,post_office,"0    4.986327
+Name: distance.value, dtype: float64"
+United States Postal Service,3040 78th Avenue Southeast,Mercer Island,47.582406,-122.2331304,ChIJ_bK50blrkFQRxzgIM4xHuqI,3.0,post_office,"0    6.351771
+Name: distance.value, dtype: float64"
+United States Postal Service,3211 West McGraw Street,Seattle,47.6393514,-122.3989834,ChIJkSZt9oAVkFQRsV3w_H9S5Kw,3.8,post_office,"0    6.411436
+Name: distance.value, dtype: float64"
+United States Postal Service,4412 California Avenue Southwest,Seattle,47.5642222,-122.3863326,ChIJ1SxBgvdAkFQRAKl8em4HrxM,2.8,post_office,"0    7.633934
+Name: distance.value, dtype: float64"
+USPS Interbay Carrier Annex,2010 15th Avenue West,Seattle,47.63720360000001,-122.3756404,ChIJI5_94HAVkFQRg3Poo-unrl8,1.9,post_office,"0    5.120572
+Name: distance.value, dtype: float64"
+Grover Cleveland STEM High School,5511 15th Avenue South,Seattle,47.55236220000001,-122.314021,ChIJYbGUT-hBkFQRXG4nuRGwSvY,3.3,school,"0    5.345556
+Name: distance.value, dtype: float64"
+Garfield High School,400 23rd Avenue,Seattle,47.6053376,-122.301866,ChIJaztWtlYUkFQRkScCEvdkRyk,3.5,school,"0    1.041641
+Name: distance.value, dtype: float64"
+Franklin High School,3013 South Mount Baker Boulevard,Seattle,47.57641400000001,-122.292936,ChIJlzcBdGRqkFQRzFaR1RePZ0w,3.5,school,"0    2.99192
+Name: distance.value, dtype: float64"
+Thurgood Marshall Elementary School,2401 South Irving Street,Seattle,47.590961,-122.299264,ChIJU9pHm_JqkFQR--eB9B8rKmA,4.6,school,"0    1.893723
+Name: distance.value, dtype: float64"
+Beacon Hill Elementary School,2025 14th Avenue South,Seattle,47.5850774,-122.3153293,ChIJSQoiaYVqkFQRHSr6tTN3HnU,4.3,school,"0    3.098198
+Name: distance.value, dtype: float64"
+Washington Middle School,2101 South Jackson Street,Seattle,47.59797070000001,-122.3039394,ChIJj0OYM-pqkFQRtWPBTpmjiDQ,3.5,school,"0    1.686762
+Name: distance.value, dtype: float64"
+O'Dea High School,802 Terry Avenue,Seattle,47.6079995,-122.3252348,ChIJJxHNzbdqkFQR24Q9Qe59kUc,3.8,school,"0    1.865134
+Name: distance.value, dtype: float64"
+Mercer Middle School,1600 South Columbian Way,Seattle,47.5640958,-122.3120601,ChIJwaQatNlBkFQRSBOksYpO6Og,3.5,school,"0    4.868241
+Name: distance.value, dtype: float64"
+McClure Middle School,1915 1st Avenue West,Seattle,47.636736600000006,-122.3589594,ChIJfzWuKRMVkFQRGnCAstsA5Lg,2.1,school,"0    5.569298
+Name: distance.value, dtype: float64"
+Hamilton International Middle School,1610 North 41st Street,Seattle,47.6571808,-122.33791370000002,ChIJiVE8DFYUkFQRVzQETfJCL0k,3.2,school,"0    4.519577
+Name: distance.value, dtype: float64"
+Maple Elementary School,4925 Corson Avenue South,Seattle,47.5580872,-122.3189683,ChIJ1w13X8NBkFQRjsUJt40E9fc,4.3,school,"0    5.236172
+Name: distance.value, dtype: float64"
+Roosevelt High School,1410 Northeast 66th Street,Seattle,47.6773876,-122.3133615,ChIJaztWtlYUkFQRWF7fyc5Yh-w,3.6,school,"0    6.275326
+Name: distance.value, dtype: float64"
+West Seattle High School,3000 California Avenue Southwest,Seattle,47.57657539999999,-122.3845971,ChIJ-WczCmdAkFQRo6wGdE4XrL8,2.7,school,"0    7.954009
+Name: distance.value, dtype: float64"
+Seattle Hebrew Academy Elementary,1617 Interlaken Drive East,Seattle,47.63427639999999,-122.3079247,ChIJfbBSOtoUkFQR6qUVDn3NhFY,4.3,school,"0    1.746426
+Name: distance.value, dtype: float64"
+John Muir Elementary School,3301 South Horton Street,Seattle,47.573151,-122.2907491,ChIJg3Tq7mVqkFQRizwUX7D4fsM,2.9,school,"0    3.31386
+Name: distance.value, dtype: float64"
+Aki Kurose Middle School,3928 South Graham Street,Seattle,47.5463092,-122.28202240000002,ChIJoaNPogBqkFQRA6H8bnysHfc,3.9,school,"0    5.357986
+Name: distance.value, dtype: float64"
+John Hay Elementary School,201 Garfield Street,Seattle,47.63285070000001,-122.351958,ChIJ32PP-hQVkFQR4FjBAAFXh1E,4.3,school,"0    5.031075
+Name: distance.value, dtype: float64"
+Lowell Elementary School,1058 East Mercer Street,Seattle,47.624599,-122.3181719,ChIJeyn8pC4VkFQRWEoWqQHGpWo,4.1,school,"0    1.85519
+Name: distance.value, dtype: float64"
+B. F. Day Elementary School,3921 Linden Avenue North,Seattle,47.65477899999999,-122.34913059999998,ChIJNXjE5KoVkFQR69BT1amFzuY,3.9,school,"0    5.221877
+Name: distance.value, dtype: float64"
+Purple Cafe and Wine Bar,1225 4th Avenue,Seattle,47.60795770000001,-122.335092,ChIJC2j55LNqkFQRRqBoRA_a_3A,4.4,cafe,"0    2.152268
+Name: distance.value, dtype: float64"
+Grand Central Bakery,1616 Eastlake Avenue East,Seattle,47.63458019999999,-122.324898,ChIJ9yOXGSEVkFQRJyuR-GTuYfg,4.1,cafe,"0    3.487259
+Name: distance.value, dtype: float64"
+Starbucks,1501 4th Avenue,Seattle,47.6101018,-122.3374811,ChIJOZt-ZrNqkFQRN3wQTZPMtDs,4.1,cafe,"0    2.296457
+Name: distance.value, dtype: float64"
+Starbucks,505 5th Ave S,Seattle,47.597643,-122.3283521,ChIJIS9Xt7xqkFQR6pkgLoc7P_4,4.0,cafe,"0    2.864512
+Name: distance.value, dtype: float64"
+Starbucks,1912 Pike Place,Seattle,47.6100799,-122.3424933,ChIJC8c4xbJqkFQRzxkn4pr96xE,4.2,cafe,"0    2.558111
+Name: distance.value, dtype: float64"
+Espresso Vivace,227 Yale Avenue,Seattle,47.6201875,-122.3306459,ChIJ1-NiqTYVkFQRO2XahxpM_-g,4.6,cafe,"0    3.031075
+Name: distance.value, dtype: float64"
+Portage Bay Cafe,4130 Roosevelt Way Northeast,Seattle,47.6577795,-122.3175253,ChIJzZzBbfQUkFQRP0f0nUznInY,4.3,cafe,"0    3.695463
+Name: distance.value, dtype: float64"
+Oddfellows Café + Bar,1525 10th Avenue,Seattle,47.6148992,-122.3196431,ChIJZ7BwWsxqkFQRW7n0QdDE1eg,4.4,cafe,"0    1.100062
+Name: distance.value, dtype: float64"
+Cafe Presse,1117 12th Avenue,Seattle,47.6120799,-122.316982,ChIJQ4-Qlc5qkFQRJT1w6olUDhQ,4.4,cafe,"0    1.105656
+Name: distance.value, dtype: float64"
+Local 360,2234 1st Avenue,Seattle,47.61343400000001,-122.3462019,ChIJvV_FuU0VkFQRCPtOJX1_2OY,4.1,cafe,"0    2.830329
+Name: distance.value, dtype: float64"
+Specialty's Cafe & Bakery,1400 5th Avenue,Seattle,47.6099581,-122.3346643,ChIJtf-LZLRqkFQRaipr2Bu4xik,3.9,cafe,"0    2.085146
+Name: distance.value, dtype: float64"
+Top Pot Doughnuts,2124 5th Ave,Seattle,47.6151643,-122.3412291,ChIJZ3fV7EsVkFQRyXzzrkx3iDs,4.4,cafe,"0    2.875078
+Name: distance.value, dtype: float64"
+Relish Burger Bistro,1900 5th Avenue,Seattle,47.6136929,-122.33813329999998,ChIJ90iRa0sVkFQRMr6jML7zVgY,3.8,cafe,"0    2.443754
+Name: distance.value, dtype: float64"
+Zoka Coffee Roaster & Tea Co,2901 Northeast Blakeley Street,Seattle,47.666069,-122.297606,ChIJXfLA8YYUkFQR6Zimch60wH0,4.4,cafe,"0    3.903667
+Name: distance.value, dtype: float64"
+Mrs. Fields,1420 5th Avenue,Seattle,47.61067979999999,-122.3349334,ChIJGxIr87RqkFQRBtfgLnjzkMM,3.8,cafe,"0    2.046613
+Name: distance.value, dtype: float64"
+The Georgian,411 University Street,Seattle,47.6080847,-122.3334322,ChIJk63I_rNqkFQR0S-WQKFW6ZI,4.3,cafe,"0    2.307023
+Name: distance.value, dtype: float64"
+Starbucks,First Floor Lobby,Seattle,47.580806300000006,-122.335363,ChIJ5bvVCydAkFQR55l3AA-slWE,4.2,cafe,"0    4.134245
+Name: distance.value, dtype: float64"
+Cupcake Royale - Madrona,1101 34th Avenue,Seattle,47.61176879999999,-122.2895219,ChIJxa7RRCdrkFQRnyNOdhahCUE,4.4,cafe,"0    0.70665
+Name: distance.value, dtype: float64"
+Caffe Vita,125 Prefontaine Place South,Seattle,47.6010383,-122.329398,ChIJYxoPALtqkFQRkiyPMUOWrpQ,4.5,cafe,"0    2.422001
+Name: distance.value, dtype: float64"
+Zig Zag Cafe,1501 Western Avenue ste 202,Seattle,47.6084991,-122.3416807,ChIJUQY5irJqkFQRNyEM-1Nq3oQ,4.4,cafe,"0    2.512741
+Name: distance.value, dtype: float64"
+Starbucks,7620 SE 27th St,Mercer Island,47.58706289999999,-122.236964,ChIJP3EL8LprkFQRd1mIfW9AXLE,3.7,cafe,"0    5.678061
+Name: distance.value, dtype: float64"
+Row House Cafe,1170 Republican Street,Seattle,47.623269,-122.3334501,ChIJ9fNjtTAVkFQRsZfQKVDKjDI,4.2,cafe,"0    2.966439
+Name: distance.value, dtype: float64"
+Cafe Allegro,4214 University Way Northeast,Seattle,47.658786600000006,-122.3128543,ChIJ-foDq_QUkFQRMB-kVqbhxQw,4.4,cafe,"0    3.827843
+Name: distance.value, dtype: float64"
+Kaladi Brothers Coffee,517 East Pike Street,Seattle,47.61389699999999,-122.3247262,ChIJN9TLDctqkFQRPiPiapVNpiE,4.6,cafe,"0    1.33872
+Name: distance.value, dtype: float64"
+The Crumpet Shop,1503 1st Avenue,Seattle,47.6090398,-122.3405168,ChIJBx-J_rJqkFQRlLepwvXHbuo,4.6,cafe,"0    2.418894
+Name: distance.value, dtype: float64"
+Blue C Sushi,1510 7th Avenue,Seattle,47.612144,-122.33360890000002,ChIJTRLLHbVqkFQRKcaSMwvdnCI,3.9,cafe,"0    1.858297
+Name: distance.value, dtype: float64"
+Starbucks,4634 26th Avenue Northeast,Seattle,47.6626189,-122.2996403,ChIJI-nqUY8UkFQRtQ7T5nCq038,4.2,cafe,"0    3.518956
+Name: distance.value, dtype: float64"
+Starbucks,4000 East Madison Street,Seattle,47.6342244,-122.2808582,ChIJ7YzDdcoUkFQRpdsnTplARpI,4.4,cafe,"0    1.747048
+Name: distance.value, dtype: float64"
+Caffé Vita,1005 East Pike Street,Seattle,47.61395260000001,-122.3190311,ChIJJc84R8xqkFQRZqYMFhmH8e8,4.2,cafe,"0    1.068987
+Name: distance.value, dtype: float64"
+Krispy Kreme Doughnuts,1900 1st Avenue South,Seattle,47.5857265,-122.3335567,ChIJ_yRuVidAkFQRF2IW-bPwqIs,4.2,cafe,"0    3.836544
+Name: distance.value, dtype: float64"
+Starbucks,2135 Queen Anne Avenue North,Seattle,47.638251200000006,-122.3571676,ChIJ1XPPXRIVkFQRe7D59OkfV1c,4.2,cafe,"0    5.638906
+Name: distance.value, dtype: float64"
+The Yellow Leaf,2209 4th Avenue,Seattle,47.6147667,-122.3431813,ChIJ8w3HDUwVkFQRsQgBYfGxrj0,4.3,cafe,"0    2.653822
+Name: distance.value, dtype: float64"
+Starbucks,1600 East Olive Way,Seattle,47.6193689,-122.3250445,ChIJjfnnrjMVkFQRSuZC1_ODJvk,4.2,cafe,"0    1.587943
+Name: distance.value, dtype: float64"
+Cafe Campagne,1600 Post Alley,Seattle,47.6097262,-122.3415471,ChIJWfoS3bJqkFQRe8w36H6VslI,4.3,cafe,"0    2.507147
+Name: distance.value, dtype: float64"
+Central Co-op,1600 East Madison Street,Seattle,47.61532800000001,-122.311129,ChIJq2PSJtJqkFQRkk9aRox0ndg,4.6,cafe,"0    0.679304
+Name: distance.value, dtype: float64"
+Von's 1000SPIRITS,1225 1st Avenue,Seattle,47.6065492,-122.3383332,ChIJYSjPILJqkFQRE-m7s1g6K0Y,4.5,cafe,"0    2.223741
+Name: distance.value, dtype: float64"
+Cafe Solstice,4116 University Way Northeast,Seattle,47.657407,-122.31296,ChIJaZE6QvMUkFQRXCfaq6_QnBE,4.3,cafe,"0    3.733375
+Name: distance.value, dtype: float64"
+Uptown Espresso Inc,500 Westlake Avenue North,Seattle,47.6233259,-122.3382102,ChIJlxd21DkVkFQRPXti02CISHQ,4.4,cafe,"0    2.583592
+Name: distance.value, dtype: float64"
+Voula's Offshore Cafe,658 Northeast Northlake Way,Seattle,47.65465560000001,-122.3215067,ChIJ_6PM3vAUkFQRKmNERgd3N8M,4.5,cafe,"0    3.449969
+Name: distance.value, dtype: float64"
+Cherry Street Coffee House,700 1st Avenue,Seattle,47.6027518,-122.3342122,ChIJAyi_C7BqkFQRrBhr-KrrtOc,4.4,cafe,"0    2.650093
+Name: distance.value, dtype: float64"
+Grand Central Bakery,214 1st Avenue South,Seattle,47.600401,-122.333799,ChIJr7YdMKVqkFQRzOaytzWjzj8,4.4,cafe,"0    2.681168
+Name: distance.value, dtype: float64"
+Tutta Bella Neapolitan Pizzeria - Columbia City,4918 Rainier Avenue South,Seattle,47.5571417,-122.2844732,ChIJn1OMmg5qkFQRt2D0W86TUt4,4.5,cafe,"0    4.35115
+Name: distance.value, dtype: float64"
+Merchant's Cafe and Saloon,109 Yesler Way,Seattle,47.60162609999999,-122.3334541,ChIJY6NHurpqkFQRBNxKBnDfAQA,4.0,cafe,"0    2.563083
+Name: distance.value, dtype: float64"
+Tilikum Place Cafe,407 Cedar Street,Seattle,47.6179313,-122.3476593,ChIJ6TtIO08VkFQRRNn6uHOo27g,4.5,cafe,"0    2.980733
+Name: distance.value, dtype: float64"
+Cupcake Royale,1111 East Pike Street,Seattle,47.61392739999999,-122.3175486,ChIJ1_lzM8xqkFQRxhCSJO3iJxY,4.4,cafe,"0    1.004351
+Name: distance.value, dtype: float64"
+Joelle's Espresso Cafe,1001 4th Avenue #510,Seattle,47.606095,-122.3334951,ChIJ26HlPLFqkFQRDhOi1rfeDUU,3.1,cafe,"0    1.901181
+Name: distance.value, dtype: float64"
+Cherry Street Coffee House,808 3rd Avenue,Seattle,47.6046042,-122.3327304,ChIJyUp88bBqkFQRNfnS63Sm9I0,4.2,cafe,"0    2.239279
+Name: distance.value, dtype: float64"
+Uptown Espresso,2801 Alaskan Way Suite 105,Seattle,47.614811,-122.35502,ChIJDxYqulEVkFQR4ggW6oZu4Os,4.0,cafe,"0    3.27284
+Name: distance.value, dtype: float64"
+Fonté Coffee Roaster Café,1321 1st Avenue,Seattle,47.6072047,-122.3389968,ChIJx_rKPrJqkFQR7OliFT0Jk-A,4.4,cafe,"0    2.44624
+Name: distance.value, dtype: float64"
+Caffe Ladro,452 N 36th St,Seattle,47.65212049999999,-122.3531742,ChIJY2TO7qkVkFQR-ngTKaDhowc,4.5,cafe,"0    5.503418
+Name: distance.value, dtype: float64"
+Bacco Cafe,86 Pine Street,Seattle,47.61009669999999,-122.3414064,ChIJsShv3bJqkFQRNhAXcjjvtSU,4.5,cafe,"0    2.527035
+Name: distance.value, dtype: float64"
+Tutta Bella Neapolitan Pizzeria - South Lake Union,2200 Westlake Avenue,Seattle,47.61823709999999,-122.3376188,ChIJr4z_70kVkFQRbGYag_u6UEw,4.2,cafe,"0    2.248602
+Name: distance.value, dtype: float64"
+Espresso Vivace,532 Broadway East,Seattle,47.6237849,-122.3206273,ChIJ6Sd77S0VkFQRcMeTs1sg6iU,4.5,cafe,"0    2.018645
+Name: distance.value, dtype: float64"
+Citizen,706 Taylor Avenue North,Seattle,47.62569969999999,-122.3459644,ChIJHVQ7VkcVkFQRqX1RPUYV9DQ,4.5,cafe,"0    4.251709
+Name: distance.value, dtype: float64"
+Zoka Coffee Roaster & Tea Company,2200 North 56th Street,Seattle,47.6687938,-122.3328673,ChIJbwN2TEMUkFQR7UMDEHAT3aQ,4.5,cafe,"0    4.980733
+Name: distance.value, dtype: float64"
+Broadfork Cafe,4757 12th Avenue Northeast,Seattle,47.66478060000001,-122.3153909,ChIJ-9xQs2EUkFQRcbVXW6GOtHY,4.4,cafe,"0    4.507147
+Name: distance.value, dtype: float64"
+Zeitgeist Coffee,171 South Jackson Street,Seattle,47.59901170000001,-122.3319395,ChIJM_73yqRqkFQRgLc2-YKhXr4,4.5,cafe,"0    2.63642
+Name: distance.value, dtype: float64"
+Oasis Tea Zone,519 6th Avenue South,Seattle,47.597742,-122.326523,ChIJ99NL7LxqkFQR2sbTmAs3DMU,4.3,cafe,"0    2.478558
+Name: distance.value, dtype: float64"
+Cafe on the Ave.,4201 University Way NE,Seattle,47.65844939999999,-122.3134756,ChIJbV44pvQUkFQRBuSZQ_SrifQ,3.9,cafe,"0    3.757613
+Name: distance.value, dtype: float64"
+Fremont Coffee Company,459 North 36th Street,Seattle,47.6517006,-122.3530884,ChIJXZ0e56kVkFQRwVQfCjfg-sM,4.5,cafe,"0    5.515848
+Name: distance.value, dtype: float64"
+Whole Foods Market 365,10200 Northeast 4th Street,Bellevue,47.61413659999999,-122.2037896,ChIJsQn78IZskFQRAgI6IVPpCGg,4.0,supermarket,"0    9.862648
+Name: distance.value, dtype: float64"
+Martin Luther King Jr Elementary School,6725 45th Avenue South,Seattle,47.542024700000006,-122.276964,ChIJz5lWHGtBkFQR6fdIceLKFjo,4.4,school,"0    5.70665
+Name: distance.value, dtype: float64"
+McGilvra Elementary School,1617 38th Avenue East,Seattle,47.633989,-122.28482,ChIJUaFQL8oUkFQRD42bIbWhnwU,5.0,school,"0    1.676196
+Name: distance.value, dtype: float64"
+"Cavu Cafe, King County Int'l Airport",7277 Perimeter Road South,Seattle,47.53679469999999,-122.3038698,ChIJt_--ofVBkFQRqn6CRW96WDA,4.2,cafe,"0    7.284027
+Name: distance.value, dtype: float64"
+McDonald's,1950 6th Avenue,Seattle,47.6145,-122.337938,ChIJF08urrpqkFQRz3ISr_5JNCg,3.5,cafe,"0    2.490367
+Name: distance.value, dtype: float64"
+Starbucks,102 Pike St,Seattle,47.60905200000001,-122.339908,ChIJgcua_rJqkFQRzLvJbfFV_u8,4.3,cafe,"0    2.411436
+Name: distance.value, dtype: float64"
+Southwest Branch - The Seattle Public Library,9010 35th Avenue Southwest,Seattle,47.5224353,-122.3762737,ChIJ55fLWVtBkFQRSHJ8COerwKA,4.5,library,"0    10.106277
+Name: distance.value, dtype: float64"
+South Park Branch - The Seattle Public Library,8604 8th Avenue South,Seattle,47.52625200000001,-122.3225876,ChIJoU5EcSlCkFQR_TJ_DqrNmm8,3.9,library,"0    8.210068
+Name: distance.value, dtype: float64"
+High Point Branch - The Seattle Public Library,3411 Southwest Raymond Street,Seattle,47.5480634,-122.3758752,ChIJyyxAAAVBkFQRIwwgKaMThyA,4.3,library,"0    8.308266
+Name: distance.value, dtype: float64"
+West Seattle Natural Medicine,3256 California Avenue Southwest,Seattle,47.57398000000001,-122.38657240000002,ChIJwX4DEV5AkFQRFik_mXgWxZk,3.8,hospital,"0    8.275326
+Name: distance.value, dtype: float64"
+Bartell Drugs Queen Anne,600 1st Avenue North,Seattle,47.6247794,-122.3550362,ChIJ6arNY0EVkFQRhGSmFdbpPb4,3.9,pharmacy,"0    4.699192
+Name: distance.value, dtype: float64"
+QFC Pharmacy,500 Mercer Street,Seattle,47.6249417,-122.3471343,ChIJZ-cPR0cVkFQRhXyWpFl_fww,4.0,pharmacy,"0    4.254817
+Name: distance.value, dtype: float64"
+United States Postal Service,2721 Southwest Trenton Street,Seattle,47.5240893,-122.3671603,ChIJb3ggmmdBkFQRPwzmnWd2mJw,2.3,post_office,"0    9.802983
+Name: distance.value, dtype: float64"
+Chief Sealth International High School,2600 Southwest Thistle Street,Seattle,47.5296966,-122.3658077,ChIJ9_J6z2hBkFQRGtZlJPEXiBQ,3.3,school,"0    9.470479
+Name: distance.value, dtype: float64"
+West Seattle Elementary School,6760 34th Avenue Southwest,Seattle,47.541578,-122.374133,ChIJXyW37RFBkFQRaWwcmVJsjoA,4.2,school,"0    8.840273
+Name: distance.value, dtype: float64"
+Highland Park Elementary School,1012 Southwest Trenton Street,Seattle,47.525611,-122.348655,ChIJ96A9k3xBkFQR9xNgloMKqbU,3.7,school,"0    9.70665
+Name: distance.value, dtype: float64"
+Madison Middle School,3429 45th Avenue Southwest,Seattle,47.5725308,-122.3907689,ChIJMQmfxV9AkFQRokDRxEjIWnw,4.5,school,"0    8.328776
+Name: distance.value, dtype: float64"
+Bailey Gatzert Elementary School,1301 East Yesler Way,Seattle,47.6011701,-122.3155688,ChIJv49vpMBqkFQRHvaAiO_f6BE,4.6,school,"0    1.729646
+Name: distance.value, dtype: float64"
+Blaine Junior High School,,Seattle,47.6428756,-122.4001291,ChIJ-QV9w4YVkFQR9TLzCoWhO1g,5.0,school,"0    6.753263
+Name: distance.value, dtype: float64"
+Coe Elementary School,2424 7th Avenue West,Seattle,47.6407104,-122.365636,ChIJFShrTHMVkFQResJ2pnPfIis,4.0,school,"0    5.374145
+Name: distance.value, dtype: float64"
+Cooper-Boren Elementary School,,Seattle,47.5639873,-122.3629047,ChIJaz_Od1JAkFQRSrHJOcJX2bg,,school,"0    6.696085
+Name: distance.value, dtype: float64"
+Bakery Nouveau,4737 California Avenue Southwest,Seattle,47.5599865,-122.3869912,ChIJqT0Y3PtAkFQRD5Jy6uRQebI,4.7,cafe,"0    7.828465
+Name: distance.value, dtype: float64"
+Easy Street Records & Cafe,4559 California Avenue Southwest,Seattle,47.5612418,-122.3870173,ChIJEw2sg_lAkFQR25Oh_sq8qRY,4.6,cafe,"0    7.760099
+Name: distance.value, dtype: float64"
+Commuter Comforts Cafe,801 Alaskan Way,Seattle,47.6027078,-122.33831809999998,ChIJsxrv6K9qkFQRYbm8FEaYM8I,3.7,cafe,"0    3.146675
+Name: distance.value, dtype: float64"
+Pacific Cafe - Hong Kong Kitchen,416 5th Ave S,Seattle,47.59866810000001,-122.3272643,ChIJ1-epfbtqkFQRYThAVdNnLGI,4.5,cafe,"0    2.522685
+Name: distance.value, dtype: float64"
+Starbucks,800 12th Avenue,Seattle,47.609346,-122.316607,ChIJK-VDyshqkFQR00QYoqAUHB0,4.1,cafe,"0    1.220634
+Name: distance.value, dtype: float64"
+Macrina Bakery & Cafe,1943 1st Avenue South,Seattle,47.584641,-122.334441,ChIJjzkUPydAkFQRkRljLROV74Q,4.4,cafe,"0    3.834058
+Name: distance.value, dtype: float64"
+Starbucks,1125 4th Avenue,Seattle,47.60732249999999,-122.3342855,ChIJaxqRW7FqkFQR0CVREWNStds,4.1,cafe,"0    1.983841
+Name: distance.value, dtype: float64"
+Cupcake Royale - West Seattle,4556 California Avenue Southwest,Seattle,47.56123579999999,-122.38657279999998,ChIJ55Uxg_lAkFQRUikifgWb4jY,4.0,cafe,"0    7.73959
+Name: distance.value, dtype: float64"
+Barnes & Watson Fine Teas,270 South Hanford Street # 211,Seattle,47.5765449,-122.33046609999998,ChIJC1oyUSlAkFQRhBwG8bdO0Ts,5.0,cafe,"0    4.376631
+Name: distance.value, dtype: float64"
+Caffe Migliore,1215 4th Avenue #100,Seattle,47.607617,-122.3347883,ChIJeVn94rNqkFQR_vdGCDV4HD0,4.5,cafe,"0    2.042884
+Name: distance.value, dtype: float64"
+Panera Bread,1620 Broadway,Seattle,47.6163081,-122.320566,ChIJVSQF5MxqkFQR8F0CprUINFw,3.7,cafe,"0    1.211933
+Name: distance.value, dtype: float64"
+Juicy Cafe,725 Pike Street,Seattle,47.611026,-122.3314622,ChIJYwweHbVqkFQR7SxAmKhxIgk,4.3,cafe,"0    2.602859
+Name: distance.value, dtype: float64"
+Starbucks,1420 5th Avenue,Seattle,47.61045439999999,-122.3350868,ChIJ3bW1i7RqkFQRj0kHwmEw6G0,4.0,cafe,"0    2.04537
+Name: distance.value, dtype: float64"
+Grocery Outlet Bargain Market,13201 Aurora Avenue North,Seattle,47.7248325,-122.3469604,ChIJ7SJU0zYRkFQRH5MgwYaJv5M,4.0,supermarket,"0    9.617154
+Name: distance.value, dtype: float64"
+Green Market,6400 24th Avenue Northwest,Seattle,47.6757812,-122.3872049,ChIJKyKrXNAVkFQR4WjbziuZeKM,4.2,supermarket,"0    8.169671
+Name: distance.value, dtype: float64"
+Trader Joe's,1201 North 175th Street,Shoreline,47.7549979,-122.3434041,ChIJ5dJ2pO8QkFQR3j7Ijs2yCu8,4.7,supermarket,"0    11.499068
+Name: distance.value, dtype: float64"
+La Conasupo Restaurant and Market,8532 Greenwood Avenue North,Seattle,47.6911153,-122.3550028,ChIJEXwhzyEUkFQR5EDgPkvVBjQ,4.2,supermarket,"0    7.36358
+Name: distance.value, dtype: float64"
+Broadview Branch - The Seattle Public Library,12755 Greenwood Avenue North,Seattle,47.7229573,-122.356098,ChIJX0u_yswWkFQRqO8xruCDflA,4.4,library,"0    9.994406
+Name: distance.value, dtype: float64"
+Ballard Branch - The Seattle Public Library,5614 22nd Avenue Northwest,Seattle,47.6698096,-122.3842709,ChIJqci788UVkFQREdTIYKi-mYs,4.3,library,"0    7.362958
+Name: distance.value, dtype: float64"
+Greenwood Branch - The Seattle Public Library,8016 Greenwood Avenue North,Seattle,47.6874519,-122.3547574,ChIJ7eJjtyMUkFQRlrk_dVTDvxk,4.5,library,"0    7.507769
+Name: distance.value, dtype: float64"
+Northgate Branch - The Seattle Public Library,10548 5th Avenue Northeast,Seattle,47.7059519,-122.3230063,ChIJdX-1BlYRkFQR1K4KC7eEyMs,4.3,library,"0    7.960845
+Name: distance.value, dtype: float64"
+Northeast Branch - The Seattle Public Library,6801 35th Avenue Northeast,Seattle,47.6780009,-122.2906962,ChIJK8hUloYTkFQRyiMM-7TC7Ho,4.4,library,"0    4.950901
+Name: distance.value, dtype: float64"
+Lake City Branch - The Seattle Public Library,12501 28th Avenue Northeast,Seattle,47.719716,-122.298113,ChIJhWb17mQRkFQRNqp3mBpKXrQ,4.2,library,"0    9.732132
+Name: distance.value, dtype: float64"
+Green Lake Branch - The Seattle Public Library,7364 East Green Lake Drive North,Seattle,47.6814942,-122.3266587,ChIJW9bFKm0UkFQRjhwcbPmMTXQ,4.2,library,"0    5.497203
+Name: distance.value, dtype: float64"
+Planned Parenthood - Northgate Health Center,2111 North Northgate Way,Seattle,47.7084125,-122.3333013,ChIJZVvcC1MRkFQRJiaY-aJijW8,3.3,hospital,"0    7.613424
+Name: distance.value, dtype: float64"
+Swedish Primary Care Greenlake,7210 Roosevelt Way Northeast,Seattle,47.681259,-122.317114,ChIJq3pEa9NqkFQRIxQoLt-scuA,3.8,hospital,"0    5.525171
+Name: distance.value, dtype: float64"
+Ballard Pediatric Clinic,7554 15th Avenue Northwest,Seattle,47.68478029999999,-122.3765106,ChIJH2EmtCsUkFQR3tmie56hi7o,4.9,hospital,"0    8.727781
+Name: distance.value, dtype: float64"
+Northwest Hospital & Medical Center,1550 North 115th Street,Seattle,47.7141785,-122.336878,ChIJI1Wxyk0RkFQRyQVF43TiAgs,3.2,hospital,"0    8.126787
+Name: distance.value, dtype: float64"
+Northwest Outpatient Medical Center,10330 Meridian Avenue North,Seattle,47.7045735,-122.3324113,ChIJ5XDdK6sWkFQR522X0vXYa4Y,5.0,hospital,"0    7.59913
+Name: distance.value, dtype: float64"
+Seattle Children's Autism Center,4909 25th Avenue Northeast,Seattle,47.66469339999999,-122.3023209,ChIJRW4ofYgUkFQRxi35AvCwS4s,4.2,hospital,"0    3.926041
+Name: distance.value, dtype: float64"
+Swedish Ballard Primary Care,5350 Tallman Avenue Northwest #301,Seattle,47.6683269,-122.3809373,ChIJbbb5mMgVkFQRtrZlapgX-lc,4.0,hospital,"0    7.362337
+Name: distance.value, dtype: float64"
+General Internal Medicine Center at UWMC-Roosevelt,3rd floor,Seattle,47.65883900000001,-122.318284,ChIJtZRBUPQUkFQRZdmRDl51ZMk,5.0,hospital,"0    3.830329
+Name: distance.value, dtype: float64"
+Seattle Children's Nephrology,4800 Sand Point Way Northeast # A7931,Seattle,47.66263789999999,-122.283265,ChIJ89lAy4IUkFQRI6xaH-kpZ3U,4.6,hospital,"0    4.426973
+Name: distance.value, dtype: float64"
+Anderson Medical Specialty Associates,2150 North 107th Street #400,Seattle,47.7074459,-122.33171029999998,ChIJN0BXg1QRkFQRJI0R33_VQGg,5.0,hospital,"0    7.699192
+Name: distance.value, dtype: float64"
+UW Hernia Center,1550 North 115th Street,Seattle,47.7146036,-122.3372047,ChIJQeGtM0wRkFQRjxYztPxIvAw,5.0,hospital,"0    8.33064
+Name: distance.value, dtype: float64"
+ZOOM+Care,2038 Northwest Market Street,Seattle,47.6689441,-122.3838703,ChIJq-7FCcYVkFQRday_s9KCM9U,4.8,hospital,"0    7.417029
+Name: distance.value, dtype: float64"
+Pediatric Care Center at UWMC-Roosevelt,4th Floor,Seattle,47.65887,-122.31837,ChIJF4gRCfd5CEER2R8euiu_qGo,5.0,hospital,"0    3.800497
+Name: distance.value, dtype: float64"
+Vital Kids Medicine,3216 Northeast 45th Place #212,Seattle,47.6617973,-122.2925546,ChIJMfi2HIUUkFQR-0eObUHvzIY,4.5,hospital,"0    3.734618
+Name: distance.value, dtype: float64"
+Weight Loss Management Center at UWMC-Roosevelt,4225 Roosevelt Way Northeast,Seattle,47.65818460000001,-122.3183226,ChIJIwGFQfQUkFQRcdVqKMfmQOo,5.0,hospital,"0    3.752641
+Name: distance.value, dtype: float64"
+ZOOM+Care,624 North 34th Street,Seattle,47.649767800000006,-122.3502478,ChIJc_QNJAcVkFQRFix4lZU7HG8,4.7,hospital,"0    5.272219
+Name: distance.value, dtype: float64"
+Ballard Plaza Pharmacy,1801 NW Market St #104,Seattle,47.66800800000001,-122.380105,ChIJs_kBlsgVkFQRZBxlSCEnQN0,4.0,pharmacy,"0    8.078931
+Name: distance.value, dtype: float64"
+CVS Pharmacy,302 Northeast Northgate Way,Seattle,47.7091248,-122.3251954,ChIJcWPM1VYRkFQRkVGZaVdXZyg,4.1,pharmacy,"0    7.622126
+Name: distance.value, dtype: float64"
+Bartell Drugs Wallingford,1820 North 45th Street,Seattle,47.66151839999999,-122.335352,ChIJE1APWVcUkFQRcQX3cadfBeM,4.0,pharmacy,"0    4.660037
+Name: distance.value, dtype: float64"
+Pharmaca Integrative Pharmacy,1815 North 45th Street,Seattle,47.6611781,-122.3358459,ChIJmSqiRFcUkFQRvpxmje61NKA,4.5,pharmacy,"0    4.742697
+Name: distance.value, dtype: float64"
+Fred Meyer Pharmacy,915 Northwest 45th Street,Seattle,47.6600467,-122.3684394,ChIJXSTtXrAVkFQRzbocxCLLl98,3.2,pharmacy,"0    6.245494
+Name: distance.value, dtype: float64"
+Safeway Pharmacy,12318 15th Avenue Northeast,Seattle,47.71798010000001,-122.3119363,ChIJZ7YkV10RkFQRo6C98ks5bqU,3.5,pharmacy,"0    9.162213
+Name: distance.value, dtype: float64"
+Safeway Pharmacy,17202 15th Avenue Northeast,Shoreline,47.75435079999999,-122.312767,ChIJzRqjTbgQkFQRN2C9JqxSF9c,4.5,pharmacy,"0    11.630827
+Name: distance.value, dtype: float64"
+QFC Pharmacy,11100 Roosevelt Way Northeast,Seattle,47.7094081,-122.3172203,ChIJn-96tVkRkFQRR3THi4J7wBs,3.8,pharmacy,"0    8.009944
+Name: distance.value, dtype: float64"
+Northwest Prescriptions & Medical Supply,1536 North 115th Street #100,Seattle,47.7127109,-122.3376472,ChIJdQRToU0RkFQRoATB4VrS_Ck,4.2,pharmacy,"0    8.193909
+Name: distance.value, dtype: float64"
+Bartell Drugs Lake City,3018 NE 125th St,Seattle,47.71952719999999,-122.295845,ChIJ8fdfu2QRkFQRvoCQ1-nxHo0,3.6,pharmacy,"0    9.787446
+Name: distance.value, dtype: float64"
+QFC Pharmacy,9999 Holman Road Northwest,Seattle,47.7018883,-122.3637646,ChIJaUfE5qIWkFQRjszA_hdj5tc,4.8,pharmacy,"0    8.573648
+Name: distance.value, dtype: float64"
+Bob Johnson Pharmacy,1407 Northwest 85th Street,Seattle,47.6904258,-122.3743956,ChIJ6cl_54IWkFQRyK1qsjAnS7c,5.0,pharmacy,"0    8.244873
+Name: distance.value, dtype: float64"
+Park's Pharmacy,401 Northeast Ravenna Boulevard A,Seattle,47.6783116,-122.3248033,ChIJBYTpQ2wUkFQRGMiw4OTR9B8,4.6,pharmacy,"0    5.333748
+Name: distance.value, dtype: float64"
+Katterman's Sand Point Pharmacy,5400 Sand Point Way Northeast,Seattle,47.66823519999999,-122.2771988,ChIJHcWSCnwTkFQRUtcmKnVzmPE,4.2,pharmacy,"0    4.664388
+Name: distance.value, dtype: float64"
+Safeway Pharmacy,8704 Greenwood Avenue North,Seattle,47.6928402,-122.3551479,ChIJPzcCkh8UkFQR25Z8sY8GkkM,3.0,pharmacy,"0    7.489745
+Name: distance.value, dtype: float64"
+Bartell Drugs 185th and Aurora,18420 Aurora Avenue North,Shoreline,47.76290969999999,-122.3446121,ChIJRRB2xfIQkFQRsypvQtxCOQ4,3.8,pharmacy,"0    12.030454
+Name: distance.value, dtype: float64"
+Union Center Pharmacy,2324 Eastlake Avenue East # 405,Seattle,47.640548,-122.325533,ChIJm6wXM-AUkFQRY2NK-Bzq9J4,3.7,pharmacy,"0    3.159105
+Name: distance.value, dtype: float64"
+Safeway Pharmacy,8340 15th Avenue Northwest,Seattle,47.690199,-122.3763201,ChIJXT1URYIWkFQRcl1Lr610w2k,3.7,pharmacy,"0    8.361715
+Name: distance.value, dtype: float64"
+Lowry's Prescriptions,10330 Meridian Avenue North # 180,Seattle,47.70459219999999,-122.33253059999998,ChIJ5XDdK6sWkFQRdV1V1Op4tXY,3.2,pharmacy,"0    7.598508
+Name: distance.value, dtype: float64"
+Bartell Drugs Upper Queen Anne,1929 Queen Anne Avenue North,Seattle,47.6368246,-122.3572146,ChIJA5Ic8BIVkFQRm6LcqaQIxr8,4.3,pharmacy,"0    5.510876
+Name: distance.value, dtype: float64"
+Bartell Drugs Roosevelt Square Store,6401 12th Avenue Northeast,Seattle,47.6753539,-122.3164719,ChIJsUrM7m8UkFQRbiBwu-L6Fvg,4.3,pharmacy,"0    5.38844
+Name: distance.value, dtype: float64"
+United States Postal Service,7724 35th Avenue Northeast,Seattle,47.6854665,-122.2901271,ChIJEX-ZI44TkFQRHSThbtqCl9o,2.6,post_office,"0    5.469236
+Name: distance.value, dtype: float64"
+Highland Mail Box,14419 Greenwood Avenue North # A,Seattle,47.73364829999999,-122.3560919,ChIJ3w_7zykRkFQRX5RM-1OcQ4w,2.4,post_office,"0    10.73959
+Name: distance.value, dtype: float64"
+US Post Office,9999 Holman Road Northwest,Seattle,47.7017851,-122.36374,ChIJaUfE5qIWkFQRe7ZOOP4JsOk,2.5,post_office,"0    8.57427
+Name: distance.value, dtype: float64"
+United States Postal Service,8306 Greenwood Avenue North,Seattle,47.6893874,-122.3549536,ChIJU0VNhCEUkFQRFV1JWNOZnN0,3.8,post_office,"0    7.414543
+Name: distance.value, dtype: float64"
+United States Postal Service,11036 8th Avenue Northeast,Seattle,47.7099698,-122.31959,ChIJXxSRb1cRkFQRjJMvv-6HMIU,3.4,post_office,"0    7.943443
+Name: distance.value, dtype: float64"
+United States Postal Service,5706 17th Avenue Northwest,Seattle,47.6703893,-122.3784141,ChIJRVWRLMkVkFQRh5ATVi1PkYg,3.4,post_office,"0    7.266625
+Name: distance.value, dtype: float64"
+United States Postal Service,929 North 145th Street,Seattle,47.733706,-122.3462605,ChIJE6VySyQRkFQRRchMjQZ-y9s,2.3,post_office,"0    10.293971
+Name: distance.value, dtype: float64"
+United States Postal Service,3019 Northeast 127th Street,Seattle,47.7208844,-122.295249,ChIJFaqJJXsRkFQRlubp4YON1As,2.1,post_office,"0    9.9422
+Name: distance.value, dtype: float64"
+North City Post Office,18336 Aurora Avenue North ste 305,Seattle,47.7619611,-122.3445285,ChIJHQkY5PIQkFQRDrIT0FqH5Ck,1.3,post_office,"0    11.923555
+Name: distance.value, dtype: float64"
+Nathan Hale High School,10750 30th Avenue Northeast,Seattle,47.7075329,-122.2956588,ChIJFSf83t0TkFQRzij1lpAlYiY,4.2,school,"0    7.86762
+Name: distance.value, dtype: float64"
+Shorewood High School,17300 Fremont Avenue North,Shoreline,47.755398,-122.350506,ChIJwfNEKOkQkFQR3aqnVvDCyLs,3.9,school,"0    11.817278
+Name: distance.value, dtype: float64"
+Middle College High School at the Northgate Mall,401 Northeast Northgate Way #203,Seattle,47.7061951,-122.3248404,ChIJqwoMg1YRkFQRXOeuFlhRt7E,,school,"0    7.776259
+Name: distance.value, dtype: float64"
+Ingraham High School,1819 North 135th Street,Seattle,47.725925200000006,-122.3374922,ChIJl9dlmDkRkFQRakvuOW30pls,3.7,school,"0    9.292728
+Name: distance.value, dtype: float64"
+Lakeside Middle School,13510 1st Avenue Northeast,Seattle,47.72767899999999,-122.3275134,ChIJtR_yNT4RkFQRYxhsl1QWDcY,4.4,school,"0    9.100684
+Name: distance.value, dtype: float64"
+Ballard High School,1418 Northwest 65th Street,Seattle,47.67685899999999,-122.374338,ChIJc23QVs0VkFQRDgq1W0LH7Z0,3.1,school,"0    7.733375
+Name: distance.value, dtype: float64"
+Bishop Blanchet High School,8200 Wallingford Avenue North,Seattle,47.689563,-122.334685,ChIJr3FCCxAUkFQReG1_jjeyhjE,3.9,school,"0    6.737104
+Name: distance.value, dtype: float64"
+Shorecrest High School,15343 25th Avenue Northeast,Shoreline,47.74055029999999,-122.303323,ChIJsazaKKgRkFQRbU_EOXJ9r38,3.4,school,"0    10.699192
+Name: distance.value, dtype: float64"
+Highland Ice Arena,18005 Aurora Avenue North,Shoreline,47.75988599999999,-122.346768,ChIJhwK0gu0QkFQRzCgImX8pP8E,3.9,school,"0    11.831572
+Name: distance.value, dtype: float64"
+Jane Addams Middle School,11051 34th Avenue Northeast,Seattle,47.710453,-122.2932309,ChIJE10ktN4TkFQR83Cz9i8qUp0,3.3,school,"0    8.054071
+Name: distance.value, dtype: float64"
+View Ridge Elementary School,7047 50th Avenue Northeast,Seattle,47.68062329999999,-122.27626200000002,ChIJJ0SbiZsTkFQRYXFqIcviL1o,2.9,school,"0    5.827843
+Name: distance.value, dtype: float64"
+Bryant Elementary School,3311 Northeast 60th Street,Seattle,47.6711946,-122.2921117,ChIJe4f1jH8UkFQRkzCYsvF7JuE,4.8,school,"0    4.581106
+Name: distance.value, dtype: float64"
+Northgate Elementary School,11725 1st Avenue Northeast,Seattle,47.7147167,-122.329337,ChIJaSw6wk8RkFQRHJmcwVk-pNE,4.3,school,"0    7.891858
+Name: distance.value, dtype: float64"
+Whitman Middle School,9201 15th Avenue Northwest,Seattle,47.6965669,-122.3777192,ChIJ4Qgaw5oWkFQRhA8MvMR1kow,2.4,school,"0    8.886886
+Name: distance.value, dtype: float64"
+Adams Elementary School,6110 28th Avenue Northwest,Seattle,47.6735182,-122.391681,ChIJt0Rq79oVkFQR52rdSBTh9bk,3.5,school,"0    8.640771
+Name: distance.value, dtype: float64"
+Kellogg Middle School,16045 25th Avenue Northeast,Shoreline,47.746146,-122.3029965,ChIJeyFGX6gRkFQRi64dkwbzuDA,2.6,school,"0    11.045991
+Name: distance.value, dtype: float64"
+John Rogers Elementary School,4030 Northeast 109th Street,Seattle,47.707118,-122.2847571,ChIJw99oGtsTkFQRvLCyE9VWpj4,4.4,school,"0    8.371038
+Name: distance.value, dtype: float64"
+Robert Eagle Staff Middle School,1330 North 90th Street,Seattle,47.694691,-122.3412022,ChIJv3ySSwMUkFQR0LDK7PKmNSE,3.4,school,"0    6.990677
+Name: distance.value, dtype: float64"
+Wedgwood Elementary School,2720 Northeast 85th Street,Seattle,47.6903879,-122.29738,ChIJocIGTI0TkFQRkxxFGv3D7NY,4.2,school,"0    6.820385
+Name: distance.value, dtype: float64"
+Picolino,6423 32nd Avenue Northwest,Seattle,47.6755501,-122.3985868,ChIJN2VaWdkVkFQRXqTHA8XPvFA,4.5,cafe,"0    8.711001
+Name: distance.value, dtype: float64"
+Krispy Kreme Doughnuts,12505 Aurora Avenue North,Seattle,47.71979279999999,-122.3455014,ChIJ9zqUjTURkFQRlJwn3dZQTHE,4.1,cafe,"0    9.681168
+Name: distance.value, dtype: float64"
+Auntie Anne's Pretzels,401 Northeast Northgate Way,Seattle,47.7050525,-122.325557,ChIJlZvFH1QRkFQRsHE-BMP-eIE,4.0,cafe,"0    7.778745
+Name: distance.value, dtype: float64"
+Beth's Cafe,7311 Aurora Avenue North,Seattle,47.68210879999999,-122.3447548,ChIJmcOTwj0UkFQRWvsA2xCX5Uc,4.3,cafe,"0    7.417651
+Name: distance.value, dtype: float64"
+Mox Boarding House,5105 Leary Avenue Northwest,Seattle,47.6649348,-122.38048870000002,ChIJq4gnjMcVkFQRFWV3mPF7z7M,4.8,cafe,"0    6.954009
+Name: distance.value, dtype: float64"
+Swansons Nursery,9701 15th Avenue Northwest,Seattle,47.70000599999999,-122.378155,ChIJGzP7wpAWkFQRHHFZ25jMebw,4.7,cafe,"0    9.385333
+Name: distance.value, dtype: float64"
+Peet's Coffee,6850 East Green Lake Way North,Seattle,47.67828,-122.327258,ChIJj4wsfWwUkFQR2I-cU3QF7yg,4.5,cafe,"0    5.472343
+Name: distance.value, dtype: float64"
+Chocolati Café,8319 Greenwood Avenue North,Seattle,47.6897253,-122.3555188,ChIJ7_18miEUkFQRaH9WwkOCxdw,4.6,cafe,"0    7.395277
+Name: distance.value, dtype: float64"
+The Dray,708 Northwest 65th Street,Seattle,47.6761239,-122.3649528,ChIJX1xU6jMUkFQRJri4uN7vU6g,4.7,cafe,"0    7.149161
+Name: distance.value, dtype: float64"
+Starbucks,316 North 67th Street,Seattle,47.6778886,-122.3545761,ChIJR8pZ9zkUkFQR69Sfm4IKulQ,4.2,cafe,"0    6.775637
+Name: distance.value, dtype: float64"
+Mighty-O Donuts Greenlake,2110 North 55th Street,Seattle,47.6688027,-122.3332571,ChIJO2vSTUMUkFQR7x7xkPYRHd4,4.6,cafe,"0    5.1156
+Name: distance.value, dtype: float64"
+McDonald's,5146 25th Avenue Northeast,Seattle,47.6677401,-122.3004006,ChIJreTBgIcUkFQRKh_jcEGENNY,3.4,cafe,"0    3.853947
+Name: distance.value, dtype: float64"
+Cafe Mox,5105 Leary Avenue Northwest,Seattle,47.6649355,-122.3804735,ChIJSSsNjMcVkFQRtV1d265XZCk,4.6,cafe,"0    6.954009
+Name: distance.value, dtype: float64"
+Blue Star Cafe & Pub,4512 Stone Way North,Seattle,47.6618721,-122.3418718,ChIJ-XauFlEUkFQRTT4mA9zfJE0,4.2,cafe,"0    5.100062
+Name: distance.value, dtype: float64"
+Cafe Besalu,5909 24th Avenue Northwest,Seattle,47.671976,-122.3878719,ChIJsxkCQ8UVkFQR35jtPMlU-Xo,4.8,cafe,"0    7.637663
+Name: distance.value, dtype: float64"
+Mosaic Community Coffeehouse,4401 2nd Avenue Northeast,Seattle,47.6605339,-122.3276211,ChIJte_zjVgUkFQRwzQIgXoy4AI,4.6,cafe,"0    4.344313
+Name: distance.value, dtype: float64"
+The Fat Hen,1418 Northwest 70th Street,Seattle,47.6796819,-122.374475,ChIJUxQeGS0UkFQRNZoXRF6Ba7g,4.5,cafe,"0    9.004972
+Name: distance.value, dtype: float64"
+Caffe Vita Inc,4301 Fremont Avenue North,Seattle,47.6590476,-122.35014840000002,ChIJfeE_NlMUkFQRq2ZXhWPeGVY,4.2,cafe,"0    5.494717
+Name: distance.value, dtype: float64"
+Diva Espresso,14419 Greenwood Avenue North,Seattle,47.73364829999999,-122.3560919,ChIJ_2jpJikRkFQRZo_kEvkHxvI,4.4,cafe,"0    10.73959
+Name: distance.value, dtype: float64"
+Wayward Coffeehouse,6417 Roosevelt Way Northeast,Seattle,47.6756495,-122.3176851,ChIJa4lcKSAUkFQRqMFpIYLj8HI,4.4,cafe,"0    5.109385
+Name: distance.value, dtype: float64"
+Starbucks,7100 East Green Lake Drive North,Seattle,47.680001,-122.325467,ChIJS3ez42wUkFQRheIK9YZUs1U,4.2,cafe,"0    5.418272
+Name: distance.value, dtype: float64"
+Starbucks,4147 University Way NE,Seattle,47.6581759,-122.3134757,ChIJm2i9WPMUkFQRQ8B_XnsrsTc,4.2,cafe,"0    3.757613
+Name: distance.value, dtype: float64"
+Trophy Cupcakes & Party - Wallingford Center,1815 North 45th Street,Seattle,47.66117399999999,-122.335799,ChIJmSqiRFcUkFQRZBTVQgWFttA,4.3,cafe,"0    4.679925
+Name: distance.value, dtype: float64"
+Top Pot Doughnuts,6855 35th Avenue Northeast,Seattle,47.679162,-122.290645,ChIJG5sk1YUTkFQRiK8mgfpznHI,4.3,cafe,"0    4.998757
+Name: distance.value, dtype: float64"
+Herkimer Coffee,5611 University Way Northeast #100c,Seattle,47.6698737,-122.3132957,ChIJTbH8emQUkFQRySd8e7Tvfx8,4.6,cafe,"0    5.295836
+Name: distance.value, dtype: float64"
+The Essential Baking Company,1604 N 34th St,Seattle,47.648215,-122.338372,ChIJgxqUZQIVkFQRxXxNST1r8Qw,4.4,cafe,"0    4.706029
+Name: distance.value, dtype: float64"
+Diva Espresso,4615 Stone Way North,Seattle,47.6627451,-122.3419354,ChIJqbtOAVEUkFQR8LjdM9yCQw4,4.6,cafe,"0    5.33064
+Name: distance.value, dtype: float64"
+Wayward Vegan Cafe,801 Northeast 65th Street,Seattle,47.67571419999999,-122.3198787,ChIJi5Mg6GMUkFQRz_FTACxLeJs,4.5,cafe,"0    4.989434
+Name: distance.value, dtype: float64"
+Cupcake Royale - Ballard,2052 Northwest Market Street,Seattle,47.6688805,-122.3843334,ChIJhQH4BMYVkFQRn_O6dPOjFLU,4.2,cafe,"0    7.438782
+Name: distance.value, dtype: float64"
+Milstead & Co.,754 North 34th Street,Seattle,47.6494361,-122.3477763,ChIJRy3hMgEVkFQR0DKka2KN8Bg,4.7,cafe,"0    5.155376
+Name: distance.value, dtype: float64"
+Cafe Racer,5828 Roosevelt Way Northeast,Seattle,47.67146599999999,-122.317143,ChIJZ9zbyGUUkFQRs-XXEtVUsFg,4.4,cafe,"0    5.04537
+Name: distance.value, dtype: float64"
+The Bounty,1218 North 45th Street,Seattle,47.66153919999999,-122.3424567,ChIJ7zklZlEUkFQRl43lb_y4Dw0,4.6,cafe,"0    4.995028
+Name: distance.value, dtype: float64"
+Caffe Appassionato,15505 Westminster Way N,Shoreline,47.74285020000001,-122.3499822,ChIJw7F5Gd8QkFQRkAwjBrzjxQQ,1.7,cafe,"0    10.926041
+Name: distance.value, dtype: float64"
+Dish,4358 Leary Way Northwest,Seattle,47.6603264,-122.365737,ChIJYRX7r7EVkFQRT_D4B0oLUag,4.5,cafe,"0    6.154133
+Name: distance.value, dtype: float64"
+Queen Mary Tea Room,2912 Northeast 55th Street,Seattle,47.668675,-122.295603,ChIJrSCXsYAUkFQRz6CAeOdb5Ik,4.4,cafe,"0    4.517091
+Name: distance.value, dtype: float64"
+Jewel Box Cafe,321 Northeast Thornton Place,Seattle,47.7024201,-122.3245783,ChIJ90KtSf4TkFQRWDKECY23laA,4.4,cafe,"0    7.732753
+Name: distance.value, dtype: float64"
+Ballard Coffee Works,2060 Northwest Market Street,Seattle,47.66884810000001,-122.3845315,ChIJIa1s4MUVkFQREK7lZUBOaCM,4.5,cafe,"0    7.274083
+Name: distance.value, dtype: float64"
+Shari's Cafe and Pies,15252 Aurora Avenue North,Shoreline,47.74034,-122.345001,ChIJC6Nk5SARkFQR7fGDCvbYXKU,3.9,cafe,"0    10.614046
+Name: distance.value, dtype: float64"
+Miro Tea,5405 Ballard Avenue Northwest,Seattle,47.66753200000001,-122.38503,ChIJT5j7Y8YVkFQRCeKtQH6eJSI,4.5,cafe,"0    7.277812
+Name: distance.value, dtype: float64"
+Grateful Bread,7001 35th Avenue Northeast,Seattle,47.6796435,-122.2906687,ChIJH-fl0IUTkFQR0giHwQWoUy8,4.5,cafe,"0    5.037912
+Name: distance.value, dtype: float64"
+Starbucks,6417 Roosevelt Way Northeast,Seattle,47.67558620000001,-122.3177383,ChIJy-ENxW8UkFQRpNGgMa73ESY,4.0,cafe,"0    5.075823
+Name: distance.value, dtype: float64"
+Caffe Fiore,5405 Leary Avenue Northwest,Seattle,47.66695479999999,-122.3826779,ChIJS6quTsYVkFQRJ6d_j-qZ4vg,4.1,cafe,"0    7.126787
+Name: distance.value, dtype: float64"
+El Diablo Coffee Co,1811 Queen Anne Ave N #101,Seattle,47.63520339999999,-122.3573437,ChIJEfX1ORMVkFQRFaNpuEr6OUE,4.6,cafe,"0    5.430702
+Name: distance.value, dtype: float64"
+Lighthouse Roasters,400 North 43rd Street,Seattle,47.6591084,-122.3541979,ChIJwd-h4qwVkFQRgqm5OODEBQw,4.7,cafe,"0    6.205096
+Name: distance.value, dtype: float64"
+Le Fournil Bakery & Catering,3230 Eastlake Avenue East A,Seattle,47.65081599999999,-122.32148,ChIJn7QZqPoUkFQR66Ie5FUD9tw,4.4,cafe,"0    3.083282
+Name: distance.value, dtype: float64"
+Starbucks,2137 North Northgate Way,Seattle,47.70825079999999,-122.3321142,ChIJnyyhnlMRkFQRcJMsV1FfBd4,4.0,cafe,"0    7.6445
+Name: distance.value, dtype: float64"
+McDonald's,2147 North Northgate Way,Seattle,47.70830789999999,-122.3316606,ChIJwdmNnlMRkFQRETEnVu9bB3M,3.4,cafe,"0    7.840273
+Name: distance.value, dtype: float64"
+Swedish Queen Anne Primary Care,2211 Queen Anne Avenue North,Seattle,47.63881660000001,-122.3573125,ChIJweRAeBIVkFQRYmXm-YGcLP4,5.0,hospital,"0    5.688626
+Name: distance.value, dtype: float64"
+QFC Pharmacy,417 Broadway East,Seattle,47.622597,-122.321378,ChIJK27z6C0VkFQRdui7AyaGqGg,3.8,pharmacy,"0    1.571784
+Name: distance.value, dtype: float64"
+Bartell Drugs South Lake Union Store,1001 Mercer Street,Seattle,47.624242,-122.3367303,ChIJH4Z-6DkVkFQR7vRudI6wrFE,4.2,pharmacy,"0    2.584214
+Name: distance.value, dtype: float64"
+Bartell Drugs 3rd and Union,1404 3rd Avenue,Seattle,47.6091539,-122.3369439,ChIJcQpovbNqkFQR99NIkxLZ2ys,3.8,pharmacy,"0    2.215662
+Name: distance.value, dtype: float64"
+Bartell Drugs Broadway & Pike Store,1407 Broadway,Seattle,47.6133349,-122.3209791,ChIJdfmS9ctqkFQRbE23Be2OzoY,4.0,pharmacy,"0    1.214419
+Name: distance.value, dtype: float64"
+Lawton Elementary School,4000 27th Avenue West,Seattle,47.6567429,-122.39039840000002,ChIJ37try5UVkFQRU-VccTyD3H4,5.0,school,"0    7.931635
+Name: distance.value, dtype: float64"
+Starbucks,1200 Westlake Ave N,Seattle,47.629932,-122.340052,ChIJr7YeODwVkFQRiLrfnNvKH0U,4.1,cafe,"0    4.223741
+Name: distance.value, dtype: float64"
+99 Ranch Market,22511 Washington 99,Edmonds,47.79471619999999,-122.3335002,ChIJCwxeupgakFQRnMSWYR4DiLk,4.0,supermarket,"0    14.694842
+Name: distance.value, dtype: float64"
+Immediate Clinic Shoreline,20120 Ballinger Way Northeast,Shoreline,47.7756716,-122.3100683,ChIJDSTAwWoQkFQRJeHiStKe43M,4.5,hospital,"0    12.73151
+Name: distance.value, dtype: float64"
+Inglewood Family Health,14048 Juanita Drive Northeast,Kirkland,47.7277149,-122.2437779,ChIJz1FjsR8SkFQR7aIdxA8notY,4.3,hospital,"0    18.079553
+Name: distance.value, dtype: float64"
+Elevated Natural Health,12000 15th Avenue Northeast Suite C,Seattle,47.7160344,-122.31222959999998,ChIJEerXpl0RkFQRDOjfwBQDzlA,5.0,hospital,"0    9.239901
+Name: distance.value, dtype: float64"
+Richmond Pediatrics,357 Northwest Richmond Beach Road,Seattle,47.76451369999999,-122.3638827,ChIJa3TJ6pYQkFQRMR303AX3-ZA,5.0,hospital,"0    12.99192
+Name: distance.value, dtype: float64"
+MEDELLA OPTIMAL HEALTH,1207 North 200th Street #210,Shoreline,47.7736078,-122.3440491,ChIJMdVNoGIQkFQRQfEQzlnakmo,5.0,hospital,"0    12.911125
+Name: distance.value, dtype: float64"
+Costco Pharmacy,1175 North 205th Street,Seattle,47.7748491,-122.344447,ChIJORHUQH0QkFQRtH3o6JS-3As,4.0,pharmacy,"0    14.083282
+Name: distance.value, dtype: float64"
+QFC Pharmacy,600 Northwest Richmond Beach Road,Shoreline,47.76595500000001,-122.3641375,ChIJN6m_IZcQkFQRqI3oNdoBOfc,4.5,pharmacy,"0    13.131137
+Name: distance.value, dtype: float64"
+QFC Pharmacy,22828 100th Avenue West,Edmonds,47.7913441,-122.3677075,ChIJN-Trm2IakFQRvEsBEzjrK9w,3.2,pharmacy,"0    15.550031
+Name: distance.value, dtype: float64"
+Bartell Drugs Edmonds,23028 100th Avenue West,Edmonds,47.7899431,-122.3672802,ChIJn5rzyWIakFQRXH2zlkmKhnQ,4.2,pharmacy,"0    15.523306
+Name: distance.value, dtype: float64"
+Fred Meyer Pharmacy,18325 Aurora Avenue North,Shoreline,47.7621547,-122.347717,ChIJgbeWwPIQkFQRMq_e8ArLwaE,3.4,pharmacy,"0    12.065879
+Name: distance.value, dtype: float64"
+AXIS Pharmacy Northwest,6007 244th Street Southwest,Mountlake Terrace,47.7790185,-122.3127905,ChIJhZsolCcBkFQRzajpJ0efiCI,4.1,pharmacy,"0    12.822871
+Name: distance.value, dtype: float64"
+Shoreline Medical and Dental Clinic (ICHS) - International Community Health Services,16549 Aurora Avenue North,Shoreline,47.7502224,-122.3459842,ChIJxRA4Q-YQkFQRzav8oYdGFik,4.2,pharmacy,"0    12.004351
+Name: distance.value, dtype: float64"
+SEATTLE TREES COLLECTIVE LLC,10532 Greenwood Avenue North,Seattle,47.70607639999999,-122.355077,ChIJS2JhsLoWkFQRDD7Tkx1crvE,5.0,pharmacy,"0    8.840895
+Name: distance.value, dtype: float64"
+Neighborcare Health at Meridian (Medical and Dental),10521 Meridian Avenue North,Seattle,47.7059505,-122.3347331,ChIJVdupRasWkFQR0-sIf8WxRfU,3.7,pharmacy,"0    7.911125
+Name: distance.value, dtype: float64"
+QFC Pharmacy,1531 Northeast 145th Street,Seattle,47.73321170000001,-122.3104852,ChIJI1-qjQ0RkFQRYRXAce0S9rY,4.0,pharmacy,"0    9.865755
+Name: distance.value, dtype: float64"
+Maxor Pharmacy,10416 5th Avenue Northeast,Seattle,47.704347,-122.3227987,ChIJ95AM_v0TkFQRdo6ComsBfhI,3.7,pharmacy,"0    7.949037
+Name: distance.value, dtype: float64"
+Fred Meyer Pharmacy,100 Northwest 85th Street,Seattle,47.6919353,-122.3586592,ChIJjSf5ACEUkFQRnphoHSUvCLs,4.0,pharmacy,"0    7.548167
+Name: distance.value, dtype: float64"
+Fred Meyer Pharmacy,13000 Lake City Way Northeast,Seattle,47.7239671,-122.2921396,ChIJi_xMRXoRkFQRhfEsI71aRq8,3.8,pharmacy,"0    8.983219
+Name: distance.value, dtype: float64"
+Pony Mailbox & Business Center,9792 Edmonds Way,Edmonds,47.7902068,-122.3641985,ChIJf9xLCIgakFQR8pTbmTZKTeY,4.0,post_office,"0    15.346178
+Name: distance.value, dtype: float64"
+United States Postal Service,23210 57th Avenue West,Mountlake Terrace,47.7878592,-122.3103056,ChIJmalmBw8QkFQRHqtvclTVH3A,3.0,post_office,"0    13.411436
+Name: distance.value, dtype: float64"
+Lake Forest Park Elementary School,18500 37th Avenue Northeast,Lake Forest Park,47.7630789,-122.287917,ChIJ7eMXuzUQkFQRost9Z3Tmgfk,4.9,school,"0    14.085768
+Name: distance.value, dtype: float64"
+Einstein Middle School,19343 3rd Avenue Northwest,Shoreline,47.769686,-122.36279,ChIJ7X6rcJAQkFQRjwMViS1p1GI,2.6,school,"0    13.207582
+Name: distance.value, dtype: float64"
+Olympic View Elementary School,504 Northeast 95th Street,Seattle,47.6982079,-122.32123090000002,ChIJ7RvZwfgTkFQR1IbALDfqOi8,5.0,school,"0    7.123679
+Name: distance.value, dtype: float64"
+Whittier Elementary School,1320 Northwest 75th Street,Seattle,47.6837505,-122.3732327,ChIJWy9E-CsUkFQR82NebXZWQOU,4.3,school,"0    8.612803
+Name: distance.value, dtype: float64"
+Greenwood Elementary School,144 Northwest 80th Street,Seattle,47.68734999999999,-122.3598361,ChIJFZ-7HiQUkFQRAK0jMwXFyj0,4.4,school,"0    7.845245
+Name: distance.value, dtype: float64"
+West Woodland Elementary,5601 4th Avenue Northwest,Seattle,47.6704983,-122.3620623,ChIJ061jTDQUkFQRr-ICQHK4MjM,4.3,school,"0    6.560597
+Name: distance.value, dtype: float64"
+Starbucks,17039 NE Bothell Way,Lake Forest Park,47.752401000000006,-122.280251,ChIJf0Tt57cRkFQRLSjL90s82ao,4.0,cafe,"0    12.156619
+Name: distance.value, dtype: float64"
+Honey Bear Bakery,17171 Bothell Way Northeast,Lake Forest Park,47.7544148,-122.2793711,ChIJwU_fF8gRkFQROJxT7zu9NuU,4.0,cafe,"0    14.876321
+Name: distance.value, dtype: float64"
+Starbucks,14359 15th Ave NE,Seattle,47.7335788,-122.3131446,ChIJge-EcxIRkFQRlVWz2JrCa5U,4.0,cafe,"0    9.744562
+Name: distance.value, dtype: float64"
+Cloud City Coffee,8801 Roosevelt Way Northeast,Seattle,47.6923249,-122.317981,ChIJI3ME0wkUkFQRuYZVJqVvzFo,4.6,cafe,"0    6.457427
+Name: distance.value, dtype: float64"
+"Rooster's Espresso, Inc.",7809 Lake City Way Northeast,Seattle,47.6857956,-122.3148246,ChIJRzltMQsUkFQRJ0MqSgNFumo,4.6,cafe,"0    6.005594
+Name: distance.value, dtype: float64"
+Wild Mountain Cafe,1408 NW 85th St,Seattle,47.69086199999999,-122.3745197,ChIJGYRT54IWkFQRBMisgvsgrAk,4.5,cafe,"0    8.226227
+Name: distance.value, dtype: float64"
+Starbucks,12001 Lake City Way Northeast,Seattle,47.7160015,-122.297606,ChIJ_y6GyGMRkFQRpwKOOHcu2Ps,4.1,cafe,"0    10.034183
+Name: distance.value, dtype: float64"
+Diva Espresso,7916 Greenwood Avenue North,Seattle,47.686822,-122.355106,ChIJMRaVoiMUkFQRRA7EM58mlZI,4.3,cafe,"0    7.574891
+Name: distance.value, dtype: float64"
+Caffe Keffa,7001 15th Avenue Northwest,Seattle,47.6796678,-122.3772008,ChIJ3Vwv0ywUkFQRB_q_PzSZYVY,,cafe,"0    9.110006
+Name: distance.value, dtype: float64"
+Cafe Javasti,8617 35th Avenue Northeast,Seattle,47.6914369,-122.2909731,ChIJucJfPZMTkFQRUppYthTF3Cc,4.4,cafe,"0    5.847732
+Name: distance.value, dtype: float64"
+Couth Buzzard Books Espresso Buono Cafe,8310 Greenwood Avenue North,Seattle,47.6895322,-122.35514170000002,ChIJpUpjhSEUkFQR0C_DHiPof-Q,4.6,cafe,"0    7.404599
+Name: distance.value, dtype: float64"
+Herkimer Coffee,7320 Greenwood Avenue North,Seattle,47.6824183,-122.3550397,ChIJI1hAGDsUkFQRboSqccQzWtM,4.6,cafe,"0    7.896209
+Name: distance.value, dtype: float64"
+Green Bean Coffeehouse,8525 Greenwood Avenue North,Seattle,47.69127959999999,-122.3555236,ChIJ1wGIzCEUkFQRlhErFOBu4X4,4.4,cafe,"0    7.397763
+Name: distance.value, dtype: float64"
+Wedgwood Ale House & Cafe,8515 35th Avenue Northeast,Seattle,47.69061960000001,-122.2911432,ChIJn8hBPZMTkFQRcIzeiopC1OE,4.3,cafe,"0    5.835923
+Name: distance.value, dtype: float64"
+Starbucks,17202 15th Avenue Northeast,Seattle,47.7545,-122.313044,ChIJTzBDYFQQkFQR56zkEg0wynk,4.3,cafe,"0    11.563083
+Name: distance.value, dtype: float64"
+Sip & Ship,7511 Greenwood Avenue North,Seattle,47.6837024,-122.3555005,ChIJ16hLKyAUkFQRhAxJ0Riz-S4,4.3,cafe,"0    7.807334
+Name: distance.value, dtype: float64"
+Monkey Grind Espresso Bar,518 North 85th Street,Seattle,47.690696900000006,-122.3514624,ChIJNSYXTx8UkFQRrblScH28f6k,4.7,cafe,"0    7.149782
+Name: distance.value, dtype: float64"
+Turtle Coffee,9000 Holman Road Northwest,Seattle,47.69444,-122.374928,ChIJ-b3xa5sWkFQRM0YN7x-1gpw,4.7,cafe,"0    8.499068
+Name: distance.value, dtype: float64"
+Chocolati,7810 East Green Lake Drive North,Seattle,47.6854665,-122.33591409999998,ChIJKWIoNhEUkFQR3QJ2DLvOHtg,4.4,cafe,"0    7.029832
+Name: distance.value, dtype: float64"
+Madrona Elementary School,1121 33rd Avenue,Seattle,47.612342,-122.290859,ChIJRVwZeydrkFQRJ5O7CDnqZXE,3.9,school,"0    0.808577
+Name: distance.value, dtype: float64"
+Castillos Supermarkets,10426 16th Avenue Southwest,Seattle,47.509054,-122.3547679,ChIJLQfRM-ZDkFQR8Ma7_YX8hEE,4.1,supermarket,"0    9.993163
+Name: distance.value, dtype: float64"
+Boulevard Park Shopping Center,12000 Des Moines Memorial Drive,Seattle,47.4952783,-122.3093348,ChIJo-hN2K5DkFQRbUJuKu8zHlE,3.9,supermarket,"0    11.348664
+Name: distance.value, dtype: float64"
+El Paso Supermarket LLC,11479 Des Moines Memorial Drive,Seattle,47.5003864,-122.3061764,ChIJyyM3dK1DkFQREjvtzPxTNZU,4.7,supermarket,"0    10.995028
+Name: distance.value, dtype: float64"
+Rainier Beach Branch - The Seattle Public Library,9125 Rainier Avenue South,Seattle,47.5213572,-122.2705383,ChIJL_cygnJCkFQRzzZPdzm3qVg,4.2,library,"0    7.014916
+Name: distance.value, dtype: float64"
+NewHolly Branch - The Seattle Public Library,7058 32nd Avenue South # 104,Seattle,47.53920770000001,-122.2904188,ChIJS9l2dvhBkFQRu9lbP9NcYDo,3.6,library,"0    5.919204
+Name: distance.value, dtype: float64"
+VA Primary Care Provider,1660 South Columbian Way,Seattle,47.563062,-122.3082308,ChIJOwhv79hBkFQRnKqwjvxv9fA,4.0,hospital,"0    4.828465
+Name: distance.value, dtype: float64"
+Medicare Plans Enrollment Center,7101 Martin Luther King Junior Way South #216,Seattle,47.538508,-122.28267350000002,ChIJwZHMfAFCkFQRpb0H5cCNmag,5.0,hospital,"0    5.63207
+Name: distance.value, dtype: float64"
+Sea Mar Community Health Centers Human Resources,9635 Des Moines Memorial Drive South,Seattle,47.5161114,-122.3155978,ChIJq6EJnDNCkFQRkrrGxpIiujU,4.5,hospital,"0    8.647607
+Name: distance.value, dtype: float64"
+Swedish Outpatient Rehabilitation - Cherry Hill,500 17th Avenue Suite 100,Seattle,47.606482,-122.3107016,ChIJE9PossVqkFQRScRZ4IVYnk0,3.8,hospital,"0    1.213176
+Name: distance.value, dtype: float64"
+Swedish Multiple Sclerosis Center - Seattle,A Level,Seattle,47.6064789,-122.3111299,ChIJk8O9McRqkFQRhuWgAKEbX2k,3.6,hospital,"0    1.179615
+Name: distance.value, dtype: float64"
+USPS Distribution Center,10700 27th Avenue South,Tukwila,47.5070664,-122.2970687,ChIJFX7TZE5CkFQRxO7NWup2O4U,3.8,post_office,"0    11.111249
+Name: distance.value, dtype: float64"
+Rainier Beach High School,8815 Seward Park Avenue South,Seattle,47.5243753,-122.2661133,ChIJPwSqXHNCkFQR7F0CApCfkFc,3.8,school,"0    7.087632
+Name: distance.value, dtype: float64"
+South Lake High School,8601 Rainier Avenue South,Seattle,47.52568820000001,-122.2708161,ChIJAYTy8gxCkFQR1Q0G37OGOvc,4.8,school,"0    6.730267
+Name: distance.value, dtype: float64"
+Van Asselt Elementary School,8311 Beacon Avenue South,Seattle,47.5290446,-122.28888909999998,ChIJJ1yepxBCkFQRoc5yAYtydWA,4.3,school,"0    6.666874
+Name: distance.value, dtype: float64"
+Islander Middle School,7447 84th Avenue Southeast,Mercer Island,47.5376346,-122.22832379999998,ChIJl66QKb5pkFQRCt-jfCInmnE,3.7,school,"0    9.765071
+Name: distance.value, dtype: float64"
+Graham Hill Elementary School,5149 South Graham Street,Seattle,47.5458404,-122.2683764,ChIJz3dffPhpkFQRGDjF3Tcl7ew,3.7,school,"0    5.600373
+Name: distance.value, dtype: float64"
+Wing Luke Elementary School,3701 South Kenyon Street,Seattle,47.530511,-122.284889,ChIJXV9snxpCkFQRZiGSsC88PEs,4.3,school,"0    6.4133
+Name: distance.value, dtype: float64"
+Leschi Elementary School,135 32nd Avenue,Seattle,47.6021448,-122.2918926,ChIJqaP_AedqkFQRfXBEdfmA45M,4.4,school,"0    1.323182
+Name: distance.value, dtype: float64"
+Kimball Elementary School,3200 23rd Avenue South,Seattle,47.5743598,-122.3026743,ChIJjcWln3xqkFQRaY-tptqIa5w,4.4,school,"0    3.000622
+Name: distance.value, dtype: float64"
+Hawthorne Elementary School,4100 39th Avenue South,Seattle,47.5656102,-122.2835196,ChIJJwfl5GxqkFQROb6mMJQz_Fg,4.9,school,"0    3.945308
+Name: distance.value, dtype: float64"
+Hangar Cafe,6261 13th Avenue South,Seattle,47.54671669999999,-122.3164097,ChIJWRgaZOxBkFQRArhWsxJvll0,4.4,cafe,"0    6.331262
+Name: distance.value, dtype: float64"
+Victrola Coffee Roasters,3215 Beacon Avenue South,Seattle,47.574616,-122.309285,ChIJxSdF031qkFQRpbRD6KKeAJI,4.6,cafe,"0    3.372902
+Name: distance.value, dtype: float64"
+Starbucks,400 Occidental Avenue South,Seattle,47.599056,-122.332658,ChIJrymtyKRqkFQRYxQ_lIhmtiA,4.1,cafe,"0    2.669981
+Name: distance.value, dtype: float64"
+Métier Racing & Coffee,1017 East Union Street,Seattle,47.6127018,-122.3186497,ChIJsRdC0AcVkFQR-M_ZN_wWOgU,4.3,cafe,"0    1.130516
+Name: distance.value, dtype: float64"
+Peerless Cafe,701 5th Avenue #7,Seattle,47.6048152,-122.33056770000002,ChIJi-OPx7BqkFQRnKPQsQ0Dqr4,,cafe,"0    1.95028
+Name: distance.value, dtype: float64"
+Starbucks,2300 South Jackson A,Seattle,47.59947349999999,-122.3019692,ChIJudlvmulqkFQR5Vh_RQrK3ds,4.2,cafe,"0    1.254195
+Name: distance.value, dtype: float64"
+Starbucks,102 1st Ave S,Seattle,47.6015803,-122.33391090000002,ChIJlR29sbpqkFQRaZEfxJHGsTI,4.1,cafe,"0    2.57427
+Name: distance.value, dtype: float64"
+Caffe Fiore,224 West Galer Street,Seattle,47.6324657,-122.3608624,ChIJA9sMeGwVkFQR5QDcauwfq6s,4.4,cafe,"0    5.399006
+Name: distance.value, dtype: float64"
+The Blue Heron,4001 Gilman Avenue West,Seattle,47.65593370000001,-122.3869513,ChIJcd9sFJYVkFQRPOOlDgW1dcQ,4.3,cafe,"0    7.670603
+Name: distance.value, dtype: float64"
+Top Pot Doughnuts,609 Summit Ave E,Seattle,47.6246574,-122.3255798,ChIJHW3t0y8VkFQRRPleb38Aj5w,4.4,cafe,"0    2.170914
+Name: distance.value, dtype: float64"
+Safeway Pharmacy,1410 East John Street,Seattle,47.6204258,-122.3131406,ChIJEQGStywVkFQRcRxC7f9eWlo,4.4,pharmacy,"0    1.10317
+Name: distance.value, dtype: float64"
+Grocery Outlet Bargain Market,7800 Bothell Way Northeast #140,Kenmore,47.7572161,-122.2361385,ChIJu20WACgOkFQREeTiSQmdc7E,4.3,supermarket,"0    20.269111
+Name: distance.value, dtype: float64"
+Swedish Primary Care - Sand Point,4540 Union Bay Place Northeast,Seattle,47.6623574,-122.2934291,ChIJq59isoUUkFQRMbQ9UBnN4Bo,4.4,hospital,"0    3.784338
+Name: distance.value, dtype: float64"
+Seattle Children's Hospital,4800 Sand Point Way Northeast,Seattle,47.6622259,-122.2805384,ChIJrYx10YIUkFQRXOPoZdRuFaA,4.3,hospital,"0    4.465507
+Name: distance.value, dtype: float64"
+Virginia Mason University Village Medical Center,2671 Northeast 46th Street,Seattle,47.6615662,-122.2983159,ChIJVZjrIoMUkFQR5BoGcfXe35I,3.8,hospital,"0    3.530764
+Name: distance.value, dtype: float64"
+Bartell Drugs Inglewood,14130 Juanita Drive Northeast #107,Kirkland,47.729431,-122.2432555,ChIJf8kTMx4SkFQRHwrYg2rl3iU,4.0,pharmacy,"0    18.303915
+Name: distance.value, dtype: float64"
+Safeway Pharmacy,6850 Northeast Bothell Way,Kenmore,47.759189600000006,-122.2473709,ChIJq3PEmCcOkFQRt-RrEjGOia4,3.0,pharmacy,"0    13.784338
+Name: distance.value, dtype: float64"
+"Steven W. Cone, RPh",WA 98105,Seattle,47.66820959999999,-122.2771499,ChIJHcWSCnwTkFQRYd26IcxjuH8,5.0,pharmacy,"0    4.666252
+Name: distance.value, dtype: float64"
+United States Postal Service,6700 Northeast 181st Street,Kenmore,47.7600115,-122.2516295,ChIJQ9vGBNgRkFQRf47ERsIX-7o,2.7,post_office,"0    13.635177
+Name: distance.value, dtype: float64"
+Post Office (Inside Party For Less),10015 Northeast 137th Street,Kirkland,47.7225255,-122.2059549,ChIJ64zbXQoSkFQRDge04F_bsK0,2.5,post_office,"0    17.716594
+Name: distance.value, dtype: float64"
+Inglemoor High School,15500 Simonds Road Northeast,Kenmore,47.7406951,-122.2226555,ChIJA9Z-8QEOkFQRfjCaFv6uEJw,3.5,school,"0    18.841516
+Name: distance.value, dtype: float64"
+Juanita High School,10601 NE 132nd St,Kirkland,47.71533059999999,-122.1987395,ChIJYaRNYnYSkFQRWH7x6GXLNhQ,3.6,school,"0    15.192666
+Name: distance.value, dtype: float64"
+Bothell High School,9130 Northeast 180th Street,Bothell,47.760959,-122.2192398,ChIJ1yERQD4OkFQRbm3ehQpx6VM,3.7,school,"0    19.02486
+Name: distance.value, dtype: float64"
+Helen Keller Elementary School,13820 108th Avenue Northeast,Kirkland,47.72526250000001,-122.1955794,ChIJ_TCQevMNkFQR-WS9yZPXDdE,4.8,school,"0    15.301429
+Name: distance.value, dtype: float64"
+Finn Hill Middle School,8040 Northeast 132nd Street,Kirkland,47.7195589,-122.2306048,ChIJiXlYqBcSkFQRRoI4tt1oa1o,4.2,school,"0    16.707272
+Name: distance.value, dtype: float64"
+Kenmore Elementary,19121 71st Avenue Northeast,Kenmore,47.76802290000001,-122.2457797,ChIJ_5Nxcy4OkFQRwdaHDPNd93c,4.0,school,"0    14.863269
+Name: distance.value, dtype: float64"
+Carl Sandburg Elementary School,12801 84th Avenue Northeast,Kirkland,47.7165516,-122.2307081,ChIJfRplwRUSkFQRKretllf8YTs,4.7,school,"0    16.802362
+Name: distance.value, dtype: float64"
+Starbucks,9721 Northeast 119th Way,Kirkland,47.706554,-122.2118191,ChIJ_a1VVW8SkFQRplM-usdjJRw,4.3,cafe,"0    14.870106
+Name: distance.value, dtype: float64"
+Starbucks,7750 Bothell Way Northeast,Kenmore,47.756695,-122.23681,ChIJjcsv1CMOkFQRhWLAylrEUlE,4.1,cafe,"0    20.233064
+Name: distance.value, dtype: float64"
+Citra,4730 University Way Northeast #105,Seattle,47.66382,-122.3129369,ChIJgyrR3mEUkFQRfpByZOqk4As,4.7,cafe,"0    4.673089
+Name: distance.value, dtype: float64"
+Starbucks,4555 University Way NE,Seattle,47.662881,-122.313381,ChIJRb4aiYoUkFQRIss5yWvgR0M,4.1,cafe,"0    4.100684
+Name: distance.value, dtype: float64"
+urban COFFEE lounge,9744 Northeast 119th Way,Kirkland,47.707167,-122.211377,ChIJ5cQmV28SkFQRlxlRL39YCa4,4.6,cafe,"0    15.191423
+Name: distance.value, dtype: float64"
+King's Market,12923 Martin Luther King Junior Way South,Seattle,47.4867108,-122.2579389,ChIJ_____4tCkFQRgCCJayttlJk,4.0,supermarket,"0    11.083903
+Name: distance.value, dtype: float64"
+Schick Shadel Hospital,12101 Ambaum Boulevard Southwest,Seattle,47.4943271,-122.3507146,ChIJP2aH841DkFQReNMhUc_GPD8,4.0,hospital,"0    11.493474
+Name: distance.value, dtype: float64"
+Planned Parenthood - White-West Seattle Health Center,9942 8th Avenue Southwest,Seattle,47.5139436,-122.3449664,ChIJqRCVndtDkFQRiiEYSs9JrEY,3.9,hospital,"0    9.165942
+Name: distance.value, dtype: float64"
+Psychiatry Resident Clinic at Harborview,325 9th Avenue,Seattle,47.60382120000001,-122.3241757,ChIJaTnQtrlqkFQRXUhp3eUhg8c,5.0,hospital,"0    1.924798
+Name: distance.value, dtype: float64"
+Madison Clinic / 2 West Clinic,325 9th Avenue,Seattle,47.60382120000001,-122.3241757,ChIJaTnQtrlqkFQRNBnkq2ShSRc,5.0,hospital,"0    1.924798
+Name: distance.value, dtype: float64"
+Harborview Medical Center,325 9th Avenue,Seattle,47.60437959999999,-122.3235411,ChIJ7w3EijcVkFQRyIZDeOQLa14,4.0,hospital,"0    1.832815
+Name: distance.value, dtype: float64"
+Maleng Building HMC (Harborview Medical Center),410 9th Avenue,Seattle,47.60466029999999,-122.3234674,ChIJ9bMvN7hqkFQRToOK6MF1nfg,5.0,hospital,"0    1.765071
+Name: distance.value, dtype: float64"
+Swedish Neurosurgery - Cherry Hill,550 17th Avenue #500,Seattle,47.6076339,-122.310118,ChIJXU5frsVqkFQRiz8TokKxu9g,5.0,hospital,"0    1.003108
+Name: distance.value, dtype: float64"
+Swedish Country Doctor Walk-In After-Hours Clinic - Seattle,550 16th Avenue,Seattle,47.6075873,-122.3108553,ChIJ9_C6sMVqkFQRyxQr5VL9-eE,3.8,hospital,"0    1.155376
+Name: distance.value, dtype: float64"
+Swedish Center for Comprehensive Care - Seattle,515 Minor Avenue,Seattle,47.60626389999999,-122.321727,ChIJe8luAMhqkFQRf8ocyWlZl5A,3.9,hospital,"0    1.625855
+Name: distance.value, dtype: float64"
+Swedish Orthopedic Institute - Seattle,601 Broadway,Seattle,47.60747329999999,-122.3213809,ChIJ2UdDFMhqkFQRE9lczfbh4OI,4.3,hospital,"0    1.642014
+Name: distance.value, dtype: float64"
+Bartell Drugs Corporate Office,4025 Delridge Way Southwest,Seattle,47.568042,-122.36340020000002,ChIJP6KaAclBkFQRC2fOy1o-23c,3.6,pharmacy,"0    6.405842
+Name: distance.value, dtype: float64"
+Bartell Drugs Rainier Avenue,2345 Rainier Avenue South,Seattle,47.5815711,-122.3011517,ChIJW1DxjolqkFQRUiju1lmVG9I,3.8,pharmacy,"0    2.761342
+Name: distance.value, dtype: float64"
+Fred Meyer Pharmacy,14300 1st Avenue South,Burien,47.47526089999999,-122.3315004,ChIJVydPu7BqkFQR5yzFAffK2bI,2.5,pharmacy,"0    12.242387
+Name: distance.value, dtype: float64"
+Premier Long Term Care Pharm,1618 South Lane Street #204,Seattle,47.5968827,-122.3108135,ChIJI2miOpVqkFQRoa2TGDeU7b0,3.7,pharmacy,"0    1.844624
+Name: distance.value, dtype: float64"
+King Plaza Pharmacy,7101 Martin Luther King Junior Way South,Seattle,47.53852559999999,-122.2822846,ChIJH2kUZQFCkFQRpEMU7C-EE_o,5.0,pharmacy,"0    5.614667
+Name: distance.value, dtype: float64"
+Neighborcare Health at Columbia City,4400 37th Avenue South,Seattle,47.563471,-122.285717,ChIJS0n5WG1qkFQRaytsmlwshKA,3.7,pharmacy,"0    4.041641
+Name: distance.value, dtype: float64"
+United States Postal Service,7633 South 126th Street,Seattle,47.49030239999999,-122.2373548,ChIJpTfQh71CkFQRMm-Bo36hM2E,1.7,post_office,"0    12.492231
+Name: distance.value, dtype: float64"
+Campbell Hill Elementary School,6418 South 124th Street,Seattle,47.492486,-122.253072,ChIJNYuzMJNCkFQRqMBqJeYCXV8,4.1,school,"0    11.682411
+Name: distance.value, dtype: float64"
+Foster High School,4242 South 144th Street,Tukwila,47.47474340000001,-122.2798545,ChIJ9WHmsiNDkFQRu3yXT32Oieo,4.3,school,"0    13.853325
+Name: distance.value, dtype: float64"
+Dimmitt Middle School,12320 80th Avenue South,Seattle,47.4920705,-122.2317132,ChIJ9ezPp6JCkFQR2MI5h7fTMkY,3.1,school,"0    12.735861
+Name: distance.value, dtype: float64"
+Kennedy Catholic High School,140 South 140th Street,Burien,47.47830229999999,-122.3319862,ChIJRb5BknlDkFQRnBNz_nlVKHo,4.4,school,"0    11.828465
+Name: distance.value, dtype: float64"
+Cedarhurst Elementary School,611 South 132nd Street,Burien,47.4843831,-122.3251081,ChIJT6kzyV9DkFQRJZ-GFkMLMfI,4.2,school,"0    11.198881
+Name: distance.value, dtype: float64"
+Dearborn Park International Elementary School,2820 South Orcas Street,Seattle,47.5518621,-122.29617179999998,ChIJfeNbTuJBkFQRVtw2EqNQRL8,3.3,school,"0    5.263518
+Name: distance.value, dtype: float64"
+White Center Heights Elementary School,10015 6th Avenue Southwest,Seattle,47.5131739,-122.34385790000002,ChIJCXDwQttDkFQRPuh52MnMIe8,3.7,school,"0    9.237415
+Name: distance.value, dtype: float64"
+Cascade Middle School,11212 10th Avenue Southwest,Seattle,47.5020997,-122.3457566,ChIJyWL9A-tDkFQREydnriyQnYw,2.8,school,"0    11.108763
+Name: distance.value, dtype: float64"
+Lakeridge Elementary School,8215 Southeast 78th Street,Mercer Island,47.532043,-122.228572,ChIJxb5FrsBpkFQR9d-_Vtt75fM,4.5,school,"0    10.105656
+Name: distance.value, dtype: float64"
+Neighborcare Health at Highland Park Elementary,1012 Southwest Trenton Street,Seattle,47.5256291,-122.3487055,ChIJtYyCkXxBkFQRrOUL_5fTgPw,,school,"0    9.705407
+Name: distance.value, dtype: float64"
+Starbucks,13038 Interurban Ave,Tukwila,47.485784,-122.27280559999998,ChIJTWLICeRCkFQR0zYL50VsUDk,4.2,cafe,"0    11.402113
+Name: distance.value, dtype: float64"
+Starbucks,1962 1st Avenue South,Seattle,47.58420039999999,-122.3338991,ChIJMSo3EydAkFQR1F-LteA1Sso,4.2,cafe,"0    3.888751
+Name: distance.value, dtype: float64"
+All City Coffee,1205 South Vale Street,Seattle,47.54898950000001,-122.3170821,ChIJuQ_Uw-tBkFQRRJb9TxT-6TI,4.5,cafe,"0    6.151647
+Name: distance.value, dtype: float64"
+Tully's Coffee,3100 Airport Way S,Seattle,47.57666099999999,-122.321033,ChIJg8_PzIFqkFQRVxOrzNKtViI,3.9,cafe,"0    4.028589
+Name: distance.value, dtype: float64"
+Rainier Commons Llc,3100 Airport Way South,Seattle,47.57669370000001,-122.3204605,ChIJS7zTzIFqkFQRsoHlJMMGBpU,,cafe,"0    4.013673
+Name: distance.value, dtype: float64"
+McDonald's,6305 Martin Luther King Junior Way South,Seattle,47.545570700000006,-122.2860261,ChIJjwJIcv5BkFQR-PodsZlulCs,3.4,cafe,"0    5.139217
+Name: distance.value, dtype: float64"
+Five Horizons Espresso,1132 South Albro Place,Seattle,47.54616400000001,-122.3169323,ChIJDxmL9OxBkFQR1EfL6-JqCgg,4.0,cafe,"0    6.280298
+Name: distance.value, dtype: float64"
+Mioposto Pizzeria,3601 South McClellan Street,Seattle,47.5781945,-122.2881865,ChIJxUQ-SmdqkFQRrgQIJYrKarw,4.3,cafe,"0    3.106899
+Name: distance.value, dtype: float64"
+The Station,1600 South Roberto Maestas Festival Street,Seattle,47.57954340000001,-122.311967,ChIJ4zn7XoZqkFQRynA_nRwJdLI,4.7,cafe,"0    3.076445
+Name: distance.value, dtype: float64"
+Empire Espresso,3829 South Edmunds Street A,Seattle,47.55851789999999,-122.2842449,ChIJx1P-zQ1qkFQRDLsXG9LgTtI,4.5,cafe,"0    4.374767
+Name: distance.value, dtype: float64"
+Starbucks Technical Center,1021 Southwest Klickitat Way # 104,Seattle,47.5705237,-122.3490549,ChIJlyPrKjRAkFQR71zJz0qrWFQ,1.6,cafe,"0    5.725917
+Name: distance.value, dtype: float64"
+Pho Cyclo Cafe,2414 1st Ave S,Seattle,47.5813089,-122.3340058,ChIJm_DsOiZAkFQRZwZ-j2gHOrc,4.1,cafe,"0    4.064636
+Name: distance.value, dtype: float64"
+Via Vadi Caffé,8600 14th Avenue South,Seattle,47.5263,-122.314542,ChIJe2qFACZCkFQRVYSacfF49S0,4.8,cafe,"0    7.902424
+Name: distance.value, dtype: float64"
+Ambrosia Cafe,619 South King Street,Seattle,47.5982419,-122.3255104,ChIJJVxjYLxqkFQRbtFBk2UHX44,4.4,cafe,"0    2.39652
+Name: distance.value, dtype: float64"
+That's Amore Italian Cafe,1425 31st Avenue South,Seattle,47.58955290000001,-122.2928309,ChIJhQ_fwvNqkFQR_RmnSgc2oxc,4.6,cafe,"0    2.215662
+Name: distance.value, dtype: float64"
+Cafe Con Leche,2901 1st Avenue South,Seattle,47.5775355,-122.334701,ChIJp8KOJy9AkFQRfFE3XFYgfP0,4.4,cafe,"0    5.303915
+Name: distance.value, dtype: float64"
+Starbucks,Unit 184,Seattle,47.54764489999999,-122.32248590000002,ChIJGx9vMetBkFQRiDL_AFMcmFo,4.1,cafe,"0    6.101927
+Name: distance.value, dtype: float64"
+Chelan Cafe,3527 Chelan Avenue Southwest,Seattle,47.5718316,-122.3615803,ChIJSQ3hHUZAkFQRilQStXap7Jk,4.3,cafe,"0    6.17775
+Name: distance.value, dtype: float64"
+Starbucks,4824 Rainier Avenue South,Seattle,47.558751,-122.2853019,ChIJm8gXNQxqkFQRdhhwmljpsgk,4.3,cafe,"0    4.424487
+Name: distance.value, dtype: float64"
+C & P Coffee Company,5612 California Avenue Southwest,Seattle,47.55166000000001,-122.386687,ChIJ2xUKRx1BkFQRX-L-sii7kNM,4.8,cafe,"0    8.572405
+Name: distance.value, dtype: float64"
+Tully's Coffee,7810 Southeast 27th Street,Mercer Island,47.5869293,-122.2329232,ChIJubFKlrtrkFQRnFNVAkCAFo0,4.3,cafe,"0    5.860162
+Name: distance.value, dtype: float64"
+Starbucks,7695 Southeast 27th Street,Mercer Island,47.5863995,-122.2352581,ChIJbUlgU7prkFQRo7hPGdhAQPA,4.3,cafe,"0    5.857054
+Name: distance.value, dtype: float64"
+Starbucks,121 Lakeside Avenue F,Seattle,47.60208,-122.285385,ChIJlcZFaOFqkFQRMMaOVjCGFks,4.5,cafe,"0    2.045991
+Name: distance.value, dtype: float64"
+Starbucks,10100 East Marginal Way South,Tukwila,47.512486,-122.2933701,ChIJi8BXaEZCkFQRHzc78HIW1IY,4.4,cafe,"0    9.963331
+Name: distance.value, dtype: float64"
+Starbucks,4115 4th Avenue South,Seattle,47.5666264,-122.3298232,ChIJf2VG7c1BkFQRx7dkcaDL87U,4.0,cafe,"0    5.197017
+Name: distance.value, dtype: float64"
+Starbucks,550 17th Avenue,Seattle,47.607171,-122.30995,ChIJraJpUcRqkFQRzoa6_PWeBv4,3.8,cafe,"0    1.194531
+Name: distance.value, dtype: float64"
+Caffe Vita,5028 Wilson Avenue South,Seattle,47.556106,-122.2700728,ChIJyXdUbBpqkFQRUmemX3gCia8,4.5,cafe,"0    5.083282
+Name: distance.value, dtype: float64"
+Fran's Chocolates - Georgetown,5900 Airport Way South,Seattle,47.54999960000001,-122.3173773,ChIJf-q5581qkFQRuKBcbNQ726M,4.8,cafe,"0    6.139838
+Name: distance.value, dtype: float64"
+Dubsea Coffee,9910 8th Avenue Southwest,Seattle,47.514592,-122.3448121,ChIJ13yinttDkFQR7zw7P_8uob4,4.6,cafe,"0    9.212554
+Name: distance.value, dtype: float64"
+Starbucks,2921 Martin Luther King Junior Way South,Seattle,47.57692,-122.29679640000002,ChIJ0_VOlGNqkFQRUDF5vLpThOY,3.9,cafe,"0    2.845867
+Name: distance.value, dtype: float64"
+Starbucks,8415 Southeast 68th Street #100,Mercer Island,47.541813,-122.2258719,ChIJI_kw4pZpkFQR4KsCZ3OdtqU,4.6,cafe,"0    9.392791
+Name: distance.value, dtype: float64"
+McDonald's,9610 Des Moines Memorial Drive South,Seattle,47.5166954,-122.3144545,ChIJfS51kzNCkFQRzni8v2CQjnY,3.1,cafe,"0    8.647607
+Name: distance.value, dtype: float64"
+Peyrassol Cafe at Southport,1083 Lake Washington Boulevard North #30,Renton,47.503225,-122.2038091,ChIJy9E_uz1okFQRZKOIV7g2B1c,4.6,cafe,"0    14.935364
+Name: distance.value, dtype: float64"
+Tin Umbrella Coffee,5600 Rainier Avenue South,Seattle,47.55184199999999,-122.2778267,ChIJTYqrswVqkFQRT4B_fot11UI,4.5,cafe,"0    4.832815
+Name: distance.value, dtype: float64"
+Bartell Drugs,4706 42nd Ave SW,Seattle,47.56081289999999,-122.3847524,ChIJpWppE_lAkFQRzs4xx2o216Q,3.4,pharmacy,"0    7.654444
+Name: distance.value, dtype: float64"
+Costco Pharmacy,4401 4th Avenue South,Seattle,47.565393,-122.3303284,ChIJf0C7es5BkFQRdT2E-H5wRAI,3.3,pharmacy,"0    5.348664
+Name: distance.value, dtype: float64"
+Bartell Drugs White Center,9600 15th Avenue Southwest,Seattle,47.51711720000001,-122.353359,ChIJp3WBHt9DkFQRVcG7Ep4xKv0,3.9,pharmacy,"0    9.336234
+Name: distance.value, dtype: float64"
+Pharmaca Integrative Pharmacy,4707 California Avenue Southwest,Seattle,47.56091120000001,-122.38727790000002,ChIJw6HGf_lAkFQR2vFXfYxEBmo,4.1,pharmacy,"0    7.794282
+Name: distance.value, dtype: float64"
+Safeway Pharmacy,9620 28th Avenue Southwest,Seattle,47.51666669999999,-122.3667251,ChIJjRhZL19BkFQRCs7MbCUmVqM,4.0,pharmacy,"0    10.000622
+Name: distance.value, dtype: float64"
+Sea Mar CHC - Pharmacy,8800 14th Avenue South,Seattle,47.524498,-122.31471,ChIJhXWMQi9CkFQRA1PflaQT8aM,5.0,pharmacy,"0    8.004351
+Name: distance.value, dtype: float64"
+Safeway Pharmacy,2622 California Avenue Southwest,Seattle,47.57957310000001,-122.3860369,ChIJ4cFK_GVAkFQRZnY6i8vjIOs,2.5,pharmacy,"0    7.857676
+Name: distance.value, dtype: float64"
+Sanislo Elementary School,1812 Southwest Myrtle Street,Seattle,47.5397484,-122.3588132,ChIJl__krXRBkFQRhNhw9wXIt_4,4.4,school,"0    8.505283
+Name: distance.value, dtype: float64"
+Mt View Elementary,10811 12th Avenue Southwest,Seattle,47.5063796,-122.3507794,ChIJZ0TEur5DkFQRMrfQto6VcIs,2.9,school,"0    9.969546
+Name: distance.value, dtype: float64"
+Schmitz Park Elementary School,5000 Southwest Spokane Street,Seattle,47.57261049999999,-122.3967054,ChIJEcWmwopAkFQRHrSLx5kD3AM,4.2,school,"0    8.770044
+Name: distance.value, dtype: float64"
+Arbor Heights Elementary School,3701 Southwest 104th Street,Seattle,47.5093589,-122.3789128,ChIJuyVl0f1DkFQRSLHIkbwz-pI,4.2,school,"0    11.142946
+Name: distance.value, dtype: float64"
+Seattle Lutheran High School,4100 Southwest Genesee Street,Seattle,47.56491370000001,-122.3844869,ChIJGcXe8PdAkFQRkzHodU0Rlno,5.0,school,"0    7.525792
+Name: distance.value, dtype: float64"
+Gatewood Elementary School,4320 Southwest Myrtle Street,Seattle,47.54025999999999,-122.3891261,ChIJX8pU7xdBkFQRQqb8KpctWmM,3.6,school,"0    9.251709
+Name: distance.value, dtype: float64"
+Shorewood Elementary School,2725 Southwest 116th Street,Burien,47.49850319999999,-122.3678272,ChIJLTfGJfRDkFQRZ1acVZB2HPM,4.6,school,"0    11.885022
+Name: distance.value, dtype: float64"
+Alki Elementary School,3010 59th Avenue Southwest,Seattle,47.57733579999999,-122.4078267,ChIJRwyKzIhAkFQRWXLjj-jsAJ4,3.8,school,"0    8.980733
+Name: distance.value, dtype: float64"
+Starbucks,6501 California Ave SW,Seattle,47.54467689999999,-122.387478,ChIJrxaZdhlBkFQRk-hWRsy4sWA,4.1,cafe,"0    8.776259
+Name: distance.value, dtype: float64"
+Alki Cafe,2726 Alki Avenue Southwest,Seattle,47.579035,-122.4104409,ChIJO6C0CYZAkFQRsuPIp47ZDIE,3.9,cafe,"0    9.243008
+Name: distance.value, dtype: float64"
+Starbucks,2742 Alki Avenue Southwest,Seattle,47.57880720000001,-122.4111467,ChIJb-Ht44VAkFQRvm2NpRw9lSY,4.4,cafe,"0    9.247359
+Name: distance.value, dtype: float64"
+Fran's Chocolates - Downtown,1325 1st Avenue,Seattle,47.60765,-122.339221,ChIJm46QR7JqkFQR-JT2hpgTG3A,4.6,cafe,"0    2.327533
+Name: distance.value, dtype: float64"
+Uptown Espresso,4301 Southwest Edmunds Street,Seattle,47.559154,-122.3875599,ChIJ79PR7vtAkFQRyUPajcsAgZw,4.5,cafe,"0    7.915475
+Name: distance.value, dtype: float64"
+Belle Epicurean,925 4th Avenue,Seattle,47.60547839999999,-122.3332301,ChIJdceVWbFqkFQR8lqS3tN_Ooc,4.2,cafe,"0    1.966439
+Name: distance.value, dtype: float64"
+Crepe De France,93 Pike Street #204,Seattle,47.608632,-122.3401409,ChIJI2kVWLJqkFQRtkB41QK1q6Y,4.1,cafe,"0    2.405842
+Name: distance.value, dtype: float64"
+Caffè Fiore,2206b California Avenue Southwest,Seattle,47.5837105,-122.3861852,ChIJm1Irmm9AkFQRuaAaXtowz1Y,4.7,cafe,"0    7.926041
+Name: distance.value, dtype: float64"
+Hotwire Online Coffeehouse,4410 California Avenue Southwest,Seattle,47.5643689,-122.386571,ChIJddAEgvdAkFQROY7wAGaswyY,4.4,cafe,"0    7.66128
+Name: distance.value, dtype: float64"
+Uptown Espresso and Gameporium,3845 Delridge Way Southwest,Seattle,47.568767,-122.363785,ChIJIapUPU9AkFQRehBYeLrDCPs,4.7,cafe,"0    6.488502
+Name: distance.value, dtype: float64"
+Ghost Alley Espresso,1499 Post Alley,Seattle,47.608575,-122.3406769,ChIJPQG7WLJqkFQRUXVHLnb3Lro,4.7,cafe,"0    2.42573
+Name: distance.value, dtype: float64"
+Starbucks,4408 Fauntleroy Way SW,Seattle,47.5642834,-122.3770561,ChIJ4zC6AVdAkFQRMXTMUzdz-so,3.9,cafe,"0    7.209447
+Name: distance.value, dtype: float64"
+McDonald's,2580 Southwest Barton Street,Seattle,47.5214158,-122.3663637,ChIJ1ws6ZuFBkFQR5pqFg15WC24,2.7,cafe,"0    9.910503
+Name: distance.value, dtype: float64"
+Pegasus Coffee Bar,711 3rd Avenue #311,Seattle,47.6037133,-122.332499,ChIJd-xOhrBqkFQRn7EL_Vk95fw,4.3,cafe,"0    2.579863
+Name: distance.value, dtype: float64"
+Bellevue High School,10416 Wolverine Way,Bellevue,47.60414249999999,-122.198703,ChIJAydDC3lskFQRYF0_KjgP21I,4.2,school,"0    10.497825
+Name: distance.value, dtype: float64"
+Walmart,12620 Southeast 41st Place,Bellevue,47.572799,-122.172382,ChIJsYLbRlRpkFQRBXm7WctnSRU,3.5,supermarket,"0    9.793661
+Name: distance.value, dtype: float64"
+Whole Foods Market,888 116th Avenue Northeast,Bellevue,47.618217,-122.1845971,ChIJXwEcMPVskFQRwNqv5EXWm1Y,4.3,supermarket,"0    9.509633
+Name: distance.value, dtype: float64"
+Walmart Neighborhood Market,15063 Main Street,Bellevue,47.6089595,-122.1394799,ChIJA1tikEpskFQRqApDZr9KFRQ,3.8,supermarket,"0    12.496582
+Name: distance.value, dtype: float64"
+Viet-Wah Asian Food Market,2825 Northeast Sunset Boulevard,Renton,47.5014079,-122.1779954,ChIJ0Uk5NWxokFQRYP0zdRWmfe8,4.2,supermarket,"0    15.532007
+Name: distance.value, dtype: float64"
+Trader Joe's,416 116th Avenue Northeast,Bellevue,47.6133357,-122.1849321,ChIJP6bKr2FskFQR3CHaLKzUu38,4.6,supermarket,"0    9.392791
+Name: distance.value, dtype: float64"
+S-Mart Asian Supermarket,5629 119th Avenue Southeast,Bellevue,47.55218699999999,-122.179725,ChIJAwe2NRVpkFQRZtx_h2ZRPDo,4.7,supermarket,"0    10.7688
+Name: distance.value, dtype: float64"
+日本超市,120th Avenue Northeast,Bellevue,47.6157035,-122.1825331,ChIJ25i-dGBskFQR9Sb-GDAYYnw,3.0,supermarket,"0    9.721566
+Name: distance.value, dtype: float64"
+Overlake Medical Center,1035 116th Avenue Northeast,Bellevue,47.62083450000001,-122.1868467,ChIJtZogy_RskFQR1hJX1M7syeU,3.6,hospital,"0    9.407085
+Name: distance.value, dtype: float64"
+Kaiser Permanente Bellevue Medical Center,11511 Northeast 10th Street,Bellevue,47.6186035,-122.1867388,ChIJf_8hK4tskFQRllryj6mo5SM,3.8,hospital,"0    9.330019
+Name: distance.value, dtype: float64"
+Planned Parenthood - Bellevue Health Center,14730 Northeast 8th Street,Bellevue,47.6177393,-122.1442177,ChIJ_6fzN6VtkFQRTWZ1kmjq9iA,3.6,hospital,"0    11.218769
+Name: distance.value, dtype: float64"
+Kaiser Permanente Factoria Medical Center,13451 Southeast 36th Street,Bellevue,47.5789862,-122.1607943,ChIJ-cVSv6lukFQRXlEyWTS0geY,4.1,hospital,"0    9.46675
+Name: distance.value, dtype: float64"
+Femme Clinique,1900 116th Avenue Northeast,Bellevue,47.62717569999999,-122.1850199,ChIJ69VM4PFskFQR3QJKqH9zwsk,5.0,hospital,"0    9.561218
+Name: distance.value, dtype: float64"
+Group Health Medical Center Obgyn,11511 Northeast 10th Street,Bellevue,47.61863090000001,-122.18679070000002,ChIJf_8hK4tskFQRzjPE8TzHnCA,5.0,hospital,"0    9.326911
+Name: distance.value, dtype: float64"
+Bellevue Family Medicine,1600 116th Avenue Northeast Suite 102,Bellevue,47.624779,-122.185495,ChIJl1p9MfJskFQRv-I_h3TT7eA,4.7,hospital,"0    9.755127
+Name: distance.value, dtype: float64"
+Seattle Children's at Overlake,1135 116th Avenue Northeast #400,Bellevue,47.62135800000001,-122.186869,ChIJ54L0yPNskFQRHjjTr7xWd28,4.8,hospital,"0    9.444375
+Name: distance.value, dtype: float64"
+Washington Center For Pain Management,1900 116th Avenue Northeast,Bellevue,47.627183,-122.185127,ChIJYRUrp7JtkFQRSLQzuSG6tVc,4.3,hospital,"0    9.561218
+Name: distance.value, dtype: float64"
+Virginia Mason Bellevue Medical Center,222 112th Avenue Northeast,Bellevue,47.6127326,-122.1899346,ChIJf6FtSGJskFQRdHTTGDBA_Nk,3.2,hospital,"0    10.766936
+Name: distance.value, dtype: float64"
+Overlake Medical Pavilion,1231 116th Avenue Northeast #400,Bellevue,47.62137050000001,-122.1859533,ChIJb4mYmPRskFQRl2P5WkrqE_U,4.3,hospital,"0    9.581728
+Name: distance.value, dtype: float64"
+ZOOM+Care,10425 Northeast 8th Street,Bellevue,47.61713839999999,-122.2009027,ChIJU2PpS49skFQRMu-9TLA_HOI,4.5,hospital,"0    8.722188
+Name: distance.value, dtype: float64"
+Group Health Cooperative Car,11511 Northeast 10th Street,Bellevue,47.61863090000001,-122.18679070000002,ChIJf_8hK4tskFQRAsJM-r1qx7Q,5.0,hospital,"0    9.326911
+Name: distance.value, dtype: float64"
+Overlake Hospital,11467-11531 Northeast 8th Street,Bellevue,47.6209241,-122.1868303,ChIJJaF-7YpskFQR6W_9p6Ui6-o,5.0,hospital,"0    9.4133
+Name: distance.value, dtype: float64"
+Overlake Medical Center,1035 116th Avenue Northeast,Bellevue,47.62120789999999,-122.18685,ChIJl9mHnO1skFQRLeN1zE5QSM0,4.5,hospital,"0    9.43381
+Name: distance.value, dtype: float64"
+Low T 99,1239 120th Avenue Northeast Suite C,Bellevue,47.6221768,-122.1813913,ChIJKRNhJ_RskFQRhMHNBOpyn-M,4.8,hospital,"0    9.75637
+Name: distance.value, dtype: float64"
+Eastside Veterinary Associates - Renton / Newcastle,1700 Northeast 44th Street,Renton,47.532915,-122.195308,ChIJIyWnnqlpkFQRaruQGfNKxVM,5.0,hospital,"0    12.530764
+Name: distance.value, dtype: float64"
+Overlake View Adult Family Home,1917 Jones Avenue Northeast,Renton,47.50949,-122.196757,ChIJoe76R0dokFQRxHuglFYIqzo,5.0,hospital,"0    14.053449
+Name: distance.value, dtype: float64"
+Custom Prescriptions,1200 112th Avenue Northeast,Bellevue,47.62185379999999,-122.19043909999998,ChIJdbw_yIxskFQRyfWaEwIX4SI,4.5,pharmacy,"0    9.344935
+Name: distance.value, dtype: float64"
+Walgreens Pharmacy at Overlake Hospital Medical,1135 116th Avenue Northeast Ste 105,Bellevue,47.6212381,-122.1868261,ChIJBz_fYPNskFQR1ki8ZysVrJI,2.9,pharmacy,"0    9.436296
+Name: distance.value, dtype: float64"
+Bartell Drugs,653 156th Avenue Northeast,Bellevue,47.6166311,-122.1333742,ChIJC4I2NrFtkFQREbBpak5obV0,3.6,pharmacy,"0    11.700435
+Name: distance.value, dtype: float64"
+Bartell Drugs Bellevue Village,10116 Northeast 8th Street,Bellevue,47.61812000000001,-122.205823,ChIJAdhBjIVskFQRWon081HRnX0,3.1,pharmacy,"0    7.852082
+Name: distance.value, dtype: float64"
+CVS Pharmacy,1215 North Landing Way,Renton,47.4961163,-122.20001770000002,ChIJ6zzNGxpokFQR4BLLS5gvnZw,4.0,pharmacy,"0    14.968303
+Name: distance.value, dtype: float64"
+Bartell Drugs Midlakes,11919 Northeast 8th Street,Bellevue,47.61714749999999,-122.1806141,ChIJP1RUkl9skFQRft7gRDbafKw,4.1,pharmacy,"0    9.532007
+Name: distance.value, dtype: float64"
+Safeway Pharmacy,1645 140th Avenue Northeast,Bellevue,47.62575529999999,-122.15493159999998,ChIJ6VrBxqptkFQRF0Fa_M5ewn4,3.7,pharmacy,"0    9.685519
+Name: distance.value, dtype: float64"
+Safeway Pharmacy,6911 Coal Creek Parkway Southeast,Newcastle,47.5395085,-122.1678637,ChIJdflW5h5pkFQREwFxOlzvuEE,3.6,pharmacy,"0    12.037912
+Name: distance.value, dtype: float64"
+Walmart Pharmacy,15063 Main Street,Bellevue,47.60837,-122.139589,ChIJs71iATFskFQRCyWV0OSHzDM,3.2,pharmacy,"0    12.502175
+Name: distance.value, dtype: float64"
+Bartell Drugs Coal Creek Village,6939 Coal Creek Parkway Southeast,Newcastle,47.538608,-122.1674377,ChIJ_SpD5h5pkFQRI9DP5csz96o,4.0,pharmacy,"0    12.031075
+Name: distance.value, dtype: float64"
+Bellevue Animal Hospital,10415 Main Street,Bellevue,47.60996399999999,-122.200743,ChIJI5iEwH1skFQR9ImPVfCmgv0,4.7,pharmacy,"0    8.189559
+Name: distance.value, dtype: float64"
+QFC Pharmacy,3550 Factoria Boulevard Southeast,Bellevue,47.5786463,-122.1671909,ChIJed5sOgBskFQRrCE6WhxGNBs,3.9,pharmacy,"0    9.188316
+Name: distance.value, dtype: float64"
+Carleton Sharon L,6939 Coal Creek Parkway Southeast,Newcastle,47.538933,-122.1676176,ChIJ67Jb5h5pkFQRWPmazLTVA58,5.0,pharmacy,"0    12.009944
+Name: distance.value, dtype: float64"
+Lakemont Pharmacy,WA 98006,Bellevue,47.557971,-122.1142131,ChIJLQj4StxukFQRX_S9lbFolJ0,4.3,pharmacy,"0    13.829086
+Name: distance.value, dtype: float64"
+"Teresa B. Nguyen, RPH",3011 Northeast Sunset Boulevard,Renton,47.5025942,-122.1768452,ChIJUwc5wG5okFQRHZIMtgIv8hY,5.0,pharmacy,"0    15.610317
+Name: distance.value, dtype: float64"
+CVS Pharmacy,107 Bellevue Way Southeast,Bellevue,47.60942819999999,-122.2019647,ChIJTRRF2n1skFQRqFvNBve6v_I,4.9,pharmacy,"0    8.252952
+Name: distance.value, dtype: float64"
+CVS,107 Bellevue Way Southeast,Bellevue,47.609567,-122.2018327,ChIJS9BQ2n1skFQRaW3dTUC3SUA,4.4,pharmacy,"0    8.19018
+Name: distance.value, dtype: float64"
+Safeway Pharmacy,300 Bellevue Way Northeast,Bellevue,47.6130559,-122.2012789,ChIJHcAQpIdskFQR3Sc9XvPCu2o,4.5,pharmacy,"0    8.357986
+Name: distance.value, dtype: float64"
+Rite Aid Pharmacy,,Renton,47.50360560000001,-122.1779754,ChIJpeGX1G5okFQRyjXSMbKOyos,5.0,pharmacy,"0    15.718459
+Name: distance.value, dtype: float64"
+Walgreens,3011 Northeast Sunset Boulevard,Renton,47.50258170000001,-122.1768923,ChIJETc9525okFQRiEWSCrWCp88,5.0,pharmacy,"0    15.579863
+Name: distance.value, dtype: float64"
+Safeway Pharmacy,3820 Rainier Avenue South,Seattle,47.5692296,-122.2878388,ChIJcXJg9W5qkFQRKikhq19DQis,2.3,pharmacy,"0    3.718459
+Name: distance.value, dtype: float64"
+Cordant Pharmacy,1417 116th Avenue Northeast suite 124,Bellevue,47.6229166,-122.1875807,ChIJabIsDvNskFQRfGZshkhk7bQ,5.0,pharmacy,"0    9.923555
+Name: distance.value, dtype: float64"
+Bellevue Medical & Dental Clinic - International Community Health Services (ICHS),1050 140th Avenue Northeast,Bellevue,47.6196417,-122.15300790000002,ChIJW1PgclNskFQR1QhFZQhRK-w,3.2,pharmacy,"0    10.204475
+Name: distance.value, dtype: float64"
+Seattle-Holly Park Medical & Dental Clinic (ICHS) - International Community Health Services,3815 South Othello Street,Seattle,47.536866,-122.284191,ChIJqw9hkQNCkFQRmJc9Cpo7QKU,2.8,pharmacy,"0    5.849596
+Name: distance.value, dtype: float64"
+Bartell Drugs Factoria,3620 Factoria Boulevard Southeast,Bellevue,47.57808319999999,-122.1673613,ChIJWYxdOgBskFQRPFw1tfewHXw,3.7,pharmacy,"0    9.208204
+Name: distance.value, dtype: float64"
+Safeway Pharmacy,9262 Rainier Avenue South,Seattle,47.5210445,-122.2680296,ChIJx0ob9m1CkFQR8GnhmgbZoLo,2.8,pharmacy,"0    7.241765
+Name: distance.value, dtype: float64"
+QFC Pharmacy,1510 145th Place Southeast,Bellevue,47.5968235,-122.1485259,ChIJd6HHiTxskFQRtVdn7GtB1Lo,4.5,pharmacy,"0    11.829086
+Name: distance.value, dtype: float64"
+Rite Aid Phamacy,9000 Rainier Avenue South STE C,Seattle,47.5227051,-122.2685043,ChIJYwRl6XJCkFQRD-rMo3UBWws,3.7,pharmacy,"0    6.973897
+Name: distance.value, dtype: float64"
+Crossroads Post Office,15731 Northeast 8th Street,Bellevue,47.61650529999999,-122.12990659999998,ChIJh2EEM7dtkFQRJNWjmwr7Ibw,2.5,post_office,"0    11.852704
+Name: distance.value, dtype: float64"
+United States Postal Service,12400 Southeast 38th Street,Bellevue,47.5778104,-122.1725768,ChIJERT16_9rkFQRnotns495p8w,3.2,post_office,"0    9.484152
+Name: distance.value, dtype: float64"
+USPS Bellevue Carrier Annex,13400 Southeast 30th Street,Bellevue,47.5842696,-122.1611318,ChIJtXLbSgNskFQRLXkhCn0SNJ0,1.2,post_office,"0    9.609074
+Name: distance.value, dtype: float64"
+United States Postal Service,12224 NE Bel Red Rd,Bellevue,47.6194527,-122.1755445,ChIJGdXPyo9skFQRlLjPW0gbakA,2.5,post_office,"0    9.332505
+Name: distance.value, dtype: float64"
+United States Postal Service,15731 Northeast 8th Street,Bellevue,47.616491,-122.12988500000002,ChIJVyElLbdtkFQRY6F4IgucXKY,2.3,post_office,"0    11.862648
+Name: distance.value, dtype: float64"
+Newport High School,4333 Factoria Boulevard Southeast,Bellevue,47.5679585,-122.1722352,ChIJSVtppFFpkFQRITu2Zil6-tE,3.7,school,"0    9.897452
+Name: distance.value, dtype: float64"
+Sammamish High School,100 140th Ave SE,Bellevue,47.6087563,-122.1522617,ChIJm8zMukhskFQRhpI4vdD916Y,4.3,school,"0    12.309509
+Name: distance.value, dtype: float64"
+Sierra Heights Elementary School,2501 Union Avenue Northeast,Renton,47.5143053,-122.1657551,ChIJIWkdY_VokFQR6diqanHOnwI,4.4,school,"0    14.253574
+Name: distance.value, dtype: float64"
+Hazen Senior High School,1101 Hoquiam Avenue Northeast,Renton,47.50159980000001,-122.1527879,ChIJES2oxH1okFQRYYERWUzKjOc,3.5,school,"0    15.175264
+Name: distance.value, dtype: float64"
+Eastgate Elementary School,4255 153rd Avenue Southeast,Bellevue,47.5698603,-122.1376452,ChIJfTAw4btukFQR74msmWLwLg0,5.0,school,"0    11.071473
+Name: distance.value, dtype: float64"
+Spiritridge Elementary School,16401 Southeast 24th Street,Bellevue,47.58762170000001,-122.120226,ChIJx8NPKrVtkFQR0LSEzXydzDA,4.0,school,"0    12.435053
+Name: distance.value, dtype: float64"
+Tillicum Middle School,11650 Southeast 60th Street,Bellevue,47.54998279999999,-122.1839407,ChIJs99PhCxskFQRw-abrILq0k0,3.3,school,"0    11.484152
+Name: distance.value, dtype: float64"
+Somerset Elementary School,14100 Somerset Boulevard Southeast,Bellevue,47.5633298,-122.1517677,ChIJm8fvGLVukFQR5C7Hc7NsWFs,4.8,school,"0    11.986948
+Name: distance.value, dtype: float64"
+McKnight Middle School,1200 Edmonds Avenue Northeast,Renton,47.5056529,-122.1836527,ChIJkWrfKWpokFQRuJUSE6R3EKI,2.6,school,"0    14.80982
+Name: distance.value, dtype: float64"
+Lake Hills Elementary School,14310 Southeast 12th Street,Bellevue,47.6009937,-122.1492291,ChIJCVVKjDlskFQRwTZpewciTWc,4.1,school,"0    12.389683
+Name: distance.value, dtype: float64"
+Woodridge Elementary School,12619 Southeast 20th Place,Bellevue,47.59212309999999,-122.1720457,ChIJLX3YEg5skFQRmdR9_FZBp4k,3.9,school,"0    10.053449
+Name: distance.value, dtype: float64"
+Newport Heights Elementary School,5225 119th Avenue Southeast,Bellevue,47.5548175,-122.180156,ChIJrb6ZIT9pkFQRBZeiUvtHh10,4.8,school,"0    10.60348
+Name: distance.value, dtype: float64"
+Puesta Del Sol Elementary School,3810 132nd Avenue Southeast,Bellevue,47.57581709999999,-122.1638412,ChIJ-TFBtKtukFQR-Fr5FTqBLP0,4.4,school,"0    10.562461
+Name: distance.value, dtype: float64"
+Stevenson Elementary School,301 151st Place Northeast,Bellevue,47.6121,-122.13898629999998,ChIJucCf71JskFQRBhr_zAqKdcs,3.4,school,"0    13.178993
+Name: distance.value, dtype: float64"
+Sunset Elementary School,4229 West Lake Sammamish Parkway Southeast,Bellevue,47.5688156,-122.101773,ChIJ-TFBtKtukFQRY6mrAdZYefU,3.8,school,"0    13.233064
+Name: distance.value, dtype: float64"
+Cougar Ridge Elementary School,4630 167th Avenue Southeast,Bellevue,47.562055,-122.117468,ChIJGTG5w8JukFQRdqX8bkHY8_o,3.7,school,"0    13.15289
+Name: distance.value, dtype: float64"
+Phantom Lake Elementary School,1050 160th Avenue Southeast,Bellevue,47.60045299999999,-122.125736,ChIJxWNnUi1skFQRk6ORo7vaMB8,4.8,school,"0    12.565569
+Name: distance.value, dtype: float64"
+Bellevue Christian High School,1601 98th Avenue Northeast,Bellevue,47.625446200000006,-122.2110315,ChIJ83GBPJdskFQRQ1xnFPrfTqk,4.5,school,"0    7.154755
+Name: distance.value, dtype: float64"
+Hazelwood Elementary School,7100 116th Avenue Southeast,Newcastle,47.53799650000001,-122.1842938,ChIJBfvuhQ9pkFQRv72Zo1o-aNQ,3.8,school,"0    12.17775
+Name: distance.value, dtype: float64"
+Crossroads Cafe,15600 Northeast 8th Street,Bellevue,47.6190392,-122.1307047,ChIJz_B3r7ptkFQRXt_PpMc1sis,3.3,cafe,"0    11.66128
+Name: distance.value, dtype: float64"
+Commons Cafe,1200 112th Ave NE # C162,Bellevue,47.62184099999999,-122.1905618,ChIJdbw_yIxskFQRgq5eFaBOm-A,5.0,cafe,"0    9.345556
+Name: distance.value, dtype: float64"
+Cafe Trophy / Trophy Cupcakes,The Shops at The Bravern,Bellevue,47.616451,-122.192479,ChIJmUodeIlskFQRWzM_z1hj4SU,4.2,cafe,"0    9.195152
+Name: distance.value, dtype: float64"
+Starbucks,10214 Northeast 8th Street,Bellevue,47.61780460000001,-122.2039687,ChIJTdIWiYVskFQRGVoHhMIyhXg,4.1,cafe,"0    8.775637
+Name: distance.value, dtype: float64"
+Starbucks,11010 Northeast 8th Street,Bellevue,47.61758100000001,-122.1930385,ChIJoaB13ItskFQRSrD9jCFQTyg,3.8,cafe,"0    9.055314
+Name: distance.value, dtype: float64"
+Starbucks,3181 156th Avenue Southeast,Bellevue,47.58191859999999,-122.1349543,ChIJOU7hJ5lukFQRUAwRXMX6zUE,4.3,cafe,"0    11.131759
+Name: distance.value, dtype: float64"
+Top Pot Doughnuts,10600 Northeast 9th Place,Bellevue,47.61857790000001,-122.19882920000002,ChIJH80Jv45skFQREWCFcZoRVM4,4.2,cafe,"0    8.752641
+Name: distance.value, dtype: float64"
+Starbucks,3720 128th Avenue Southeast,Bellevue,47.5773556,-122.1690091,ChIJzZpe1AFskFQR34wsg01NdVo,4.1,cafe,"0    9.249223
+Name: distance.value, dtype: float64"
+Café Cesura,1015 108th Avenue Northeast,Bellevue,47.61948400000001,-122.196397,ChIJ3cHZH4xskFQRVe6AUe1pxr8,4.3,cafe,"0    8.796147
+Name: distance.value, dtype: float64"
+Mariposa,Level Two,Bellevue,47.6165929,-122.1922482,ChIJwRGeKopskFQR3-ENAldPYeY,3.3,cafe,"0    9.182101
+Name: distance.value, dtype: float64"
+Starbucks,661 120th Ave NE,Bellevue,47.6159617,-122.1806737,ChIJx6I5wV9skFQRq7OUdsHZ838,4.2,cafe,"0    9.635177
+Name: distance.value, dtype: float64"
+McDonald's,13049 Southeast 69th Way,Newcastle,47.5372631,-122.1661045,ChIJb7JFYB5pkFQRcWtPWmEpS9Q,3.5,cafe,"0    12.177129
+Name: distance.value, dtype: float64"
+Starbucks,453 106th Avenue Northeast,Bellevue,47.614261600000006,-122.1991483,ChIJ9bOe3YhskFQRLgFo8n0PNnA,4.2,cafe,"0    9.661902
+Name: distance.value, dtype: float64"
+Starbucks,545 Bellevue Square,Bellevue,47.6170351,-122.2021667,ChIJJWDjUI9skFQRD7zf6mqkdVE,4.0,cafe,"0    8.710379
+Name: distance.value, dtype: float64"
+Fran's Chocolates - Bellevue,10036 Main Street,Bellevue,47.61035039999999,-122.2051091,ChIJESNTpoBskFQRXi3uhqpAJa8,4.7,cafe,"0    7.986327
+Name: distance.value, dtype: float64"
+The French Bakery,909 112th Avenue Northeast #106,Bellevue,47.6184218,-122.1911935,ChIJCa_-oYtskFQRlSDGGMptrzc,4.3,cafe,"0    9.114357
+Name: distance.value, dtype: float64"
+Sister's Deli,15355 Southeast 30th Place,Bellevue,47.583634,-122.1369843,ChIJe_cq1Z5ukFQRHckBugOlmHA,4.3,cafe,"0    11.340584
+Name: distance.value, dtype: float64"
+Café Pogacha,10885 Northeast 4th Street,Bellevue,47.61347319999999,-122.19499679999998,ChIJvzAJg2JskFQRcPIKoGkFbv8,4.1,cafe,"0    9.45059
+Name: distance.value, dtype: float64"
+Starbucks,226 Bellevue Square,Bellevue,47.61572719999999,-122.2035982,ChIJ4Sty84ZskFQRe3f2HMJV4N4,3.9,cafe,"0    7.927284
+Name: distance.value, dtype: float64"
+Starbucks,4637 Northeast Sunset Boulevard,Renton,47.5051464,-122.1569289,ChIJ__H1rWJokFQRU9zFKaVjwNU,4.1,cafe,"0    14.490988
+Name: distance.value, dtype: float64"
+Starbucks,500 108th Avenue Northeast #1A1,Bellevue,47.6152512,-122.1959073,ChIJcet2AolskFQRhXE5yeEetQA,4.4,cafe,"0    9.610317
+Name: distance.value, dtype: float64"
+Panera Bread,1100 Bellevue Way Northeast,Bellevue,47.6204515,-122.1996182,ChIJgeoRTY5skFQRbUTOT0xjmEY,3.9,cafe,"0    8.607209
+Name: distance.value, dtype: float64"
+Starbucks,1785 Northeast 44th Street,Renton,47.53204859999999,-122.19426740000002,ChIJF71UgqlpkFQRw_Tts3VP9rI,3.9,cafe,"0    12.554382
+Name: distance.value, dtype: float64"
+Starbucks,42 Bellevue Way Northeast,Bellevue,47.6106333,-122.2006543,ChIJvcRWkH1skFQR2JwOzGtyrq4,4.0,cafe,"0    8.246737
+Name: distance.value, dtype: float64"
+Starbucks,1215 North Landing Way,Renton,47.49623070000001,-122.1997824,ChIJ-x-MrRBokFQRmcx00U2zFYA,3.8,cafe,"0    14.957116
+Name: distance.value, dtype: float64"
+Starbucks,255 108th Avenue Northeast,Bellevue,47.6126219,-122.1967499,ChIJyUNJqmJskFQRMcUp_pvzLiw,4.1,cafe,"0    9.584835
+Name: distance.value, dtype: float64"
+Starbucks,6977 Coal Creek Parkway Southeast,Newcastle,47.538199,-122.166524,ChIJIe8u7B5pkFQRvM6h0P8v_m0,4.2,cafe,"0    12.018024
+Name: distance.value, dtype: float64"
+Starbucks,601 108th Avenue Northeast,Bellevue,47.615883,-122.196532,ChIJcet2AolskFQRJxgzgFvS5M8,4.1,cafe,"0    9.31821
+Name: distance.value, dtype: float64"
+Pho Cyclo Cafe,500 108th Avenue Northeast,Bellevue,47.6146778,-122.1961139,ChIJg9iXUYhskFQRKlNujB26FfI,4.1,cafe,"0    9.571162
+Name: distance.value, dtype: float64"
+McDonald's,3239 156th Avenue Southeast,Bellevue,47.5812863,-122.1361831,ChIJuWCS6phukFQRZJmLepUP0PQ,3.3,cafe,"0    11.165942
+Name: distance.value, dtype: float64"
+McDonald's,13841 Northeast 20th Street,Bellevue,47.6275391,-122.1545794,ChIJPfieWABtkFQRmHQ_Cg8SOdQ,3.5,cafe,"0    9.584835
+Name: distance.value, dtype: float64"
+HoneyBaked Ham Company,14339 Northeast 20th Street Suite A,Bellevue,47.6275929,-122.1489043,ChIJPxSCUgBtkFQRyFDr6tBtq-o,4.5,cafe,"0    9.886886
+Name: distance.value, dtype: float64"
+Starbucks,1645 140th Avenue Northeast A2,Bellevue,47.6250441,-122.15469009999998,ChIJUTYbo6ptkFQRdcUVxFNCY6g,3.8,cafe,"0    9.878807
+Name: distance.value, dtype: float64"
+Starbucks,4851 Lakemont Boulevard Southeast d,Bellevue,47.5585056,-122.1146481,ChIJKWPbrN1ukFQR4JtrDGlrQj0,4.3,cafe,"0    13.788067
+Name: distance.value, dtype: float64"
+Panera Bread,921 North 10th Street,Renton,47.49770109999999,-122.2025486,ChIJLWffHDVdkFQRLKQxxrD7-GY,3.7,cafe,"0    14.800497
+Name: distance.value, dtype: float64"
+Einstein Bros. Bagels,7808 Southeast 28th Street Ste 124,Mercer Island,47.58569689999999,-122.2330137,ChIJZR27fsISkFQRtjXJoKLXKjE,4.1,cafe,"0    6.35115
+Name: distance.value, dtype: float64"
+Sister's Cafe,#160,Bellevue,47.5833883,-122.1541198,ChIJkUpAfB1skFQRYa30PyE761M,3.4,cafe,"0    10.008701
+Name: distance.value, dtype: float64"
+McDonald's,1705 Northeast 44th Street,Renton,47.53193679999999,-122.1951731,ChIJv_AZDalpkFQRU3b_NVm-AFM,3.7,cafe,"0    12.566812
+Name: distance.value, dtype: float64"
+Starbucks,7823 Southeast 28th Street,Mercer Island,47.584993,-122.232904,ChIJg-ZM1LtrkFQRb--GRoLbHxo,4.0,cafe,"0    6.366066
+Name: distance.value, dtype: float64"
+McDonald's,2807 78th Avenue Southeast,Mercer Island,47.5854274,-122.2344795,ChIJFbVTzbtrkFQROfZSsR90x8s,3.5,cafe,"0    5.940957
+Name: distance.value, dtype: float64"
+Starbucks,1510 145th Place Southeast,Bellevue,47.59672199999999,-122.148774,ChIJG5qinTxskFQRldsioHwLKSc,3.2,cafe,"0    11.818521
+Name: distance.value, dtype: float64"
+Specialty's Cafe & Bakery,500 108th Avenue Northeast,Bellevue,47.6149831,-122.1956566,ChIJX3TR1X1skFQR06NfIeIvVKM,4.0,cafe,"0    9.701678
+Name: distance.value, dtype: float64"
+Starbucks,8421 Southeast 68th Street,Mercer Island,47.5410641,-122.2260456,ChIJx6sv4pZpkFQRmweNbwQ_C1U,4.0,cafe,"0    9.477315
+Name: distance.value, dtype: float64"
+Starbucks,300 Bellevue Way Northeast,Bellevue,47.613009700000006,-122.2011809,ChIJvcRWkH1skFQROZxvXZmNeUA,2.9,cafe,"0    9.806712
+Name: distance.value, dtype: float64"
+Megan's Coffee Corner,15100 SE 38th St # 704,Bellevue,47.576325,-122.1393389,ChIJzYtTs7xukFQRv0dQiziT9nY,3.9,cafe,"0    10.799876
+Name: distance.value, dtype: float64"
+McDonald's,4411 Northeast Sunset Boulevard,Renton,47.50422739999999,-122.159714,ChIJ_e-CLGNokFQRKeeEb80iOcU,3.8,cafe,"0    16.605966
+Name: distance.value, dtype: float64"
+Both Ways Cafe,4922 South Genesee Street,Seattle,47.56427710000001,-122.2709298,ChIJXWNvoxVqkFQRJRQPpe2azdk,4.6,cafe,"0    4.512741
+Name: distance.value, dtype: float64"
+Pot O' Gold Coffee Service,13205 Southeast 30th Street Suite 104,Bellevue,47.58331099999999,-122.1639077,ChIJnzcMegNskFQRaWW3hxyIKcE,4.2,cafe,"0    9.494096
+Name: distance.value, dtype: float64"
+Starbucks,10116 Northeast 8th Street,Bellevue,47.6184384,-122.2053506,ChIJ6zwJgoVskFQROx--d-noMkY,3.7,cafe,"0    8.775637
+Name: distance.value, dtype: float64"
+Shawn's Cafe & Bakery,7420 Southeast 24th Street,Mercer Island,47.5893276,-122.2394804,ChIJ5zZLIqVrkFQRDdpHFA_Nbvs,4.8,cafe,"0    5.437539
+Name: distance.value, dtype: float64"
+Walmart Supercenter,743 Rainier Avenue South,Renton,47.47215300000001,-122.221088,ChIJDyCigUxdkFQRBqZVD5yY3cg,3.5,supermarket,"0    13.627719
+Name: distance.value, dtype: float64"
+Seafood City Supermarket,1368 Southcenter Mall #100,Tukwila,47.45985220000001,-122.2560601,ChIJ9U9yrNNckFQRfpw2SFt_iVk,4.0,supermarket,"0    13.436296
+Name: distance.value, dtype: float64"
+Renton Medical Center | Kaiser Permanente Washington,275 Bronson Way Northeast,Renton,47.486631,-122.19262140000002,ChIJCx19TwZokFQRQ1dhADy5QtU,4.2,hospital,"0    16.15289
+Name: distance.value, dtype: float64"
+Burien Medical Center | Kaiser Permanente Washington,140 Southwest 146th Street,Burien,47.47293370000001,-122.335607,ChIJUcs393xDkFQRqGFCrgq-JTw,3.5,hospital,"0    11.995028
+Name: distance.value, dtype: float64"
+CVS Pharmacy,301 Strander Boulevard,Tukwila,47.45515599999999,-122.25886409999998,ChIJU7x_odFckFQRi1ohwqT-WOA,4.4,pharmacy,"0    13.928527
+Name: distance.value, dtype: float64"
+Fred Meyer Pharmacy,365 Renton Center Way Southwest,Renton,47.4775592,-122.2193674,ChIJg5wYWbJCkFQR6UFB3vtBqCU,3.7,pharmacy,"0    13.284649
+Name: distance.value, dtype: float64"
+NorMed,4320 South 131st Place,Tukwila,47.48654550000001,-122.2785067,ChIJ56rO5OJCkFQRaP7Q-RVHPXg,5.0,pharmacy,"0    11.829708
+Name: distance.value, dtype: float64"
+Bartell Drugs Riverton Heights,14277 Pacific Hwy. S.,Tukwila,47.47511919999999,-122.28498700000002,ChIJjWRge1FCkFQRsDqr7ESv2os,3.6,pharmacy,"0    12.048477
+Name: distance.value, dtype: float64"
+United States Postal Service,15250 32nd Avenue South,SeaTac,47.4656297,-122.2912471,ChIJq4rb9ThDkFQRgQRz8eNQMrs,2.2,post_office,"0    14.019888
+Name: distance.value, dtype: float64"
+United States Postal Service,225 Andover Park West,Tukwila,47.4567042,-122.2549836,ChIJqVOXtNZckFQRVfjJwy31XcI,1.8,post_office,"0    13.773151
+Name: distance.value, dtype: float64"
+United States Postal Service,314 Williams Avenue South,Renton,47.4790861,-122.2062982,ChIJb7P6Q6tCkFQRQuaXVdB0r6M,2.5,post_office,"0    17.655687
+Name: distance.value, dtype: float64"
+Renton High School,400 South 2nd Street,Renton,47.481741,-122.21197,ChIJ12ECra5CkFQRA0hqEyPwEzo,3.4,school,"0    13.529521
+Name: distance.value, dtype: float64"
+Thorndyke Elementary School,4415 South 150th Street,Tukwila,47.4680715,-122.2766388,ChIJF7v0WyVDkFQRA-_OB3VBfnA,3.2,school,"0    13.628341
+Name: distance.value, dtype: float64"
+Bryn Mawr Elementary School,8212 South 118th Street,Seattle,47.49809929999999,-122.2293337,ChIJuTWel55CkFQRUOqX2fdKqjE,4.8,school,"0    13.563083
+Name: distance.value, dtype: float64"
+Dunlap Elementary School,4525 South Cloverdale Street,Seattle,47.524971,-122.274738,ChIJxQKYjQ1CkFQRK7i_m2azkpk,4.6,school,"0    6.64885
+Name: distance.value, dtype: float64"
+Showalter Middle School,4628 South 144th Street,Tukwila,47.4748324,-122.2749527,ChIJTYiZRiFDkFQRCZKrFIL4BXs,3.6,school,"0    13.523928
+Name: distance.value, dtype: float64"
+Starbucks,601 South Grady Way,Renton,47.471455,-122.211428,ChIJQd60101dkFQRKwZf-eIKO1w,4.1,cafe,"0    17.21504
+Name: distance.value, dtype: float64"
+Luther's Table,419 South 2nd Street #1,Renton,47.4809825,-122.2109572,ChIJYc3XcqxCkFQR27O_eAR6kGI,4.6,cafe,"0    13.596644
+Name: distance.value, dtype: float64"
+McDonald's,401 South Grady Way,Renton,47.4711906,-122.212665,ChIJwy9ILkxdkFQRZLOf2gbVwjo,3.3,cafe,"0    15.894344
+Name: distance.value, dtype: float64"
+Shari's Cafe and Pies,1820 Maple Valley Highway,Renton,47.483372,-122.194854,ChIJdf6pSQxdkFQRg7VdEIRuUTE,3.8,cafe,"0    15.908017
+Name: distance.value, dtype: float64"
+Common Ground Coffee & Cupcakes,900 S 3rd St # A,Renton,47.4797708,-122.20527959999998,ChIJZW2qJKtCkFQRIqSDW2pdG2E,4.6,cafe,"0    13.763207
+Name: distance.value, dtype: float64"
+Moo-Licious,14800 Interurban Avenue South,Tukwila,47.47107529999999,-122.2538437,ChIJVdXqSdFCkFQRk3Wd1yCjOP8,3.8,cafe,"0    12.500311
+Name: distance.value, dtype: float64"
+McDonald's,73 Rainier Avenue South,Renton,47.4841255,-122.2179079,ChIJodPxDK9CkFQRa2R8vQ5bStE,3.0,cafe,"0    13.147918
+Name: distance.value, dtype: float64"
+Starbucks,333 Strander Blvd,Tukwila,47.45563800000001,-122.25661,ChIJL5SJFNFckFQR2bhYz3mMpgY,3.9,cafe,"0    14.041019
+Name: distance.value, dtype: float64"
+Starbucks,641 Rainier Avenue South,Renton,47.4741164,-122.21630079999998,ChIJNaRrhbJCkFQRKOtkCtvVgfo,4.1,cafe,"0    13.646364
+Name: distance.value, dtype: float64"
+McDonald's,9304 Rainier Avenue South,Seattle,47.5202511,-122.2669155,ChIJOfK1InJCkFQR69GMFxI4U8o,3.5,cafe,"0    7.261032
+Name: distance.value, dtype: float64"
+McDonald's,15210 Pacific Highway South,Tukwila,47.4663388,-122.2877393,ChIJpQVqnDlDkFQRZHpiD5Onc7I,3.3,cafe,"0    13.620261
+Name: distance.value, dtype: float64"
+Starbucks,200 South 3rd Street,Renton,47.479948,-122.2143605,ChIJX10OyK1CkFQRGiMjoNC22fc,4.0,cafe,"0    13.33872
+Name: distance.value, dtype: float64"
+Starbucks,6310 Martin Luther King Jr Way S,Seattle,47.5457249,-122.2850768,ChIJ2xWOEv5BkFQRjJzbA2sbJqY,3.7,cafe,"0    5.123058
+Name: distance.value, dtype: float64"
+Starbucks,9262 Rainier Avenue South,Seattle,47.52102989999999,-122.2681215,ChIJ76D0a3JCkFQRYsuQ4KuDnJc,3.9,cafe,"0    7.241765
+Name: distance.value, dtype: float64"
+Starbucks,3820 Rainier Avenue South,Seattle,47.56906799999999,-122.28794,ChIJ0_gG9m5qkFQRgpXMdYSPnbM,3.3,cafe,"0    3.577999
+Name: distance.value, dtype: float64"
+Cafe Ibex,3219 Martin Luther King Junior Way South,Seattle,47.5742189,-122.2973792,ChIJxeZk62RqkFQR1cA6f_Q3Gvc,4.4,cafe,"0    3.051585
+Name: distance.value, dtype: float64"
+Starbucks,2707 Rainier Avenue South,Seattle,47.57920220000001,-122.299828,ChIJi7v8QWJqkFQRpMlUiA6hkek,3.7,cafe,"0    2.828465
+Name: distance.value, dtype: float64"
+Caffe Umbria Supply Warehouse Inc,8620 16th Avenue South,Seattle,47.525974,-122.3126271,ChIJ0c4i6yVCkFQRI3AKzrThvok,4.4,cafe,"0    7.948415
+Name: distance.value, dtype: float64"
+McDonald's,2336 25th Avenue South,Seattle,47.5816436,-122.3000341,ChIJhb0P9YlqkFQRj_zUogyuLU4,3.3,cafe,"0    2.589186
+Name: distance.value, dtype: float64"
+US Post Office,2265 Carillon Point,Kirkland,47.656481,-122.2065517,ChIJC_NJYywTkFQRLK53VdvZZM8,4.2,post_office,"0    8.146675
+Name: distance.value, dtype: float64"
+Trader Joe's,15868 1st Avenue South,Burien,47.4601033,-122.3313572,ChIJaytCap9EkFQRYUh6V8MuFVc,4.7,supermarket,"0    12.851461
+Name: distance.value, dtype: float64"
+Southwest Pediatrics,14212 Ambaum Boulevard Southwest #202,Seattle,47.4760487,-122.3471751,ChIJx1lTOoBEkFQRzWDL3Y-dzDI,3.5,hospital,"0    12.809198
+Name: distance.value, dtype: float64"
+Highline Cancer Center,16233 Sylvester Road Southwest # 110,Burien,47.45746109999999,-122.3414637,ChIJYRypDJhEkFQRPDPOvQjVsts,4.0,hospital,"0    13.293971
+Name: distance.value, dtype: float64"
+Highline Medical Center,16311 Sylvester Road Southwest,Burien,47.4570377,-122.3424054,ChIJ6QSXRb1EkFQRqfMMngXe6to,4.0,hospital,"0    13.377874
+Name: distance.value, dtype: float64"
+United States Postal Service,609 Southwest 150th Street,Burien,47.4682643,-122.342374,ChIJQ4fIy5xEkFQRwx4O3u86qvU,1.9,post_office,"0    12.645121
+Name: distance.value, dtype: float64"
+US Post Office,2116 Southwest 152nd Street,Burien,47.4669463,-122.3616438,ChIJNXUXpY5EkFQRu0h1u7QnbbE,4.2,post_office,"0    13.594779
+Name: distance.value, dtype: float64"
+United States Postal Service,2116 Southwest 152nd Street,Burien,47.4669435,-122.3616457,ChIJa39WpI5EkFQRfNW--9xPi1I,5.0,post_office,"0    13.594779
+Name: distance.value, dtype: float64"
+Highline High School,225 South 152nd Street,Burien,47.4657475,-122.3303271,ChIJgRP-iGFDkFQRppZ1lH3vibE,2.8,school,"0    16.110006
+Name: distance.value, dtype: float64"
+Sylvester Middle School,16222 Sylvester Road Southwest,Burien,47.4570693,-122.3398358,ChIJe7mrpKJEkFQRpKpLKEG94ZM,3.8,school,"0    13.280298
+Name: distance.value, dtype: float64"
+Starbucks,15838 1st Avenue South,Burien,47.4610126,-122.3334278,ChIJC2XhZ59EkFQRbV8t7O-2_k4,3.7,cafe,"0    12.985705
+Name: distance.value, dtype: float64"
+Starbucks,116 Southwest 148th Street,Burien,47.47128499999999,-122.334916,ChIJU2kq1nxDkFQRfwvr1ATAnbQ,4.0,cafe,"0    12.159727
+Name: distance.value, dtype: float64"
+909 Coffee & Wine,909 Southwest 152nd Street,Burien,47.466680800000006,-122.3463477,ChIJ4296MJtEkFQRj3aY2z2iZ0A,4.5,cafe,"0    14.003108
+Name: distance.value, dtype: float64"
+McDonald's,6546 California Avenue Southwest,Seattle,47.54331209999999,-122.3868746,ChIJaXhVuBlBkFQRjdy0dtT-OYI,3.6,cafe,"0    8.895587
+Name: distance.value, dtype: float64"
+Starbucks,9023 25th Avenue Southwest,Seattle,47.52270679999999,-122.3655979,ChIJM5S_aWdBkFQRfTVk0ivHXiw,3.8,cafe,"0    9.796768
+Name: distance.value, dtype: float64"
+Pearls Tea & Coffee,4800 Delridge Way Southwest,Seattle,47.5591634,-122.3626741,ChIJTc6pwqxBkFQRNoc5nTHhXnQ,4.2,cafe,"0    7.025482
+Name: distance.value, dtype: float64"
+Starbucks,4754 42nd Avenue Southwest,Seattle,47.5597634,-122.3853139,ChIJI3AmW_lAkFQRSWW9zPcmQ4Y,3.2,cafe,"0    7.778123
+Name: distance.value, dtype: float64"
+Burien Bigfoot Java,1031 Southwest 128th Street,Burien,47.48822379999999,-122.3492477,ChIJlU6Gh4VDkFQRPk68Z9kJNk8,4.5,cafe,"0    11.744562
+Name: distance.value, dtype: float64"
+Genoa Health Care,1210 SW 136th,Burien,47.4815188,-122.3497636,ChIJGfQer29DkFQRFsBQSpwBVPY,5.0,pharmacy,"0    12.25606
+Name: distance.value, dtype: float64"
+Seahurst Elementary School,14603 14th Avenue Southwest,Burien,47.471342,-122.35400590000002,ChIJHxyVjIZEkFQRJ9IQZSm5VOk,4.7,school,"0    13.116221
+Name: distance.value, dtype: float64"
+McDonald's,3003 California Avenue Southwest,Seattle,47.5766542,-122.3870087,ChIJi4WVOmdAkFQRBH7LsgbKc6g,3.3,cafe,"0    8.088875
+Name: distance.value, dtype: float64"
+Countryside Cafe,14901 Ambaum Blvd SW,Burien,47.4692432,-122.3467071,ChIJpxPNfYNEkFQRc11tgtxa7VE,4.6,cafe,"0    12.727781
+Name: distance.value, dtype: float64"
+Bird On A Wire Espresso,3509 Southwest Henderson Street,Seattle,47.52278599999999,-122.377146,ChIJwV21VVtBkFQRAFtMs3SBEvE,4.6,cafe,"0    10.066501
+Name: distance.value, dtype: float64"
+Burien Press,423 Southwest 152nd Street,Burien,47.46672439999999,-122.3402227,ChIJVb4Y8ZxEkFQR1s5lNwIjGz4,4.7,cafe,"0    12.569919
+Name: distance.value, dtype: float64"
+Grand Central Bakery,626 Southwest 152nd Street,Burien,47.466987,-122.343026,ChIJZ9yYpJxEkFQR7Ffgb5wAUWE,4.5,cafe,"0    12.845245
+Name: distance.value, dtype: float64"
+Starbucks,138 Southwest 148th Street,Burien,47.471518,-122.3370666,ChIJR8BEIn1DkFQRy3-R3dgmCII,3.8,cafe,"0    12.228713
+Name: distance.value, dtype: float64"
+Cafe Osita Micro Cafe,7349 35th Ave SW,Seattle,47.5359055,-122.37677859999998,ChIJ-2MvkhRBkFQRNK0DXPHE-gg,4.6,cafe,"0    9.143567
+Name: distance.value, dtype: float64"
+Starbucks,4101 Southwest Admiral Way,Seattle,47.5809764,-122.3840707,ChIJV7dqq2hAkFQREYtp2u19qcc,4.3,cafe,"0    7.643257
+Name: distance.value, dtype: float64"
