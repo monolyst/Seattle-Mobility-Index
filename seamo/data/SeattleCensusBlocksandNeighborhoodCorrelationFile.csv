@@ -1,0 +1,482 @@
+BLOCKGROUP,URBAN_VILLAGE_NAME,URBAN_VILLAGE_TYPE,NEIGHBORHOOD_DISTRICT_NAME,NEIGHBORHOODS_INCLUDED,CRA_NAME,PCT_IN_VILLAGE,AREA,CT_LON,CT_LAT
+530330001001,Outside Villages,Outside Villages,North,"Cedar Park, Lake City, Meadowbrook, Matthews Beach",Cedar Park/Meadowbrook,1,8967593.023,-122.28469,47.72683
+530330001002,Outside Villages,Outside Villages,North,"Cedar Park, Lake City, Meadowbrook, Matthews Beach",Cedar Park/Meadowbrook,1,3103999.781,-122.29247,47.72932
+530330001003,Outside Villages,Outside Villages,North,"Cedar Park, Lake City, Meadowbrook, Matthews Beach",Cedar Park/Meadowbrook,0.666666667,3990297.626,-122.28945,47.72281
+530330001004,Outside Villages,Outside Villages,North,"Cedar Park, Lake City, Meadowbrook, Matthews Beach",Cedar Park/Meadowbrook,1,1360694.387,-122.29445,47.73194
+530330001005,Outside Villages,Outside Villages,North,"Cedar Park, Lake City, Meadowbrook, Matthews Beach",Cedar Park/Meadowbrook,0.571428571,2481027.135,-122.29444,47.72293
+530330002001,Outside Villages,Outside Villages,North,"Lake City, Victory Heights, Olympic Hills, Pinehurst, Jackson Park",Olympic Hills/Victory Heights,1,4434289.015,-122.29892,47.72909
+530330002002,Outside Villages,Outside Villages,North,"Lake City, Victory Heights, Olympic Hills, Pinehurst, Jackson Park",Olympic Hills/Victory Heights,0.6875,5465557.447,-122.30283,47.72179
+530330002003,Outside Villages,Outside Villages,North,"Lake City, Victory Heights, Olympic Hills, Pinehurst, Jackson Park",Olympic Hills/Victory Heights,1,10661121.69,-122.31903,47.72793
+530330002004,Outside Villages,Outside Villages,North,"Lake City, Victory Heights, Olympic Hills, Pinehurst, Jackson Park",Olympic Hills/Victory Heights,1,4060633.307,-122.31018,47.72866
+530330002005,Outside Villages,Outside Villages,North,"Lake City, Victory Heights, Olympic Hills, Pinehurst, Jackson Park",Olympic Hills/Victory Heights,1,5244818.105,-122.31391,47.72274
+530330002006,Outside Villages,Outside Villages,North,"Lake City, Victory Heights, Olympic Hills, Pinehurst, Jackson Park",Olympic Hills/Victory Heights,1,5504641.039,-122.30468,47.72922
+530330003001,Outside Villages,Outside Villages,Northwest,"Haller Lake, Pinehurst",Haller Lake,1,8485433.281,-122.3289,47.73007
+530330003002,Outside Villages,Outside Villages,Northwest,"Haller Lake, Pinehurst",Haller Lake,0.6875,4543441.025,-122.34043,47.73138
+530330004011,Bitter Lake Village,Hub Urban Village,Northwest,"Broadview, Bitter Lake",Broadview/Bitter Lake,0.6,6797052.114,-122.34949,47.73015
+530330004012,Outside Villages,Outside Villages,Northwest,"Broadview, Bitter Lake",Broadview/Bitter Lake,1,4380089.094,-122.35825,47.72959
+530330004013,Bitter Lake Village,Hub Urban Village,Northwest,"Broadview, Bitter Lake",Broadview/Bitter Lake,1,3501320.43,-122.35187,47.7258
+530330004021,Outside Villages,Outside Villages,Northwest,"Broadview, Bitter Lake",Broadview/Bitter Lake,1,3458868.636,-122.35564,47.72234
+530330004022,Outside Villages,Outside Villages,Northwest,"Broadview, Bitter Lake",Broadview/Bitter Lake,0.588235294,8076529.978,-122.34755,47.71487
+530330004023,Outside Villages,Outside Villages,Northwest,"Broadview, Bitter Lake",Broadview/Bitter Lake,1,3473424.17,-122.35556,47.71416
+530330004024,Outside Villages,Outside Villages,Northwest,"Broadview, Bitter Lake",Broadview/Bitter Lake,1,4353345.392,-122.35615,47.71835
+530330005001,Outside Villages,Outside Villages,Northwest,"Broadview, Bitter Lake",Broadview/Bitter Lake,1,19216836.29,-122.36979,47.72437
+530330005002,Outside Villages,Outside Villages,Northwest,"Broadview, Bitter Lake",Broadview/Bitter Lake,1,4353838.977,-122.36365,47.7206
+530330005003,Outside Villages,Outside Villages,Northwest,"Broadview, Bitter Lake",Broadview/Bitter Lake,1,6985217.129,-122.36629,47.71526
+530330006001,Outside Villages,Outside Villages,Northwest,"Haller Lake, Pinehurst",Haller Lake,0.88,9695999.395,-122.33652,47.72512
+530330006002,Outside Villages,Outside Villages,Northwest,"Haller Lake, Pinehurst",Haller Lake,1,2662123.875,-122.31526,47.7149
+530330006003,Outside Villages,Outside Villages,Northwest,"Haller Lake, Pinehurst",Haller Lake,0.888888889,8834151.322,-122.33811,47.71872
+530330006004,Northgate,Urban Center,Northwest,"Haller Lake, Pinehurst",Haller Lake,0.612903226,10487596.41,-122.33713,47.71208
+530330006005,Outside Villages,Outside Villages,Northwest,"Haller Lake, Pinehurst",Haller Lake,1,6056011.858,-122.32559,47.71775
+530330006006,Outside Villages,Outside Villages,Northwest,"Haller Lake, Pinehurst",Haller Lake,1,3572639.52,-122.31905,47.71607
+530330007001,Lake City,Hub Urban Village,North,"Lake City, Victory Heights, Olympic Hills, Pinehurst, Jackson Park",Olympic Hills/Victory Heights,1,2228506.517,-122.2946,47.71744
+530330007002,Outside Villages,Outside Villages,North,"Lake City, Victory Heights, Olympic Hills, Pinehurst, Jackson Park",Olympic Hills/Victory Heights,0.85,4703862.141,-122.29738,47.71478
+530330007003,Outside Villages,Outside Villages,North,"Lake City, Victory Heights, Olympic Hills, Pinehurst, Jackson Park",Olympic Hills/Victory Heights,1,3510025.435,-122.30723,47.71756
+530330007004,Outside Villages,Outside Villages,North,"Lake City, Victory Heights, Olympic Hills, Pinehurst, Jackson Park",Olympic Hills/Victory Heights,1,3492389.086,-122.30714,47.71393
+530330008001,Outside Villages,Outside Villages,North,"Cedar Park, Lake City, Meadowbrook, Matthews Beach",Cedar Park/Meadowbrook,1,5245952.112,-122.28715,47.71539
+530330008002,Outside Villages,Outside Villages,North,"Cedar Park, Lake City, Meadowbrook, Matthews Beach",Cedar Park/Meadowbrook,1,7041150.844,-122.28529,47.70817
+530330009001,Outside Villages,Outside Villages,North,"Cedar Park, Lake City, Meadowbrook, Matthews Beach",Cedar Park/Meadowbrook,1,5645077.603,-122.27963,47.7128
+530330009002,Outside Villages,Outside Villages,North,"Cedar Park, Lake City, Meadowbrook, Matthews Beach",Cedar Park/Meadowbrook,1,4599303.549,-122.27525,47.70142
+530330010001,Outside Villages,Outside Villages,North,"Cedar Park, Lake City, Meadowbrook, Matthews Beach",Cedar Park/Meadowbrook,1,3995675.631,-122.29631,47.70961
+530330010002,Outside Villages,Outside Villages,North,"Cedar Park, Lake City, Meadowbrook, Matthews Beach",Cedar Park/Meadowbrook,1,6277325.954,-122.29591,47.70437
+530330011001,Outside Villages,Outside Villages,North,"Lake City, Victory Heights, Olympic Hills, Pinehurst, Jackson Park",Olympic Hills/Victory Heights,1,5436024.818,-122.30572,47.70928
+530330011002,Outside Villages,Outside Villages,North,"Lake City, Victory Heights, Olympic Hills, Pinehurst, Jackson Park",Olympic Hills/Victory Heights,1,5977468.262,-122.30779,47.70407
+530330012001,Outside Villages,Outside Villages,North,"Maple Leaf, Northgate, Pinehurst",Northgate/Maple Leaf,0.826086957,5315031.881,-122.31511,47.70674
+530330012002,Outside Villages,Outside Villages,North,"Maple Leaf, Northgate, Pinehurst",Northgate/Maple Leaf,0.75,2643914.334,-122.32002,47.70433
+530330012003,Northgate,Urban Center,North,"Maple Leaf, Northgate, Pinehurst",Northgate/Maple Leaf,1,2658056.978,-122.32103,47.70919
+530330012004,Northgate,Urban Center,North,"Maple Leaf, Northgate, Pinehurst",Northgate/Maple Leaf,0.928571429,5253332.627,-122.32644,47.70752
+530330012005,Northgate,Urban Center,North,"Maple Leaf, Northgate, Pinehurst",Northgate/Maple Leaf,0.933333333,3869593.333,-122.33162,47.7076
+530330013001,Outside Villages,Outside Villages,Northwest,Licton Springs,Licton Springs,0.576923077,5457290.986,-122.33786,47.70284
+530330013002,Aurora-Licton Springs,Residential Urban Village,Northwest,Licton Springs,Licton Springs,0.571428571,2638438.151,-122.34603,47.70482
+530330013003,Aurora-Licton Springs,Residential Urban Village,Northwest,Licton Springs,Licton Springs,0.727272727,4663137.548,-122.34504,47.70017
+530330014001,Outside Villages,Outside Villages,Ballard,"Crown Hill, North Beach, Blue Ridge",North Beach/Blue Ridge,1,3475641.064,-122.3555,47.71053
+530330014002,Outside Villages,Outside Villages,Ballard,"Crown Hill, North Beach, Blue Ridge",North Beach/Blue Ridge,1,5568783.884,-122.35855,47.70709
+530330014003,Outside Villages,Outside Villages,Ballard,"Crown Hill, North Beach, Blue Ridge",North Beach/Blue Ridge,1,4079195.865,-122.36431,47.70287
+530330014004,Outside Villages,Outside Villages,Ballard,"Crown Hill, North Beach, Blue Ridge",North Beach/Blue Ridge,0.954545455,10045311.23,-122.37207,47.70586
+530330015001,Outside Villages,Outside Villages,Ballard,"Crown Hill, North Beach, Blue Ridge",North Beach/Blue Ridge,1,5622150.729,-122.39054,47.6962
+530330015002,Outside Villages,Outside Villages,Ballard,"Crown Hill, North Beach, Blue Ridge",North Beach/Blue Ridge,1,6805869.915,-122.39705,47.69534
+530330016001,Outside Villages,Outside Villages,Ballard,"Crown Hill, North Beach, Blue Ridge",North Beach/Blue Ridge,1,9898972.46,-122.37972,47.70374
+530330016002,Outside Villages,Outside Villages,Ballard,"Crown Hill, North Beach, Blue Ridge",North Beach/Blue Ridge,1,7120134.183,-122.3833,47.6964
+530330016003,Crown Hill,Residential Urban Village,Ballard,"Crown Hill, North Beach, Blue Ridge",North Beach/Blue Ridge,0.842105263,4026495.882,-122.37795,47.69333
+530330017011,Greenwood-Phinney Ridge,Residential Urban Village,Northwest,"Greenwood, Phinney Ridge, Woodland Park, Crown Hill",Greenwood/Phinney Ridge,0.5,3484779.101,-122.35763,47.69219
+530330017012,Outside Villages,Outside Villages,Northwest,"Greenwood, Phinney Ridge, Woodland Park, Crown Hill",Greenwood/Phinney Ridge,0.882352941,3281381.337,-122.35253,47.69584
+530330017013,Outside Villages,Outside Villages,Northwest,"Greenwood, Phinney Ridge, Woodland Park, Crown Hill",Greenwood/Phinney Ridge,1,2842890.491,-122.35289,47.70208
+530330017021,Outside Villages,Outside Villages,Northwest,"Greenwood, Phinney Ridge, Woodland Park, Crown Hill",Greenwood/Phinney Ridge,0.947368421,3698776.297,-122.35744,47.69928
+530330017022,Outside Villages,Outside Villages,Northwest,"Greenwood, Phinney Ridge, Woodland Park, Crown Hill",Greenwood/Phinney Ridge,0.882352941,3497118.344,-122.36872,47.69245
+530330017023,Outside Villages,Outside Villages,Northwest,"Greenwood, Phinney Ridge, Woodland Park, Crown Hill",Greenwood/Phinney Ridge,0.857142857,3167863.564,-122.36841,47.69638
+530330017024,Outside Villages,Outside Villages,Northwest,"Greenwood, Phinney Ridge, Woodland Park, Crown Hill",Greenwood/Phinney Ridge,1,3415539.39,-122.36197,47.69784
+530330018001,Outside Villages,Outside Villages,Northwest,Licton Springs,Licton Springs,0.833333333,4522889.962,-122.33757,47.6942
+530330018002,Aurora-Licton Springs,Residential Urban Village,Northwest,Licton Springs,Licton Springs,0.866666667,2627170.126,-122.34438,47.69222
+530330018003,Aurora-Licton Springs,Residential Urban Village,Northwest,Licton Springs,Licton Springs,0.6875,2981475.119,-122.34656,47.69541
+530330019001,Northgate,Urban Center,North,"Maple Leaf, Northgate, Pinehurst",Northgate/Maple Leaf,0.5,8246576.375,-122.32804,47.69949
+530330019002,Outside Villages,Outside Villages,North,"Maple Leaf, Northgate, Pinehurst",Northgate/Maple Leaf,1,4460507.018,-122.32033,47.69495
+530330019003,Outside Villages,Outside Villages,North,"Maple Leaf, Northgate, Pinehurst",Northgate/Maple Leaf,1,5197580.582,-122.32837,47.69321
+530330020001,Outside Villages,Outside Villages,North,"Maple Leaf, Northgate, Pinehurst",Northgate/Maple Leaf,1,5991982.451,-122.30993,47.69393
+530330020002,Outside Villages,Outside Villages,North,"Maple Leaf, Northgate, Pinehurst",Northgate/Maple Leaf,1,3313396.329,-122.31356,47.69899
+530330020003,Outside Villages,Outside Villages,North,"Maple Leaf, Northgate, Pinehurst",Northgate/Maple Leaf,1,2878273.663,-122.31395,47.69465
+530330021001,Outside Villages,Outside Villages,Northeast,"Wedgwood, View Ridge, Bryant, Matthews Beach",Wedgwood/View Ridge,1,6110820.29,-122.29393,47.69626
+530330021002,Outside Villages,Outside Villages,Northeast,"Wedgwood, View Ridge, Bryant, Matthews Beach",Wedgwood/View Ridge,1,3824113.125,-122.30073,47.69753
+530330021003,Outside Villages,Outside Villages,Northeast,"Wedgwood, View Ridge, Bryant, Matthews Beach",Wedgwood/View Ridge,1,4761820.33,-122.30116,47.69249
+530330022001,Outside Villages,Outside Villages,Northeast,"Wedgwood, View Ridge, Bryant, Matthews Beach",Wedgwood/View Ridge,1,6631344.988,-122.28346,47.70178
+530330022002,Outside Villages,Outside Villages,Northeast,"Wedgwood, View Ridge, Bryant, Matthews Beach",Wedgwood/View Ridge,1,6111784.567,-122.28617,47.69625
+530330022003,Outside Villages,Outside Villages,Northeast,"Wedgwood, View Ridge, Bryant, Matthews Beach",Wedgwood/View Ridge,1,6378485.014,-122.2795,47.693
+530330022004,Outside Villages,Outside Villages,Northeast,"Wedgwood, View Ridge, Bryant, Matthews Beach",Wedgwood/View Ridge,1,10601215.54,-122.27279,47.68734
+530330024001,Outside Villages,Outside Villages,Northeast,"Wedgwood, View Ridge, Bryant, Matthews Beach",Wedgwood/View Ridge,1,4464330.896,-122.28459,47.68798
+530330024002,Outside Villages,Outside Villages,Northeast,"Wedgwood, View Ridge, Bryant, Matthews Beach",Wedgwood/View Ridge,1,1917182.865,-122.28484,47.68444
+530330024003,Outside Villages,Outside Villages,Northeast,"Wedgwood, View Ridge, Bryant, Matthews Beach",Wedgwood/View Ridge,1,4157257.104,-122.29266,47.68633
+530330025001,Outside Villages,Outside Villages,Northeast,"Ravenna, Bryant, Roosevelt, View Ridge, Hawthorne Hills, Windermere, University District",Ravenna/Bryant,1,6694752.129,-122.30147,47.68651
+530330025002,Outside Villages,Outside Villages,Northeast,"Ravenna, Bryant, Roosevelt, View Ridge, Hawthorne Hills, Windermere, University District",Ravenna/Bryant,1,3899871.115,-122.30366,47.67941
+530330026001,Outside Villages,Outside Villages,Northeast,"Ravenna, Bryant, Roosevelt, View Ridge, Hawthorne Hills, Windermere, University District",Ravenna/Bryant,1,2640901.893,-122.30949,47.68759
+530330026002,Outside Villages,Outside Villages,Northeast,"Ravenna, Bryant, Roosevelt, View Ridge, Hawthorne Hills, Windermere, University District",Ravenna/Bryant,0.652173913,4364685.849,-122.31151,47.68178
+530330026003,Roosevelt,Residential Urban Village,Northeast,"Ravenna, Bryant, Roosevelt, View Ridge, Hawthorne Hills, Windermere, University District",Ravenna/Bryant,0.523809524,3517998.948,-122.312,47.67762
+530330026004,Outside Villages,Outside Villages,Northeast,"Ravenna, Bryant, Roosevelt, View Ridge, Hawthorne Hills, Windermere, University District",Ravenna/Bryant,0.954545455,2874790.663,-122.31471,47.68604
+530330027001,Outside Villages,Outside Villages,Northwest,"Green Lake, Meridian, Roosevelt, Woodland Park",Green Lake,1,3898579.796,-122.32065,47.68709
+530330027002,Outside Villages,Outside Villages,Northwest,"Green Lake, Meridian, Roosevelt, Woodland Park",Green Lake,1,5361196.375,-122.32789,47.68671
+530330027003,Outside Villages,Outside Villages,Northwest,"Green Lake, Meridian, Roosevelt, Woodland Park",Green Lake,1,3395503.175,-122.33449,47.68713
+530330027004,Outside Villages,Outside Villages,Northwest,"Green Lake, Meridian, Roosevelt, Woodland Park",Green Lake,0.966666667,4498866.832,-122.34151,47.68667
+530330028001,Outside Villages,Outside Villages,Northwest,"Greenwood, Phinney Ridge, Woodland Park, Crown Hill",Greenwood/Phinney Ridge,1,2827264.673,-122.3499,47.68548
+530330028002,Outside Villages,Outside Villages,Northwest,"Greenwood, Phinney Ridge, Woodland Park, Crown Hill",Greenwood/Phinney Ridge,1,2168315.266,-122.34986,47.68291
+530330028003,Outside Villages,Outside Villages,Northwest,"Greenwood, Phinney Ridge, Woodland Park, Crown Hill",Greenwood/Phinney Ridge,1,2062537.263,-122.35003,47.68073
+530330028004,Outside Villages,Outside Villages,Northwest,"Greenwood, Phinney Ridge, Woodland Park, Crown Hill",Greenwood/Phinney Ridge,0.85,3526326.642,-122.34991,47.68876
+530330029001,Outside Villages,Outside Villages,Northwest,"Greenwood, Phinney Ridge, Woodland Park, Crown Hill",Greenwood/Phinney Ridge,0.636363636,3882675.557,-122.3604,47.68858
+530330029002,Outside Villages,Outside Villages,Northwest,"Greenwood, Phinney Ridge, Woodland Park, Crown Hill",Greenwood/Phinney Ridge,0.692307692,3558012.934,-122.35835,47.68266
+530330029003,Outside Villages,Outside Villages,Northwest,"Greenwood, Phinney Ridge, Woodland Park, Crown Hill",Greenwood/Phinney Ridge,1,3174085.281,-122.36352,47.68354
+530330030001,Outside Villages,Outside Villages,Ballard,"Whittier Heights, Loyal Heights, Crown Hill",Whittier Heights,1,4421323.111,-122.36819,47.6851
+530330030002,Crown Hill,Residential Urban Village,Ballard,"Whittier Heights, Loyal Heights, Crown Hill",Whittier Heights,0.75,3948969.794,-122.37629,47.68875
+530330030003,Outside Villages,Outside Villages,Ballard,"Whittier Heights, Loyal Heights, Crown Hill",Whittier Heights,1,4205961.908,-122.3736,47.68323
+530330030004,Outside Villages,Outside Villages,Ballard,"Whittier Heights, Loyal Heights, Crown Hill",Whittier Heights,1,3495967.195,-122.37944,47.68323
+530330031001,Outside Villages,Outside Villages,Ballard,"Sunset Hill, Golden Gardens, Loyal Heights, Shilshole",Sunset Hill/Loyal Heights,1,3291448.511,-122.38544,47.68778
+530330031002,Outside Villages,Outside Villages,Ballard,"Sunset Hill, Golden Gardens, Loyal Heights, Shilshole",Sunset Hill/Loyal Heights,1,3341067.144,-122.39125,47.68659
+530330031003,Outside Villages,Outside Villages,Ballard,"Sunset Hill, Golden Gardens, Loyal Heights, Shilshole",Sunset Hill/Loyal Heights,1,3181281.469,-122.38545,47.68228
+530330031004,Outside Villages,Outside Villages,Ballard,"Sunset Hill, Golden Gardens, Loyal Heights, Shilshole",Sunset Hill/Loyal Heights,1,4141391.255,-122.39506,47.68123
+530330031005,Outside Villages,Outside Villages,Ballard,"Sunset Hill, Golden Gardens, Loyal Heights, Shilshole",Sunset Hill/Loyal Heights,1,9582088.006,-122.39998,47.68772
+530330032001,Outside Villages,Outside Villages,Ballard,"Sunset Hill, Golden Gardens, Loyal Heights, Shilshole",Sunset Hill/Loyal Heights,0.833333333,2056917.749,-122.39026,47.67737
+530330032002,Ballard,Hub Urban Village,Ballard,"Sunset Hill, Golden Gardens, Loyal Heights, Shilshole",Sunset Hill/Loyal Heights,1,2089577.967,-122.39026,47.6731
+530330032003,Ballard,Hub Urban Village,Ballard,"Sunset Hill, Golden Gardens, Loyal Heights, Shilshole",Sunset Hill/Loyal Heights,0.384615385,3801435.915,-122.39327,47.66834
+530330032004,Outside Villages,Outside Villages,Ballard,"Sunset Hill, Golden Gardens, Loyal Heights, Shilshole",Sunset Hill/Loyal Heights,0.9,2797209.32,-122.40015,47.66967
+530330032005,Outside Villages,Outside Villages,Ballard,"Sunset Hill, Golden Gardens, Loyal Heights, Shilshole",Sunset Hill/Loyal Heights,1,2069605.752,-122.39565,47.67305
+530330032006,Outside Villages,Outside Villages,Ballard,"Sunset Hill, Golden Gardens, Loyal Heights, Shilshole",Sunset Hill/Loyal Heights,1,6005342.047,-122.40377,47.67545
+530330032007,Outside Villages,Outside Villages,Ballard,"Sunset Hill, Golden Gardens, Loyal Heights, Shilshole",Sunset Hill/Loyal Heights,1,3425946.766,-122.39759,47.67749
+530330033001,Outside Villages,Outside Villages,Ballard,"Whittier Heights, Loyal Heights, Crown Hill",Whittier Heights,1,3440741.633,-122.37135,47.67777
+530330033002,Outside Villages,Outside Villages,Ballard,"Whittier Heights, Loyal Heights, Crown Hill",Whittier Heights,1,2415815.69,-122.36979,47.67418
+530330033003,Ballard,Hub Urban Village,Ballard,"Whittier Heights, Loyal Heights, Crown Hill",Whittier Heights,0.761904762,2817811.416,-122.3778,47.67418
+530330033004,Ballard,Hub Urban Village,Ballard,"Whittier Heights, Loyal Heights, Crown Hill",Whittier Heights,0.769230769,2273632.063,-122.38509,47.67476
+530330033005,Outside Villages,Outside Villages,Ballard,"Whittier Heights, Loyal Heights, Crown Hill",Whittier Heights,1,3005159.968,-122.38151,47.67796
+530330034001,Outside Villages,Outside Villages,Northwest,"Greenwood, Phinney Ridge, Woodland Park, Crown Hill",Greenwood/Phinney Ridge,1,2832563.758,-122.36177,47.67417
+530330034002,Outside Villages,Outside Villages,Northwest,"Greenwood, Phinney Ridge, Woodland Park, Crown Hill",Greenwood/Phinney Ridge,1,2733483.148,-122.3617,47.67778
+530330034003,Outside Villages,Outside Villages,Northwest,"Greenwood, Phinney Ridge, Woodland Park, Crown Hill",Greenwood/Phinney Ridge,1,2906275.156,-122.36176,47.67048
+530330035001,Outside Villages,Outside Villages,Northwest,"Greenwood, Phinney Ridge, Woodland Park, Crown Hill",Greenwood/Phinney Ridge,0.827586207,3741879.437,-122.35161,47.67785
+530330035002,Outside Villages,Outside Villages,Northwest,"Greenwood, Phinney Ridge, Woodland Park, Crown Hill",Greenwood/Phinney Ridge,1,3620095.813,-122.35205,47.67408
+530330035003,Outside Villages,Outside Villages,Northwest,"Greenwood, Phinney Ridge, Woodland Park, Crown Hill",Greenwood/Phinney Ridge,1,6466421.684,-122.35238,47.66862
+530330036001,Roosevelt,Residential Urban Village,Northwest,"Green Lake, Meridian, Roosevelt, Woodland Park",Green Lake,0.52,4202672.092,-122.31976,47.67712
+530330036002,Green Lake,Residential Urban Village,Northwest,"Green Lake, Meridian, Roosevelt, Woodland Park",Green Lake,0.903225806,2472251.872,-122.32384,47.68127
+530330036003,Outside Villages,Outside Villages,Northwest,"Green Lake, Meridian, Roosevelt, Woodland Park",Green Lake,1,3295799.099,-122.32845,47.6741
+530330036004,Green Lake,Residential Urban Village,Northwest,"Green Lake, Meridian, Roosevelt, Woodland Park",Green Lake,0.772727273,2907615.185,-122.32612,47.67734
+530330038001,Outside Villages,Outside Villages,Northeast,"Ravenna, Bryant, Roosevelt, View Ridge, Hawthorne Hills, Windermere, University District",Ravenna/Bryant,1,3721946.935,-122.29323,47.67932
+530330038002,Outside Villages,Outside Villages,Northeast,"Ravenna, Bryant, Roosevelt, View Ridge, Hawthorne Hills, Windermere, University District",Ravenna/Bryant,1,3000844.46,-122.29837,47.67952
+530330039001,Outside Villages,Outside Villages,Northeast,"Wedgwood, View Ridge, Bryant, Matthews Beach",Wedgwood/View Ridge,1,6124767.796,-122.28559,47.67967
+530330039002,Outside Villages,Outside Villages,Northeast,"Wedgwood, View Ridge, Bryant, Matthews Beach",Wedgwood/View Ridge,1,4356567.184,-122.27777,47.67905
+530330040001,Outside Villages,Outside Villages,Northeast,"Laurelhurst, Windermere, Sand Point, Hawthorne Hills, Magnuson Park",Laurelhurst/Sand Point,1,22979801.1,-122.25787,47.68107
+530330040002,Outside Villages,Outside Villages,Northeast,"Laurelhurst, Windermere, Sand Point, Hawthorne Hills, Magnuson Park",Laurelhurst/Sand Point,1,3628395.803,-122.27174,47.67925
+530330041001,Outside Villages,Outside Villages,Northeast,"Laurelhurst, Windermere, Sand Point, Hawthorne Hills, Magnuson Park",Laurelhurst/Sand Point,1,3927302.823,-122.261,47.67242
+530330041002,Outside Villages,Outside Villages,Northeast,"Laurelhurst, Windermere, Sand Point, Hawthorne Hills, Magnuson Park",Laurelhurst/Sand Point,1,11473069.74,-122.26627,47.66695
+530330041003,Outside Villages,Outside Villages,Northeast,"Laurelhurst, Windermere, Sand Point, Hawthorne Hills, Magnuson Park",Laurelhurst/Sand Point,1,5055074.095,-122.27579,47.65904
+530330041004,Outside Villages,Outside Villages,Northeast,"Laurelhurst, Windermere, Sand Point, Hawthorne Hills, Magnuson Park",Laurelhurst/Sand Point,1,5190086.501,-122.27874,47.66439
+530330041005,Outside Villages,Outside Villages,Northeast,"Laurelhurst, Windermere, Sand Point, Hawthorne Hills, Magnuson Park",Laurelhurst/Sand Point,1,3964037.038,-122.28563,47.65915
+530330041006,Outside Villages,Outside Villages,Northeast,"Laurelhurst, Windermere, Sand Point, Hawthorne Hills, Magnuson Park",Laurelhurst/Sand Point,1,4736091.252,-122.27807,47.6536
+530330042001,Outside Villages,Outside Villages,Northeast,"Ravenna, Bryant, Roosevelt, View Ridge, Hawthorne Hills, Windermere, University District",Ravenna/Bryant,1,7132538.787,-122.27322,47.67271
+530330042002,Outside Villages,Outside Villages,Northeast,"Ravenna, Bryant, Roosevelt, View Ridge, Hawthorne Hills, Windermere, University District",Ravenna/Bryant,1,5435246.809,-122.28221,47.67084
+530330042003,Outside Villages,Outside Villages,Northeast,"Ravenna, Bryant, Roosevelt, View Ridge, Hawthorne Hills, Windermere, University District",Ravenna/Bryant,1,5984285.612,-122.29037,47.66471
+530330042004,Outside Villages,Outside Villages,Northeast,"Ravenna, Bryant, Roosevelt, View Ridge, Hawthorne Hills, Windermere, University District",Ravenna/Bryant,1,4053417.335,-122.28772,47.67107
+530330042005,Outside Villages,Outside Villages,Northeast,"Ravenna, Bryant, Roosevelt, View Ridge, Hawthorne Hills, Windermere, University District",Ravenna/Bryant,1,3976883.737,-122.29328,47.67218
+530330043011,Outside Villages,Outside Villages,Northeast,"Ravenna, Bryant, Roosevelt, View Ridge, Hawthorne Hills, Windermere, University District",Ravenna/Bryant,0.555555556,3645652.293,-122.29787,47.66456
+530330043012,Outside Villages,Outside Villages,Northeast,"Ravenna, Bryant, Roosevelt, View Ridge, Hawthorne Hills, Windermere, University District",Ravenna/Bryant,1,2814437.209,-122.29848,47.67211
+530330043013,Outside Villages,Outside Villages,Northeast,"Ravenna, Bryant, Roosevelt, View Ridge, Hawthorne Hills, Windermere, University District",Ravenna/Bryant,1,4019404.506,-122.30361,47.67196
+530330043021,Ravenna,Urban Center Village,Northeast,"Ravenna, Bryant, Roosevelt, View Ridge, Hawthorne Hills, Windermere, University District",Ravenna/Bryant,0.666666667,1588653.937,-122.30515,47.66493
+530330043022,Ravenna,Urban Center Village,Northeast,"Ravenna, Bryant, Roosevelt, View Ridge, Hawthorne Hills, Windermere, University District",Ravenna/Bryant,1,1970927.265,-122.30234,47.66459
+530330044001,Outside Villages,Outside Villages,Northeast,"University District, Cowen Park, Ravenna",University District,0.967741935,3523849.989,-122.3092,47.67217
+530330044002,Outside Villages,Outside Villages,Northeast,"University District, Cowen Park, Ravenna",University District,0.5,3562272.697,-122.31463,47.67217
+530330044003,Outside Villages,Outside Villages,Northeast,"University District, Cowen Park, Ravenna",University District,1,1782472.216,-122.3092,47.6667
+530330044004,University District Northwest,Urban Center Village,Northeast,"University District, Cowen Park, Ravenna",University District,1,1785998.292,-122.31465,47.66673
+530330045001,Outside Villages,Outside Villages,Lake Union,"Wallingford, Meridian, Northlake, University District",Wallingford,0.785714286,2795636.707,-122.31952,47.66854
+530330045002,Outside Villages,Outside Villages,Lake Union,"Wallingford, Meridian, Northlake, University District",Wallingford,1,4425920.835,-122.32505,47.66861
+530330046001,Outside Villages,Outside Villages,Northwest,"Green Lake, Meridian, Roosevelt, Woodland Park",Green Lake,1,11458818.07,-122.33969,47.6725
+530330046002,Outside Villages,Outside Villages,Northwest,"Green Lake, Meridian, Roosevelt, Woodland Park",Green Lake,1,3282896.577,-122.33226,47.67001
+530330046003,Outside Villages,Outside Villages,Northwest,"Green Lake, Meridian, Roosevelt, Woodland Park",Green Lake,1,1908896.95,-122.3326,47.66637
+530330047001,Outside Villages,Outside Villages,Ballard,"Ballard, West Woodland, Adams",Ballard,0.833333333,2933642.301,-122.36984,47.67012
+530330047002,Ballard-Interbay-Northend,Manufacturing Industrial,Ballard,"Ballard, West Woodland, Adams",Ballard,0.768292683,9199224.191,-122.37167,47.66363
+530330047003,Ballard,Hub Urban Village,Ballard,"Ballard, West Woodland, Adams",Ballard,0.869565217,3241332.886,-122.37762,47.67026
+530330047004,Ballard,Hub Urban Village,Ballard,"Ballard, West Woodland, Adams",Ballard,0.861111111,5984556.51,-122.38297,47.66712
+530330048001,Outside Villages,Outside Villages,Lake Union,"Fremont, Wallingford, Northlake",Fremont,1,2971309.38,-122.35949,47.66588
+530330048002,Outside Villages,Outside Villages,Lake Union,"Fremont, Wallingford, Northlake",Fremont,1,3183581.526,-122.35819,47.65967
+530330048003,Ballard-Interbay-Northend,Manufacturing Industrial,Lake Union,"Fremont, Wallingford, Northlake",Fremont,0.456140351,5146634.606,-122.36089,47.65596
+530330048004,Outside Villages,Outside Villages,Lake Union,"Fremont, Wallingford, Northlake",Fremont,0.842105263,3086695.074,-122.36384,47.66405
+530330049001,Outside Villages,Outside Villages,Lake Union,"Fremont, Wallingford, Northlake",Fremont,1,2111395.136,-122.35136,47.66359
+530330049002,Fremont,Hub Urban Village,Lake Union,"Fremont, Wallingford, Northlake",Fremont,0.868421053,3480415.748,-122.34965,47.65202
+530330049003,Fremont,Hub Urban Village,Lake Union,"Fremont, Wallingford, Northlake",Fremont,0.538461538,1795975.014,-122.35257,47.65362
+530330049004,Outside Villages,Outside Villages,Lake Union,"Fremont, Wallingford, Northlake",Fremont,1,2365987.862,-122.35272,47.65781
+530330049005,Outside Villages,Outside Villages,Lake Union,"Fremont, Wallingford, Northlake",Fremont,1,2027533.376,-122.35053,47.66052
+530330050001,Wallingford,Residential Urban Village,Lake Union,"Wallingford, Meridian, Northlake, University District",Wallingford,0.693877551,3993976.961,-122.34083,47.66271
+530330050002,Wallingford,Residential Urban Village,Lake Union,"Wallingford, Meridian, Northlake, University District",Wallingford,1,2281192.443,-122.34163,47.65791
+530330050003,Wallingford,Residential Urban Village,Lake Union,"Wallingford, Meridian, Northlake, University District",Wallingford,0.965517241,1876765.967,-122.34411,47.66055
+530330051001,Wallingford,Residential Urban Village,Lake Union,"Wallingford, Meridian, Northlake, University District",Wallingford,0.8,3450109.527,-122.33231,47.66267
+530330051002,Outside Villages,Outside Villages,Lake Union,"Wallingford, Meridian, Northlake, University District",Wallingford,0.925925926,3431881.036,-122.33215,47.65791
+530330051003,Outside Villages,Outside Villages,Lake Union,"Wallingford, Meridian, Northlake, University District",Wallingford,1,2608149.891,-122.33229,47.65384
+530330052001,University District Northwest,Urban Center Village,Lake Union,"Wallingford, Meridian, Northlake, University District",Wallingford,1,813554.5742,-122.32097,47.6593
+530330052002,University Campus,Urban Center Village,Lake Union,"Wallingford, Meridian, Northlake, University District",Wallingford,0.52173913,1525124.014,-122.31988,47.65651
+530330052003,Outside Villages,Outside Villages,Lake Union,"Wallingford, Meridian, Northlake, University District",Wallingford,0.857142857,2955277.705,-122.32493,47.65656
+530330052004,Outside Villages,Outside Villages,Lake Union,"Wallingford, Meridian, Northlake, University District",Wallingford,0.75,3257133.951,-122.32524,47.66211
+530330052005,University District Northwest,Urban Center Village,Lake Union,"Wallingford, Meridian, Northlake, University District",Wallingford,1,1773344.913,-122.31946,47.6626
+530330053011,University District Northwest,Urban Center Village,Northeast,"University District, Cowen Park, Ravenna",University District,1,1399526.48,-122.30868,47.66306
+530330053012,University District Northwest,Urban Center Village,Northeast,"University District, Cowen Park, Ravenna",University District,1,2157892.093,-122.31414,47.66309
+530330053013,University District Northwest,Urban Center Village,Northeast,"University District, Cowen Park, Ravenna",University District,1,1524809.493,-122.31486,47.65981
+530330053014,University District Northwest,Urban Center Village,Northeast,"University District, Cowen Park, Ravenna",University District,0.833333333,767432.3838,-122.31492,47.65759
+530330053021,University Campus,Urban Center Village,Northeast,"University District, Cowen Park, Ravenna",University District,0.928571429,974524.8627,-122.31522,47.6559
+530330053022,University Campus,Urban Center Village,Northeast,"University District, Cowen Park, Ravenna",University District,1,4080119.977,-122.31173,47.65133
+530330053023,University Campus,Urban Center Village,Northeast,"University District, Cowen Park, Ravenna",University District,0.790322581,20604178.82,-122.30146,47.65576
+530330054001,Outside Villages,Outside Villages,Lake Union,"Fremont, Wallingford, Northlake",Fremont,0.8,2426556.262,-122.33844,47.65381
+530330054002,Outside Villages,Outside Villages,Lake Union,"Fremont, Wallingford, Northlake",Fremont,0.909090909,4605814.652,-122.33471,47.64883
+530330054003,Fremont,Hub Urban Village,Lake Union,"Fremont, Wallingford, Northlake",Fremont,0.6875,3316883.091,-122.34249,47.65027
+530330054004,Fremont,Hub Urban Village,Lake Union,"Fremont, Wallingford, Northlake",Fremont,0.571428571,2344529.035,-122.34395,47.65465
+530330056001,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Magnolia, Discovery Park, Briarcliff, Lawton Park",Magnolia,1,5116339.837,-122.40684,47.64979
+530330056002,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Magnolia, Discovery Park, Briarcliff, Lawton Park",Magnolia,1,7246940.477,-122.41437,47.64942
+530330056003,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Magnolia, Discovery Park, Briarcliff, Lawton Park",Magnolia,1,10014822.45,-122.40535,47.63771
+530330056004,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Magnolia, Discovery Park, Briarcliff, Lawton Park",Magnolia,1,4852955.687,-122.40503,47.64259
+530330056005,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Magnolia, Discovery Park, Briarcliff, Lawton Park",Magnolia,1,5373738.024,-122.39462,47.63628
+530330057001,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Magnolia, Discovery Park, Briarcliff, Lawton Park",Magnolia,1,31773404.56,-122.4159,47.66164
+530330057002,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Magnolia, Discovery Park, Briarcliff, Lawton Park",Magnolia,1,4198346.666,-122.39411,47.64828
+530330057003,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Magnolia, Discovery Park, Briarcliff, Lawton Park",Magnolia,1,4643311.96,-122.39719,47.64281
+530330057004,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Magnolia, Discovery Park, Briarcliff, Lawton Park",Magnolia,1,4348781.186,-122.40025,47.65044
+530330057005,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Magnolia, Discovery Park, Briarcliff, Lawton Park",Magnolia,0.708333333,5409041.436,-122.39964,47.66269
+530330057006,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Magnolia, Discovery Park, Briarcliff, Lawton Park",Magnolia,1,3732918.184,-122.39952,47.65676
+530330058011,Outside Villages,Outside Villages,Magnolia/Queen Anne,Interbay,Interbay,1,2290033.952,-122.38504,47.65093
+530330058012,Outside Villages,Outside Villages,Magnolia/Queen Anne,Interbay,Interbay,1,2277724.273,-122.38999,47.65092
+530330058013,Outside Villages,Outside Villages,Magnolia/Queen Anne,Interbay,Interbay,0.944444444,3640815.655,-122.39121,47.65536
+530330058014,Ballard-Interbay-Northend,Manufacturing Industrial,Magnolia/Queen Anne,Interbay,Interbay,0.666666667,11367393.31,-122.38422,47.65593
+530330058021,Outside Villages,Outside Villages,Magnolia/Queen Anne,Interbay,Interbay,1,3953193.608,-122.38649,47.64568
+530330058022,Outside Villages,Outside Villages,Magnolia/Queen Anne,Interbay,Interbay,0.65625,12101455.77,-122.37541,47.6375
+530330058023,Outside Villages,Outside Villages,Magnolia/Queen Anne,Interbay,Interbay,0.543209877,17752964.71,-122.38204,47.63486
+530330059001,Ballard-Interbay-Northend,Manufacturing Industrial,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,0.5,5189037.905,-122.36969,47.65383
+530330059002,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,1,3874644.384,-122.37148,47.64905
+530330059003,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,1,2238988.289,-122.36426,47.64857
+530330059004,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,1,3617529.843,-122.37112,47.64331
+530330059005,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,1,4587334.519,-122.36451,47.64303
+530330060001,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,1,2501693.039,-122.34426,47.64102
+530330060002,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,1,4529748.947,-122.35083,47.64325
+530330060003,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,1,4175046.3,-122.35772,47.64327
+530330060004,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,1,2820402.655,-122.357,47.64869
+530330061001,Outside Villages,Outside Villages,Northeast,"Montlake, Portage Bay, Interlaken Park, Eastlake, Roanoke Park, Washington Park",Montlake/Portage Bay,0.814814815,2718882.004,-122.31997,47.64816
+530330061002,Outside Villages,Outside Villages,Northeast,"Montlake, Portage Bay, Interlaken Park, Eastlake, Roanoke Park, Washington Park",Montlake/Portage Bay,1,4293009.84,-122.31785,47.64222
+530330061003,Eastlake,Residential Urban Village,Northeast,"Montlake, Portage Bay, Interlaken Park, Eastlake, Roanoke Park, Washington Park",Montlake/Portage Bay,0.925925926,2786496.206,-122.32453,47.6465
+530330061004,Eastlake,Residential Urban Village,Northeast,"Montlake, Portage Bay, Interlaken Park, Eastlake, Roanoke Park, Washington Park",Montlake/Portage Bay,0.866666667,2286159.718,-122.326,47.64137
+530330062001,Outside Villages,Outside Villages,Northeast,"Montlake, Portage Bay, Interlaken Park, Eastlake, Roanoke Park, Washington Park",Montlake/Portage Bay,1,14510670.76,-122.29691,47.63789
+530330062002,Outside Villages,Outside Villages,Northeast,"Montlake, Portage Bay, Interlaken Park, Eastlake, Roanoke Park, Washington Park",Montlake/Portage Bay,1,5907473.981,-122.30592,47.64129
+530330062003,Outside Villages,Outside Villages,Northeast,"Montlake, Portage Bay, Interlaken Park, Eastlake, Roanoke Park, Washington Park",Montlake/Portage Bay,1,6532355.818,-122.30904,47.63588
+530330063001,Outside Villages,Outside Villages,East,"Madison Park, Broadmoor, Washington Park, Harrison/Denny-Blaine",Madison Park,1,2284817.772,-122.27863,47.63893
+530330063002,Outside Villages,Outside Villages,East,"Madison Park, Broadmoor, Washington Park, Harrison/Denny-Blaine",Madison Park,1,5997563.014,-122.28164,47.63007
+530330063003,Outside Villages,Outside Villages,East,"Madison Park, Broadmoor, Washington Park, Harrison/Denny-Blaine",Madison Park,1,4427251.743,-122.28269,47.63775
+530330063004,Outside Villages,Outside Villages,East,"Madison Park, Broadmoor, Washington Park, Harrison/Denny-Blaine",Madison Park,1,12072028.61,-122.28946,47.63403
+530330064001,Outside Villages,Outside Villages,East,"Madison-Miller, Miller Park, Capitol Hill, Stevens",Miller Park,1,3237042.831,-122.29956,47.62808
+530330064002,Outside Villages,Outside Villages,East,"Madison-Miller, Miller Park, Capitol Hill, Stevens",Miller Park,1,2502838.827,-122.31058,47.62879
+530330064003,Outside Villages,Outside Villages,East,"Madison-Miller, Miller Park, Capitol Hill, Stevens",Miller Park,1,3986836.338,-122.30548,47.62876
+530330065001,Outside Villages,Outside Villages,East,"North Capitol Hill, Capitol Hill, North Broadway",North Capitol Hill,1,7354163.538,-122.31687,47.63388
+530330065002,Capitol Hill,Urban Center Village,East,"North Capitol Hill, Capitol Hill, North Broadway",North Capitol Hill,0.538461538,2051129.43,-122.32263,47.62731
+530330065003,Capitol Hill,Urban Center Village,East,"North Capitol Hill, Capitol Hill, North Broadway",North Capitol Hill,0.5,2946922.162,-122.31657,47.62624
+530330066001,Outside Villages,Outside Villages,Lake Union,"South Lake Union, Eastlake, Cascade, Denny Triangle",Cascade/Eastlake,0.369565217,8564967.799,-122.32711,47.63046
+530330066002,Eastlake,Residential Urban Village,Lake Union,"South Lake Union, Eastlake, Cascade, Denny Triangle",Cascade/Eastlake,0.842105263,2614659.516,-122.32593,47.6374
+530330067001,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,0.611111111,3637521.414,-122.34156,47.63238
+530330067002,Uptown,Urban Center,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,0.628571429,3184802.763,-122.34555,47.6273
+530330067003,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,1,2090073.354,-122.34787,47.63146
+530330067004,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,1,4357681.355,-122.34711,47.63599
+530330068001,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,1,3342410.666,-122.35318,47.63613
+530330068002,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,0.555555556,4386822.188,-122.35897,47.63596
+530330069001,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,1,2330454.008,-122.36497,47.63717
+530330069002,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,1,2745427.495,-122.36673,47.63308
+530330069003,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,1,2263719.929,-122.3657,47.62968
+530330069004,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,1,2378532.529,-122.37041,47.63754
+530330070001,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,0.888888889,2245393.918,-122.35369,47.63004
+530330070002,Uptown,Urban Center,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,0.6,726190.5812,-122.36251,47.62572
+530330070003,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,0.608695652,2002388.991,-122.35339,47.62641
+530330070004,Upper Queen Anne,Residential Urban Village,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,0.833333333,1280043.329,-122.35921,47.63095
+530330070005,Uptown,Urban Center,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,0.857142857,808015.1958,-122.35857,47.62575
+530330070006,Outside Villages,Outside Villages,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,0.769230769,1617885.376,-122.36002,47.6282
+530330071001,Uptown,Urban Center,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,0.666666667,3110658.582,-122.36356,47.62345
+530330071002,Uptown,Urban Center,Magnolia/Queen Anne,"Queen Anne, Lower Queen Anne, Uptown, Seattle Center, Westlake",Queen Anne,1,5937434.121,-122.35361,47.62173
+530330072001,South Lake Union,Urban Center,Lake Union,"South Lake Union, Eastlake, Cascade, Denny Triangle",Cascade/Eastlake,0.364705882,8874136.195,-122.34262,47.61995
+530330072002,Belltown,Urban Center Village,Lake Union,"South Lake Union, Eastlake, Cascade, Denny Triangle",Cascade/Eastlake,0.64,1326768.969,-122.34401,47.61712
+530330072003,Belltown,Urban Center Village,Lake Union,"South Lake Union, Eastlake, Cascade, Denny Triangle",Cascade/Eastlake,1,673086.0832,-122.34794,47.61759
+530330073001,South Lake Union,Urban Center,Lake Union,"South Lake Union, Eastlake, Cascade, Denny Triangle",Cascade/Eastlake,0.714285714,3171053.59,-122.33108,47.62234
+530330073002,Denny Triangle,Urban Center Village,Lake Union,"South Lake Union, Eastlake, Cascade, Denny Triangle",Cascade/Eastlake,0.75,2709216.264,-122.33207,47.61741
+530330073003,South Lake Union,Urban Center,Lake Union,"South Lake Union, Eastlake, Cascade, Denny Triangle",Cascade/Eastlake,0.542857143,4087143.745,-122.33636,47.61988
+530330074011,Capitol Hill,Urban Center Village,East,"Capitol Hill, Pike/Pine, Broadway, First Hill",Capitol Hill,1,633242.1099,-122.32482,47.62413
+530330074012,Capitol Hill,Urban Center Village,East,"Capitol Hill, Pike/Pine, Broadway, First Hill",Capitol Hill,1,778584.1301,-122.32199,47.62307
+530330074013,Capitol Hill,Urban Center Village,East,"Capitol Hill, Pike/Pine, Broadway, First Hill",Capitol Hill,1,661494.1585,-122.32743,47.6226
+530330074014,Capitol Hill,Urban Center Village,East,"Capitol Hill, Pike/Pine, Broadway, First Hill",Capitol Hill,1,718559.5754,-122.32485,47.622
+530330074021,Capitol Hill,Urban Center Village,East,"Capitol Hill, Pike/Pine, Broadway, First Hill",Capitol Hill,1,1216002.931,-122.3239,47.6199
+530330074022,Capitol Hill,Urban Center Village,East,"Capitol Hill, Pike/Pine, Broadway, First Hill",Capitol Hill,1,795584.8579,-122.32339,47.61758
+530330074023,Capitol Hill,Urban Center Village,East,"Capitol Hill, Pike/Pine, Broadway, First Hill",Capitol Hill,1,671546.9511,-122.32658,47.61812
+530330075001,Capitol Hill,Urban Center Village,East,"Capitol Hill, Pike/Pine, Broadway, First Hill",Capitol Hill,1,1173476.601,-122.31417,47.62213
+530330075002,Capitol Hill,Urban Center Village,East,"Capitol Hill, Pike/Pine, Broadway, First Hill",Capitol Hill,0.666666667,1483530.893,-122.31416,47.61706
+530330075003,Capitol Hill,Urban Center Village,East,"Capitol Hill, Pike/Pine, Broadway, First Hill",Capitol Hill,1,1485160.245,-122.31832,47.62268
+530330075004,Pike/Pine,Urban Center Village,East,"Capitol Hill, Pike/Pine, Broadway, First Hill",Capitol Hill,0.72,2551659.333,-122.31743,47.61474
+530330075005,Capitol Hill,Urban Center Village,East,"Capitol Hill, Pike/Pine, Broadway, First Hill",Capitol Hill,1,1935697.373,-122.31879,47.61867
+530330076001,Outside Villages,Outside Villages,East,"Madison-Miller, Miller Park, Capitol Hill, Stevens",Miller Park,0.5,1836608.231,-122.30751,47.62423
+530330076002,Madison-Miller,Residential Urban Village,East,"Madison-Miller, Miller Park, Capitol Hill, Stevens",Miller Park,0.928571429,2297701.773,-122.30529,47.6207
+530330076003,Outside Villages,Outside Villages,East,"Madison-Miller, Miller Park, Capitol Hill, Stevens",Miller Park,0.384615385,2021064.192,-122.31026,47.62105
+530330077001,Outside Villages,Outside Villages,Central,"Central Area, Mann, Minor, Squire Park",Central Area/Squire Park,1,4256266.355,-122.29407,47.6192
+530330077002,Outside Villages,Outside Villages,Central,"Central Area, Mann, Minor, Squire Park",Central Area/Squire Park,1,2505278.221,-122.29898,47.62304
+530330077003,Outside Villages,Outside Villages,Central,"Central Area, Mann, Minor, Squire Park",Central Area/Squire Park,0.736842105,2611584.585,-122.29928,47.6152
+530330077004,Outside Villages,Outside Villages,Central,"Central Area, Mann, Minor, Squire Park",Central Area/Squire Park,0.5625,2018079.058,-122.29975,47.61918
+530330078001,Outside Villages,Outside Villages,Central,"Madrona, Leschi, Harrison/Denny-Blaine",Madrona/Leschi,1,8331820.181,-122.28494,47.61182
+530330078002,Outside Villages,Outside Villages,Central,"Madrona, Leschi, Harrison/Denny-Blaine",Madrona/Leschi,1,5267615.519,-122.28785,47.60923
+530330078003,Outside Villages,Outside Villages,Central,"Madrona, Leschi, Harrison/Denny-Blaine",Madrona/Leschi,1,3361307.127,-122.28889,47.61382
+530330078004,Outside Villages,Outside Villages,Central,"Madrona, Leschi, Harrison/Denny-Blaine",Madrona/Leschi,1,5438158.143,-122.28826,47.61987
+530330079001,23rd & Union-Jackson,Residential Urban Village,Central,"Central Area, Mann, Minor, Squire Park",Central Area/Squire Park,0.444444444,2078484.713,-122.3041,47.61386
+530330079002,Outside Villages,Outside Villages,Central,"Central Area, Mann, Minor, Squire Park",Central Area/Squire Park,0.7,1989342.79,-122.30702,47.61392
+530330079003,Outside Villages,Outside Villages,Central,"Central Area, Mann, Minor, Squire Park",Central Area/Squire Park,1,1322715.616,-122.31083,47.61224
+530330079004,Capitol Hill,Urban Center Village,Central,"Central Area, Mann, Minor, Squire Park",Central Area/Squire Park,1,823923.9705,-122.31081,47.61528
+530330079005,Capitol Hill,Urban Center Village,Central,"Central Area, Mann, Minor, Squire Park",Central Area/Squire Park,0.6,1303509.052,-122.30917,47.61757
+530330080011,Belltown,Urban Center Village,Downtown,"Belltown, Denny Regrade",Belltown,1,1048304.883,-122.35039,47.61682
+530330080012,Belltown,Urban Center Village,Downtown,"Belltown, Denny Regrade",Belltown,1,746075.4555,-122.34612,47.61432
+530330080013,Belltown,Urban Center Village,Downtown,"Belltown, Denny Regrade",Belltown,0.742857143,2238541.198,-122.35522,47.61636
+530330080014,Belltown,Urban Center Village,Downtown,"Belltown, Denny Regrade",Belltown,1,591667.3545,-122.35101,47.61486
+530330080015,Belltown,Urban Center Village,Downtown,"Belltown, Denny Regrade",Belltown,1,201561.8185,-122.35289,47.61597
+530330080021,Belltown,Urban Center Village,Downtown,"Belltown, Denny Regrade",Belltown,0.666666667,1101838.777,-122.34257,47.61177
+530330080022,Belltown,Urban Center Village,Downtown,"Belltown, Denny Regrade",Belltown,0.764705882,1364585.057,-122.34743,47.61235
+530330081001,Commercial Core,Urban Center Village,Downtown,"Downtown Commercial Core, West Edge, Central Business District, Pike Place Market, Pioneer Square",Downtown Commercial Core,0.9,3031958.687,-122.33812,47.60532
+530330081002,Commercial Core,Urban Center Village,Downtown,"Downtown Commercial Core, West Edge, Central Business District, Pike Place Market, Pioneer Square",Downtown Commercial Core,0.897959184,4222379.886,-122.3343,47.60683
+530330081003,Commercial Core,Urban Center Village,Downtown,"Downtown Commercial Core, West Edge, Central Business District, Pike Place Market, Pioneer Square",Downtown Commercial Core,1,1181086.035,-122.34101,47.60889
+530330082001,Commercial Core,Urban Center Village,East,"First Hill, Yesler Terrace, Squire Park",First Hill,0.588235294,2689968.53,-122.33311,47.61079
+530330082002,First Hill,Urban Center Village,East,"First Hill, Yesler Terrace, Squire Park",First Hill,1,656673.0337,-122.32895,47.60827
+530330082003,First Hill,Urban Center Village,East,"First Hill, Yesler Terrace, Squire Park",First Hill,0.714285714,600402.76,-122.32994,47.61081
+530330083001,First Hill,Urban Center Village,East,"First Hill, Yesler Terrace, Squire Park",First Hill,1,1182374.561,-122.32635,47.60982
+530330083002,Denny Triangle,Urban Center Village,East,"First Hill, Yesler Terrace, Squire Park",First Hill,0.444444444,1373409.336,-122.32943,47.61354
+530330084001,Pike/Pine,Urban Center Village,East,"Capitol Hill, Pike/Pine, Broadway, First Hill",Capitol Hill,0.916666667,1585066.234,-122.323,47.61488
+530330084002,First Hill,Urban Center Village,East,"Capitol Hill, Pike/Pine, Broadway, First Hill",Capitol Hill,1,1609509.236,-122.32304,47.61118
+530330084003,Pike/Pine,Urban Center Village,East,"Capitol Hill, Pike/Pine, Broadway, First Hill",Capitol Hill,1,929963.8842,-122.32708,47.61499
+530330085001,First Hill,Urban Center Village,East,"First Hill, Yesler Terrace, Squire Park",First Hill,0.8,1773782.639,-122.32717,47.60624
+530330085002,First Hill,Urban Center Village,East,"First Hill, Yesler Terrace, Squire Park",First Hill,1,1776425.45,-122.32225,47.60559
+530330085003,First Hill,Urban Center Village,East,"First Hill, Yesler Terrace, Squire Park",First Hill,0.625,1547732.992,-122.3255,47.60326
+530330086001,12th Avenue,Urban Center Village,East,"First Hill, Yesler Terrace, Squire Park",First Hill,0.761904762,2770171.668,-122.31475,47.60901
+530330086002,12th Avenue,Urban Center Village,East,"First Hill, Yesler Terrace, Squire Park",First Hill,1,2831245.568,-122.3187,47.60805
+530330086003,12th Avenue,Urban Center Village,East,"First Hill, Yesler Terrace, Squire Park",First Hill,0.666666667,2055271.445,-122.31653,47.60323
+530330087001,Outside Villages,Outside Villages,Central,"Central Area, Mann, Minor, Squire Park",Central Area/Squire Park,0.615384615,3695259.382,-122.3079,47.60821
+530330087002,23rd & Union-Jackson,Residential Urban Village,Central,"Central Area, Mann, Minor, Squire Park",Central Area/Squire Park,0.9375,1765554.791,-122.30474,47.60404
+530330087003,23rd & Union-Jackson,Residential Urban Village,Central,"Central Area, Mann, Minor, Squire Park",Central Area/Squire Park,0.789473684,2422233.492,-122.30984,47.60381
+530330088001,Outside Villages,Outside Villages,Central,"Central Area, Mann, Minor, Squire Park",Central Area/Squire Park,0.76,3554942.203,-122.29771,47.61099
+530330088002,23rd & Union-Jackson,Residential Urban Village,Central,"Central Area, Mann, Minor, Squire Park",Central Area/Squire Park,0.52,4347538.349,-122.29761,47.60666
+530330088003,23rd & Union-Jackson,Residential Urban Village,Central,"Central Area, Mann, Minor, Squire Park",Central Area/Squire Park,0.6,2307543.269,-122.29755,47.60296
+530330089001,Outside Villages,Outside Villages,Central,"Madrona, Leschi, Harrison/Denny-Blaine",Madrona/Leschi,1,4716230.802,-122.28899,47.59673
+530330089002,Outside Villages,Outside Villages,Central,"Madrona, Leschi, Harrison/Denny-Blaine",Madrona/Leschi,0.964285714,3280188.912,-122.29459,47.59504
+530330089003,23rd & Union-Jackson,Residential Urban Village,Central,"Madrona, Leschi, Harrison/Denny-Blaine",Madrona/Leschi,0.517241379,3162186.965,-122.2974,47.59984
+530330089004,Outside Villages,Outside Villages,Central,"Madrona, Leschi, Harrison/Denny-Blaine",Madrona/Leschi,0.529411765,2503406.28,-122.29997,47.59505
+530330090001,23rd & Union-Jackson,Residential Urban Village,Central,"Judkins Park, Central Area, Little Saigon, Atlantic",Judkins Park,1,3150300.324,-122.30427,47.5974
+530330090002,23rd & Union-Jackson,Residential Urban Village,Central,"Judkins Park, Central Area, Little Saigon, Atlantic",Judkins Park,0.743589744,5683642.236,-122.31177,47.59875
+530330091001,Chinatown-International District,Urban Center Village,Downtown,"Pioneer Square, International District, Chinatown, Little Saigon, ID, Chinatown-International District",Pioneer Square/International District,0.76,3323288.861,-122.32034,47.59875
+530330091002,Chinatown-International District,Urban Center Village,Downtown,"Pioneer Square, International District, Chinatown, Little Saigon, ID, Chinatown-International District",Pioneer Square/International District,1,1184811.653,-122.32572,47.59751
+530330092001,Chinatown-International District,Urban Center Village,Downtown,"Pioneer Square, International District, Chinatown, Little Saigon, ID, Chinatown-International District",Pioneer Square/International District,0.941176471,1340716.01,-122.32594,47.60035
+530330092002,Pioneer Square,Urban Center Village,Downtown,"Pioneer Square, International District, Chinatown, Little Saigon, ID, Chinatown-International District",Pioneer Square/International District,0.971428571,1946190.473,-122.33338,47.60041
+530330093001,Greater Duwamish,Manufacturing Industrial,Greater Duwamish,"Duwamish, SODO, Pioneer Square",Duwamish/SODO,0.6,8126520.914,-122.32143,47.59066
+530330093002,Greater Duwamish,Manufacturing Industrial,Greater Duwamish,"Duwamish, SODO, Pioneer Square",Duwamish/SODO,0.719512195,24424199.44,-122.33534,47.58946
+530330093003,Greater Duwamish,Manufacturing Industrial,Greater Duwamish,"Duwamish, SODO, Pioneer Square",Duwamish/SODO,0.871681416,69600448.51,-122.32926,47.56956
+530330094001,North Beacon Hill,Residential Urban Village,Greater Duwamish,"North Beacon Hill, Jefferson Park",North Beacon Hill/Jefferson Park,0.714285714,1264755.775,-122.31547,47.58798
+530330094002,Outside Villages,Outside Villages,Greater Duwamish,"North Beacon Hill, Jefferson Park",North Beacon Hill/Jefferson Park,0.423728814,6839103.474,-122.30775,47.59141
+530330094003,North Rainier,Hub Urban Village,Greater Duwamish,"North Beacon Hill, Jefferson Park",North Beacon Hill/Jefferson Park,0.666666667,5043491.919,-122.3073,47.58339
+530330094004,North Beacon Hill,Residential Urban Village,Greater Duwamish,"North Beacon Hill, Jefferson Park",North Beacon Hill/Jefferson Park,0.866666667,1486193.643,-122.31459,47.58419
+530330094005,Outside Villages,Outside Villages,Greater Duwamish,"North Beacon Hill, Jefferson Park",North Beacon Hill/Jefferson Park,0.666666667,3912803.006,-122.31327,47.59034
+530330095001,Outside Villages,Outside Villages,Southeast,"Mt. Baker, North Rainier, Atlantic",Mt. Baker/North Rainier,0.98630137,7395271.381,-122.29027,47.58592
+530330095002,North Rainier,Hub Urban Village,Southeast,"Mt. Baker, North Rainier, Atlantic",Mt. Baker/North Rainier,0.532467532,8339070.806,-122.29805,47.58679
+530330095003,Outside Villages,Outside Villages,Southeast,"Mt. Baker, North Rainier, Atlantic",Mt. Baker/North Rainier,0.920634921,6820311.762,-122.28606,47.57654
+530330095004,North Rainier,Hub Urban Village,Southeast,"Mt. Baker, North Rainier, Atlantic",Mt. Baker/North Rainier,0.566666667,4949349.054,-122.29451,47.57734
+530330096001,Outside Villages,Outside Villages,Southwest,"Alki, Admiral",Alki/Admiral,1,4348169.748,-122.38091,47.58497
+530330096002,Admiral,Residential Urban Village,Southwest,"Alki, Admiral",Alki/Admiral,0.75,2144505.949,-122.38637,47.58329
+530330096003,Outside Villages,Outside Villages,Southwest,"Alki, Admiral",Alki/Admiral,1,3842430.387,-122.39385,47.58374
+530330096004,Outside Villages,Outside Villages,Southwest,"Alki, Admiral",Alki/Admiral,0.956521739,3121880.498,-122.38885,47.58788
+530330096005,Outside Villages,Outside Villages,Southwest,"Alki, Admiral",Alki/Admiral,1,6494200.945,-122.38803,47.5906
+530330097011,Outside Villages,Outside Villages,Southwest,"Alki, Admiral",Alki/Admiral,1,5202811.312,-122.40586,47.57663
+530330097012,Outside Villages,Outside Villages,Southwest,"Alki, Admiral",Alki/Admiral,1,2230788.599,-122.41146,47.57567
+530330097013,Outside Villages,Outside Villages,Southwest,"Alki, Admiral",Alki/Admiral,1,3313687.745,-122.41426,47.57465
+530330097014,Outside Villages,Outside Villages,Southwest,"Alki, Admiral",Alki/Admiral,1,8300815.565,-122.4043,47.56629
+530330097021,Outside Villages,Outside Villages,Southwest,"Seaview, Fairmount Park, Morgan Junction, Genesee Hill, Belvidere, West Seattle Junction, Alaska Junction, Admiral",West Seattle Junction/Genesee Hill,1,4695604.972,-122.39227,47.57685
+530330097022,Outside Villages,Outside Villages,Southwest,"Seaview, Fairmount Park, Morgan Junction, Genesee Hill, Belvidere, West Seattle Junction, Alaska Junction, Admiral",West Seattle Junction/Genesee Hill,1,3950668.842,-122.39259,47.56811
+530330097023,Outside Villages,Outside Villages,Southwest,"Seaview, Fairmount Park, Morgan Junction, Genesee Hill, Belvidere, West Seattle Junction, Alaska Junction, Admiral",West Seattle Junction/Genesee Hill,1,3531625.027,-122.39511,47.56211
+530330097024,Outside Villages,Outside Villages,Southwest,"Seaview, Fairmount Park, Morgan Junction, Genesee Hill, Belvidere, West Seattle Junction, Alaska Junction, Admiral",West Seattle Junction/Genesee Hill,1,4081260.424,-122.39877,47.56881
+530330097025,Outside Villages,Outside Villages,Southwest,"Seaview, Fairmount Park, Morgan Junction, Genesee Hill, Belvidere, West Seattle Junction, Alaska Junction, Admiral",West Seattle Junction/Genesee Hill,1,7612620.6,-122.39901,47.5771
+530330098001,Outside Villages,Outside Villages,Southwest,"Seaview, Fairmount Park, Morgan Junction, Genesee Hill, Belvidere, West Seattle Junction, Alaska Junction, Admiral",West Seattle Junction/Genesee Hill,0.794117647,5362061.382,-122.38374,47.57867
+530330098002,Outside Villages,Outside Villages,Southwest,"Seaview, Fairmount Park, Morgan Junction, Genesee Hill, Belvidere, West Seattle Junction, Alaska Junction, Admiral",West Seattle Junction/Genesee Hill,1,3372518.688,-122.38012,47.57414
+530330098003,Outside Villages,Outside Villages,Southwest,"Seaview, Fairmount Park, Morgan Junction, Genesee Hill, Belvidere, West Seattle Junction, Alaska Junction, Admiral",West Seattle Junction/Genesee Hill,0.818181818,4476006.628,-122.37967,47.56776
+530330098004,Outside Villages,Outside Villages,Southwest,"Seaview, Fairmount Park, Morgan Junction, Genesee Hill, Belvidere, West Seattle Junction, Alaska Junction, Admiral",West Seattle Junction/Genesee Hill,0.636363636,4369853.68,-122.38536,47.56596
+530330098005,Outside Villages,Outside Villages,Southwest,"Seaview, Fairmount Park, Morgan Junction, Genesee Hill, Belvidere, West Seattle Junction, Alaska Junction, Admiral",West Seattle Junction/Genesee Hill,0.882352941,3200143.048,-122.38682,47.57246
+530330099001,Outside Villages,Outside Villages,Delridge Neighborhoods,"North Delridge, Pigeon Point, Avalon, Luna Park, Harbor Island",North Delridge,0.88,4566050.503,-122.37444,47.57102
+530330099002,Outside Villages,Outside Villages,Delridge Neighborhoods,"North Delridge, Pigeon Point, Avalon, Luna Park, Harbor Island",North Delridge,0.925925926,11376318.6,-122.35887,47.56444
+530330099003,Outside Villages,Outside Villages,Delridge Neighborhoods,"North Delridge, Pigeon Point, Avalon, Luna Park, Harbor Island",North Delridge,0.636363636,11022511.04,-122.37106,47.55972
+530330099004,Greater Duwamish,Manufacturing Industrial,Delridge Neighborhoods,"North Delridge, Pigeon Point, Avalon, Luna Park, Harbor Island",North Delridge,0.844036697,44103243.74,-122.35977,47.57685
+530330100011,Outside Villages,Outside Villages,Greater Duwamish,"North Beacon Hill, Jefferson Park",North Beacon Hill/Jefferson Park,0.653846154,10617434.14,-122.30208,47.5713
+530330100012,Outside Villages,Outside Villages,Greater Duwamish,"North Beacon Hill, Jefferson Park",North Beacon Hill/Jefferson Park,1,9644189.34,-122.3113,47.56594
+530330100013,Columbia City,Residential Urban Village,Greater Duwamish,"North Beacon Hill, Jefferson Park",North Beacon Hill/Jefferson Park,0.692307692,4647451.359,-122.29873,47.56472
+530330100021,Outside Villages,Outside Villages,Greater Duwamish,"North Beacon Hill, Jefferson Park",North Beacon Hill/Jefferson Park,0.608695652,2295625.131,-122.3139,47.57603
+530330100022,North Beacon Hill,Residential Urban Village,Greater Duwamish,"North Beacon Hill, Jefferson Park",North Beacon Hill/Jefferson Park,0.5,2690713.067,-122.3111,47.57844
+530330100023,Outside Villages,Outside Villages,Greater Duwamish,"North Beacon Hill, Jefferson Park",North Beacon Hill/Jefferson Park,1,2612536.991,-122.30581,47.57823
+530330100024,Outside Villages,Outside Villages,Greater Duwamish,"North Beacon Hill, Jefferson Park",North Beacon Hill/Jefferson Park,1,2607711.57,-122.30795,47.57349
+530330101001,Outside Villages,Outside Villages,Southeast,"Columbia City, Brighton, Mt. Baker, Lakewood, Genesee, Hillman City",Columbia City,1,7390628.178,-122.27451,47.56609
+530330101002,Outside Villages,Outside Villages,Southeast,"Columbia City, Brighton, Mt. Baker, Lakewood, Genesee, Hillman City",Columbia City,0.777777778,5351467.46,-122.27869,47.56226
+530330101003,Columbia City,Residential Urban Village,Southeast,"Columbia City, Brighton, Mt. Baker, Lakewood, Genesee, Hillman City",Columbia City,0.875,3188629.4,-122.29328,47.5646
+530330101004,Outside Villages,Outside Villages,Southeast,"Columbia City, Brighton, Mt. Baker, Lakewood, Genesee, Hillman City",Columbia City,0.739130435,4236221.78,-122.29199,47.56815
+530330101005,Outside Villages,Outside Villages,Southeast,"Columbia City, Brighton, Mt. Baker, Lakewood, Genesee, Hillman City",Columbia City,0.688888889,6528980.675,-122.28547,47.56879
+530330102001,Outside Villages,Outside Villages,Southeast,"Seward Park, Hillman City",Seward Park,1,6757969.026,-122.26583,47.55592
+530330102002,Outside Villages,Outside Villages,Southeast,"Seward Park, Hillman City",Seward Park,1,15613994.94,-122.25685,47.55225
+530330102003,Outside Villages,Outside Villages,Southeast,"Seward Park, Hillman City",Seward Park,1,3332320.077,-122.27254,47.54938
+530330102004,Outside Villages,Outside Villages,Southeast,"Seward Park, Hillman City",Seward Park,1,4297156.324,-122.27252,47.55566
+530330103001,Outside Villages,Outside Villages,Southeast,"Columbia City, Brighton, Mt. Baker, Lakewood, Genesee, Hillman City",Columbia City,0.9375,3346871.52,-122.27813,47.55691
+530330103002,Outside Villages,Outside Villages,Southeast,"Columbia City, Brighton, Mt. Baker, Lakewood, Genesee, Hillman City",Columbia City,0.947368421,3259117.236,-122.27831,47.54991
+530330103003,Outside Villages,Outside Villages,Southeast,"Columbia City, Brighton, Mt. Baker, Lakewood, Genesee, Hillman City",Columbia City,0.8,3552147.696,-122.28379,47.54948
+530330103004,Columbia City,Residential Urban Village,Southeast,"Columbia City, Brighton, Mt. Baker, Lakewood, Genesee, Hillman City",Columbia City,0.761904762,3721289.149,-122.28861,47.55695
+530330103005,Columbia City,Residential Urban Village,Southeast,"Columbia City, Brighton, Mt. Baker, Lakewood, Genesee, Hillman City",Columbia City,0.857142857,3974055.743,-122.28339,47.55683
+530330104011,Outside Villages,Outside Villages,Greater Duwamish,Beacon Hill,Beacon Hill,0.941176471,4934636.147,-122.29481,47.55725
+530330104012,Outside Villages,Outside Villages,Greater Duwamish,Beacon Hill,Beacon Hill,0.862068966,6815354.178,-122.29752,47.55427
+530330104013,Outside Villages,Outside Villages,Greater Duwamish,Beacon Hill,Beacon Hill,0.769230769,5653387.232,-122.29409,47.5484
+530330104021,Outside Villages,Outside Villages,Greater Duwamish,Beacon Hill,Beacon Hill,0.657894737,7297611.133,-122.31166,47.55085
+530330104022,Outside Villages,Outside Villages,Greater Duwamish,Beacon Hill,Beacon Hill,1,4978346.409,-122.3087,47.55783
+530330104023,Outside Villages,Outside Villages,Greater Duwamish,Beacon Hill,Beacon Hill,1,3250885.069,-122.30376,47.55048
+530330104024,Outside Villages,Outside Villages,Greater Duwamish,Beacon Hill,Beacon Hill,1,3792489.804,-122.31493,47.55701
+530330105001,West Seattle Junction,Hub Urban Village,Southwest,"Seaview, Fairmount Park, Morgan Junction, Genesee Hill, Belvidere, West Seattle Junction, Alaska Junction, Admiral",West Seattle Junction/Genesee Hill,0.65,3009597.624,-122.37885,47.56018
+530330105002,Outside Villages,Outside Villages,Southwest,"Seaview, Fairmount Park, Morgan Junction, Genesee Hill, Belvidere, West Seattle Junction, Alaska Junction, Admiral",West Seattle Junction/Genesee Hill,1,4136030.477,-122.38109,47.55427
+530330105003,Outside Villages,Outside Villages,Southwest,"Seaview, Fairmount Park, Morgan Junction, Genesee Hill, Belvidere, West Seattle Junction, Alaska Junction, Admiral",West Seattle Junction/Genesee Hill,1,4069196.272,-122.39176,47.5549
+530330105004,West Seattle Junction,Hub Urban Village,Southwest,"Seaview, Fairmount Park, Morgan Junction, Genesee Hill, Belvidere, West Seattle Junction, Alaska Junction, Admiral",West Seattle Junction/Genesee Hill,0.875,3489774.19,-122.38414,47.55926
+530330105005,Outside Villages,Outside Villages,Southwest,"Seaview, Fairmount Park, Morgan Junction, Genesee Hill, Belvidere, West Seattle Junction, Alaska Junction, Admiral",West Seattle Junction/Genesee Hill,0.631578947,3786499.495,-122.39036,47.5598
+530330106001,Outside Villages,Outside Villages,Southwest,"Fauntleroy, Gatewood, Morgan Junction, Lincoln Park, Seaview, Fairmount Park",Fauntleroy/Seaview,1,6066019.637,-122.37911,47.54577
+530330106002,Morgan Junction,Residential Urban Village,Southwest,"Fauntleroy, Gatewood, Morgan Junction, Lincoln Park, Seaview, Fairmount Park",Fauntleroy/Seaview,0.571428571,2624567.971,-122.38443,47.54936
+530330106003,Morgan Junction,Residential Urban Village,Southwest,"Fauntleroy, Gatewood, Morgan Junction, Lincoln Park, Seaview, Fairmount Park",Fauntleroy/Seaview,0.666666667,4120583.831,-122.38558,47.54308
+530330106004,Outside Villages,Outside Villages,Southwest,"Fauntleroy, Gatewood, Morgan Junction, Lincoln Park, Seaview, Fairmount Park",Fauntleroy/Seaview,0.909090909,3773062.674,-122.39186,47.54332
+530330106005,Outside Villages,Outside Villages,Southwest,"Fauntleroy, Gatewood, Morgan Junction, Lincoln Park, Seaview, Fairmount Park",Fauntleroy/Seaview,1,7981887.631,-122.3971,47.55061
+530330106006,Outside Villages,Outside Villages,Southwest,"Fauntleroy, Gatewood, Morgan Junction, Lincoln Park, Seaview, Fairmount Park",Fauntleroy/Seaview,0.833333333,2614282.613,-122.38979,47.54943
+530330107011,Outside Villages,Outside Villages,Delridge Neighborhoods,"High Point, Delridge",High Point,1,10198247.4,-122.36542,47.54604
+530330107012,Outside Villages,Outside Villages,Delridge Neighborhoods,"High Point, Delridge",High Point,1,5472810.709,-122.3672,47.53702
+530330107021,Outside Villages,Outside Villages,Delridge Neighborhoods,"High Point, Delridge",High Point,1,3245694.906,-122.37296,47.55089
+530330107022,Outside Villages,Outside Villages,Delridge Neighborhoods,"High Point, Delridge",High Point,1,2243435.402,-122.37158,47.54622
+530330107023,Outside Villages,Outside Villages,Delridge Neighborhoods,"High Point, Delridge",High Point,1,2945751.303,-122.37421,47.54273
+530330108001,Outside Villages,Outside Villages,Delridge Neighborhoods,"Riverview, Delridge",Riverview,0.583333333,28285607.42,-122.3488,47.54675
+530330108002,Outside Villages,Outside Villages,Delridge Neighborhoods,"Riverview, Delridge",Riverview,1,7416495.157,-122.35835,47.54302
+530330108003,Outside Villages,Outside Villages,Delridge Neighborhoods,"Riverview, Delridge",Riverview,1,7425748.18,-122.35997,47.55381
+530330109001,Greater Duwamish,Manufacturing Industrial,Greater Duwamish,Georgetown,Georgetown,0.795918367,29422952.57,-122.31171,47.53675
+530330109002,Greater Duwamish,Manufacturing Industrial,Greater Duwamish,Georgetown,Georgetown,0.776859504,22554862.12,-122.32864,47.54909
+530330110011,MLK at Holly St,Residential Urban Village,Greater Duwamish,"South Beacon Hill, NewHolly, Holly Park",South Beacon Hill/NewHolly,0.9,2985588.979,-122.28898,47.54107
+530330110012,MLK at Holly St,Residential Urban Village,Greater Duwamish,"South Beacon Hill, NewHolly, Holly Park",South Beacon Hill/NewHolly,1,3367698.089,-122.28592,47.54211
+530330110013,MLK at Holly St,Residential Urban Village,Greater Duwamish,"South Beacon Hill, NewHolly, Holly Park",South Beacon Hill/NewHolly,0.529411765,5147884.758,-122.28479,47.53437
+530330110021,Outside Villages,Outside Villages,Greater Duwamish,"South Beacon Hill, NewHolly, Holly Park",South Beacon Hill/NewHolly,0.785714286,10770453.29,-122.29992,47.53881
+530330110022,MLK at Holly St,Residential Urban Village,Greater Duwamish,"South Beacon Hill, NewHolly, Holly Park",South Beacon Hill/NewHolly,0.634146341,4186572.055,-122.29511,47.54216
+530330110023,Outside Villages,Outside Villages,Greater Duwamish,"South Beacon Hill, NewHolly, Holly Park",South Beacon Hill/NewHolly,1,3097394.882,-122.30055,47.54369
+530330111011,Outside Villages,Outside Villages,Southeast,"Columbia City, Brighton, Mt. Baker, Lakewood, Genesee, Hillman City",Columbia City,1,1764457.315,-122.2732,47.54079
+530330111012,Outside Villages,Outside Villages,Southeast,"Columbia City, Brighton, Mt. Baker, Lakewood, Genesee, Hillman City",Columbia City,0.722222222,4234917.083,-122.2776,47.53852
+530330111013,Outside Villages,Outside Villages,Southeast,"Columbia City, Brighton, Mt. Baker, Lakewood, Genesee, Hillman City",Columbia City,0.9,2559700.843,-122.27562,47.53391
+530330111014,Outside Villages,Outside Villages,Southeast,"Columbia City, Brighton, Mt. Baker, Lakewood, Genesee, Hillman City",Columbia City,0.64,3823113.079,-122.28021,47.54368
+530330111021,Outside Villages,Outside Villages,Southeast,"Seward Park, Hillman City",Seward Park,1,6938548.509,-122.26401,47.54008
+530330111022,Outside Villages,Outside Villages,Southeast,"Seward Park, Hillman City",Seward Park,1,3072261.449,-122.27044,47.54367
+530330111023,Outside Villages,Outside Villages,Southeast,"Seward Park, Hillman City",Seward Park,1,1273052.003,-122.27133,47.53423
+530330111024,Outside Villages,Outside Villages,Southeast,"Seward Park, Hillman City",Seward Park,1,2704894.098,-122.26868,47.53643
+530330112001,South Park,Residential Urban Village,Greater Duwamish,South Park,South Park,0.558823529,12724028.18,-122.32856,47.5255
+530330112002,Greater Duwamish,Manufacturing Industrial,Greater Duwamish,South Park,South Park,0.769230769,11539521.61,-122.32813,47.53371
+530330112003,South Park,Residential Urban Village,Greater Duwamish,South Park,South Park,0.652173913,5843530.974,-122.31654,47.52457
+530330113001,Outside Villages,Outside Villages,Delridge Neighborhoods,"Highland Park, Westwood, White Center, South Delridge",Highland Park,0.84,20023469.64,-122.34087,47.5292
+530330113002,Outside Villages,Outside Villages,Delridge Neighborhoods,"Highland Park, Westwood, White Center, South Delridge",Highland Park,0.777777778,4062667.286,-122.34871,47.51897
+530330113003,Outside Villages,Outside Villages,Delridge Neighborhoods,"Highland Park, Westwood, White Center, South Delridge",Highland Park,0.875,2979797.955,-122.35058,47.52277
+530330113004,Outside Villages,Outside Villages,Delridge Neighborhoods,"Highland Park, Westwood, White Center, South Delridge",Highland Park,1,4254858.338,-122.3512,47.52766
+530330113005,Outside Villages,Outside Villages,Delridge Neighborhoods,"Highland Park, Westwood, White Center, South Delridge",Highland Park,1,3131572.9,-122.34983,47.5312
+530330114011,Outside Villages,Outside Villages,Delridge Neighborhoods,"Roxhill, Westwood, South Delridge, White Center",Roxhill/Westwood,1,3946999.783,-122.36449,47.53099
+530330114012,Westwood-Highland Park,Residential Urban Village,Delridge Neighborhoods,"Roxhill, Westwood, South Delridge, White Center",Roxhill/Westwood,0.8,3938098.006,-122.36519,47.52648
+530330114013,Outside Villages,Outside Villages,Delridge Neighborhoods,"Roxhill, Westwood, South Delridge, White Center",Roxhill/Westwood,1,5388251.787,-122.35791,47.53113
+530330114021,Westwood-Highland Park,Residential Urban Village,Delridge Neighborhoods,"Roxhill, Westwood, South Delridge, White Center",Roxhill/Westwood,0.861111111,4663363.29,-122.36405,47.52299
+530330114022,Westwood-Highland Park,Residential Urban Village,Delridge Neighborhoods,"Roxhill, Westwood, South Delridge, White Center",Roxhill/Westwood,1,3455305.349,-122.3586,47.51947
+530330114023,Westwood-Highland Park,Residential Urban Village,Delridge Neighborhoods,"Roxhill, Westwood, South Delridge, White Center",Roxhill/Westwood,0.533333333,4650034.501,-122.36967,47.51923
+530330115001,Outside Villages,Outside Villages,Delridge Neighborhoods,"Roxhill, Westwood, South Delridge, White Center",Roxhill/Westwood,1,5963034.427,-122.37249,47.53244
+530330115002,Outside Villages,Outside Villages,Delridge Neighborhoods,"Roxhill, Westwood, South Delridge, White Center",Roxhill/Westwood,1,5727877.256,-122.37633,47.52504
+530330115003,Outside Villages,Outside Villages,Delridge Neighborhoods,"Roxhill, Westwood, South Delridge, White Center",Roxhill/Westwood,1,4867741.07,-122.37831,47.53349
+530330116001,Outside Villages,Outside Villages,Southwest,"Fauntleroy, Gatewood, Morgan Junction, Lincoln Park, Seaview, Fairmount Park",Fauntleroy/Seaview,1,4789607.016,-122.38424,47.53776
+530330116002,Outside Villages,Outside Villages,Southwest,"Fauntleroy, Gatewood, Morgan Junction, Lincoln Park, Seaview, Fairmount Park",Fauntleroy/Seaview,1,3429467.77,-122.38491,47.53193
+530330116003,Outside Villages,Outside Villages,Southwest,"Fauntleroy, Gatewood, Morgan Junction, Lincoln Park, Seaview, Fairmount Park",Fauntleroy/Seaview,1,5959702.679,-122.38592,47.52595
+530330116004,Outside Villages,Outside Villages,Southwest,"Fauntleroy, Gatewood, Morgan Junction, Lincoln Park, Seaview, Fairmount Park",Fauntleroy/Seaview,1,6241101.377,-122.38382,47.51953
+530330116005,Outside Villages,Outside Villages,Southwest,"Fauntleroy, Gatewood, Morgan Junction, Lincoln Park, Seaview, Fairmount Park",Fauntleroy/Seaview,1,3510129.293,-122.39167,47.52365
+530330116006,Outside Villages,Outside Villages,Southwest,"Fauntleroy, Gatewood, Morgan Junction, Lincoln Park, Seaview, Fairmount Park",Fauntleroy/Seaview,1,9536130.862,-122.39383,47.53302
+530330117001,Outside Villages,Outside Villages,Greater Duwamish,"South Beacon Hill, NewHolly, Holly Park",South Beacon Hill/NewHolly,0.65,5923846.711,-122.27891,47.5254
+530330117002,Outside Villages,Outside Villages,Greater Duwamish,"South Beacon Hill, NewHolly, Holly Park",South Beacon Hill/NewHolly,0.709677419,17126086.37,-122.28756,47.51956
+530330117003,Outside Villages,Outside Villages,Greater Duwamish,"South Beacon Hill, NewHolly, Holly Park",South Beacon Hill/NewHolly,1,5446008.402,-122.28476,47.52542
+530330117004,Outside Villages,Outside Villages,Greater Duwamish,"South Beacon Hill, NewHolly, Holly Park",South Beacon Hill/NewHolly,1,9312036.412,-122.2756,47.51488
+530330118001,Outside Villages,Outside Villages,Southeast,"Rainier Beach, Rainier View, Lake Ridge, Dunlap",Rainier Beach,0.857142857,4088146.718,-122.26244,47.52581
+530330118002,Outside Villages,Outside Villages,Southeast,"Rainier Beach, Rainier View, Lake Ridge, Dunlap",Rainier Beach,0.958333333,4032251.402,-122.25711,47.516
+530330118003,Outside Villages,Outside Villages,Southeast,"Rainier Beach, Rainier View, Lake Ridge, Dunlap",Rainier Beach,0.75,3665033.512,-122.26389,47.51681
+530330118004,Rainier Beach,Residential Urban Village,Southeast,"Rainier Beach, Rainier View, Lake Ridge, Dunlap",Rainier Beach,0.9375,4205565.729,-122.27189,47.52205
+530330118005,Outside Villages,Outside Villages,Southeast,"Rainier Beach, Rainier View, Lake Ridge, Dunlap",Rainier Beach,0.75,3215732.303,-122.27438,47.52865
+530330118006,Rainier Beach,Residential Urban Village,Southeast,"Rainier Beach, Rainier View, Lake Ridge, Dunlap",Rainier Beach,0.571428571,5821336.352,-122.26783,47.52565
+530330119001,Outside Villages,Outside Villages,Southeast,"Rainier Beach, Rainier View, Lake Ridge, Dunlap",Rainier Beach,1,6013011.34,-122.25219,47.51128
+530330119002,Outside Villages,Outside Villages,Southeast,"Rainier Beach, Rainier View, Lake Ridge, Dunlap",Rainier Beach,1,7327445.977,-122.24867,47.50492
+530330119003,Outside Villages,Outside Villages,Southeast,"Rainier Beach, Rainier View, Lake Ridge, Dunlap",Rainier Beach,1,4818606.555,-122.25784,47.50507
+530330119004,Outside Villages,Outside Villages,Southeast,"Rainier Beach, Rainier View, Lake Ridge, Dunlap",Rainier Beach,1,6514653.762,-122.2652,47.49898
+530330119005,Outside Villages,Outside Villages,Southeast,"Rainier Beach, Rainier View, Lake Ridge, Dunlap",Rainier Beach,1,9208955.337,-122.26594,47.50867
+530330120001,Outside Villages,Outside Villages,Southwest,"Arbor Heights, Brace Point, Endolyne, Arroyo",Arbor Heights,1,5017069.303,-122.37543,47.51413
+530330120002,Outside Villages,Outside Villages,Southwest,"Arbor Heights, Brace Point, Endolyne, Arroyo",Arbor Heights,1,5475699.338,-122.38054,47.51008
+530330120003,Outside Villages,Outside Villages,Southwest,"Arbor Heights, Brace Point, Endolyne, Arroyo",Arbor Heights,1,5087951.135,-122.386,47.51481
+530330121001,Outside Villages,Outside Villages,Southwest,"Arbor Heights, Brace Point, Endolyne, Arroyo",Arbor Heights,1,9113716.888,-122.38993,47.51039
+530330121002,Outside Villages,Outside Villages,Southwest,"Arbor Heights, Brace Point, Endolyne, Arroyo",Arbor Heights,1,9182013.713,-122.37688,47.50355
+530330260011,Outside Villages,Outside Villages,Southeast,"Rainier Beach, Rainier View, Lake Ridge, Dunlap",Rainier Beach,1,6622787.723,-122.24204,47.50609
+530330264004,Outside Villages,Outside Villages,Greater Duwamish,South Park,South Park,1,12001995.22,-122.32227,47.50997
+530330264005,Outside Villages,Outside Villages,Greater Duwamish,South Park,South Park,1,7657025.384,-122.31928,47.51616
+530330265001,Outside Villages,Outside Villages,Delridge Neighborhoods,"Highland Park, Westwood, White Center, South Delridge",Highland Park,1,8788612.909,-122.33588,47.51581
