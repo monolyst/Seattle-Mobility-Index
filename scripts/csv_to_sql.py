@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import sqlite3
 import sys
+import re
 
 def convert_csv(path, dbfile):
     """
@@ -10,21 +11,19 @@ def convert_csv(path, dbfile):
 
     conn = sqlite3.connect(dbfile)
     cur = conn.cursor()
-    
 
+    table_name = re.search(r'([\w]+)[.csv]', path).group(1)
+    
     df = pd.read_csv(path)
     keys = (pd.read_csv(path, nrows=1).columns).tolist()
-    print(keys)
 
-    cur.execute("CREATE TABLE data keys")
-    # cur.exectutemany("INSERT INTO data (col1, col2) VALUES (?, ?);", to_db)
-    #assuming that the header will contain information about the table title
+    df.to_sql(table_name, conn, schema=None, if_exists='fail')
 
     conn.commit()
     conn.close()
 
 def main(argv):
-    path = str(sys.argv[1])
+    path = "../seamo/data/raw/" + str(sys.argv[1]) + ".csv"
     dbfile = str(sys.argv[2]) + ".sqlite3"
     convert_csv(path, dbfile)
 
