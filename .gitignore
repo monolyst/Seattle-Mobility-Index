@@ -7,7 +7,7 @@ auto_examples/
 gen_api/
 
 # Ignore notebooks
-.ipynb 
+*.ipynb 
 
 # Text above inherited from shablona #
 
