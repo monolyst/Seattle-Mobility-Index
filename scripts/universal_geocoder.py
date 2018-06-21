@@ -39,13 +39,11 @@ while decrement:
         maxInt = int(maxInt/10)
         decrement = True
 
-
-## Load Data
-my_path = os.getcwd()
-data_path = os.path.join(my_path, '../seamo/data/raw')
+# Path to raw data directory
+DATADIR = os.path.join(os.getcwd(), '../seamo/data/raw')
     
 GeographicalAreas = {}
-for key, value in csv.reader(open(os.path.join(data_path, "zipcode.csv"))):
+for key, value in csv.reader(open(os.path.join(DATADIR, "zipcode.csv"))):
     GeographicalAreas[key] = value
 
 def geocode(lat,long):
@@ -58,25 +56,25 @@ def geocode(lat,long):
     BlockGroup = "None"
     GeographicalArea = "None"
     
-    for key, value in csv.reader(open(os.path.join(data_path, "Neighborhoods-Short.csv"))):
+    for key, value in csv.reader(open(os.path.join(DATADIR, "Neighborhoods-Short.csv"))):
         p = path.Path(ast.literal_eval(value))
         if p.contains_point((float(lat),float(long))) == True:
             NeighborhoodShort = key.split("--")[0]
             break
 
-    for key, value in csv.reader(open(os.path.join(data_path, "Neighborhoods-Long.csv"))):
+    for key, value in csv.reader(open(os.path.join(DATADIR, "Neighborhoods-Long.csv"))):
         p = path.Path(ast.literal_eval(value))
         if p.contains_point((float(lat),float(long))) == True:
             NeighborhoodLong = key.split("--")[0]
             break
             
-    for key, value in csv.reader(open(os.path.join(data_path, "sccdst.csv"))):
+    for key, value in csv.reader(open(os.path.join(DATADIR, "sccdst.csv"))):
         p = path.Path(ast.literal_eval(value))
         if p.contains_point((float(lat),float(long))) == True:
             CouncilDistrict = key.split("--")[0]
             break
             
-    for key, value in csv.reader(open(os.path.join(data_path, "zipcode.csv"))):
+    for key, value in csv.reader(open(os.path.join(DATADIR, "zipcode.csv"))):
         p = path.Path(ast.literal_eval(value))
         if p.contains_point((float(lat),float(long))) == True:
             ZipCode = key.split("--")[0]
@@ -86,13 +84,13 @@ def geocode(lat,long):
             GeographicalArea = GeographicalAreas[str(key)]            
             break
 
-    for key, value in csv.reader(open(os.path.join(data_path, "DPD_uvmfg_polygon.csv"))):
+    for key, value in csv.reader(open(os.path.join(DATADIR, "DPD_uvmfg_polygon.csv"))):
         p = path.Path(ast.literal_eval(value))
         if p.contains_point((float(lat),float(long))) == True:
             UrbanVillage = key.split("--")[0]
             break
             
-    for key, value in csv.reader(open(os.path.join(data_path, "blkgrp10_shore.csv"))):
+    for key, value in csv.reader(open(os.path.join(DATADIR, "blkgrp10_shore.csv"))):
         p = path.Path(ast.literal_eval(value))
         if p.contains_point((float(lat),float(long))) == True:
             BlockGroup = key.split("--")[0]
