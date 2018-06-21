@@ -23,14 +23,12 @@ Urban Villages can be downloaded at: #https://data.seattle.gov/dataset/Urban-Vil
 #    5 - Block Group
 #    6 - Geographical Area
 """
-
 import ast
 import csv
 import os
 import sys
 
 from matplotlib import path
-
 
 maxInt = sys.maxsize
 decrement = True
@@ -50,8 +48,31 @@ while decrement:
 ## Load Data
 my_path = os.path.dirname(__file__)
 data_path = os.path.join(my_path, '../seamo/data/raw')
-data_path = "/Users/rebecadebuen/Documents/DSSG2018/DSSG_repositories/seamo/seamo/data/raw/"    
+# data_path = "/Users/rebecadebuen/Documents/DSSG2018/DSSG_repositories/seamo/seamo/data/raw/"    
 
+#NeighborhoodShortDict = {}
+#for key, value in csv.reader(open(directory + "Neighborhoods-Short.csv")):
+#    NeighborhoodShortDict[key] = value
+
+#NeighborhoodLongDict = {}
+#for key, value in csv.reader(open(directory + "Neighborhoods-Long.csv")):
+#    NeighborhoodLongDict[key] = value
+
+#CouncilDistrictDict = {}
+#for key, value in csv.reader(open(directory + "sccdst.csv")):
+#    CouncilDistrictDict[key] = value
+    
+#UrbanVillageDict = {}
+#for key, value in csv.reader(open(directory + "DPD_uvmfg_polygon.csv")):
+#    UrbanVillageDict[key] = value
+    
+#ZipCodeDict = {}
+#for key, value in csv.reader(open(directory + "zipcode.csv")):
+#    ZipCodeDict[key] = value
+    
+#BlockGroupDict = {}
+#for key, value in csv.reader(open(directory + "blkgrp10_shore.csv")):
+#    BlockGroupDict[key] = value
     
 GeographicalAreas = {}
 for key, value in csv.reader(open(os.path.join(data_path, "zipcode.csv"))):
