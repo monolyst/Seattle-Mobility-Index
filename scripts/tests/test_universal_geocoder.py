@@ -18,6 +18,17 @@ class UniGeoTest(unittest.TestCase):
 		#data type
 		#dataframe dimensions
 
+	def test_read_nlong(self):
+
+	def test_read_sccdst(self):
+
+	def test_read_zipcode(self):
+
+	def test_read_urbvil(self):
+
+	def test_read_blkgrp(self):
+		
+
 	def test_path_nshort(self):
 		"""
 		Ensure a path object was created for the Neighborhood-Short 
