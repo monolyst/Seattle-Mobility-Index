@@ -135,8 +135,18 @@ def geocode(lat,long):
         if p.contains_point((float(lat),float(long))) == True:
             BlockGroup = key.split("--")[0]
             break
+            
     
     return (NeighborhoodShort, NeighborhoodLong, CouncilDistrict, ZipCode, UrbanVillage, BlockGroup, GeographicalArea)
+
+
+    
+# def csv_to_path(csv_file):
+#     for key, value in csv.reader(open(os.path.join(data_path, csv_file)):
+#         p = path.Path(ast.literal_eval(value))
+#         if p.contains_point((float(lat),float(long))) == True:
+#             BlockGroup = key.split("--")[0]
+#             break
 
 # The GeographicalArea is a huge list of coordinates. 
 print(geocode(47.534185, -122.371273))
