@@ -41,32 +41,8 @@ while decrement:
 
 
 ## Load Data
-my_path = os.path.dirname(__file__)
+my_path = os.getcwd()
 data_path = os.path.join(my_path, '../seamo/data/raw')
-    
-#NeighborhoodShortDict = {}
-#for key, value in csv.reader(open(directory + "Neighborhoods-Short.csv")):
-#    NeighborhoodShortDict[key] = value
-
-#NeighborhoodLongDict = {}
-#for key, value in csv.reader(open(directory + "Neighborhoods-Long.csv")):
-#    NeighborhoodLongDict[key] = value
-
-#CouncilDistrictDict = {}
-#for key, value in csv.reader(open(directory + "sccdst.csv")):
-#    CouncilDistrictDict[key] = value
-    
-#UrbanVillageDict = {}
-#for key, value in csv.reader(open(directory + "DPD_uvmfg_polygon.csv")):
-#    UrbanVillageDict[key] = value
-    
-#ZipCodeDict = {}
-#for key, value in csv.reader(open(directory + "zipcode.csv")):
-#    ZipCodeDict[key] = value
-    
-#BlockGroupDict = {}
-#for key, value in csv.reader(open(directory + "blkgrp10_shore.csv")):
-#    BlockGroupDict[key] = value
     
 GeographicalAreas = {}
 for key, value in csv.reader(open(os.path.join(data_path, "zipcode.csv"))):
@@ -83,48 +59,40 @@ def geocode(lat,long):
     GeographicalArea = "None"
     
     for key, value in csv.reader(open(os.path.join(data_path, "Neighborhoods-Short.csv"))):
-    #for key, value in NeighborhoodShortDict.items(): 
         p = path.Path(ast.literal_eval(value))
         if p.contains_point((float(lat),float(long))) == True:
             NeighborhoodShort = key.split("--")[0]
             break
 
     for key, value in csv.reader(open(os.path.join(data_path, "Neighborhoods-Long.csv"))):
-    #for key, value in NeighborhoodLongDict.items(): 
         p = path.Path(ast.literal_eval(value))
         if p.contains_point((float(lat),float(long))) == True:
             NeighborhoodLong = key.split("--")[0]
             break
             
     for key, value in csv.reader(open(os.path.join(data_path, "sccdst.csv"))):
-    #for key, value in CouncilDistrictDict.items(): 
         p = path.Path(ast.literal_eval(value))
         if p.contains_point((float(lat),float(long))) == True:
             CouncilDistrict = key.split("--")[0]
             break
             
     for key, value in csv.reader(open(os.path.join(data_path, "zipcode.csv"))):
-    #for key, value in ZipCodeDict.items(): 
         p = path.Path(ast.literal_eval(value))
         if p.contains_point((float(lat),float(long))) == True:
-            #ZipCode = key.split("--")[0]
-            #GeographicalArea = GeographicalAreas[str(ZipCode)]            
+            ZipCode = key.split("--")[0]
+            # GeographicalArea = GeographicalAreas[str(ZipCode)]            
 
             # Keys in GeographicalArea actually still have the dashes
             GeographicalArea = GeographicalAreas[str(key)]            
             break
 
     for key, value in csv.reader(open(os.path.join(data_path, "DPD_uvmfg_polygon.csv"))):
-    #for key, value in UrbanVillageDict.items(): 
         p = path.Path(ast.literal_eval(value))
         if p.contains_point((float(lat),float(long))) == True:
             UrbanVillage = key.split("--")[0]
             break
             
-    BlockGroup = ""         
-    #for key, value in BlockGroupDict.items(): 
     for key, value in csv.reader(open(os.path.join(data_path, "blkgrp10_shore.csv"))):
-
         p = path.Path(ast.literal_eval(value))
         if p.contains_point((float(lat),float(long))) == True:
             BlockGroup = key.split("--")[0]
