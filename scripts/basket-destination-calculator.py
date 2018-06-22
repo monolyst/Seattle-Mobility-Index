@@ -1,41 +1,50 @@
+
 # coding: utf-8
+"""
+Basket Destination Calculator
+ 
+This script constructs a market basket of destinations relevant to people 
+who travel in Seattle. The basket may include collections of trips to 
+nearby points of interest and activity centers that are specific to 
+each origin, and a collection of trips to citywide destinations 
+that are the same for all starting points.  
 
-# Basket Destination Calculator
-# 
-# The purpose of this script is to construct a market basket of destinations relevant to people who travel in Seattle. The basket may include collections of trips to nearby points of interest and activity centers that are specific to each origin, and a collection of trips to citywide destinations that are the same for all starting points. 
-# 
+https://public.tableau.com/views/Basket_of_Destinations/Dashboard?:embed=y&:display_count=yes
 
-# 
-# https://public.tableau.com/views/Basket_of_Destinations/Dashboard?:embed=y&:display_count=yes
-# 
-# This script accesses the Google Map Distance Matrix API to rank each possible origin-destination by their driving distance. The basket definition is created by using parameters to filter each class of destination.
+This script accesses the Google Map Distance Matrix API to rank 
+each possible origin-destination by their driving distance. 
+The basket definition is created by using parameters to filter each class of destination.
 
-import pandas as pd
-import numpy as np
-import os
-from pandas.io.json import json_normalize
-import json
+"""
+
 from datetime import datetime
-import os.path
-import time
+import itertools
+import json
 import math
-from sklearn.metrics import mean_squared_error
+import os
+import time
+import string
 
+import numpy as np
+import pandas as pd
+from pandas.io.json import json_normalize
+from sklearn.metrics import mean_squared_error
 try:
     from urllib.request import Request, urlopen  # Python 3
 except:
     from urllib2 import Request, urlopen  # Python 2
-    
-import string
-valid_chars = "-_.() %s%s" % (string.ascii_letters, string.digits)
+
+valid_chars = "-_.() %s%s" % (string.ascii_letters, string.digits) # why do we need it? 
+class_list = ["urban village", "citywide", "destination park", "supermarket", "library",
+              "hospital", "pharmacy", "post_office", "school", "cafe"]  
 
 DATADIR = os.path.join(os.getcwd(), "../seamo/data/raw")
-# We don't have this yet..
+# We don't have Analysis folder and API_Key yet
 # ANALYSISDIR = os.path.join(BASEDIR, "Analysis")
-
-# We don't have this
 # API_Key = open(os.path.join(BASEDIR, "api-key.txt"), 'r').read()
 
+
+"""
 # ## Combine google places with citywide places for a full list of destinations
 
 # Combine Google places data with citywide places. The citywide file contain urban villages, destination parks, and 
@@ -138,39 +147,45 @@ def distilleBasketPrelim():
     
 distilleBasketPrelim()  
 
-# ## Tune and Evaluate Model
-# We will evaluate the model by comparing the 'proximity ratio' from the results with the ratio from the PSRC survey for each block group. We will look at all possible parameter calculations and identify the ones with the lowest scores.
-# 
-# We can compare results with the Puget Sound Regional Household Travel Survey. However, keep in mind that survey techniques incorporate behavior biases, such as those based on income, job status, etc. But our universal basket of destinations is based on opportunity, for which we do not want to start with different basket for different people. This does not preclude the use of weighting coefficients that could tune baskets for different income levels or types of households. 
+"""
 
-# construct the basket for each blockgroup, calculate the proximity ratio, and compare it with sample results from
-# the PSRC survey
 
 def distilleBasketTest(testArray):
     
-    global df_sample 
-    global df_destinations
-    
-    # filter to match basket parameters based on rank (distance from destination)
-    df_destinations = df_destinations[(df_destinations['class'] != "urban village") | (df_destinations['rank'] <= testArray[0])]
-    df_destinations = df_destinations[(df_destinations['class'] != "citywide") | (df_destinations['rank'] <= testArray[1])]
-    df_destinations = df_destinations[(df_destinations['class'] != "destination park") | (df_destinations['rank'] <= testArray[2])]
-    df_destinations = df_destinations[(df_destinations['class'] != "supermarket") | (df_destinations['rank'] <= testArray[3])]
-    df_destinations = df_destinations[(df_destinations['class'] != "library") | (df_destinations['rank'] <= testArray[4])]
-    df_destinations = df_destinations[(df_destinations['class'] != "hospital") | (df_destinations['rank'] <= testArray[5])]
-    df_destinations = df_destinations[(df_destinations['class'] != "pharmacy") | (df_destinations['rank'] <= testArray[6])]
-    df_destinations = df_destinations[(df_destinations['class'] != "post_office") | (df_destinations['rank'] <= testArray[7])]
-    df_destinations = df_destinations[(df_destinations['class'] != "school") | (df_destinations['rank'] <= testArray[8])]
-    df_destinations = df_destinations[(df_destinations['class'] != "cafe") | (df_destinations['rank'] <= testArray[9])]
-    
-    # aggregate block group trips
-    # proximity ration = trips under 2 miles vs trips between 2 and 10 miles
-    df_destinations['dist_under_2'] = np.where(df_destinations['distance'] < 2.0,1,0)
-    df_destinations['dist_2_to_10'] = np.where((df_destinations['distance']>=2) & (df_destinations['distance']<10.0),1,0)
-    df_blockgroup = df_destinations.groupby(['origin'], as_index=False).agg({'dist_under_2':sum,'dist_2_to_10':sum})
-    df_blockgroup['proximity_ratio_test'] = df_blockgroup['dist_under_2']/df_blockgroup['dist_2_to_10']
+    """
+    ## Tune and Evaluate Model ##
+    We will evaluate the model by comparing the 'proximity ratio' 
+    from the results with the ratio from the PSRC survey for each block group. 
+    We will look at all possible parameter calculations and identify the ones with the lowest scores.
  
-    print (df_blockgroup)
+    We can compare results with the Puget Sound Regional Household Travel Survey. 
+    However, keep in mind that survey techniques incorporate behavior biases, 
+    such as those based on income, job status, etc. 
+    But our universal basket of destinations is based on opportunity, 
+    for which we do not want to start with different basket for different people. 
+    This does not preclude the use of weighting coefficients that 
+    could tune baskets for different income levels or types of households. 
+
+    construct the basket for each blockgroup, calculate the proximity ratio,
+    and compare it with sample results from the PSRC survey
+    """
+    # why global variables? 
+    # global df_sample 
+    # global df_destinations
+
+    df_destinations = input_destinations
+    # filter to match basket parameters based on rank (distance from destination)
+    for i in range(len(class_list)):
+        df_destinations = df_destinations[(df_destinations['class'] != class_list[i]) | (df_destinations['rank'] <= testArray[i])]
+     
+    # aggregate block group trips
+    # proximity ration = trips under 2 miles vs trips between 2 and 10 miles; rows with zero denominators are removed
+    df_destinations['dist_under_2'] = np.where(df_destinations['distance'] < 2.0, 1,0)
+    df_destinations['dist_2_to_10'] = np.where((df_destinations['distance'] >= 2) & (df_destinations['distance'] < 10.0), 1, 0)
+    df_blockgroup = df_destinations.groupby(['origin'], as_index=False).agg({'dist_under_2':sum,'dist_2_to_10':sum})
+    df_blockgroup = df_blockgroup[df_blockgroup['dist_2_to_10'] != 0]   
+    df_blockgroup['proximity_ratio_test'] = df_blockgroup['dist_under_2'] / df_blockgroup['dist_2_to_10']
+ 
     # merge with evaluation file
     df_merged = pd.merge(left=df_blockgroup, right=df_sample, how='left', left_on='origin', right_on='bg_origin')
     df_merged = df_merged.dropna()
@@ -182,24 +197,28 @@ def distilleBasketTest(testArray):
 
     return (mse)
 
-df_sample = pd.read_csv(os.path.join(DATADIR, 'Proximity_Ratio.csv')) 
-df_destinations = pd.read_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv')) 
 
-testArray = [2,11,3,2,2,2,1,0,1,2]
-distilleBasketTest(testArray)
+# to test the function using two test arrays
+"""
+df_sample = pd.read_csv(os.path.join(DATADIR, 'Proximity_Ratio.csv')) 
+input_destinations = pd.read_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv'))
+testArray1 = [0, 8, 0, 0, 0, 0, 0, 0, 0, 3]
+testArray2 = [2, 11, 3, 2, 2, 2, 1, 0, 1, 2]
+print(distilleBasketTest(testArray1))
+print(distilleBasketTest(testArray2))
+"""
 
 
 ## Brute force function to evaluate all combinations. There are 200,000 possible combinations.
 
-import itertools
-
 df_sample = pd.read_csv(os.path.join(DATADIR, 'Proximity_Ratio.csv')) 
-df_destinations = pd.read_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv')) 
+input_destinations = pd.read_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv')) 
 
 df_basketCombinations = pd.DataFrame()
 
+#sizeLimit = 25
+sizeLimit = int(input("Enter sizeLimit(I strongly suggest 40 or 41): "))
 
-sizeLimit = 25
 
 # Define parameter domain
 AA = [0,1,2,3,4] # urban village
@@ -225,8 +244,10 @@ for x in itertools.product(AA,BB,A,B,C,D,E,F,G,H):
         countVariables += item
     
     if countVariables == sizeLimit: # valid combination
-       # Parameters.append(x)
-       # Score.append(distilleBasketTest(x))
+        Parameters.append(x)
+        Score.append(distilleBasketTest(x))
         countCombinations += 1
 
-print ("Combinations: " + str(countCombinations))
+print("Combinations: " + str(countCombinations))
+print("Parameters (arrays of ranks): " + str(Parameters))
+print("Score: ", Score)
