@@ -150,7 +150,7 @@ distilleBasketPrelim()
 """
 
 
-def distilleBasketTest(testArray):
+def distill_basket_test(testArray):
     
     """
     ## Tune and Evaluate Model ##
@@ -214,10 +214,10 @@ print(distilleBasketTest(testArray2))
 df_sample = pd.read_csv(os.path.join(DATADIR, 'Proximity_Ratio.csv')) 
 input_destinations = pd.read_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv')) 
 
-df_basketCombinations = pd.DataFrame()
+df_basket_combinations = pd.DataFrame()
 
 #sizeLimit = 25
-sizeLimit = int(input("Enter sizeLimit(I strongly suggest 40 or 41): "))
+size_limit = int(input("Enter sizeLimit(I strongly suggest 40 or 41): "))
 
 
 # Define parameter domain
@@ -232,22 +232,22 @@ F = [0,1,2,3] # post office
 G = [0,1,2,3] # school
 H = [0,1,2,3] # cafe
 
-countCombinations = 0
-Score = []
-Parameters = []
+count_combinations = 0
+score = []
+parameters = []
 
 for x in itertools.product(AA,BB,A,B,C,D,E,F,G,H):
     
-    countVariables = 0
+    count_variables = 0
 
     for item in x:
-        countVariables += item
+        count_variables += item
     
-    if countVariables == sizeLimit: # valid combination
-        Parameters.append(x)
-        Score.append(distilleBasketTest(x))
-        countCombinations += 1
+    if count_variables == size_limit: # valid combination
+        parameters.append(x)
+        score.append(distill_basket_test(x))
+        count_combinations += 1
 
-print("Combinations: " + str(countCombinations))
-print("Parameters (arrays of ranks): " + str(Parameters))
-print("Score: ", Score)
+print("Combinations: " + str(count_combinations))
+print("Parameters (arrays of ranks): " + str(parameters))
+print("Score: ", score)
