@@ -7,8 +7,19 @@ import unittest
 class UniGeoTest(unittest.TestCase):
 
 	def test_maxsize(self):
+		"""
+		foo
+		"""
 
 	def test_read_nshort(self):
+		NUMBER_OF_VALUES = 1889
+		NUMBER_OF_KEYS = 10
+		key, value = csv.reader(open(os.path.join(data_path,
+			"Neighborhoods-Short.csv")))
+
+		self.assertEqual(NUMBER_OF_VALUES,)
+
+
 		"""
 		The purpose of this test is to ensure correct
 		loading of the data from Neihborhoods-Short.csv
@@ -19,14 +30,29 @@ class UniGeoTest(unittest.TestCase):
 		#dataframe dimensions
 
 	def test_read_nlong(self):
+		"""
+		foo
+		"""
 
 	def test_read_sccdst(self):
+		"""
+		foo
+		"""
 
 	def test_read_zipcode(self):
+		"""
+		foo
+		"""
 
 	def test_read_urbvil(self):
+		"""
+		foo
+		"""
 
 	def test_read_blkgrp(self):
+		"""
+		foo
+		"""
 		
 
 	def test_path_nshort(self):
@@ -72,6 +98,9 @@ class UniGeoTest(unittest.TestCase):
 		"""
 
 	def test_overflow_error(self):
+		"""
+		foo
+		"""
 
 suite = unittest.TestLoader().loadTestsFromTestCase(UniGeoTest)
 _ = unittest.TextTestRunner().run(suite)
