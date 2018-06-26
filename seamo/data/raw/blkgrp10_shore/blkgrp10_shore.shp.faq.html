@@ -1,0 +1,564 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>2010 Census Block Groups for King County - Conflated to Parcels - Major Waterbodies Erased</title>
+<link rel=schema.dc href="http://purl.org/metadata/dublin_core">
+<meta name="dc.title" content="2010 Census Block Groups for King County - Conflated to Parcels - Major Waterbodies Erased ">
+<meta name="dc.creator" content="U.S. Department of Commerce, U.S. Census Bureau, Geography Division ">
+<meta name="dc.subject" content="census census block demographic block polygon ">
+<meta name="dc.description" content="The TIGER/Line Files are shapefiles and related database files (.dbf) that are an extract of selected geographic and cartographic information from the U.S. Census Bureau's Master Address File / Topologically Integrated Geographic Encoding and Referencing (MAF/TIGER) Database (MTDB). The MTDB represents a seamless national file with no overlaps or gaps between parts, however, each TIGER/Line File is designed to stand alone as an independent data set, or they can be combined to cover the entire nation. Census Blocks are statistical areas bounded on all sides by visible features, such as streets, roads, streams, and railroad tracks, and/or by nonvisible boundaries such as city, town, township, and county limits, and short line-of-sight extensions of streets and roads. Census blocks are relatively small in area; for example, a block in a city bounded by streets. However, census blocks in remote areas are often large and irregular and may even be many square miles in area. A common misunderstanding is that data users think census blocks are used geographically to build all other census geographic areas, rather all other census geographic areas are updated and then used as the primary constraints, along with roads and water features, to delineate the tabulation blocks. As a result, all 2010 Census blocks nest within every other 2010 Census geographic area, so that Census Bureau statistical data can be tabulated at the block level and aggregated up to the appropriate geographic areas. Census blocks cover all territory in the United States, Puerto Rico, and the Island Areas (American Samoa, Guam, the Commonwealth of the Northern Mariana Islands, and the U.S. Virgin Islands). Blocks are the smallest geographic areas for which the Census Bureau publishes data from the decennial census. A block may consist of one or more faces. ">
+<meta name="dc.publisher" content="King County GIS Center">
+<meta name="dc.date" content="20110210">
+<meta name="dc.type" content="data.vector digital data">
+<meta name="dc.format" content="ESRI Shapefile">
+<meta name="dc.identifier" content="Service=sde:sqlserver:gisprod; Database=maint; User=gisc; Version=sde.DEFAULT">
+<meta name="dc.source" content="/plibrary2/census/shapes/polygon/blkgrp10_shore.shp">
+<meta name="dc.lang" content="en">
+<meta name="dc.coverage.x.min" scheme="DD" content="-122.542059">
+<meta name="dc.coverage.x.max" scheme="DD" content="-121.062937">
+<meta name="dc.coverage.y.min" scheme="DD" content="47.073482">
+<meta name="dc.coverage.y.max" scheme="DD" content="47.788414">
+<meta name="dc.coverage.placeName" content="King County, WA">
+<meta name="dc.coverage.placeName" content="Pacific NW">
+<meta name="dc.coverage.placeName" content="Washington state">
+<meta name="dc.coverage.placeName" content="53033">
+<meta name="dc.coverage.t.min" content="201001">
+<meta name="dc.coverage.t.max" content="201007">
+<meta name="dc.rights" content="Access constraints: None; Use constraints: The TIGER/Line Shapefile products are not copyrighted however TIGER/Line and Census TIGER are registered trademarks of the U.S. Census Bureau.  These products are free to use in a product or publication, however acknowledgement must be given to the U.S. Census Bureau as the source.">
+</head>
+<body>
+<h3>2010 Census Block Groups for King County - Conflated to Parcels - Major Waterbodies Erased</h3>
+Metadata also available as - [<A HREF="C:\GISDataPortal\DataStage\blkgrp10_shore\blkgrp10_shore.shp.html">Outline</A>]<p>
+<h4>Frequently-anticipated questions:</h4>
+<ul>
+<li><A HREF="#what">What does this data set describe?</A>
+<ol>
+<li><A HREF="#what.1">How should this data set be cited?</A>
+<li><A HREF="#what.2">What geographic area does the data set cover?</A>
+<li><A HREF="#what.3">What does it look like?</A>
+<li><A HREF="#what.4">Does the data set describe conditions during a particular time period?</A>
+<li><A HREF="#what.5">What is the general form of this data set?</A>
+<li><A HREF="#what.6">How does the data set represent geographic features?</A>
+<li><A HREF="#what.7">How does the data set describe geographic features?</A>
+</ol>
+<li><A HREF="#who">Who produced the data set?</A>
+<ol>
+<li><A HREF="#who.1">Who are the originators of the data set?</A>
+<li><A HREF="#who.2">Who also contributed to the data set?</A>
+<li><A HREF="#who.3">To whom should users address questions about the data?</A>
+</ol>
+<li><A HREF="#why">Why was the data set created?</A>
+<li><A HREF="#how">How was the data set created?</A>
+<ol>
+<li><A HREF="#how.1">From what previous works were the data drawn?</a>
+<li><A HREF="#how.2">How were the data generated, processed, and modified?</a>
+<li><A HREF="#how.3">What similar or related data should the user be aware of?</a>
+</ol>
+<li><A HREF="#quality">How reliable are the data; what problems remain in the data set?</A>
+<ol>
+<li><A HREF="#quality.1">How well have the observations been checked?</A>
+<li><A HREF="#quality.2">How accurate are the geographic locations?</A>
+<li><A HREF="#quality.3">How accurate are the heights or depths?</A>
+<li><A HREF="#quality.4">Where are the gaps in the data?  What is missing?</A>
+<li><A HREF="#quality.5">How consistent are the relationships among the data, including topology?</A>
+</ol>
+<li><A HREF="#getacopy">How can someone get a copy of the data set?</A>
+<ol>
+<li><A HREF="#getacopy.0">Are there legal restrictions on access or use of the data?</A>
+<li><A HREF="#getacopy.1">Who distributes the data?</A>
+<li><A HREF="#getacopy.2">What's the catalog number I need to order this data set?</A>
+<li><A HREF="#getacopy.3">What legal disclaimers am I supposed to read?</A>
+<li><A HREF="#getacopy.4">How can I download or order the data?</A>
+</ol>
+<li><A HREF="#metaref">Who wrote the metadata?</A>
+</ul>
+<hr>
+<h3><A NAME="what">What does this data set describe?</A></h3>
+<div style="margin-left: 2em">
+<dl>
+<dt><em>Title:</em>  
+<dd>
+
+2010 Census Block Groups for King County - Conflated to Parcels - Major Waterbodies Erased
+
+</dd>
+<dt><em>Abstract:</em>  
+<dd>
+
+The TIGER/Line Files are shapefiles and related database files (.dbf) that are an extract of selected geographic and cartographic information from the U.S. Census Bureau's Master Address File / Topologically Integrated Geographic Encoding and Referencing (MAF/TIGER) Database (MTDB). The MTDB represents a seamless national file with no overlaps or gaps between parts, however, each TIGER/Line File is designed to stand alone as an independent data set, or they can be combined to cover the entire nation. Census Blocks are statistical areas bounded on all sides by visible features, such as streets, roads, streams, and railroad tracks, and/or by nonvisible boundaries such as city, town, township, and county limits, and short line-of-sight extensions of streets and roads. Census blocks are relatively small in area; for example, a block in a city bounded by streets. However, census blocks in remote areas are often large and irregular and may even be many square miles in area. A common misunderstanding is that data users think census blocks are used geographically to build all other census geographic areas, rather all other census geographic areas are updated and then used as the primary constraints, along with roads and water features, to delineate the tabulation blocks. As a result, all 2010 Census blocks nest within every other 2010 Census geographic area, so that Census Bureau statistical data can be tabulated at the block level and aggregated up to the appropriate geographic areas. Census blocks cover all territory in the United States, Puerto Rico, and the Island Areas (American Samoa, Guam, the Commonwealth of the Northern Mariana Islands, and the U.S. Virgin Islands). Blocks are the smallest geographic areas for which the Census Bureau publishes data from the decennial census. A block may consist of one or more faces.
+
+</dd>
+<dt><em>Supplemental_Information:</em>  
+<dd>
+
+<A HREF="http://www5.kingcounty.gov/sdc/addl_doc/CustomizedJoinDetail_Blkgrp.htm">&lt;http://www5.kingcounty.gov/sdc/addl_doc/CustomizedJoinDetail_Blkgrp.htm&gt;</A>
+
+</dd>
+</dl>
+</div>
+<ol>
+<li><A NAME="what.1"><b>How should this data set be cited?</b></A><p>
+<blockquote>
+U.S. Department of Commerce, U.S. Census Bureau, Geography Divisi, 20110210, 2010 Census Block Groups for King County - Conflated to Parcels - Major Waterbodies Erased: King County, King County, WA.<p>
+Online Links:
+<ul>
+<li>Service=sde:sqlserver:gisprod; Database=maint; User=gisc; Version=sde.DEFAULT
+</ul>
+<p>
+</blockquote>
+<dl>
+<dt><em>Other_Citation_Details:</em>  None</dt>
+</dl>
+<p>
+<li><A NAME="what.2"><b>What geographic area does the data set cover?</b></A><p>
+<dl>
+<dt><em>West_Bounding_Coordinate:</em>  -122.542059</dt>
+<dt><em>East_Bounding_Coordinate:</em>  -121.062937</dt>
+<dt><em>North_Bounding_Coordinate:</em>  47.788414</dt>
+<dt><em>South_Bounding_Coordinate:</em>  47.073482</dt>
+</dl>
+<p>
+<li><A NAME="what.3"><b>What does it look like?</b></A><p>
+<dl>
+<dt><A HREF="http://www5.kingcounty.gov/sdc/DataImages/blkgrp10_shore.jpg">&lt;http://www5.kingcounty.gov/sdc/DataImages/blkgrp10_shore.jpg&gt;</A> (JPG)
+<dd>
+JPG File of layer overlain on base of WA counties or local cities
+</dl>
+<p>
+<li><A NAME="what.4"><b>Does the data set describe conditions during a particular time period?</b></A><p>
+<dl>
+<dt>Beginning_Date: Jan-2010<dt>Ending_Date: Jul-2010<dt><em>Currentness_Reference:</em>  publication date</dt>
+</dl>
+<p>
+<li><A NAME="what.5"><b>What is the general form of this data set?</b></A><p>
+<dl>
+<dt><em>Geospatial_Data_Presentation_Form:</em>  vector digital data</dt>
+</dl>
+<p>
+<li><A NAME="what.6"><b>How does the data set represent geographic features?</b></A><p>
+<ol type="a">
+<li><A NAME="what.6.a"><b>How are geographic features stored in the data set?</b></A><p>
+<dl>
+<dt><em>Indirect_Spatial_Reference:</em>  
+<dd>
+
+Federal Information Processing Standards (FIPS), ANSI, and feature names.
+
+</dd>
+</dl>
+This is a Vector data set.
+<p>
+<li><A NAME="what.6.b"><b>What coordinate system is used to represent geographic features?</b></A><p>
+Planar coordinates are encoded using coordinate pair<br>
+Abscissae (x-coordinates) are specified to the nearest 0.000328<br>
+Ordinates (y-coordinates) are specified to the nearest 0.000328<br>
+Planar coordinates are specified in survey feet<p>
+<p>
+The horizontal datum used is D_North_American_1983_HARN.<br>
+The ellipsoid used is Geodetic Reference System 80.<br>
+The semi-major axis of the ellipsoid used is 6378137.000000.<br>
+The flattening of the ellipsoid used is 1/298.257222.<br>
+<p>
+<dl>
+<dt><em>Vertical_Coordinate_System_Definition:</em>  
+<dd>
+<dl>
+<dt><em>Altitude_System_Definition:</em>  
+<dd>
+<dl>
+<dt><em>Altitude_Datum_Name:</em>  North American Vertical Datum of 1988</dt>
+<dt><em>Altitude_Resolution:</em>  1.000000</dt>
+<dt><em>Altitude_Distance_Units:</em>  feet</dt>
+<dt><em>Altitude_Encoding_Method:</em>  
+<dd>
+
+Explicit elevation coordinate included with horizontal coordinates
+
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</ol>
+<p>
+<li><A NAME="what.7"><b>How does the data set describe geographic features?</b></A><p>
+<dl>
+<dt><b><tt>blkgrp10_shore</tt></b><dd>Polygon attribute table
+  (Source: ESRI)
+<p>
+<dl>
+<dt><b><tt>FID</tt></b><dd>Internal feature number.
+  (Source: ESRI)<p></p>
+<p>
+<em>
+Sequential unique whole numbers that are automatically generated.
+</em>
+<p>
+<dt><b><tt>GEO_ID_GRP</tt></b><dd><p></p>
+<p>
+<dt><b><tt>SHAPE</tt></b><dd>Feature Geometry
+  (Source: ESRI)<p></p>
+<p>
+<em>
+Coordinates defining the features
+</em>
+<p>
+<dt><b><tt>FEATURE_ID</tt></b><dd>Unique serial feature identifier
+  (Source: King County)<p></p>
+<p>
+<em>
+Unique integer for each block starting at 10001
+</em>
+<p>
+<dt><b><tt>BLKGRP_LBL</tt></b><dd>Block Group label
+  (Source: U.S. Census Bureau)<p></p>
+<p>
+<em>
+Blkgrp literal cocantenated with block number
+</em>
+<p>
+<dt><b><tt>BLKGRP_STR</tt></b><dd>Block Group as string
+  (Source: U.S. Census Bureau)<p></p>
+<p>
+<em>
+String
+</em>
+<p>
+<dt><b><tt>BLKGRP_INT</tt></b><dd>Block Group as integer
+  (Source: U.S. Census Bureau)<p></p>
+<p>
+<em>
+Integer
+</em>
+<p>
+<dt><b><tt>GRPLABEL_F</tt></b><dd><p></p>
+<p>
+<dt><b><tt>GRPLABEL_C</tt></b><dd><p></p>
+<p>
+<dt><b><tt>GRPLABEL_T</tt></b><dd><p></p>
+<p>
+<dt><b><tt>TRACT_LBL</tt></b><dd>Tract label
+  (Source: U.S. Census Bureau)<p></p>
+<p>
+<em>
+Cocantenation of literal Tract with full Tract number
+</em>
+<p>
+<dt><b><tt>TRACT_STR</tt></b><dd>Tract number as string
+  (Source: U.S. Census Bureau)<p></p>
+<p>
+<em>
+String
+</em>
+<p>
+<dt><b><tt>TRACT_INT</tt></b><dd>Tract number as integer
+  (Source: U.S. Census Bureau)<p></p>
+<p>
+<em>
+Integer
+</em>
+<p>
+<dt><b><tt>TRACT_FLT</tt></b><dd>Tract number as floating point
+  (Source: U.S. Census Bureau)<p></p>
+<p>
+<table border="1" cellpadding="4" cellspacing="0">
+<tr><th colspan="2">Range of values</th></tr>
+<tr><th>Minimum:</th><td>0.00000000</td></tr>
+<tr><th>Maximum:</th><td>322.10000000</td></tr>
+</table>
+<p>
+<dt><b><tt>TRACT_DEL</tt></b><dd>Floating point Tract number as string
+  (Source: U.S. Census Bureau)<p></p>
+<p>
+<em>
+Floating point value expressed as string
+</em>
+<p>
+<dt><b><tt>TRTLABEL_F</tt></b><dd><p></p>
+<p>
+<dt><b><tt>TRTLABEL_C</tt></b><dd><p></p>
+<p>
+<dt><b><tt>TRTLABEL_T</tt></b><dd><p></p>
+<p>
+<dt><b><tt>COUNTY_STR</tt></b><dd>County identifier as string
+  (Source: U.S. Census Bureau)<p></p>
+<p>
+<table border="1" cellpadding="4" cellspacing="0">
+<tr><th>Value</th><th>Definition</th></tr>
+<tr><td valign="top">(no value)</td><td>No value
+</td></tr>
+<tr><td valign="top">033</td><td>King County
+</td></tr>
+</table>
+<p>
+<dt><b><tt>COUNTY_INT</tt></b><dd>County identifier as integer
+  (Source: U.S. Census Bureau)<p></p>
+<p>
+<table border="1" cellpadding="4" cellspacing="0">
+<tr><th>Value</th><th>Definition</th></tr>
+<tr><td valign="top">0</td><td>No value
+</td></tr>
+<tr><td valign="top">33</td><td>King County
+</td></tr>
+</table>
+<p>
+<dt><b><tt>STATE_STR</tt></b><dd>State identifier as string
+  (Source: U.S. Census Bureau)<p></p>
+<p>
+<table border="1" cellpadding="4" cellspacing="0">
+<tr><th>Value</th><th>Definition</th></tr>
+<tr><td valign="top">(no value)</td><td>No value
+</td></tr>
+<tr><td valign="top">53</td><td>Washington
+</td></tr>
+</table>
+<p>
+<dt><b><tt>STATE_INT</tt></b><dd>State identifier as integer
+  (Source: U.S. Census Bureau)<p></p>
+<p>
+<table border="1" cellpadding="4" cellspacing="0">
+<tr><th>Value</th><th>Definition</th></tr>
+<tr><td valign="top">0</td><td>No value
+</td></tr>
+<tr><td valign="top">53</td><td>Washington
+</td></tr>
+</table>
+<p>
+<dt><b><tt>LEVEL_1</tt></b><dd>State code
+  (Source: U.S. Census Bureau)<p></p>
+<p>
+<em>
+String
+</em>
+<p>
+<dt><b><tt>LEVEL_2</tt></b><dd>State code plus County code
+  (Source: U.S. Census Bureau)<p></p>
+<p>
+<em>
+String
+</em>
+<p>
+<dt><b><tt>LEVEL_3</tt></b><dd>State code, County code plus Tract code
+  (Source: U.S. Census Bureau)<p></p>
+<p>
+<em>
+String
+</em>
+<p>
+<dt><b><tt>GROUP_AREA</tt></b><dd><p></p>
+<p>
+<dt><b><tt>GROUP_PERI</tt></b><dd><p></p>
+<p>
+<dt><b><tt>LEVEL_4</tt></b><dd>State code, County code,Tract code plus Block Group code
+  (Source: U.S. Census Bureau)<p></p>
+<p>
+<em>
+String
+</em>
+<p>
+<dt><b><tt>Shape_area</tt></b><dd>Area of feature in internal units squared.
+  (Source: ESRI)<p></p>
+<p>
+<em>
+Positive real numbers that are automatically generated.
+</em>
+<p>
+<dt><b><tt>Shape_len</tt></b><dd><p></p>
+<p>
+</dl>
+<p>
+<dt><em>Entity_and_Attribute_Overview:</em>  
+<dd>
+
+Original attributes provided by the U.S. Census with Tiger Line files were evaluated. Changes are reformatting was done to create a series of attributes for internal business purposes. Attributes at this time serve only as variations of necessary geometry level identifiers and relates (PK) to possible business tables. Attributes are stored as both string and integer to allow options for joining data.
+
+</dd>
+<dt><em>Entity_and_Attribute_Detail_Citation:</em>  King County</dt>
+</dl>
+<p>
+</ol>
+<p>
+<hr>
+<h3><A NAME="who">Who produced the data set?</A></h3>
+<ol>
+<li><A NAME="who.1"><b>Who are the originators of the data set?</b></A> (may include formal authors, digital compilers, and editors)<p>
+<ul>
+<li>U.S. Department of Commerce, U.S. Census Bureau, Geography Division
+</ul>
+<p>
+<li><A NAME="who.2"><b>Who also contributed to the data set?</b></A><p>
+<p>
+<li><A NAME="who.3"><b>To whom should users address questions about the data?</b></A><p>
+<div style="margin-left: 2em">
+Mary Ullrich<br>
+King County GIS Center<br>
+GIS Analyst<br>
+201 S Jackson St, Suite 706<br>
+Seattle, WA 98104<br>
+USA<br>
+<p>
+206-684-1789 (voice)<br>
+</div>
+</ol>
+<p>
+<hr>
+<h3><A NAME="why">Why was the data set created?</A></h3>
+<blockquote>
+In order for others to use the information in the Census MAF/TIGER database in a geographic information system (GIS) or for other geographic applications, the Census Bureau releases to the public extracts of the database in the form of TIGER/Line Shapefiles.
+</blockquote>
+<p>
+<hr>
+<h3><A NAME="how">How was the data set created?</A></h3>
+<ol>
+<li><A NAME="how.1"><b>From what previous works were the data drawn?</b></A><p>
+<dl>
+<dt><b>MAF/TIGER</b> (source 1 of 1)
+<dd>
+<blockquote>
+U.S. Department of Commerce, U.S. Census Bureau, Geography Divisi, Unpublished Material, Census MAF/TIGER database.<p>
+</blockquote>
+<dl>
+<dt><em>Type_of_Source_Media:</em>  online</dt>
+<dt><em>Source_Contribution:</em>  
+<dd>
+
+The selected geographic and cartographic information (line segments) are derived from the U.S. Census Bureau's Master Address File Topologically Integrated Geographic Encoding and Referencing (MAF/TIGER) database.
+
+</dd>
+</dl>
+<p>
+</dl>
+<li><A NAME="how.2"><b>How were the data generated, processed, and modified?</b></A><p>
+<dl>
+<dt>Date: Mar-2011 and repeated as eithere BLKGRP10_AREA or WTRBDY_AREA is updated (process 1 of 1)
+<dd>
+Puget Sound and major waterbodies erased from most current version of BLKGRP10_AREA
+<p>
+</dl>
+<li><A NAME="how.3"><b>What similar or related data should the user be aware of?</b></A><p>
+</ol>
+<p>
+<hr>
+<h3><A NAME="quality">How reliable are the data; what problems remain in the data set?</A></h3>
+<ol>
+<li><A NAME="quality.1"><b>How well have the observations been checked?</b></A><p>
+Accurate against Federal Information Processing Standards (FIPS), FIPS Publication 6-4, and FIPS-55 at the 100% level for the codes and base names.  The remaining attribute information has been examined but has not been fully tested for accuracy.
+<p>
+<li><A NAME="quality.2"><b>How accurate are the geographic locations?</b></A><p>
+<p>
+<li><A NAME="quality.3"><b>How accurate are the heights or depths?</b></A><p>
+<p>
+<li><A NAME="quality.4"><b>Where are the gaps in the data?  What is missing?</b></A><p>
+Data completeness of the TIGER/Line Shapefiles reflects the contents of the Census MAF/TIGER database at the time the TIGER/Line Shapefiles were created.
+<P>
+TIGER/Line Shapefiles are extracted from the Census MAF/TIGER database. No changes or updates will be made to this version of the TIGER/Line Shapefiles. Future releases of TIGER/Line Shapefiles will reflect updates made to the Census MAF/TIGER database.
+<p>
+<li><A NAME="quality.5"><b>How consistent are the relationships among the observations, including topology?</b></A><p>
+The Census Bureau performed automated tests to ensure logical consistency and limits of shapefiles.  Segments making up the outer and inner boundaries of a polygon tie end-to-end to completely enclose the area.  All polygons are tested for closure.
+The Census Bureau uses its internally developed geographic update system to enhance and modify spatial and attribute data in the Census MAF/TIGER database.  Standard geographic codes, such as FIPS codes for states, counties, municipalities, county subdivisions, places, American Indian/Alaska Native/Native Hawaiian areas, and congressional districts are used when encoding spatial entities.  The Census Bureau performed spatial data tests for logical consistency of the codes during the compilation of the original Census MAF/TIGER database files.  Most of the codes for geographic entities except states, counties, urban areas, Core Based Statistical Areas (CBSAs), American Indian Areas (AIAs), and congressional districts were provided to the Census Bureau by the USGS, the agency responsible for maintaining FIPS 55.  Feature attribute information has been examined but has not been fully tested for consistency.
+For the TIGER/Line Shapefiles, the Point and Vector Object Count for the G-polygon SDTS Point and Vector Object Type reflects the number of records in the shapefile attribute table.  For multi-polygon features, only one attribute record exists for each multi-polygon rather than one attribute record per individual G-polygon component of the multi-polygon feature.  TIGER/Line Shapefile multi-polygons are an exception to the G-polygon object type classification.  Therefore, when multi-polygons exist in a shapefile, the object count will be less than the actual number of G-polygons.
+</ol>
+<p>
+<hr>
+<h3><A NAME="getacopy">How can someone get a copy of the data set?</A></h3>
+<blockquote>
+<A name="getacopy.0"><b>Are there legal restrictions on access or use of the data?</b></A><p>
+<blockquote>
+<dl>
+<dt><em>Access_Constraints:</em>  None</dt>
+<dt><em>Use_Constraints:</em>  
+<dd>
+
+The TIGER/Line Shapefile products are not copyrighted however TIGER/Line and Census TIGER are registered trademarks of the U.S. Census Bureau.  These products are free to use in a product or publication, however acknowledgement must be given to the U.S. Census Bureau as the source.
+The boundary information in the TIGER/Line Shapefiles are for statistical data collection and tabulation purposes only; their depiction and designation for statistical purposes does not constitute a determination of jurisdictional authority or rights of ownership or entitlement and they are not legal land descriptions.Coordinates in the TIGER/Line shapefiles have six implied decimal places, but the positional accuracy of these coordinates is not as great as the six decimal places suggest.
+<P>
+King County data are made available with the understanding that they shall be used exclusively by the obtainer or his/her authorized agents. Digital products may not be reproduced or redistributed in any form or by any means without the express written authorization of King County.
+
+</dd>
+</dl>
+</blockquote>
+</blockquote>
+<p>
+<ol>
+<li><A NAME="getacopy.1"><b>Who distributes the data set?</b></A> (Distributor 1 of 1)<p>
+<div style="margin-left: 2em">
+Cheryl Wilder<br>
+KCGIS Center<br>
+Data Sales Coordinator<br>
+201 S Jackson St, Suite 700<br>
+Seattle, WA 98104<br>
+USA<br>
+<p>
+206-263-5220 (voice)<br>
+</div>
+<li><A name="getacopy.2"><b>What's the catalog number I need to order this data set?</b></A><p>
+<tt>/plibrary2/census/shapes/polygon/blkgrp10_shore.shp</tt>
+<p>
+<li><A name="getacopy.3"><b>What legal disclaimers am I supposed to read?</b></A><p>
+<blockquote>
+King County disclaims any warranty of use of any digital
+product or data beyond that for which it was designed.
+<P>
+No warranty, expressed or implied is made with regard to the accuracy of these data, and no liability is assumed by the U.S. Government in general or the U.S. Census Bureau in specific as to the spatial or attribute accuracy of the data.  The act of distribution shall not constitute any such warranty and no responsibility is assumed by the U.S. government in the use of these files.  The boundary information in the TIGER/Line Shapefiles is for statistical data collection and tabulation purposes only; their depiction and designation for statistical purposes do not constitute a determination of jurisdictional authority or rights of ownership or entitlement and they are not legal land descriptions.
+</blockquote>
+<p>
+<li><A name="getacopy.4"><b>How can I download or order the data?</b></A><p>
+<ul>
+<li><b>Availability in digital form:</b><p>
+<table border="0" cellpadding="2">
+<tr><th align="left" valign="top">Data&nbsp;format:</th>
+<td>
+ESRI Shapefile
+
+</td>
+</tr>
+<tr><th align="left" valign="top">Network&nbsp;links:</th>
+<td>
+\\gisdw\kclib\plibrary2\census\shapes\polygon\blocks10.shp<br>
+</td>
+</tr>
+<tr><th align="left" valign="top" style="white-space: nowrap">Media you can order:</th>
+<td>
+Yes
+(format CD or DVD Read-only media, if offline)
+<p>
+</td>
+</tr>
+</table>
+<p>
+<li><b>Cost to order the data:</b> <p>
+Contact KCGIS Client Services for the cost of reproduction - <A HREF="http://www.kingcounty.gov/operations/GIS/GISData/GISDataDistribution.aspx">&lt;http://www.kingcounty.gov/operations/GIS/GISData/GISDataDistribution.aspx&gt;</A><p>
+</ul>
+<p>
+</ol>
+<p>
+<hr>
+<h3><A NAME="metaref">Who wrote the metadata?</A></h3>
+<dl>
+<dt>Dates:
+<dd>Last modified: 28-Oct-2011<br>
+</dd>
+<dt>Metadata author:
+<dd>
+<div style="margin-left: 2em">
+King County GIS Center<br>
+c/o Mike Leathers<br>
+GIS Data Coordinator<br>
+201 S Jackson St, Suite 706<br>
+Seattle, WA 98104<br>
+USA<br>
+<p>
+206-263-4867 (voice)<br>
+firstname.lastname@kingcounty.gov<br>
+</div>
+</dd>
+<dt>Metadata standard: <dd>FGDC Content Standards for Digital Geospatial Metadata (FGDC-STD-001-1998)</dl>
+<p></p>
+<hr>
+Generated by <A HREF="http://geology.usgs.gov/tools/metadata/tools/doc/mp.html"><tt>mp</tt></A> version 2.8.24 on Wed Sep 06 08:42:32 2017<br>
+
+</body>
+</html>
