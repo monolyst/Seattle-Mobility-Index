@@ -1,4 +1,3 @@
-
 # coding: utf-8
 """
 Basket Destination Calculator
@@ -14,16 +13,15 @@ https://public.tableau.com/views/Basket_of_Destinations/Dashboard?:embed=y&:disp
 This script accesses the Google Map Distance Matrix API to rank 
 each possible origin-destination by their driving distance. 
 The basket definition is created by using parameters to filter each class of destination.
-
 """
 
-from datetime import datetime
 import itertools
 import json
 import math
 import os
 import time
 import string
+from datetime import datetime
 
 import numpy as np
 import pandas as pd
@@ -34,53 +32,40 @@ try:
 except:
     from urllib2 import Request, urlopen  # Python 2
 
-valid_chars = "-_.() %s%s" % (string.ascii_letters, string.digits) # why do we need it? 
-class_list = ["urban village", "citywide", "destination park", "supermarket", "library",
-              "hospital", "pharmacy", "post_office", "school", "cafe"]  
-
 DATADIR = os.path.join(os.getcwd(), "../seamo/data/raw")
-# We don't have Analysis folder and API_Key yet
+DIST_MATRIX_URL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&mode=driving&origins="
 # ANALYSISDIR = os.path.join(BASEDIR, "Analysis")
 # API_Key = open(os.path.join(BASEDIR, "api-key.txt"), 'r').read()
 
 
-"""
-# ## Combine google places with citywide places for a full list of destinations
+def calculate_distance_to_basket(data_path='GoogleMatrix_Places_Full.csv',
+                                origin, origin_lat, origin_long):
+    """Calculate the distance (and travel time) to each destination
+    and produce a CSV file of the data.
+    This calls the Google Matrix API
+    """ 
+    destinations_df = pd.read_csv(os.path.join(DATADIR, data_path) 
 
-# Combine Google places data with citywide places. The citywide file contain urban villages, destination parks, and 
-# citywide points.
-df_Places_Google = pd.read_csv(os.path.join(DATADIR, 'GoogleMatrix_Places.csv'))
-#df_Places_Citywide = pd.read_csv('GoogleMatrix_Places_Citywide.csv')
-#df_Places_Full = pd.concat([df_Places_Google,df_Places_Citywide])
-#df_Places_Full.to_csv("GoogleMatrix_Places_Full.csv", mode='w', header=True, index=False)
-
-# Calculate the distance (and travel time) to each destination 
-def distanceToBasket(origin, originLat, originLong):
-    dfDestinations = pd.read_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Full.csv') 
-
-    minLat = originLat - .8
-    maxLat = originLat + .8
-    minLng = originLong - .8
-    maxLng = originLong + .8
+    min_lat = origin_lat - .8
+    max_lat = origin_lat + .8
+    min_long = origin_long - .8
+    max_long = origin_long + .8
     
-    # filter general destinations that are approximately less than 5-6 miles away 
-    dfDestinations = dfDestinations[(dfDestinations['class'] == "citywide") | 
-                                    (dfDestinations['class'] == "urban village") | 
+    # Filter general destinations that are approximately less than 5-6 miles away 
+    destinations_df = destinations_df[(destinations_df['class'] == "citywide") | 
+                                    (destinations_df['class'] == "urban village") | 
                                     (
-                                    (dfDestinations['lat'] > minLat) & (dfDestinations['lat'] < maxLat) &
-                                    (dfDestinations['lng'] > minLng) & (dfDestinations['lng'] < maxLng)
+                                    (destinations_df['lat'] > min_lat) & (destinations_df['lat'] < max_lat) &
+                                    (destinations_df['lng'] > min_long) & (destinations_df['lng'] < max_long)
                                     )
                                      ]
-                                     
-    Distance = []
+    distance = []
     
-    for index, row in dfDestinations.iterrows():
-
-        # Build the Origin and Destination strings
-        Origin = str(originLat) + "," + str(originLong)
-        Destination = str(row["lat"]) + "," + str(row["lng"])
-        URL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&mode=driving&origins=" + Origin +                      "&destinations=" + Destination + "&key=" + API_Key
-        #print (URL)
+    for index, row in destinations_df.iterrows():
+        # Build the origin and destination strings
+        origin = str(origin_lat) + "," + str(origin_long)
+        destination = str(row["lat"]) + "," + str(row["lng"])
+        url = DIST_MATRIX_URL + origin + "&destinations" + destination + "&key" + API_KEY
         q = Request(URL)
         a = urlopen(q).read()
         data = json.loads(a)
@@ -90,164 +75,56 @@ def distanceToBasket(origin, originLat, originLong):
         
         df = json_normalize(data['rows'][0]['elements'])  
         df['distance.value'] = df['distance.value']/1609
-        Distance.append(df['distance.value'].tolist()[0])    
+        distance.append(df['distance.value'].tolist()[0])    
         
-     #   print (df)  
-    dfDestinations['distance'] = Distance
-    dfDestinations['origin'] = origin
-    dfDestinations['pair'] = dfDestinations['origin'].astype(str)  + "-" + dfDestinations['place_id'].astype(str)
+    destinations_df['distance'] = distance
+    destinations_df['origin'] = origin
+    destinations_df['pair'] = destinations_df['origin'].astype(str)  + "-" + destinations_df['place_id'].astype(str)
     
     # Sort and rank by class
-    dfDestinations['rank'] = dfDestinations.groupby(['class'])['distance'].rank(ascending=True)
-    
-    
+    destinations_df['rank'] = destinations_df.groupby(['class'])['distance'].rank(ascending=True)
+
     # Export to csv
     if os.path.exists(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv'))
-        dfDestinations.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv'), mode='a', header=False, index=False)
+        destinations_df.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv'), mode='a', header=False, index=False)
     else:
-        dfDestinations.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv'), mode='w', header=True, index=False)
+        destinations_df.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv'), mode='w', header=True, index=False)
 
-# ## Call google distance matrix API
 
-# load the list of origins and call the distance to basket function for each origin
-dfOrigins = pd.read_csv(os.path.join(DATADIR, 'SeattleCensusBlocksandNeighborhoodCorrelationFile.csv'))
-
-dfOrigins = dfOrigins[
-                    (dfOrigins['BLOCKGROUP'] == 530330062001) |
-                      (dfOrigins['BLOCKGROUP'] == 530330030003) |
-                      (dfOrigins['BLOCKGROUP'] == 530330068002) |
-                    (dfOrigins['BLOCKGROUP'] == 530330107012) |
-                      (dfOrigins['BLOCKGROUP'] == 530330077003)
-]
-
-for index, row in dfOrigins.iterrows():
-    print (row['BLOCKGROUP'])
-    distanceToBasket(row['BLOCKGROUP'],row['CT_LON'],row['CT_LAT'])
-    
-# Filter the universe of baskets to match parameter limits. This will reduce the size of the table to make it easier
-# for analysis and geocoding 
-
-def distilleBasketPrelim():
-
-    df_destinations = pd.read_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv')) 
+def evaluate_proximity_ratio(destination_data_path):
+    """
+    Filter the universe of baskets to match parameter limits. 
+    This will reduce the size of the table to make it easier for analysis and 
+    geocoding. 
+    """
+    destinations_df = pd.read_csv(destination_data_path) 
     
     # filter destination based on rank (distance from destination)
-    df_destinations = df_destinations[(df_destinations['class'] != "urban village") | (df_destinations['rank'] <= 5)]
-    df_destinations = df_destinations[(df_destinations['class'] != "citywide") | (df_destinations['rank'] <= 20)]
-    df_destinations = df_destinations[(df_destinations['class'] != "destination park") | (df_destinations['rank'] <= 5)]
-    df_destinations = df_destinations[(df_destinations['class'] != "supermarket") | (df_destinations['rank'] <= 5)]
-    df_destinations = df_destinations[(df_destinations['class'] != "library") | (df_destinations['rank'] <= 5)]
-    df_destinations = df_destinations[(df_destinations['class'] != "hospital") | (df_destinations['rank'] <= 5)]
-    df_destinations = df_destinations[(df_destinations['class'] != "pharmacy") | (df_destinations['rank'] <= 5)]
-    df_destinations = df_destinations[(df_destinations['class'] != "post_office") | (df_destinations['rank'] <= 5)]
-    df_destinations = df_destinations[(df_destinations['class'] != "school") | (df_destinations['rank'] <= 5)]
-    df_destinations = df_destinations[(df_destinations['class'] != "cafe") | (df_destinations['rank'] <= 5)]
+    destinations_df = destinations_df[(destinations_df['class'] != "urban village") | (destinations_df['rank'] <= 5)]
+    destinations_df = destinations_df[(destinations_df['class'] != "citywide") | (destinations_df['rank'] <= 20)]
+    destinations_df = destinations_df[(destinations_df['class'] != "destination park") | (destinations_df['rank'] <= 5)]
+    destinations_df = destinations_df[(destinations_df['class'] != "supermarket") | (destinations_df['rank'] <= 5)]
+    destinations_df = destinations_df[(destinations_df['class'] != "library") | (destinations_df['rank'] <= 5)]
+    destinations_df = destinations_df[(destinations_df['class'] != "hospital") | (destinations_df['rank'] <= 5)]
+    destinations_df = destinations_df[(destinations_df['class'] != "pharmacy") | (destinations_df['rank'] <= 5)]
+    destinations_df = destinations_df[(destinations_df['class'] != "post_office") | (destinations_df['rank'] <= 5)]
+    destinations_df = destinations_df[(destinations_df['class'] != "school") | (destinations_df['rank'] <= 5)]
+    destinations_df = destinations_df[(destinations_df['class'] != "cafe") | (destinations_df['rank'] <= 5)]
 
-    df_destinations.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv', mode='w', header=True, index=False))
-    
-distilleBasketPrelim()  
-
-"""
+    destinations_df.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv', mode='w', header=True, index=False))
 
 
-def distill_basket_test(testArray):
-    
+def combine_places_data():
+    """Combine Google places data with citywide places into a new csv. 
+    The citywide file contains urban villages, destination parks, and 
+    citywide points.
     """
-    ## Tune and Evaluate Model ##
-    We will evaluate the model by comparing the 'proximity ratio' 
-    from the results with the ratio from the PSRC survey for each block group. 
-    We will look at all possible parameter calculations and identify the ones with the lowest scores.
- 
-    We can compare results with the Puget Sound Regional Household Travel Survey. 
-    However, keep in mind that survey techniques incorporate behavior biases, 
-    such as those based on income, job status, etc. 
-    But our universal basket of destinations is based on opportunity, 
-    for which we do not want to start with different basket for different people. 
-    This does not preclude the use of weighting coefficients that 
-    could tune baskets for different income levels or types of households. 
+    destination_df = pd.read_csv(os.path.join(DATADIR, 'GoogleMatrix_Places.csv'))
+    citywide_places_df = pd.read_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Citywide.csv'))
+    full_places = pd.concat([destination_df,citywide_places_df])
+    full_places.to_csv("GoogleMatrix_Places_Full.csv", mode='w', header=True, index=False)
 
-    construct the basket for each blockgroup, calculate the proximity ratio,
-    and compare it with sample results from the PSRC survey
-    """
-    # why global variables? 
-    # global df_sample 
-    # global df_destinations
-
-    df_destinations = input_destinations
-    # filter to match basket parameters based on rank (distance from destination)
-    for i in range(len(class_list)):
-        df_destinations = df_destinations[(df_destinations['class'] != class_list[i]) | (df_destinations['rank'] <= testArray[i])]
-     
-    # aggregate block group trips
-    # proximity ration = trips under 2 miles vs trips between 2 and 10 miles; rows with zero denominators are removed
-    df_destinations['dist_under_2'] = np.where(df_destinations['distance'] < 2.0, 1,0)
-    df_destinations['dist_2_to_10'] = np.where((df_destinations['distance'] >= 2) & (df_destinations['distance'] < 10.0), 1, 0)
-    df_blockgroup = df_destinations.groupby(['origin'], as_index=False).agg({'dist_under_2':sum,'dist_2_to_10':sum})
-    df_blockgroup = df_blockgroup[df_blockgroup['dist_2_to_10'] != 0]   
-    df_blockgroup['proximity_ratio_test'] = df_blockgroup['dist_under_2'] / df_blockgroup['dist_2_to_10']
- 
-    # merge with evaluation file
-    df_merged = pd.merge(left=df_blockgroup, right=df_sample, how='left', left_on='origin', right_on='bg_origin')
-    df_merged = df_merged.dropna()
-    
-    # evaluate results for this test array
-    target = df_merged['proximity_ratio']
-    predictions = df_merged['proximity_ratio_test']
-    mse = mean_squared_error(target, predictions)
-
-    return (mse)
-
-
-# to test the function using two test arrays
-"""
-df_sample = pd.read_csv(os.path.join(DATADIR, 'Proximity_Ratio.csv')) 
-input_destinations = pd.read_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv'))
-testArray1 = [0, 8, 0, 0, 0, 0, 0, 0, 0, 3]
-testArray2 = [2, 11, 3, 2, 2, 2, 1, 0, 1, 2]
-print(distilleBasketTest(testArray1))
-print(distilleBasketTest(testArray2))
-"""
-
-
-## Brute force function to evaluate all combinations. There are 200,000 possible combinations.
-
-df_sample = pd.read_csv(os.path.join(DATADIR, 'Proximity_Ratio.csv')) 
-input_destinations = pd.read_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv')) 
-
-df_basket_combinations = pd.DataFrame()
-
-#sizeLimit = 25
-size_limit = int(input("Enter sizeLimit(I strongly suggest 40 or 41): "))
-
-
-# Define parameter domain
-AA = [0,1,2,3,4] # urban village
-BB = [8,9,10,11,12,13] # citywide destination
-A = [0,1,2,3] # destination park
-B = [0,1,2,3] # supermarket
-C = [0,1,2,3] # library
-D = [0,1,2,3] # hospital
-E = [0,1,2,3] # pharmacy
-F = [0,1,2,3] # post office
-G = [0,1,2,3] # school
-H = [0,1,2,3] # cafe
-
-count_combinations = 0
-score = []
-parameters = []
-
-for x in itertools.product(AA,BB,A,B,C,D,E,F,G,H):
-    
-    count_variables = 0
-
-    for item in x:
-        count_variables += item
-    
-    if count_variables == size_limit: # valid combination
-        parameters.append(x)
-        score.append(distill_basket_test(x))
-        count_combinations += 1
-
-print("Combinations: " + str(count_combinations))
-print("Parameters (arrays of ranks): " + str(parameters))
-print("Score: ", score)
+if __name__ == "__main__":
+    combine_places_data()
+    destination_data_path = os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv') 
+    evaluate_proximity_ratio(destination_data_path)
