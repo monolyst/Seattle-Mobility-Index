@@ -25,6 +25,11 @@ The project has the following structure:
             |- ...
       |- examples/
       |- scripts/
+      	 |- core/
+	    |- ...
+	 |- analysis/
+	    |- ...
+      |- notebooks/
       |- setup.py
       |- .travis.yml
       |- .mailmap
