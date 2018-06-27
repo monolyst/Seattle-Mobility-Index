@@ -29,7 +29,9 @@ from pandas.io.json import json_normalize
 from sklearn.metrics import mean_squared_error
 from urllib.request import Request, urlopen  # Python 3
 
-DATADIR = os.path.join(os.getcwd(), "../seamo/data/raw")
+DATADIR = os.path.join(os.getcwd(), "../../seamo/data/raw")
+PROXIMITY_THRESHOLD = 0.8 # 5-6 miles
+
 DIST_MATRIX_URL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&mode=driving&origins="
 # ANALYSISDIR = os.path.join(BASEDIR, "Analysis")
 # API_Key = open(os.path.join(BASEDIR, "api-key.txt"), 'r').read()
@@ -49,10 +51,10 @@ def calculate_distance_to_basket(data_path, origin_lat, origin_long):
     """ 
     destinations_df = pd.read_csv(os.path.join(DATADIR, data_path)) 
 
-    min_lat = origin_lat - .8
-    max_lat = origin_lat + .8
-    min_long = origin_long - .8
-    max_long = origin_long + .8
+    min_lat = origin_lat - PROXIMITY_THRESHOLD
+    max_lat = origin_lat + PROXIMITY_THRESHOLD
+    min_long = origin_long - PROXIMITY_THRESHOLD
+    max_long = origin_long + PROXIMITY_THRESHOLD
     
     # Filter general destinations that are approximately less than 5-6 miles away 
     destinations_df = destinations_df[(destinations_df['class'] == "citywide") | 
@@ -108,7 +110,7 @@ def evaluate_proximity_ratio(destination_data_path):
                 "library",
                 "hospital",
                 "pharmacy",
-                "post_office", # why underscore and others not?
+                "post_office",
                 "school",
                 "cafe"]
  
