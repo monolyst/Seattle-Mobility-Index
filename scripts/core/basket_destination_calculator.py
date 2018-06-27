@@ -127,18 +127,6 @@ def evaluate_proximity_ratio(destination_data_path):
     destinations_df.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv', mode='w', header=True, index=False))
 
 
-def combine_places_data():
-    """Combine Google places data with citywide places into a new csv. 
-    The citywide file contains urban villages, destination parks, and 
-    citywide points.
-    """
-    # TBH, this should go into 'processed' 
-    destination_df = pd.read_csv(os.path.join(DATADIR, 'GoogleMatrix_Places.csv'))
-    citywide_places_df = pd.read_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Citywide.csv'))
-    full_places = pd.concat([destination_df,citywide_places_df])
-    full_places.to_csv("GoogleMatrix_Places_Full.csv", mode='w', header=True, index=False)
-
 if __name__ == "__main__":
-    combine_places_data()
     destination_data_path = os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv') 
     evaluate_proximity_ratio(destination_data_path)
