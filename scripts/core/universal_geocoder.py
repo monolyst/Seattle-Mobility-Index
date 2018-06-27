@@ -46,7 +46,7 @@ while decrement:
 
 ## Load Data
 # Path to raw data directory
-DATADIR = os.path.join(os.getcwd(), '../seamo/data/raw')
+DATADIR = os.path.join(os.getcwd(), '../../seamo/data/raw')
     
 GeographicalAreas = {}
 for key, value in csv.reader(open(os.path.join(DATADIR, "zipcode.csv"))):
@@ -80,7 +80,7 @@ def geocode(lat,long):
             CouncilDistrict = key.split("--")[0]
             break
             
-    for key, value in csv.reader(open(os.path.join(DATADIR, "zipcode.csv"))):
+   # for key, value in csv.reader(open(os.path.join(DATADIR, "zipcode.csv"))):
         p = path.Path(ast.literal_eval(value))
         if p.contains_point((float(lat),float(long))) == True:
             ZipCode = key.split("--")[0]
@@ -96,7 +96,7 @@ def geocode(lat,long):
             UrbanVillage = key.split("--")[0]
             break
             
-    for key, value in csv.reader(open(os.path.join(DATADIR, "blkgrp10_shore.csv"))):
+ #   for key, value in csv.reader(open(os.path.join(DATADIR, "blkgrp10_shore.csv"))):
         p = path.Path(ast.literal_eval(value))
         if p.contains_point((float(lat),float(long))) == True:
             BlockGroup = key.split("--")[0]
