@@ -37,7 +37,6 @@ def read_file_into_dataframe(desired_geometry, name, crs):
         area.to_frame(name='area')
         gdf = pd.concat([tract_blkgrp, geometry, area],axis=1)
         gdf.columns=['tract_blkgrp', 'geometry', 'area']
-
     else:
         gdf = gpd.GeoDataFrame(df.loc[:, (name, 'geometry')],
             crs=crs, geometry='geometry')
