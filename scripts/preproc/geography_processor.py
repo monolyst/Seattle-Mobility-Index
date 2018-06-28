@@ -9,6 +9,52 @@ from geopandas.tools import sjoin
 
 
 # plt.rcParams["figure.figsize"] = [16, 9] #optional
+def spatial_overlays(df1, df2, how='intersection'):
+    '''Compute overlay intersection of two
+        GeoPandasDataFrames df1 and df2
+    '''
+    df1 = df1.copy()
+    df2 = df2.copy()
+    df1['geometry'] = df1.geometry.buffer(0)
+    df2['geometry'] = df2.geometry.buffer(0)
+    if how == 'intersection':
+        # Spatial Index to create intersections
+        spatial_index = df2.sindex
+        df1['bbox'] = df1.geometry.apply(lambda x: x.bounds)
+        df1['histreg'] = df1.bbox.apply(lambda x: list(spatial_index.intersection(x)))
+        pairs = df1['histreg'].to_dict()
+        nei = []
+        for i, j in pairs.items():
+            for k in j:
+                nei.append([i, k])
+
+        pairs = gpd.GeoDataFrame(nei, columns=['idx1', 'idx2'], crs=df1.crs)
+        pairs = pairs.merge(df1, left_on='idx1', right_index=True)
+        pairs = pairs.merge(df2, left_on='idx2', right_index=True, suffixes=['_1', '_2'])
+        pairs['Intersection'] = pairs.apply(lambda x: (x['geometry_1'].intersection(x['geometry_2'])).buffer(0), axis=1)
+        pairs = gpd.GeoDataFrame(pairs, columns=pairs.columns, crs=df1.crs)
+        cols = pairs.columns.tolist()
+        cols.remove('geometry_1')
+        cols.remove('geometry_2')
+        cols.remove('histreg')
+        cols.remove('bbox')
+        cols.remove('Intersection')
+        dfinter = pairs[cols+['Intersection']].copy()
+        dfinter.rename(columns={'Intersection': 'geometry'}, inplace=True)
+        dfinter = gpd.GeoDataFrame(dfinter, columns=dfinter.columns, crs=pairs.crs)
+        dfinter = dfinter.loc[dfinter.geometry.is_empty == False]
+        return dfinter
+    elif how == 'difference':
+        spatial_index = df2.sindex
+        df1['bbox'] = df1.geometry.apply(lambda x: x.bounds)
+        df1['histreg'] = df1.bbox.apply(lambda x: list(spatial_index.intersection(x)))
+        df1['new_g'] = df1.apply(lambda x: reduce(lambda x, y: x.difference(y).buffer(0),
+            [x.geometry] + list(df2.iloc[x.histreg].geometry)), axis=1)
+        df1.geometry = df1.new_g
+        df1 = df1.loc[df1.geometry.is_empty == False].copy()
+        df1.drop(['bbox', 'histreg', new_g], axis=1, inplace=True)
+        return df1
+
 def read_file_into_dataframe(desired_geometry, name, crs):
     # shapefile filepath
     desired_geometry = str(desired_geometry) + '.shp'
@@ -30,27 +76,32 @@ def read_file_into_dataframe(desired_geometry, name, crs):
         tract_blkgrp = gdf.loc[:, 'GEO_ID_GRP'].str[6:].astype(str)
         geometry = gdf.loc[:, 'geometry']
         area = gdf.loc[:, 'Shape_area']
-        
+
         # convert series back to dataframe
         tract_blkgrp.to_frame(name='tract_blkgrp')
         geometry.to_frame(name='geometry')
         area.to_frame(name='area')
         gdf = pd.concat([tract_blkgrp, geometry, area],axis=1)
-        gdf.columns=['tract_blkgrp', 'geometry', 'area']
+        gdf.columns = ['tract_blkgrp', 'geometry', 'area']
     else:
         gdf = gpd.GeoDataFrame(df.loc[:, (name, 'geometry')],
             crs=crs, geometry='geometry')
+        gdf.columns = ['key', 'geometry']
     return gdf
 
 
 def process_data(desired_geometry, name, crs, outline, rectangle):
     gdf = read_file_into_dataframe(desired_geometry, name, crs)
-    seattle = gpd.overlay(outline, rectangle, how='intersection')
+    seattle = spatial_overlays(outline, rectangle, how='intersection')
+    seattle = seattle.drop(['idx1', 'idx2'], axis=1)
     seattle.crs = from_epsg(4326)
     seattle.crs = gdf.crs
 
     # spatial join between king county and seattle
     data = sjoin(gdf, seattle, op='intersects')
+    data = data[['key', 'geometry']]
+    mask = data.key.duplicated(keep='first')
+    data = data[~mask]
 
     # plot map
     # data.plot(cmap="tab20b")
@@ -115,14 +166,17 @@ def main():
     gdf.crs = from_epsg(4326)
 
     # overlay boundary of seattle with current outline to remove noise
-    data = gpd.overlay(gdf, rectangle, how='intersection')
+    data = spatial_overlays(gdf, rectangle, how='intersection')
+    data = data[['tract_blkgrp', 'area', 'geometry']]
 
     # plot map
     # data.plot(cmap="tab20b")
 
     # calculate centroids
-    blkgrps = pd.concat([data, data.geometry.centroid], axis=1)
-    blkgrps.columns = ['tract_blkgrp', 'area', 'geometry', 'centroid']
+    centroids = data.geometry.centroid
+    data['tract_blkgrp'] = '530330' + data['tract_blkgrp'].astype(str)
+    blkgrps = pd.concat([data, centroids.y, centroids.x], axis=1)
+    blkgrps.columns = ['geoid', 'area', 'geometry', 'lat', 'long']
 
     # outline of seattle used for overlay intersection
     outline = seattle_outline(blkgrps, crs)
