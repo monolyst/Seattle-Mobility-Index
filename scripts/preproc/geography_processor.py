@@ -181,8 +181,12 @@ def main():
     # outline of seattle used for overlay intersection
     outline = seattle_outline(blkgrps, crs)
 
-    # Neighborhood
-    neighborhoods = process_data('neighborhood', 'NEIGHBORHO',
+    # Short Neighborhood
+    short_nbhd = process_data('Neighborhoods', 'S_Hood',
+        crs, outline, rectangle)
+
+    # Long Neighborhood
+    long_nbhd = process_data('Neighborhoods', 'N_Hood',
         crs, outline, rectangle)
 
     # Council District
@@ -198,7 +202,8 @@ def main():
         crs, outline, rectangle)
 
     # write to csv file
-    write_to_csv('SeattleNeighborhoods', neighborhoods)
+    write_to_csv('SeattleShortNeighborhoods', short_nbhd)
+    write_to_csv('SeattleLongNeighborhoods', long_nbhd)
     write_to_csv('SeattleCouncilDistricts', coucil_districts)
     write_to_csv('SeattleZipcodes', zipcodes)
     write_to_csv('SeattleUrbanVillages', urban_villages)
