@@ -104,8 +104,6 @@ def main():
     gdf = gpd.GeoDataFrame(kc_s_join, crs=crs, geometry='geometry')
     gdf.crs = from_epsg(4326)
 
-    # rectangle.crs = gdf.crs
-
     # overlay boundary of seattle with current outline to remove noise
     data = gpd.overlay(gdf, rectangle, how='intersection')
 
