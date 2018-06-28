@@ -34,7 +34,7 @@ MODE = 'driving'
 def calculate_distance_to_basket(blockgroup, origin_lat, origin_long):
     """Calculate the distance (and travel time) to each destination
     and produce a CSV file of the data.
-    This calls the Google Matrix API
+    This calls the Google Matrix API.
 
     Inputs:
 
@@ -51,6 +51,7 @@ def calculate_distance_to_basket(blockgroup, origin_lat, origin_long):
     max_long = origin_long + PROXIMITY_THRESHOLD
     
     # Filter general destinations that are approximately less than 5-6 miles away 
+    # Keep all citywide and urban_village (why the latter?) 
     destinations_df = destinations_df[(destinations_df['class'] == "citywide") | 
                                     (destinations_df['class'] == "urban_village") | 
                                     (
@@ -76,13 +77,14 @@ def calculate_distance_to_basket(blockgroup, origin_lat, origin_long):
         data = json.loads(a)
 
         if 'errorZ' in data:
+            # Do we really want to print this? 
             print (data["error"])
         
         # All this work just to get a single number! dang. 
-        # message for AP; what does json normalize do, and why we need df?
         # the thing appended to distance is a number.. why is it a list?
         df = json_normalize(data['rows'][0]['elements'])  
         df['distance.value'] = df['distance.value']/1609
+        # Why 'to list' and then zero; just get the one.
         distance.append(df['distance.value'].tolist()[0])    
         
     destinations_df['distance'] = distance
