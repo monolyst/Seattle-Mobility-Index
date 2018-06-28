@@ -22,8 +22,25 @@ def read_file_into_dataframe(desired_geometry, name, crs):
     df = df.to_crs({'init': 'epsg:4326'})
 
     # select desired columns and convert into geodataframe
-    gdf = gpd.GeoDataFrame(df.loc[:, (name, 'geometry')],
-        crs=crs, geometry='geometry')
+    if desired_geometry == 'blkgrp10_shore' + '.shp':
+        gdf = gpd.GeoDataFrame(df.loc[:, (name, 'Shape_area', 'geometry')],
+            crs=crs, geometry='geometry')
+
+        # process columns from geodataframe
+        tract_blkgrp = gdf.loc[:, 'GEO_ID_GRP'].str[6:].astype(str)
+        geometry = gdf.loc[:, 'geometry']
+        area = gdf.loc[:, 'Shape_area']
+        
+        # convert series back to dataframe
+        tract_blkgrp.to_frame(name='tract_blkgrp')
+        geometry.to_frame(name='geometry')
+        area.to_frame(name='area')
+        gdf = pd.concat([tract_blkgrp, geometry, area],axis=1)
+        gdf.columns=['tract_blkgrp', 'geometry', 'area']
+
+    else:
+        gdf = gpd.GeoDataFrame(df.loc[:, (name, 'geometry')],
+            crs=crs, geometry='geometry')
     return gdf
 
 
@@ -89,30 +106,24 @@ def main():
 
     # process King County correlation dataframe
     gdf = read_file_into_dataframe('blkgrp10_shore', 'GEO_ID_GRP', crs)
-    tract_blkgrp = gdf.loc[:, 'GEO_ID_GRP'].str[6:].astype(str)
-    geometry = gdf.loc[:, 'geometry']
-    tract_blkgrp.to_frame(name='tract_blkgrp')
-    geometry.to_frame(name='geometry')
-    kc = pd.concat([tract_blkgrp, geometry], axis=1)
-    kc.columns = ['tract_blkgrp', 'geometry']
 
     # inner join on Seattle census tract/block groups
-    kc_s_join = pd.merge(s, kc, left_on='tract_blkgrp',
+    gdf = pd.merge(s, gdf, left_on='tract_blkgrp',
         right_on='tract_blkgrp', how='inner')
 
     # convert pandas dataframe to geopandas dataframe
-    gdf = gpd.GeoDataFrame(kc_s_join, crs=crs, geometry='geometry')
+    gdf = gpd.GeoDataFrame(gdf, crs=crs, geometry='geometry')
     gdf.crs = from_epsg(4326)
 
     # overlay boundary of seattle with current outline to remove noise
     data = gpd.overlay(gdf, rectangle, how='intersection')
 
     # plot map
-    # seattle.plot(cmap="tab20b")
+    # data.plot(cmap="tab20b")
 
     # calculate centroids
     blkgrps = pd.concat([data, data.geometry.centroid], axis=1)
-    blkgrps.columns = ['tract_blkgrp', 'geometry', 'centroid']
+    blkgrps.columns = ['tract_blkgrp', 'area', 'geometry', 'centroid']
 
     # outline of seattle used for overlay intersection
     outline = seattle_outline(blkgrps, crs)
