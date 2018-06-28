@@ -35,5 +35,7 @@ if __name__ == "__main__":
     citywide_df = pd.read_csv(citywide_path)
     full_places_df = pd.concat([places_df, citywide_df])
 
-    # Write combined DF to a CSV
-    full_places_df.to_csv(output_path, mode='w', header=True, index=False)
+    # Write combined DF to a CSV if it doesn't already exist
+    if not os.path.exists(output_path):
+        full_places_df.to_csv(output_path, mode='w', header=True, index=False)
+

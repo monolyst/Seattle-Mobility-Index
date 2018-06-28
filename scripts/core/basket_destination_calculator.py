@@ -15,30 +15,26 @@ each possible origin-destination by their driving distance.
 The basket definition is created by using parameters to filter each class of destination.
 """
 
-import itertools
 import json
-import math
 import os
-import time
-import string
-from datetime import datetime
 
 import numpy as np
 import pandas as pd
 from pandas.io.json import json_normalize
-from sklearn.metrics import mean_squared_error
 from urllib.request import Request, urlopen  # Python 3
 
-DATADIR = os.path.join(os.getcwd(), "../seamo/data/raw")
-DIST_MATRIX_URL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&mode=driving&origins="
-# ANALYSISDIR = os.path.join(BASEDIR, "Analysis")
-# API_Key = open(os.path.join(BASEDIR, "api-key.txt"), 'r').read()
+DATADIR = os.path.join(os.getcwd(), "../../seamo/data/raw")
+PROXIMITY_THRESHOLD = 0.8 # 5-6 miles
 
-#def calculate_distance_to_basket(data_path='GoogleMatrix_Places_Full.csv', origin, origin_lat, origin_long):
-def calculate_distance_to_basket(data_path, origin_lat, origin_long):
+DIST_MATRIX_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?'
+UNITS = 'imperial'
+MODE = 'driving'
+# API_KEY = open(os.path.join(BASEDIR, "api-key.txt"), 'r').read()
+
+def calculate_distance_to_basket(blockgroup, origin_lat, origin_long):
     """Calculate the distance (and travel time) to each destination
     and produce a CSV file of the data.
-    This calls the Google Matrix API
+    This calls the Google Matrix API.
 
     Inputs:
 
@@ -49,12 +45,13 @@ def calculate_distance_to_basket(data_path, origin_lat, origin_long):
     """ 
     destinations_df = pd.read_csv(os.path.join(DATADIR, data_path)) 
 
-    min_lat = origin_lat - .8
-    max_lat = origin_lat + .8
-    min_long = origin_long - .8
-    max_long = origin_long + .8
+    min_lat = origin_lat - PROXIMITY_THRESHOLD
+    max_lat = origin_lat + PROXIMITY_THRESHOLD
+    min_long = origin_long - PROXIMITY_THRESHOLD
+    max_long = origin_long + PROXIMITY_THRESHOLD
     
     # Filter general destinations that are approximately less than 5-6 miles away 
+    # Keep all citywide and urban_village (why the latter?) 
     destinations_df = destinations_df[(destinations_df['class'] == "citywide") | 
                                     (destinations_df['class'] == "urban_village") | 
                                     (
@@ -68,20 +65,30 @@ def calculate_distance_to_basket(data_path, origin_lat, origin_long):
         # Build the origin and destination strings
         origin = str(origin_lat) + "," + str(origin_long)
         destination = str(row["lat"]) + "," + str(row["lng"])
-        url = DIST_MATRIX_URL + origin + "&destinations" + destination + "&key" + API_KEY
-        q = Request(URL)
+
+        url = DIST_MATRIX_URL +\
+              'units={0}'.format(UNITS) +\
+              '&mode={0}'.format(MODE) +\
+              '&origins={0}'.format(origin) +\
+              "&destinations={0}".format(destination) +\
+              "&key={0}".format(API_KEY)
+        q = Request(url)
         a = urlopen(q).read()
         data = json.loads(a)
 
         if 'errorZ' in data:
+            # Do we really want to print this? 
             print (data["error"])
         
+        # All this work just to get a single number! dang. 
+        # the thing appended to distance is a number.. why is it a list?
         df = json_normalize(data['rows'][0]['elements'])  
         df['distance.value'] = df['distance.value']/1609
+        # Why 'to list' and then zero; just get the one.
         distance.append(df['distance.value'].tolist()[0])    
         
     destinations_df['distance'] = distance
-    destinations_df['origin'] = origin
+    destinations_df['origin'] = blockgroup 
     destinations_df['pair'] = destinations_df['origin'].astype(str)  + "-" + destinations_df['place_id'].astype(str)
     
     # Sort and rank by class
@@ -108,11 +115,12 @@ def evaluate_proximity_ratio(destination_data_path):
                 "library",
                 "hospital",
                 "pharmacy",
-                "post_office", # why underscore and others not?
+                "post_office",
                 "school",
                 "cafe"]
  
     # filter destination based on rank (distance from destination)
+    # There is probably a better way to do this in pandas.
     destinations_df = destinations_df[(destinations_df['class'] != "urban village") | (destinations_df['rank'] <= 5)]
     destinations_df = destinations_df[(destinations_df['class'] != "citywide") | (destinations_df['rank'] <= 20)]
     destinations_df = destinations_df[(destinations_df['class'] != "destination park") | (destinations_df['rank'] <= 5)]
@@ -127,18 +135,6 @@ def evaluate_proximity_ratio(destination_data_path):
     destinations_df.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv', mode='w', header=True, index=False))
 
 
-def combine_places_data():
-    """Combine Google places data with citywide places into a new csv. 
-    The citywide file contains urban villages, destination parks, and 
-    citywide points.
-    """
-    # TBH, this should go into 'processed' 
-    destination_df = pd.read_csv(os.path.join(DATADIR, 'GoogleMatrix_Places.csv'))
-    citywide_places_df = pd.read_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Citywide.csv'))
-    full_places = pd.concat([destination_df,citywide_places_df])
-    full_places.to_csv("GoogleMatrix_Places_Full.csv", mode='w', header=True, index=False)
-
 if __name__ == "__main__":
-    combine_places_data()
     destination_data_path = os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv') 
     evaluate_proximity_ratio(destination_data_path)
