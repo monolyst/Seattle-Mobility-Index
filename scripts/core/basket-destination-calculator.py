@@ -27,24 +27,27 @@ import numpy as np
 import pandas as pd
 from pandas.io.json import json_normalize
 from sklearn.metrics import mean_squared_error
-try:
-    from urllib.request import Request, urlopen  # Python 3
-except:
-    from urllib2 import Request, urlopen  # Python 2
+from urllib.request import Request, urlopen  # Python 3
 
 DATADIR = os.path.join(os.getcwd(), "../seamo/data/raw")
 DIST_MATRIX_URL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&mode=driving&origins="
 # ANALYSISDIR = os.path.join(BASEDIR, "Analysis")
 # API_Key = open(os.path.join(BASEDIR, "api-key.txt"), 'r').read()
 
-
-def calculate_distance_to_basket(data_path='GoogleMatrix_Places_Full.csv',
-                                origin, origin_lat, origin_long):
+#def calculate_distance_to_basket(data_path='GoogleMatrix_Places_Full.csv', origin, origin_lat, origin_long):
+def calculate_distance_to_basket(data_path, origin_lat, origin_long):
     """Calculate the distance (and travel time) to each destination
     and produce a CSV file of the data.
     This calls the Google Matrix API
+
+    Inputs:
+
+    Output:
+    
+    Side effects: produces file with distances.
+
     """ 
-    destinations_df = pd.read_csv(os.path.join(DATADIR, data_path) 
+    destinations_df = pd.read_csv(os.path.join(DATADIR, data_path)) 
 
     min_lat = origin_lat - .8
     max_lat = origin_lat + .8
@@ -53,7 +56,7 @@ def calculate_distance_to_basket(data_path='GoogleMatrix_Places_Full.csv',
     
     # Filter general destinations that are approximately less than 5-6 miles away 
     destinations_df = destinations_df[(destinations_df['class'] == "citywide") | 
-                                    (destinations_df['class'] == "urban village") | 
+                                    (destinations_df['class'] == "urban_village") | 
                                     (
                                     (destinations_df['lat'] > min_lat) & (destinations_df['lat'] < max_lat) &
                                     (destinations_df['lng'] > min_long) & (destinations_df['lng'] < max_long)
@@ -85,7 +88,7 @@ def calculate_distance_to_basket(data_path='GoogleMatrix_Places_Full.csv',
     destinations_df['rank'] = destinations_df.groupby(['class'])['distance'].rank(ascending=True)
 
     # Export to csv
-    if os.path.exists(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv'))
+    if os.path.exists(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv')):
         destinations_df.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv'), mode='a', header=False, index=False)
     else:
         destinations_df.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv'), mode='w', header=True, index=False)
@@ -98,7 +101,17 @@ def evaluate_proximity_ratio(destination_data_path):
     geocoding. 
     """
     destinations_df = pd.read_csv(destination_data_path) 
-    
+   
+    categories = ["urban_village",
+                "destination park",
+                "supermarket",
+                "library",
+                "hospital",
+                "pharmacy",
+                "post_office", # why underscore and others not?
+                "school",
+                "cafe"]
+ 
     # filter destination based on rank (distance from destination)
     destinations_df = destinations_df[(destinations_df['class'] != "urban village") | (destinations_df['rank'] <= 5)]
     destinations_df = destinations_df[(destinations_df['class'] != "citywide") | (destinations_df['rank'] <= 20)]
@@ -119,6 +132,7 @@ def combine_places_data():
     The citywide file contains urban villages, destination parks, and 
     citywide points.
     """
+    # TBH, this should go into 'processed' 
     destination_df = pd.read_csv(os.path.join(DATADIR, 'GoogleMatrix_Places.csv'))
     citywide_places_df = pd.read_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Citywide.csv'))
     full_places = pd.concat([destination_df,citywide_places_df])
