@@ -10,7 +10,7 @@ DATADIR = os.path.join(os.getcwd(), '../../seamo/data/raw/shapefiles/')
 PROCESSED_DIR = os.path.join(os.getcwd(), '../../seamo/data/processed/')
 
 #Geocoder function
-def geocode(lat, long):
+def geocode(lat, long, reference):
     lat_long = gpd.GeoDataFrame([Point(long, lat)], columns=['geometry'], geometry='geometry')
     lat_long.crs = {'init' :'epsg:4326'}
 
@@ -28,7 +28,7 @@ def geocode(lat, long):
 def main(argv):
     reference = gi.make_dataframe(DATADIR)
     df = pd.read_csv(sys.argv[1])
-    decoded = decoded.append(geocode(df['lat'], df['long']), axis=1)
+    decoded = decoded.append(geocode(df['lat'], df['long'], reference), axis=1)
 
     print(decoded)
 
