@@ -27,7 +27,7 @@ def geocode(lat, long, reference):
 
 def main(argv):
     reference = gi.make_dataframe(DATADIR)
-    file = str(sys.argv[1]) + '.csv'
+    file = str(sys.argv[1]) + '.csv' # add directory where the file should be found
     df = pd.read_csv(file)
     decoded = decoded.append(geocode(df['lat'], df['long'], reference), axis=1)
 
