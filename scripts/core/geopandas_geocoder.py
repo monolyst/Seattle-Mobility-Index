@@ -7,6 +7,7 @@ import geocoder_input as gi
 
 #Read in shapes files for block group, neighborhoods, zipcode, council district and urban villages
 DATADIR = os.path.join(os.getcwd(), '../../seamo/data/raw/shapefiles/')
+PROCESSED_DIR = os.path.join(os.getcwd(), '../../seamo/data/processed/')
 
 #Geocoder function
 def geocode(lat, long):
@@ -30,7 +31,9 @@ def main(argv):
     decoded = decoded.append(geocode(df['lat'], df['long']), axis=1)
 
     print(decoded)
-    
+
+    decoded.to_csv(PROCESSED_DIR)
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])
