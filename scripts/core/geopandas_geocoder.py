@@ -1,4 +1,5 @@
 import os
+import sys
 import pandas as pd
 import geopandas as gpd
 from shapely.geometry import Point
@@ -6,7 +7,6 @@ import geocoder_input as gi
 
 #Read in shapes files for block group, neighborhoods, zipcode, council district and urban villages
 DATADIR = os.path.join(os.getcwd(), '../../seamo/data/raw/shapefiles/')
-reference = gi.make_dataframme(DATADIR)
 
 #Geocoder function
 def geocode(lat, long):
@@ -24,5 +24,13 @@ def geocode(lat, long):
 
     return labels
 
+def main(argv):
+    reference = gi.make_dataframe(DATADIR)
+    df = pd.read_csv(sys.argv[1])
+    decoded = decoded.append(geocode(df['lat'], df['long']), axis=1)
 
-print(geocode(47.650955, -122.34728))
+    print(decoded)
+    
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
