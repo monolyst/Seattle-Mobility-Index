@@ -25,116 +25,176 @@ from urllib.request import Request, urlopen  # Python 3
 
 DATADIR = os.path.join(os.getcwd(), "../../seamo/data/raw")
 PROXIMITY_THRESHOLD = 0.8 # 5-6 miles
+METERS_TO_MILES = 1609
 
+
+# API constants
 DIST_MATRIX_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?'
 UNITS = 'imperial'
 MODE = 'driving'
-# API_KEY = open(os.path.join(BASEDIR, "api-key.txt"), 'r').read()
 
-def calculate_distance_to_basket(blockgroup, origin_lat, origin_long):
-    """Calculate the distance (and travel time) to each destination
-    and produce a CSV file of the data.
-    This calls the Google Matrix API.
+# Google API naming
+PLACES_LAT = 'lat'
+PLACES_LON = 'lon'
 
-    Inputs:
+# Seattle Census Data naming
+CENSUS_LAT = 'CT_LAT'
+CENSUS_LON = 'CT_LON'
+BLOCKGROUP = 'BLOCKGROUP'
 
-    Output:
-    
-    Side effects: produces file with distances.
+class BasketCalculator:
+    def __init__(self, api_key):
+        self.api_key = api_key
 
-    """ 
-    destinations_df = pd.read_csv(os.path.join(DATADIR, data_path)) 
 
-    min_lat = origin_lat - PROXIMITY_THRESHOLD
-    max_lat = origin_lat + PROXIMITY_THRESHOLD
-    min_long = origin_long - PROXIMITY_THRESHOLD
-    max_long = origin_long + PROXIMITY_THRESHOLD
-    
-    # Filter general destinations that are approximately less than 5-6 miles away 
-    # Keep all citywide and urban_village (why the latter?) 
-    destinations_df = destinations_df[(destinations_df['class'] == "citywide") | 
-                                    (destinations_df['class'] == "urban_village") | 
-                                    (
-                                    (destinations_df['lat'] > min_lat) & (destinations_df['lat'] < max_lat) &
-                                    (destinations_df['lng'] > min_long) & (destinations_df['lng'] < max_long)
-                                    )
-                                     ]
-    distance = []
-    
-    for index, row in destinations_df.iterrows():
-        # Build the origin and destination strings
-        origin = str(origin_lat) + "," + str(origin_long)
-        destination = str(row["lat"]) + "," + str(row["lng"])
+    def origins_to_distances(self, origins_fp, distances_fp, dest_fp, api_key):
+        # Save the full CSV. filter later.
+        origins = pd.read_csv(origins_fp)
+        destinations = pd.read_csv(dest_fp)
+        filtered = self.filter_destinations(destinations)
+        for i, row in origins:
+            blockgroup = row[BLOCKGROUP]
+            origin_lat = row[CENSUS_LAT]
+            origin_lon = row[CENSUS_LON]
+            # Should 'filter_destinations' be a helper fun?
+            distances = self.calculate_distance_to_basket(origin_lat, origin_lon) 
+            for place_id, distance in distances:
+                pair = {0}"-"{1}.format(blockgroup, place_id) 
 
+        # make a dataframe and have origin, dest, pair, distance
+        dist_matrix = {}
+        # rank it
+        # Export to csv
+        if os.path.exists(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv')):
+            destinations_df.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv'), mode='a', header=False, index=False)
+        else:
+            destinations_df.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv'), mode='w', header=True, index=False)
+
+        return dist_matrix
+
+
+    def rank_destinations(self, destinations):
+        # Sort and rank by class
+        destinations_df['rank'] = destinations_df.groupby(['class'])['distance'].rank(ascending=True)
+
+    def filter_destinations(self, origin_lat, origin_lon, destinations):
+        """
+        Filter general destinations that are approximately less than 5-6 miles away 
+        Keep all citywide and urban_village (why the latter?) 
+        Input: origin_lat, origin_lon, destinations dataframe
+        Output: dataframe
+        """
+        min_lat = origin_lat - PROXIMITY_THRESHOLD
+        max_lat = origin_lat + PROXIMITY_THRESHOLD
+        min_long = origin_lon - PROXIMITY_THRESHOLD
+        max_long = origin_lon + PROXIMITY_THRESHOLD
+        destinations_df = destinations_df[(destinations_df['class'] == "citywide") | 
+                                        (destinations_df['class'] == "urban_village") | 
+                                        (
+                                        (destinations_df['lat'] > min_lat) & (destinations_df['lat'] < max_lat) &
+                                        (destinations_df['lng'] > min_long) & (destinations_df['lng'] < max_long)
+                                        )
+                                         ]
+        return destinations
+        
+    def calculate_distance(self, origin, destination):
+        """
+        Input: origin string, destination string
+        Output: distance in miles
+        Calls Google Matrix API
+        """ 
+        # Do we need to throw an exception here if this don't work
         url = DIST_MATRIX_URL +\
               'units={0}'.format(UNITS) +\
               '&mode={0}'.format(MODE) +\
               '&origins={0}'.format(origin) +\
               "&destinations={0}".format(destination) +\
-              "&key={0}".format(API_KEY)
+              "&key={0}".format(api_key)
+
         q = Request(url)
         a = urlopen(q).read()
-        data = json.loads(a)
+        response = json.loads(a)
 
-        if 'errorZ' in data:
-            # Do we really want to print this? 
-            print (data["error"])
+        if 'errorZ' in response:
+            # Do we really want to print this?  
+            print (response["error"])
         
-        # All this work just to get a single number! dang. 
-        # the thing appended to distance is a number.. why is it a list?
-        df = json_normalize(data['rows'][0]['elements'])  
-        df['distance.value'] = df['distance.value']/1609
-        # Why 'to list' and then zero; just get the one.
-        distance.append(df['distance.value'].tolist()[0])    
+        distance = response['rows'][0]['elements'][0]['distance']['value']
+
+        return distance 
+
+
+    def calculate_distance_to_basket(self, origin_lat, origin_lon, destinations):
+        """Calculate the distance (and travel time) to each destination
+        and produce a CSV file of the data.
+        This calls the Google Matrix API.
+
+        Inputs:
+
+        Output:
         
-    destinations_df['distance'] = distance
-    destinations_df['origin'] = blockgroup 
-    destinations_df['pair'] = destinations_df['origin'].astype(str)  + "-" + destinations_df['place_id'].astype(str)
-    
-    # Sort and rank by class
-    destinations_df['rank'] = destinations_df.groupby(['class'])['distance'].rank(ascending=True)
+        Side effects: produces file with distances.
 
-    # Export to csv
-    if os.path.exists(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv')):
-        destinations_df.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv'), mode='a', header=False, index=False)
-    else:
-        destinations_df.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv'), mode='w', header=True, index=False)
+        """ 
+        distances = {}
+        
+        for index, row in destinations.iterrows():
+            dest_lat = row[PLACES_LAT]
+            dest_lon = row[PLACES_LON] 
+            
+            place_id = row['place_id']
+            # Build the origin and destination strings
+            origin = str(origin_lat) + "," + str(origin_lon)
+            destination = str(dest_lat) + "," + str(dest_lon)
+
+            distance = self.calculate_distance(origin, destination)
+
+            distances[place_id] = distance
 
 
-def evaluate_proximity_ratio(destination_data_path):
-    """
-    Filter the universe of baskets to match parameter limits. 
-    This will reduce the size of the table to make it easier for analysis and 
-    geocoding. 
-    """
-    destinations_df = pd.read_csv(destination_data_path) 
-   
-    categories = ["urban_village",
-                "destination park",
-                "supermarket",
-                "library",
-                "hospital",
-                "pharmacy",
-                "post_office",
-                "school",
-                "cafe"]
- 
-    # filter destination based on rank (distance from destination)
-    # There is probably a better way to do this in pandas.
-    destinations_df = destinations_df[(destinations_df['class'] != "urban village") | (destinations_df['rank'] <= 5)]
-    destinations_df = destinations_df[(destinations_df['class'] != "citywide") | (destinations_df['rank'] <= 20)]
-    destinations_df = destinations_df[(destinations_df['class'] != "destination park") | (destinations_df['rank'] <= 5)]
-    destinations_df = destinations_df[(destinations_df['class'] != "supermarket") | (destinations_df['rank'] <= 5)]
-    destinations_df = destinations_df[(destinations_df['class'] != "library") | (destinations_df['rank'] <= 5)]
-    destinations_df = destinations_df[(destinations_df['class'] != "hospital") | (destinations_df['rank'] <= 5)]
-    destinations_df = destinations_df[(destinations_df['class'] != "pharmacy") | (destinations_df['rank'] <= 5)]
-    destinations_df = destinations_df[(destinations_df['class'] != "post_office") | (destinations_df['rank'] <= 5)]
-    destinations_df = destinations_df[(destinations_df['class'] != "school") | (destinations_df['rank'] <= 5)]
-    destinations_df = destinations_df[(destinations_df['class'] != "cafe") | (destinations_df['rank'] <= 5)]
+        return distances
+        
 
-    destinations_df.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv', mode='w', header=True, index=False))
+
+
+    def evaluate_proximity_ratio(destination_data_path):
+        """
+        Filter the universe of baskets to match parameter limits. 
+        This will reduce the size of the table to make it easier for analysis and 
+        geocoding. 
+        """
+        destinations_df = pd.read_csv(destination_data_path) 
+       
+        categories = ["urban_village",
+                    "destination park",
+                    "supermarket",
+                    "library",
+                    "hospital",
+                    "pharmacy",
+                    "post_office",
+                    "school",
+                    "cafe"]
+     
+        # filter destination based on rank (distance from destination)
+        # There is probably a better way to do this in pandas.
+        destinations_df = destinations_df[(destinations_df['class'] != "urban village") | (destinations_df['rank'] <= 5)]
+        destinations_df = destinations_df[(destinations_df['class'] != "citywide") | (destinations_df['rank'] <= 20)]
+        destinations_df = destinations_df[(destinations_df['class'] != "destination park") | (destinations_df['rank'] <= 5)]
+        destinations_df = destinations_df[(destinations_df['class'] != "supermarket") | (destinations_df['rank'] <= 5)]
+        destinations_df = destinations_df[(destinations_df['class'] != "library") | (destinations_df['rank'] <= 5)]
+        destinations_df = destinations_df[(destinations_df['class'] != "hospital") | (destinations_df['rank'] <= 5)]
+        destinations_df = destinations_df[(destinations_df['class'] != "pharmacy") | (destinations_df['rank'] <= 5)]
+        destinations_df = destinations_df[(destinations_df['class'] != "post_office") | (destinations_df['rank'] <= 5)]
+        destinations_df = destinations_df[(destinations_df['class'] != "school") | (destinations_df['rank'] <= 5)]
+        destinations_df = destinations_df[(destinations_df['class'] != "cafe") | (destinations_df['rank'] <= 5)]
+
+        destinations_df.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv', mode='w', header=True, index=False))
 
 
 if __name__ == "__main__":
-    destination_data_path = os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv') 
-    evaluate_proximity_ratio(destination_data_path)
+    """
+    Ask the user for their API key.
+    """
+    api_key = input("Enter your Google API key: ")
+    basket_calculator = BasketCalculator(api_key)
+    basket_calculator.do_thing()
