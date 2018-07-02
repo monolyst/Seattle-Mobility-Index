@@ -34,8 +34,12 @@ UNITS = 'imperial'
 MODE = 'driving'
 
 # Google API naming
-PLACES_LAT = 'lat'
-PLACES_LON = 'lon'
+PLACE_LAT = 'lat'
+PLACE_LON = 'lon'
+PLACE_CLASS = 'class'
+PLACE_RANK = 'rank'
+
+DISTANCE = 'distance'
 
 # Seattle Census Data naming
 CENSUS_LAT = 'CT_LAT'
@@ -47,35 +51,39 @@ class BasketCalculator:
         self.api_key = api_key
 
 
-    def origins_to_distances(self, origins_fp, distances_fp, dest_fp, api_key):
+    def origins_to_distances(self, origins_fp, dest_fp):
         # Save the full CSV. filter later.
         origins = pd.read_csv(origins_fp)
         destinations = pd.read_csv(dest_fp)
-        filtered = self.filter_destinations(destinations)
+        # Filter for distance
+        destinations = self.filter_destinations(destinations)
+        dist_matrix = [] 
         for i, row in origins:
             blockgroup = row[BLOCKGROUP]
             origin_lat = row[CENSUS_LAT]
             origin_lon = row[CENSUS_LON]
-            # Should 'filter_destinations' be a helper fun?
-            distances = self.calculate_distance_to_basket(origin_lat, origin_lon) 
-            for place_id, distance in distances:
+            distances = self.calculate_distance_to_basket(origin_lat, origin_lon, destinations) 
+            for place_id, data in distances:
+                distance = data[DISTANCE]
+                dest_rank = data[PLACE_RANK]
+                dest_class = data[PLACE_CLASS]
                 pair = {0}"-"{1}.format(blockgroup, place_id) 
+                dist_matrix.append([pair, distance, dest_rank, dest_class])
 
-        # make a dataframe and have origin, dest, pair, distance
-        dist_matrix = {}
+        dist_df = pd.DataFrame(dist_matrix, columns=['pair', DISTANCE, PLACE_RANK, PLACE_CLASS]
+    
         # rank it
-        # Export to csv
-        if os.path.exists(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv')):
-            destinations_df.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv'), mode='a', header=False, index=False)
-        else:
-            destinations_df.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv'), mode='w', header=True, index=False)
+        dist_df = self.rank_destinations(dist_df)
+        
 
-        return dist_matrix
+        return dist_df 
 
 
-    def rank_destinations(self, destinations):
+    def rank_destinations(self, dist_df):
         # Sort and rank by class
-        destinations_df['rank'] = destinations_df.groupby(['class'])['distance'].rank(ascending=True)
+        dist_df[PLACE_RANK] = dist_df.groupby([PLACE_CLASS])['distance'].rank(ascending=True)
+        return dist_df
+
 
     def filter_destinations(self, origin_lat, origin_lon, destinations):
         """
@@ -97,6 +105,7 @@ class BasketCalculator:
                                          ]
         return destinations
         
+
     def calculate_distance(self, origin, destination):
         """
         Input: origin string, destination string
@@ -130,18 +139,22 @@ class BasketCalculator:
         This calls the Google Matrix API.
 
         Inputs:
-
+            origin_lat (float)
+            origin_lon (float)
+            destinations (DataFrame)
         Output:
-        
-        Side effects: produces file with distances.
+            distances (dict)
 
         """ 
         distances = {}
         
         for index, row in destinations.iterrows():
-            dest_lat = row[PLACES_LAT]
-            dest_lon = row[PLACES_LON] 
+            dest_lat = row[PLACE_LAT]
+            dest_lon = row[PLACE_LON] 
+            dest_class = row[PLACE_CLASS]
+            dest_rank = row[PLACE_RANK]        
             
+    
             place_id = row['place_id']
             # Build the origin and destination strings
             origin = str(origin_lat) + "," + str(origin_lon)
@@ -149,12 +162,10 @@ class BasketCalculator:
 
             distance = self.calculate_distance(origin, destination)
 
-            distances[place_id] = distance
-
+            # Also store the class and rank of the destinations
+            distances[place_id] = {DISTANCE: distance, PLACE_CLASS: dest_class, PLACE_RANK: dest_rank}
 
         return distances
-        
-
 
 
     def evaluate_proximity_ratio(destination_data_path):
@@ -197,4 +208,17 @@ if __name__ == "__main__":
     """
     api_key = input("Enter your Google API key: ")
     basket_calculator = BasketCalculator(api_key)
-    basket_calculator.do_thing()
+    
+    # THIS DOES NOT WORK YET
+    origins_fp = os.path.join(DATATDIR, filepath)
+    destinations_fp = os.path.join(DATADIR, filepath)
+
+    distance_df = basket_calculator.origins_to_distances(origins_fp, destinations_fp)
+    
+    distance_df.to_csv(path)
+
+    # Export to csv
+    #if os.path.exists(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv')):
+    #    destinations_df.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv'), mode='a', header=False, index=False)
+    #else:
+    #    destinations_df.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv'), mode='w', header=True, index=False)
