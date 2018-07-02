@@ -20,7 +20,6 @@ import os
 
 import numpy as np
 import pandas as pd
-from pandas.io.json import json_normalize
 from urllib.request import Request, urlopen  # Python 3
 
 DATADIR = os.path.join(os.getcwd(), "../../seamo/data/raw")
@@ -35,11 +34,13 @@ MODE = 'driving'
 
 # Google API naming
 PLACE_LAT = 'lat'
-PLACE_LON = 'lon'
+PLACE_LON = 'lng' # why not lon ugh
 PLACE_CLASS = 'class'
 PLACE_RANK = 'rank'
 
 DISTANCE = 'distance'
+PAIR = 'pair'
+
 
 # Seattle Census Data naming
 CENSUS_LAT = 'CT_LAT'
@@ -52,42 +53,43 @@ class BasketCalculator:
 
 
     def origins_to_distances(self, origins_fp, dest_fp):
-        # Save the full CSV. filter later.
         origins = pd.read_csv(origins_fp)
         destinations = pd.read_csv(dest_fp)
-        # Filter for distance
-        destinations = self.filter_destinations(destinations)
         dist_matrix = [] 
         for i, row in origins:
             blockgroup = row[BLOCKGROUP]
             origin_lat = row[CENSUS_LAT]
             origin_lon = row[CENSUS_LON]
-            distances = self.calculate_distance_to_basket(origin_lat, origin_lon, destinations) 
+            # Filter for distance
+            filtered_dests = self.filter_destinations(destinations)
+            distances = self.calculate_distance_to_basket(origin_lat, origin_lon, filtered_dests) 
             for place_id, data in distances:
                 distance = data[DISTANCE]
-                dest_rank = data[PLACE_RANK]
                 dest_class = data[PLACE_CLASS]
-                pair = {0}"-"{1}.format(blockgroup, place_id) 
-                dist_matrix.append([pair, distance, dest_rank, dest_class])
+                pair = "{0}-{1}".format(blockgroup, place_id) 
+                dist_matrix.append([pair, distance, dest_class])
 
-        dist_df = pd.DataFrame(dist_matrix, columns=['pair', DISTANCE, PLACE_RANK, PLACE_CLASS]
+        dist_df = pd.DataFrame(dist_matrix, columns=[PAIR, DISTANCE, PLACE_CLASS])
     
         # rank it
         dist_df = self.rank_destinations(dist_df)
-        
 
         return dist_df 
 
 
     def rank_destinations(self, dist_df):
-        # Sort and rank by class
-        dist_df[PLACE_RANK] = dist_df.groupby([PLACE_CLASS])['distance'].rank(ascending=True)
+        """
+        Sort and rank for distance by class
+        Input: dataframe
+        Output: dataframe with an added 'rank' column
+        """
+        dist_df[PLACE_RANK] = dist_df.groupby([PLACE_CLASS])[DISTANCE].rank(ascending=True)
         return dist_df
 
 
-    def filter_destinations(self, origin_lat, origin_lon, destinations):
+    def filter_destinations(self, origin_lat, origin_lon, dest_df):
         """
-        Filter general destinations that are approximately less than 5-6 miles away 
+        Filter general destinations for proximity within a threshold. 
         Keep all citywide and urban_village (why the latter?) 
         Input: origin_lat, origin_lon, destinations dataframe
         Output: dataframe
@@ -96,14 +98,15 @@ class BasketCalculator:
         max_lat = origin_lat + PROXIMITY_THRESHOLD
         min_long = origin_lon - PROXIMITY_THRESHOLD
         max_long = origin_lon + PROXIMITY_THRESHOLD
-        destinations_df = destinations_df[(destinations_df['class'] == "citywide") | 
-                                        (destinations_df['class'] == "urban_village") | 
+
+        dest_df = dest_df[(dest_df['class'] == "citywide") | 
+                                        (dest_df['class'] == "urban_village") | 
                                         (
-                                        (destinations_df['lat'] > min_lat) & (destinations_df['lat'] < max_lat) &
-                                        (destinations_df['lng'] > min_long) & (destinations_df['lng'] < max_long)
+                                        (dest_df['lat'] > min_lat) & (dest_df['lat'] < max_lat) &
+                                        (dest_df['lng'] > min_long) & (dest_df['lng'] < max_long)
                                         )
                                          ]
-        return destinations
+        return dest_df
         
 
     def calculate_distance(self, origin, destination):
@@ -152,8 +155,6 @@ class BasketCalculator:
             dest_lat = row[PLACE_LAT]
             dest_lon = row[PLACE_LON] 
             dest_class = row[PLACE_CLASS]
-            dest_rank = row[PLACE_RANK]        
-            
     
             place_id = row['place_id']
             # Build the origin and destination strings
@@ -162,20 +163,19 @@ class BasketCalculator:
 
             distance = self.calculate_distance(origin, destination)
 
-            # Also store the class and rank of the destinations
-            distances[place_id] = {DISTANCE: distance, PLACE_CLASS: dest_class, PLACE_RANK: dest_rank}
+            # Store the distance and the class 
+            distances[place_id] = { DISTANCE: distance,
+                                    PLACE_CLASS: dest_class }
 
         return distances
 
 
-    def evaluate_proximity_ratio(destination_data_path):
+    def filter_by_rank(dest_df):
         """
         Filter the universe of baskets to match parameter limits. 
         This will reduce the size of the table to make it easier for analysis and 
         geocoding. 
         """
-        destinations_df = pd.read_csv(destination_data_path) 
-       
         categories = ["urban_village",
                     "destination park",
                     "supermarket",
@@ -188,18 +188,12 @@ class BasketCalculator:
      
         # filter destination based on rank (distance from destination)
         # There is probably a better way to do this in pandas.
-        destinations_df = destinations_df[(destinations_df['class'] != "urban village") | (destinations_df['rank'] <= 5)]
-        destinations_df = destinations_df[(destinations_df['class'] != "citywide") | (destinations_df['rank'] <= 20)]
-        destinations_df = destinations_df[(destinations_df['class'] != "destination park") | (destinations_df['rank'] <= 5)]
-        destinations_df = destinations_df[(destinations_df['class'] != "supermarket") | (destinations_df['rank'] <= 5)]
-        destinations_df = destinations_df[(destinations_df['class'] != "library") | (destinations_df['rank'] <= 5)]
-        destinations_df = destinations_df[(destinations_df['class'] != "hospital") | (destinations_df['rank'] <= 5)]
-        destinations_df = destinations_df[(destinations_df['class'] != "pharmacy") | (destinations_df['rank'] <= 5)]
-        destinations_df = destinations_df[(destinations_df['class'] != "post_office") | (destinations_df['rank'] <= 5)]
-        destinations_df = destinations_df[(destinations_df['class'] != "school") | (destinations_df['rank'] <= 5)]
-        destinations_df = destinations_df[(destinations_df['class'] != "cafe") | (destinations_df['rank'] <= 5)]
+        # Why not just.. keep everything above 20
+        # And if it's not a citywide, cut it to 5
+        dest_df = dest_df[dest_df.rank <= 20]
+        dest_df = dest_df[(dest_df[PLACE_CLASS] != "citywide") | (dest_df['rank'] <= 20)]
 
-        destinations_df.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv', mode='w', header=True, index=False))
+        return_df
 
 
 if __name__ == "__main__":
@@ -216,6 +210,10 @@ if __name__ == "__main__":
     distance_df = basket_calculator.origins_to_distances(origins_fp, destinations_fp)
     
     distance_df.to_csv(path)
+    # filter it
+    basket_calculator.filter_by_rank(path)
+
+    # When shall the file names be specified?
 
     # Export to csv
     #if os.path.exists(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv')):
