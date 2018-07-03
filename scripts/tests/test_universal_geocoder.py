@@ -1,10 +1,15 @@
 """
 This is a test file for universal_geocoder.py
 """
-
+import pdb; pdb.set_trace()
 import unittest
+from scripts.core import geopandas_geocoder
+# from .core import geopandas_geocoder
+# import core.geopandas_geocoder as gg
 
 class UniGeoTest(unittest.TestCase):
+	def setUp(self):
+		self.geopandas_geocoder = geopandas_geocoder(test)
 
 	def test_maxsize(self):
 		"""
@@ -12,12 +17,12 @@ class UniGeoTest(unittest.TestCase):
 		"""
 
 	def test_read_nshort(self):
-		NUMBER_OF_VALUES = 1889
-		NUMBER_OF_KEYS = 10
-		key, value = csv.reader(open(os.path.join(data_path,
-			"Neighborhoods-Short.csv")))
+		# NUMBER_OF_VALUES = 1889
+		# NUMBER_OF_KEYS = 10
+		# key, value = csv.reader(open(os.path.join(data_path,
+		# 	"Neighborhoods-Short.csv")))
 
-		self.assertEqual(NUMBER_OF_VALUES,)
+		# self.assertEqual(NUMBER_OF_VALUES,)
 
 
 		"""
