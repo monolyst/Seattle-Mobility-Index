@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import geopandas as gpd
 from shapely.geometry import Point
+import pickle
 
 #Read in shapes files for block group, neighborhoods, zipcode, council district and urban villages
 # DATADIR = os.path.join(os.getcwd(), '../../seamo/data/raw/shapefiles/')
@@ -15,7 +16,7 @@ def read_shapefile(shapefile, column_name, name, DATADIR):
     geography['geography'] = str(name)
     return geography
 
-def make_reference(DATADIR):
+def make_reference(DATADIR, directory):
     blkgrp = read_shapefile('blkgrp10_shore', 'GEO_ID_GRP', 'Block_Group', DATADIR)
     nbhd_short = read_shapefile('Neighborhoods', 'S_HOOD', 'Neighborhood_Short', DATADIR)
     nbhd_long = read_shapefile('Neighborhoods', 'L_HOOD', 'Neighborhood_Long', DATADIR)
@@ -23,4 +24,18 @@ def make_reference(DATADIR):
     council_district = read_shapefile('sccdst', 'SCCDST', 'Seattle_City_Council_District', DATADIR)
     urban_village = read_shapefile('DPD_uvmfg_polygon', 'UV_NAME', 'Urban_Village', DATADIR)
     reference = pd.concat([blkgrp, nbhd_short, nbhd_long, zipcode, council_district, urban_village])
+    make_pickle(directory, reference)
     return reference
+
+def make_pickle(directory, reference):
+    with open("reference.pickle", 'wb') as pickle_file:
+        pickle.dump(reference, os.path.join(directory, pickle_file))
+        return
+
+def get_reference(DATADIR, directory, pickle_name):
+    fname = os.path.join(directory, pickle_name)
+    if os.path.isfile(fname):
+        reference = pickle.load(open(fname, 'rb'))
+        return reference
+    else:
+        make_reference(DATADIR, directory)
