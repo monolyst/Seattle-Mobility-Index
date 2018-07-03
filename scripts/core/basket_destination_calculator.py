@@ -66,10 +66,10 @@ class BasketCalculator:
             blockgroup = row[BLOCKGROUP]
             origin_lat = row[CENSUS_LAT]
             origin_lon = row[CENSUS_LON]
-            # Filter for distance
+            # Filter for proximity 
             filtered_df = self.filter_destinations(origin_lat, origin_lon, dest_df)
             distances = self.calculate_distance_to_basket(origin_lat, origin_lon, filtered_df) 
-            for place_id, data in distances:
+            for place_id, data in distances.items():
                 distance = data[DISTANCE]
                 dest_class = data[PLACE_CLASS]
                 pair = "{0}-{1}".format(blockgroup, place_id) 
@@ -138,15 +138,24 @@ class BasketCalculator:
             response = urlopen(request).read()
         except:
             pass
-        # if status OK
-        # if status REQUEST_DENIED
 
-        # types of errors: "error_message"
-        # rows [elements][0][status] NOT_FOUND
         data = json.loads(response)
 
-        distance = data['rows'][0]['elements'][0]['distance']['value']
+        if data['status'] != 'OK':
+            message = data['error_message']
+            raise Exception(message)
+            # Going to make a SeamoError type.
+        else:
+            elements = data['rows'][0]['elements']
+            element = elements[0]
+            if element['status'] == 'NOT_FOUND':
+                raise Exception('No good.')  
+            elif element['status'] == 'OK':
+                distance = element['distance']['value']
 
+        # distance = data['rows'][0]['elements'][0]['distance']['value']
+
+        # This is risky.. ergh
         return distance 
 
 
@@ -203,11 +212,9 @@ if __name__ == "__main__":
     api_key = input("Enter your Google API key: ")
     basket_calculator = BasketCalculator(api_key)
 
-    # Should this actually take dataframes, not files?
     origin_df = BasketCalculator.origin_df
     dest_df = BasketCalculator.dest_df
+
     distance_df = basket_calculator.origins_to_distances(origin_df, dest_df)
-    
-    # Put out to a CSV file
-    # distance_df.to_csv(path)
-    # basket_calculator.filter_by_rank(path)
+    distance_df.to_csv("blah.csv")
+    # AP TODO: try this with a petite file
