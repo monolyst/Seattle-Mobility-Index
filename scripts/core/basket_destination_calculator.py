@@ -17,15 +17,14 @@ The basket definition is created by using parameters to filter each class of des
 
 import json
 import os
+from urllib.request import Request, urlopen
 
 import numpy as np
 import pandas as pd
-from urllib.request import Request, urlopen  # Python 3
 
 DATADIR = os.path.join(os.getcwd(), "../../seamo/data/raw")
 PROXIMITY_THRESHOLD = 0.8 # 5-6 miles
 METERS_TO_MILES = 1609
-
 
 # API constants
 DIST_MATRIX_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?'
@@ -48,21 +47,25 @@ CENSUS_LON = 'CT_LON'
 BLOCKGROUP = 'BLOCKGROUP'
 
 class BasketCalculator:
+
+    origin_df = pd.read_csv(ORIGINS_FP)
+    dest_df = pd.read_csv(DEST_FP)
+
     def __init__(self, api_key):
         self.api_key = api_key
 
 
-    def origins_to_distances(self, origins_fp, dest_fp):
-        origins = pd.read_csv(origins_fp)
-        destinations = pd.read_csv(dest_fp)
+    def origins_to_distances(self, 
+            origin_df=BasketCalculator.origin_df,
+            dest_df=BasketCalculator.dest_df):
         dist_matrix = [] 
-        for i, row in origins:
+        for i, row in origin_df:
             blockgroup = row[BLOCKGROUP]
             origin_lat = row[CENSUS_LAT]
             origin_lon = row[CENSUS_LON]
             # Filter for distance
-            filtered_dests = self.filter_destinations(destinations)
-            distances = self.calculate_distance_to_basket(origin_lat, origin_lon, filtered_dests) 
+            filtered_df = self.filter_destinations(dest_df)
+            distances = self.calculate_distance_to_basket(origin_lat, origin_lon, filtered_df) 
             for place_id, data in distances:
                 distance = data[DISTANCE]
                 dest_class = data[PLACE_CLASS]
@@ -79,11 +82,13 @@ class BasketCalculator:
 
     def rank_destinations(self, dist_df):
         """
-        Sort and rank for distance by class
+        For each blockgroup, rank destinations by class for proximity
         Input: dataframe
         Output: dataframe with an added 'rank' column
         """
-        dist_df[PLACE_RANK] = dist_df.groupby([PLACE_CLASS])[DISTANCE].rank(ascending=True)
+        dist_df[PLACE_RANK] = dist_df.groupby(
+            [BLOCKGROUP, PLACE_CLASS])[DISTANCE].rank(
+            ascending=True, method='first')
         return dist_df
 
 
@@ -100,12 +105,12 @@ class BasketCalculator:
         max_long = origin_lon + PROXIMITY_THRESHOLD
 
         dest_df = dest_df[(dest_df['class'] == "citywide") | 
-                                        (dest_df['class'] == "urban_village") | 
-                                        (
-                                        (dest_df['lat'] > min_lat) & (dest_df['lat'] < max_lat) &
-                                        (dest_df['lng'] > min_long) & (dest_df['lng'] < max_long)
-                                        )
-                                         ]
+                        (dest_df['class'] == "urban_village") | 
+                        (
+                        (dest_df['lat'] > min_lat) & (dest_df['lat'] < max_lat) &
+                        (dest_df['lng'] > min_long) & (dest_df['lng'] < max_long)
+                        )
+                         ]
         return dest_df
         
 
@@ -123,20 +128,24 @@ class BasketCalculator:
               "&destinations={0}".format(destination) +\
               "&key={0}".format(api_key)
 
-        q = Request(url)
-        a = urlopen(q).read()
+        request = Request(url)
+        try: 
+            response = urlopen(request).read()
+        except:
+
+        # if status OK
+        # if status REQUEST_DENIED
+
+        # types of errors: "error_message"
+        # rows [elements][0][status] NOT_FOUND
         response = json.loads(a)
 
-        if 'errorZ' in response:
-            # Do we really want to print this?  
-            print (response["error"])
-        
         distance = response['rows'][0]['elements'][0]['distance']['value']
 
         return distance 
 
 
-    def calculate_distance_to_basket(self, origin_lat, origin_lon, destinations):
+    def calculate_distance_to_basket(self, origin_lat, origin_lon, dest_df):
         """Calculate the distance (and travel time) to each destination
         and produce a CSV file of the data.
         This calls the Google Matrix API.
@@ -144,14 +153,14 @@ class BasketCalculator:
         Inputs:
             origin_lat (float)
             origin_lon (float)
-            destinations (DataFrame)
+            dest_df (DataFrame)
         Output:
             distances (dict)
 
         """ 
         distances = {}
         
-        for index, row in destinations.iterrows():
+        for index, row in dest_df.iterrows():
             dest_lat = row[PLACE_LAT]
             dest_lon = row[PLACE_LON] 
             dest_class = row[PLACE_CLASS]
@@ -176,20 +185,6 @@ class BasketCalculator:
         This will reduce the size of the table to make it easier for analysis and 
         geocoding. 
         """
-        categories = ["urban_village",
-                    "destination park",
-                    "supermarket",
-                    "library",
-                    "hospital",
-                    "pharmacy",
-                    "post_office",
-                    "school",
-                    "cafe"]
-     
-        # filter destination based on rank (distance from destination)
-        # There is probably a better way to do this in pandas.
-        # Why not just.. keep everything above 20
-        # And if it's not a citywide, cut it to 5
         dest_df = dest_df[dest_df.rank <= 20]
         dest_df = dest_df[(dest_df[PLACE_CLASS] != "citywide") | (dest_df['rank'] <= 20)]
 
@@ -202,21 +197,10 @@ if __name__ == "__main__":
     """
     api_key = input("Enter your Google API key: ")
     basket_calculator = BasketCalculator(api_key)
+
+    # Should this actually take dataframes, not files?
+    distance_df = basket_calculator.origins_to_distances(origins_df, dest_df)
     
-    # THIS DOES NOT WORK YET
-    origins_fp = os.path.join(DATATDIR, filepath)
-    destinations_fp = os.path.join(DATADIR, filepath)
-
-    distance_df = basket_calculator.origins_to_distances(origins_fp, destinations_fp)
-    
-    distance_df.to_csv(path)
-    # filter it
-    basket_calculator.filter_by_rank(path)
-
-    # When shall the file names be specified?
-
-    # Export to csv
-    #if os.path.exists(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv')):
-    #    destinations_df.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv'), mode='a', header=False, index=False)
-    #else:
-    #    destinations_df.to_csv(os.path.join(DATADIR, 'GoogleMatrix_Places_Dist.csv'), mode='w', header=True, index=False)
+    # Put out to a CSV file
+    # distance_df.to_csv(path)
+    # basket_calculator.filter_by_rank(path)
