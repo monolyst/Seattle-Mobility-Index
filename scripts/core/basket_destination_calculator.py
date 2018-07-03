@@ -3,16 +3,16 @@
 Basket Destination Calculator
  
 This script constructs a market basket of destinations relevant to people 
-who travel in Seattle. The basket may include collections of trips to 
-nearby points of interest and activity centers that are specific to 
-each origin, and a collection of trips to citywide destinations 
+who travel in Seattle. The basket may nearby points of interest and activity 
+centers that are specific to each origin, and citywide destinations 
 that are the same for all starting points.  
 
 https://public.tableau.com/views/Basket_of_Destinations/Dashboard?:embed=y&:display_count=yes
 
-This script accesses the Google Map Distance Matrix API to rank 
-each possible origin-destination by their driving distance. 
-The basket definition is created by using parameters to filter each class of destination.
+This script accesses the Google Map Distance Matrix API and ranks each 
+possible origin-destination pair by their driving distance. 
+The basket definition is created by using parameters to filter each 
+class of destination.
 """
 
 import json
@@ -33,22 +33,25 @@ MODE = 'driving'
 
 # Google API naming
 PLACE_LAT = 'lat'
-PLACE_LON = 'lng' # why not lon ugh
+PLACE_LON = 'lng' 
 PLACE_CLASS = 'class'
 PLACE_RANK = 'rank'
 
 DISTANCE = 'distance'
 PAIR = 'pair'
 
-
 # Seattle Census Data naming
 CENSUS_LAT = 'CT_LAT'
 CENSUS_LON = 'CT_LON'
 BLOCKGROUP = 'BLOCKGROUP'
 
+ORIGIN_FP = os.path.join(DATADIR, 'SeattleCensusBlocksandNeighborhoodCorrelationFile.csv') 
+DEST_FP = os.path.join(DATADIR, 'GoogleMatrix_Places_Full.csv') 
+
+
 class BasketCalculator:
 
-    origin_df = pd.read_csv(ORIGINS_FP)
+    origin_df = pd.read_csv(ORIGIN_FP)
     dest_df = pd.read_csv(DEST_FP)
 
     def __init__(self, api_key):
@@ -56,15 +59,15 @@ class BasketCalculator:
 
 
     def origins_to_distances(self, 
-            origin_df=BasketCalculator.origin_df,
-            dest_df=BasketCalculator.dest_df):
+            origin_df=origin_df,
+            dest_df=dest_df):
         dist_matrix = [] 
-        for i, row in origin_df:
+        for i, row in origin_df.iterrows():
             blockgroup = row[BLOCKGROUP]
             origin_lat = row[CENSUS_LAT]
             origin_lon = row[CENSUS_LON]
             # Filter for distance
-            filtered_df = self.filter_destinations(dest_df)
+            filtered_df = self.filter_destinations(origin_lat, origin_lon, dest_df)
             distances = self.calculate_distance_to_basket(origin_lat, origin_lon, filtered_df) 
             for place_id, data in distances:
                 distance = data[DISTANCE]
@@ -86,8 +89,10 @@ class BasketCalculator:
         Input: dataframe
         Output: dataframe with an added 'rank' column
         """
-        dist_df[PLACE_RANK] = dist_df.groupby(
-            [BLOCKGROUP, PLACE_CLASS])[DISTANCE].rank(
+        # Group by blockgroup and destination class
+        grouped = dist_df.groupby([BLOCKGROUP, PLACE_CLASS])
+        # Rank by proximity (closest is highest) 
+        dist_df[PLACE_RANK] = grouped[DISTANCE].rank(
             ascending=True, method='first')
         return dist_df
 
@@ -132,15 +137,15 @@ class BasketCalculator:
         try: 
             response = urlopen(request).read()
         except:
-
+            pass
         # if status OK
         # if status REQUEST_DENIED
 
         # types of errors: "error_message"
         # rows [elements][0][status] NOT_FOUND
-        response = json.loads(a)
+        data = json.loads(response)
 
-        distance = response['rows'][0]['elements'][0]['distance']['value']
+        distance = data['rows'][0]['elements'][0]['distance']['value']
 
         return distance 
 
@@ -199,7 +204,9 @@ if __name__ == "__main__":
     basket_calculator = BasketCalculator(api_key)
 
     # Should this actually take dataframes, not files?
-    distance_df = basket_calculator.origins_to_distances(origins_df, dest_df)
+    origin_df = BasketCalculator.origin_df
+    dest_df = BasketCalculator.dest_df
+    distance_df = basket_calculator.origins_to_distances(origin_df, dest_df)
     
     # Put out to a CSV file
     # distance_df.to_csv(path)
