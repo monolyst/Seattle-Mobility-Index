@@ -24,7 +24,7 @@ def geocode(input_file, reference):
     data = gpd.GeoDataFrame(data, geometry='geometry')
     data.crs = {'init' :'epsg:4326'}
                                  
-    df = gpd.sjoin(data, reference, how = 'inner')
+    df = gpd.sjoin(data, reference, how = 'left')
     df = df.drop(columns = ['index_right'])
     df = df.sort_values(by='geography')
     df = pd.DataFrame(df)
@@ -39,7 +39,7 @@ def geocode(input_file, reference):
 
 def main(argv):
     reference = gi.make_reference(DATADIR)
-    input_file = str(sys.argv[1]) + '.csv' # add directory where the file should be found
+    input_file = '../../seamo/data/test/' + str(sys.argv[1]) + '.csv' # add directory where the file should be found
     output_file = str(sys.argv[2]) + '.csv'
     decoded = geocode(input_file, reference)
     # print(decoded)
