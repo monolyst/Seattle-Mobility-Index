@@ -2,7 +2,7 @@ import cProfile
 import os
 import sys
 import pstats
-import geopandas_geocoder as gg
+import geocoder as gg
 import geocoder_input as gi
 
 DATADIR = os.path.join(os.pardir, os.pardir, 'seamo/data/raw/shapefiles/')
