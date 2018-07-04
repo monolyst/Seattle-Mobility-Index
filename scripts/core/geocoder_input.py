@@ -36,7 +36,6 @@ def get_reference(DATADIR, directory, pickle_name):
     pickle_name = str(pickle_name)
     fname = directory + pickle_name
     if os.path.isfile(fname):
-        print("a")
         reference = pickle.load(open(fname, 'rb'))
         return reference
     else:
