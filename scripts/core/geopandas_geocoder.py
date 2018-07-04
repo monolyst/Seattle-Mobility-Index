@@ -1,5 +1,5 @@
 """
-command to run script is $ python geopandas_geocoder csv_file output_name
+command to run script is $ python geopandas_geocoder csv_file output_name pickle_name
 """
 
 import os
