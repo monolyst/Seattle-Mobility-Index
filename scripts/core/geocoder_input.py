@@ -30,11 +30,9 @@ def make_reference(DATADIR, directory):
 def make_pickle(directory, reference):
     with open(os.path.join(directory, "reference.pickle"), 'wb') as pickle_file:
         pickle.dump(reference, pickle_file)
-        return
 
 def get_reference(DATADIR, directory, pickle_name):
-    pickle_name = str(pickle_name)
-    fname = directory + pickle_name
+    fname = directory + str(pickle_name)
     if os.path.isfile(fname):
         reference = pickle.load(open(fname, 'rb'))
         return reference
