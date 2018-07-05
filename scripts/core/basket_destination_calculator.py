@@ -216,5 +216,7 @@ if __name__ == "__main__":
     dest_df = BasketCalculator.dest_df
 
     distance_df = basket_calculator.origins_to_distances(origin_df, dest_df)
-    distance_df.to_csv("blah.csv")
+    
+    output_fp = "basket.csv"
+    distance_df.to_csv(output_fp)
     # AP TODO: try this with a petite file
