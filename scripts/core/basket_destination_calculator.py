@@ -19,7 +19,6 @@ import json
 import os
 from urllib.request import Request, urlopen
 
-import numpy as np
 import pandas as pd
 
 DATADIR = os.path.join(os.getcwd(), "../../seamo/data/raw")
@@ -125,19 +124,19 @@ class BasketCalculator:
         Output: distance in miles
         Calls Google Matrix API
         """ 
-        # Do we need to throw an exception here if this don't work
         url = DIST_MATRIX_URL +\
               'units={0}'.format(UNITS) +\
               '&mode={0}'.format(MODE) +\
               '&origins={0}'.format(origin) +\
               "&destinations={0}".format(destination) +\
               "&key={0}".format(api_key)
-
         request = Request(url)
         try: 
             response = urlopen(request).read()
         except:
-            pass
+            raise Exception("Couldn't open link.")  
+            # Do we want to try again, or just skip it?
+            return None
 
         data = json.loads(response)
 
@@ -149,13 +148,12 @@ class BasketCalculator:
             elements = data['rows'][0]['elements']
             element = elements[0]
             if element['status'] == 'NOT_FOUND':
+                # If the origin-destination pair is not found, should write to a log.
                 raise Exception('No good.')  
+                return None
             elif element['status'] == 'OK':
                 distance = element['distance']['value']
 
-        # distance = data['rows'][0]['elements'][0]['distance']['value']
-
-        # This is risky.. ergh
         return distance 
 
 
@@ -185,24 +183,12 @@ class BasketCalculator:
             destination = str(dest_lat) + "," + str(dest_lon)
 
             distance = self.calculate_distance(origin, destination)
-
-            # Store the distance and the class 
-            distances[place_id] = { DISTANCE: distance,
-                                    PLACE_CLASS: dest_class }
+            if distance:
+                # Store the distance and the class 
+                distances[place_id] = { DISTANCE: distance,
+                                        PLACE_CLASS: dest_class }
 
         return distances
-
-
-    def filter_by_rank(dest_df):
-        """
-        Filter the universe of baskets to match parameter limits. 
-        This will reduce the size of the table to make it easier for analysis and 
-        geocoding. 
-        """
-        dest_df = dest_df[dest_df.rank <= 20]
-        dest_df = dest_df[(dest_df[PLACE_CLASS] != "citywide") | (dest_df['rank'] <= 20)]
-
-        return_df
 
 
 if __name__ == "__main__":
@@ -216,7 +202,7 @@ if __name__ == "__main__":
     dest_df = BasketCalculator.dest_df
 
     distance_df = basket_calculator.origins_to_distances(origin_df, dest_df)
-    
+    # Is it a problem that this is all stored in memory until finally put it out    
+
     output_fp = "basket.csv"
     distance_df.to_csv(output_fp)
-    # AP TODO: try this with a petite file
