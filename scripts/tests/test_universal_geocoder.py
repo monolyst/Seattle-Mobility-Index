@@ -3,7 +3,8 @@ This is a test file for universal_geocoder.py
 """
 import pdb; pdb.set_trace()
 import unittest
-from scripts.core import geopandas_geocoder
+import __init__
+#from scripts.core import geopandas_geocoder
 # from .core import geopandas_geocoder
 # import core.geopandas_geocoder as gg
 
