@@ -105,13 +105,13 @@ class BasketCalculator:
         """
         min_lat = origin_lat - PROXIMITY_THRESHOLD
         max_lat = origin_lat + PROXIMITY_THRESHOLD
-        min_long = origin_lon - PROXIMITY_THRESHOLD
-        max_long = origin_lon + PROXIMITY_THRESHOLD
+        min_lon = origin_lon - PROXIMITY_THRESHOLD
+        max_lon = origin_lon + PROXIMITY_THRESHOLD
 
-        dest_df = dest_df[(dest_df['class'] == "citywide") | 
-                        (dest_df['class'] == "urban_village") | 
-                        ((dest_df['lat'] > min_lat) & (dest_df['lat'] < max_lat) &
-                        (dest_df['lng'] > min_long) & (dest_df['lng'] < max_long)
+        dest_df = dest_df[(dest_df[PLACE_CLASS] == "citywide") | 
+                        (dest_df[PLACE_CLASS] == "urban_village") | 
+                        ((dest_df[PLACE_LAT] > min_lat) & (dest_df[PLACE_LAT] < max_lat) &
+                        (dest_df[PLACE_LON] > min_lon) & (dest_df[PLACE_LON] < max_lon)
                         )
                         ]
         return dest_df
@@ -192,12 +192,16 @@ class BasketCalculator:
 
         return distances
 
-    def interpret_shopping_list(self, basket_combination):
+    def create_basket(self, basket_combination):
+        """
+        Given a list of integers denoting counts for basket categories 
+        create a basket of destinations for a blockgroup. 
+        Input: basket_combination (list)
+        Output: dataframe
+        """
+        # We assume that the ranks are for a blockgroup.
         for i in range(len(CLASS_LIST)):
-                filtered_data = filtered_data[(filtered_data['class'] != CLASS_LIST[i]) | (filtered_data['rank'] <= basket_combination[i])]
-        # Given a constant list of basket categories 
-        # And an array of counts, one for each category
-        # filter. 
+                filtered_data = filtered_data[(filtered_data[PLACE_CLASS] != CLASS_LIST[i]) | (filtered_data[PLACE_RANK] <= basket_combination[i])]
         # Does this take in ONE blockgroup, or the whole df of blockgroups?
         # output: the basket. top N locations per category
 
