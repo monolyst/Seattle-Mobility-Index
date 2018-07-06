@@ -151,7 +151,7 @@ class BasketCalculator:
             element = elements[0]
             if element['status'] == 'NOT_FOUND':
                 # If the origin-destination pair is not found, should write to a log.
-                raise Exception('No good.')  
+                raise Exception('Could not find the distance for that pair.')  
                 return distance 
             elif element['status'] == 'OK':
                 distance = element['distance']['value']
@@ -192,21 +192,22 @@ class BasketCalculator:
 
         return distances
 
-    def create_basket(self, basket_combination):
+
+    def create_basket(self, origin_df, basket_combination):
         """
         Given a list of integers denoting counts for basket categories 
-        create a basket of destinations for a blockgroup. 
-        Input: basket_combination (list)
+        and a dataframe of origins (blockgroups), create a basket of destinations 
+        for each blockgroup. 
+
+        Input: origin_df (dataframe), basket_combination (list)
         Output: dataframe
         """
-        # We assume that the ranks are for a blockgroup.
+
         for i in range(len(CLASS_LIST)):
-                filtered_data = filtered_data[(filtered_data[PLACE_CLASS] != CLASS_LIST[i]) | (filtered_data[PLACE_RANK] <= basket_combination[i])]
-        # Does this take in ONE blockgroup, or the whole df of blockgroups?
-        # output: the basket. top N locations per category
+            origin_df = origin_df[(origin_df[PLACE_CLASS] != CLASS_LIST[i]) | 
+                (origin_df[PLACE_RANK] <= basket_combination[i])]
 
-        # also need to work out cloud storage for the DF that comes out
-
+        return origin_df
 
 if __name__ == "__main__":
     """
