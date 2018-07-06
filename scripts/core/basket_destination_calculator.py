@@ -54,12 +54,24 @@ class BasketCalculator:
     dest_df = pd.read_csv(DEST_FP)
 
     def __init__(self, api_key):
+        """
+        Initialize BasketCalculator with an API key. 
+        
+        Inputs: api_key (string)
+        """
         self.api_key = api_key
 
 
-    def origins_to_distances(self, 
-            origin_df=origin_df,
-            dest_df=dest_df):
+    def origins_to_distances(self, origin_df=origin_df, dest_df=dest_df):
+        """
+        For every origin, store the distance to every destination in the 
+        full basket of destinations. Distance is calculated via the Google
+        Distance Matrix API.
+
+        Inputs: origin_df (dataframe), dest_df (dataframe)
+        Outputs: dist_df (dataframe)
+        
+        """
         dist_matrix = [] 
         for i, row in origin_df.iterrows():
             blockgroup = row[BLOCKGROUP]
@@ -84,7 +96,8 @@ class BasketCalculator:
 
     def rank_destinations(self, dist_df):
         """
-        For each blockgroup, rank destinations by class for proximity
+        For each blockgroup, rank destinations by class for proximity.
+
         Input: dataframe
         Output: dataframe with an added 'rank' column
         """
@@ -99,7 +112,8 @@ class BasketCalculator:
     def filter_destinations(self, origin_lat, origin_lon, dest_df):
         """
         Filter general destinations for proximity within a threshold. 
-        Keep all citywide and urban_village (why the latter?) 
+        Keep all citywide and urban_village destinations. 
+
         Input: origin_lat, origin_lon, destinations dataframe
         Output: dataframe
         """
@@ -119,11 +133,14 @@ class BasketCalculator:
 
     def calculate_distance(self, origin, destination):
         """
-        Input: origin string, destination string
-        Output: distance in miles
-        Calls Google Matrix API
+        Calculate the distance between an origin and destination pair.
+        Calls Google Distance Matrix API.
+    
+        Input:  origin (string)
+                destination (string)
+        Output: distance in miles (int)
         """ 
-        distance = None
+        distance = 0 
 
         url = DIST_MATRIX_URL +\
               'units={0}'.format(UNITS) +\
@@ -136,9 +153,7 @@ class BasketCalculator:
             response = urlopen(request).read()
         except:
             raise Exception("Couldn't open link.")  
-            # Do we want to try again, or just skip it?
-            # Should I say 'return distance' or None for clarity?
-            return None 
+            # return distance 
 
         data = json.loads(response)
 
@@ -186,7 +201,7 @@ class BasketCalculator:
 
             distance = self.calculate_distance(origin, destination)
             if distance:
-                # Store the distance and the class 
+                # Store the distance and the class of destination
                 distances[place_id] = { DISTANCE: distance,
                                         PLACE_CLASS: dest_class }
 
@@ -220,7 +235,7 @@ if __name__ == "__main__":
     dest_df = BasketCalculator.dest_df
 
     distance_df = basket_calculator.origins_to_distances(origin_df, dest_df)
-    # Is it a problem that this is all stored in memory until finally put it out    
+    # Is it a problem that this is all stored in memory until write to file?    
 
     output_fp = "basket.csv"
     distance_df.to_csv(output_fp)
