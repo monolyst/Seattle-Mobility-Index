@@ -110,11 +110,10 @@ class BasketCalculator:
 
         dest_df = dest_df[(dest_df['class'] == "citywide") | 
                         (dest_df['class'] == "urban_village") | 
-                        (
-                        (dest_df['lat'] > min_lat) & (dest_df['lat'] < max_lat) &
+                        ((dest_df['lat'] > min_lat) & (dest_df['lat'] < max_lat) &
                         (dest_df['lng'] > min_long) & (dest_df['lng'] < max_long)
                         )
-                         ]
+                        ]
         return dest_df
         
 
@@ -124,6 +123,8 @@ class BasketCalculator:
         Output: distance in miles
         Calls Google Matrix API
         """ 
+        distance = None
+
         url = DIST_MATRIX_URL +\
               'units={0}'.format(UNITS) +\
               '&mode={0}'.format(MODE) +\
@@ -136,7 +137,8 @@ class BasketCalculator:
         except:
             raise Exception("Couldn't open link.")  
             # Do we want to try again, or just skip it?
-            return None
+            # Should I say 'return distance' or None for clarity?
+            return None 
 
         data = json.loads(response)
 
@@ -150,7 +152,7 @@ class BasketCalculator:
             if element['status'] == 'NOT_FOUND':
                 # If the origin-destination pair is not found, should write to a log.
                 raise Exception('No good.')  
-                return None
+                return distance 
             elif element['status'] == 'OK':
                 distance = element['distance']['value']
 
@@ -190,6 +192,18 @@ class BasketCalculator:
 
         return distances
 
+    def interpret_shopping_list(self, category_ranks):
+        # I assume the list is a constant.
+        # Does this take in ONE blockgroup, or the whole df of blockgroups?
+        # output: the basket. top N locations per category
+        # needs to copy the distilleBasketTest code
+        # Given a constant list of basket categories 
+        # And an array of counts, one for each category
+        # filter. 
+        pass
+
+        # also need to work out cloud storage for the DF that comes out
+
 
 if __name__ == "__main__":
     """
@@ -206,3 +220,5 @@ if __name__ == "__main__":
 
     output_fp = "basket.csv"
     distance_df.to_csv(output_fp)
+    # Import Darius csv to sql code
+    # Output to sql.
