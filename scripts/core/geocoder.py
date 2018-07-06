@@ -11,9 +11,10 @@ import geocoder_input as gi
 #Read in shapes files for block group, neighborhoods, zipcode, council district and urban villages
 DATADIR = os.path.join(os.pardir, os.pardir, 'seamo/data/raw/shapefiles/')
 PROCESSED_DIR = os.path.join(os.pardir, os.pardir, 'seamo/data/processed/')
+PICKLE_DIR = os.path.join(os.pardir, os.pardir, 'seamo/data/processed/pickles/')
 
 #Geocoder function
-def geocode(gdf, pickle_name):
+def geocode(gdf, pickle_name="reference.pickle"):
     """ 
     input_file.csv needs header lat, lon
     """
@@ -31,13 +32,13 @@ def geocode(gdf, pickle_name):
     return df
 
 
-def get_reference(pickle_name):
-    reference = gi.get_reference(DATADIR, PROCESSED_DIR, pickle_name)
+def get_reference(pickle_name="reference.pickle"):
+    reference = gi.get_reference(DATADIR, PICKLE_DIR, pickle_name)
     return reference
 
 
-def csv_to_df(input_file, pickle_name):
-    data = pd.read_csv(input_file)
+def geocode_csv(input_file, pickle_name="reference.pickle"):
+    data = pd.read_csv(str(input_file))
     data['geometry'] = data.apply(lambda x: Point((float(x[1]), float(x[0]))), axis=1)
     data = gpd.GeoDataFrame(data, geometry='geometry')
     data.crs = {'init': 'epsg:4326'}
@@ -45,8 +46,8 @@ def csv_to_df(input_file, pickle_name):
     return df
 
 
-def point_to_df(coord, pickle_name):
-    coord = coord.split(", ")
+def geocode_point(coord, pickle_name="reference.pickle"):
+    coord = str(coord).split(", ")
     left = coord[0][1:]
     right = coord[1][:-1]
     data = pd.DataFrame(data={'lat': [left], 'lon': [right], 'geometry': [Point((float(right), float(left)))]})
@@ -69,11 +70,11 @@ def main(argv):
     if CHOICE == "csv":
         # add directory where the file should be found
         input_file = '../../seamo/data/test/' + str(sys.argv[2]) + '.csv'
-        df = csv_to_df(input_file, pickle_name)
+        df = geocode_csv(input_file, pickle_name)
         write_to_csv(df, PROCESSED_DIR, output_file)
     elif CHOICE == "point":
         coord = str(sys.argv[2])
-        df = point_to_df(coord, pickle_name)
+        df = geocode_point(coord, pickle_name)
         write_to_csv(df, PROCESSED_DIR, output_file)
     else:
         raise "invalid input"
