@@ -1,6 +1,7 @@
 # Style guide for Seamo
 
-## Column names should be SQL compatible. 
+## Constants
+- Column names should be SQL compatible. 
 
 ## Git
  - Create new branches for each new feature. Branch names should be reflective of the work being done in the branch.
