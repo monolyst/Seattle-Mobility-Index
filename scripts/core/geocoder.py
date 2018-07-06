@@ -19,7 +19,12 @@ def geocode(gdf, pickle_name="reference.pickle"):
     input_file.csv needs header lat, lon
     """
     reference = get_reference(pickle_name)
-    df = gpd.sjoin(gdf, reference, how = 'left')
+    try:
+        df = gpd.sjoin(gdf, reference, how = 'left')
+    except ValueError:
+        # df = pd.DataFrame()
+        print("did you switch lat/lon, should be (LAT, LON)")
+        print("Not in King County")
     df = df.drop(columns = ['index_right'])
     df = df.sort_values(by='geography')
     df = pd.DataFrame(df)
