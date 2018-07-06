@@ -192,15 +192,14 @@ class BasketCalculator:
 
         return distances
 
-    def interpret_shopping_list(self, category_ranks):
-        # I assume the list is a constant.
-        # Does this take in ONE blockgroup, or the whole df of blockgroups?
-        # output: the basket. top N locations per category
-        # needs to copy the distilleBasketTest code
+    def interpret_shopping_list(self, basket_combination):
+        for i in range(len(CLASS_LIST)):
+                filtered_data = filtered_data[(filtered_data['class'] != CLASS_LIST[i]) | (filtered_data['rank'] <= basket_combination[i])]
         # Given a constant list of basket categories 
         # And an array of counts, one for each category
         # filter. 
-        pass
+        # Does this take in ONE blockgroup, or the whole df of blockgroups?
+        # output: the basket. top N locations per category
 
         # also need to work out cloud storage for the DF that comes out
 
