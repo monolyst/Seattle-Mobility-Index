@@ -50,7 +50,8 @@ def geocode_point(coord, pickle_name="reference.pickle"):
     coord = str(coord).split(", ")
     left = coord[0][1:]
     right = coord[1][:-1]
-    data = pd.DataFrame(data={'lat': [left], 'lon': [right], 'geometry': [Point((float(right), float(left)))]})
+    data = pd.DataFrame(data={'lat': [left], 'lon': [right],
+        'geometry': [Point((float(right), float(left)))]})
     data = data[['lat', 'lon', 'geometry']]
     data = gpd.GeoDataFrame(data, geometry='geometry')
     data.crs = {'init': 'epsg:4326'}
