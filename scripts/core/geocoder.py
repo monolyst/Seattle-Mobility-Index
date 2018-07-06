@@ -17,7 +17,7 @@ def geocode(gdf, pickle_name):
     """ 
     input_file.csv needs header lat, lon
     """
-    reference = get_reference(pickle_name)
+    reference = get_reference(pickle_name="reference.pickle")
     df = gpd.sjoin(gdf, reference, how = 'left')
     df = df.drop(columns = ['index_right'])
     df = df.sort_values(by='geography')
@@ -31,12 +31,12 @@ def geocode(gdf, pickle_name):
     return df
 
 
-def get_reference(pickle_name):
+def get_reference(pickle_name="reference.pickle"):
     reference = gi.get_reference(DATADIR, PROCESSED_DIR, pickle_name)
     return reference
 
 
-def csv_to_df(input_file, pickle_name):
+def geocode_csv(input_file, pickle_name="reference.pickle"):
     data = pd.read_csv(input_file)
     data['geometry'] = data.apply(lambda x: Point((float(x[1]), float(x[0]))), axis=1)
     data = gpd.GeoDataFrame(data, geometry='geometry')
@@ -45,7 +45,7 @@ def csv_to_df(input_file, pickle_name):
     return df
 
 
-def point_to_df(coord, pickle_name):
+def geocode_point(coord, pickle_name="reference.pickle"):
     coord = coord.split(", ")
     left = coord[0][1:]
     right = coord[1][:-1]
@@ -69,11 +69,11 @@ def main(argv):
     if CHOICE == "csv":
         # add directory where the file should be found
         input_file = '../../seamo/data/test/' + str(sys.argv[2]) + '.csv'
-        df = csv_to_df(input_file, pickle_name)
+        df = geocode_csv(input_file, pickle_name)
         write_to_csv(df, PROCESSED_DIR, output_file)
     elif CHOICE == "point":
         coord = str(sys.argv[2])
-        df = point_to_df(coord, pickle_name)
+        df = geocode_point(coord, pickle_name)
         write_to_csv(df, PROCESSED_DIR, output_file)
     else:
         raise "invalid input"
