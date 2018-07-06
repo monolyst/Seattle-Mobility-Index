@@ -42,7 +42,7 @@ def geocode_csv(input_file, pickle_name="reference.pickle"):
     data['geometry'] = data.apply(lambda x: Point((float(x[1]), float(x[0]))), axis=1)
     data = gpd.GeoDataFrame(data, geometry='geometry')
     data.crs = {'init': 'epsg:4326'}
-    df = geocode(data, pickle_name)
+    df = geocode(data, str(pickle_name))
     return df
 
 
@@ -50,11 +50,12 @@ def geocode_point(coord, pickle_name="reference.pickle"):
     coord = str(coord).split(", ")
     left = coord[0][1:]
     right = coord[1][:-1]
-    data = pd.DataFrame(data={'lat': [left], 'lon': [right], 'geometry': [Point((float(right), float(left)))]})
+    data = pd.DataFrame(data={'lat': [left], 'lon': [right],
+        'geometry': [Point((float(right), float(left)))]})
     data = data[['lat', 'lon', 'geometry']]
     data = gpd.GeoDataFrame(data, geometry='geometry')
     data.crs = {'init': 'epsg:4326'}
-    df = geocode(data, pickle_name)
+    df = geocode(data, str(pickle_name))
     return df
 
 
