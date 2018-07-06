@@ -16,7 +16,7 @@ def read_shapefile(shapefile, column_name, name, DATADIR):
     geography['geography'] = str(name)
     return geography
 
-def make_reference(DATADIR, directory):
+def make_reference(DATADIR, directory, pickle_name):
     blkgrp = read_shapefile('blkgrp10_shore', 'GEO_ID_GRP', 'Block_Group', DATADIR)
     nbhd_short = read_shapefile('Neighborhoods', 'S_HOOD', 'Neighborhood_Short', DATADIR)
     nbhd_long = read_shapefile('Neighborhoods', 'L_HOOD', 'Neighborhood_Long', DATADIR)
@@ -24,11 +24,11 @@ def make_reference(DATADIR, directory):
     council_district = read_shapefile('sccdst', 'SCCDST', 'Seattle_City_Council_District', DATADIR)
     urban_village = read_shapefile('DPD_uvmfg_polygon', 'UV_NAME', 'Urban_Village', DATADIR)
     reference = pd.concat([blkgrp, nbhd_short, nbhd_long, zipcode, council_district, urban_village])
-    make_pickle(directory, reference)
+    make_pickle(directory, reference, pickle_name)
     return reference
 
-def make_pickle(directory, reference):
-    with open(os.path.join(directory, "reference.pickle"), 'wb') as pickle_file:
+def make_pickle(directory, reference, pickle_name):
+    with open(os.path.join(directory, str(pickle_name)), 'wb') as pickle_file:
         pickle.dump(reference, pickle_file)
 
 def get_reference(DATADIR, directory, pickle_name):
@@ -37,4 +37,5 @@ def get_reference(DATADIR, directory, pickle_name):
         reference = pickle.load(open(fname, 'rb'))
         return reference
     else:
-        make_reference(DATADIR, directory)
+        reference = make_reference(DATADIR, directory, str(pickle_name))
+        return reference

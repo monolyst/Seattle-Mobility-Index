@@ -11,13 +11,14 @@ import geocoder_input as gi
 #Read in shapes files for block group, neighborhoods, zipcode, council district and urban villages
 DATADIR = os.path.join(os.pardir, os.pardir, 'seamo/data/raw/shapefiles/')
 PROCESSED_DIR = os.path.join(os.pardir, os.pardir, 'seamo/data/processed/')
+PICKLE_DIR = os.path.join(os.pardir, os.pardir, 'seamo/data/processed/pickles/')
 
 #Geocoder function
-def geocode(gdf, pickle_name):
+def geocode(gdf, pickle_name="reference.pickle"):
     """ 
     input_file.csv needs header lat, lon
     """
-    reference = get_reference(pickle_name="reference.pickle")
+    reference = get_reference(pickle_name)
     df = gpd.sjoin(gdf, reference, how = 'left')
     df = df.drop(columns = ['index_right'])
     df = df.sort_values(by='geography')
@@ -32,7 +33,7 @@ def geocode(gdf, pickle_name):
 
 
 def get_reference(pickle_name="reference.pickle"):
-    reference = gi.get_reference(DATADIR, PROCESSED_DIR, pickle_name)
+    reference = gi.get_reference(DATADIR, PICKLE_DIR, pickle_name)
     return reference
 
 
