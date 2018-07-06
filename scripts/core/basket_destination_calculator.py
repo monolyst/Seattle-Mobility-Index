@@ -153,7 +153,6 @@ class BasketCalculator:
             response = urlopen(request).read()
         except:
             raise Exception("Couldn't open link.")  
-            # return distance 
 
         data = json.loads(response)
 
@@ -167,7 +166,6 @@ class BasketCalculator:
             if element['status'] == 'NOT_FOUND':
                 # If the origin-destination pair is not found, should write to a log.
                 raise Exception('Could not find the distance for that pair.')  
-                return distance 
             elif element['status'] == 'OK':
                 distance = element['distance']['value']
 
