@@ -33,9 +33,9 @@ def make_pickle(directory, reference, pickle_name):
 
 def get_reference(DATADIR, directory, pickle_name):
     fname = directory + str(pickle_name)
-    if os.path.isfile(fname):
+    try:
         reference = pickle.load(open(fname, 'rb'))
         return reference
-    else:
+    except:
         reference = make_reference(DATADIR, directory, str(pickle_name))
         return reference
