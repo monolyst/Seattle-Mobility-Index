@@ -32,6 +32,7 @@ def geocode(gdf, pickle_name="reference.pickle"):
     values = {'Block_Group': 'N/A', 'Neighborhood_Long': 'N/A', 'Neighborhood_Short': 'N/A',
               'Seattle_City_Council_District': 'N/A', 'Urban_Village': 'N/A', 'Zipcode': 'N/A'}
     df = df.fillna(value=values)
+    df = format_output(df)
     return df
 
 
@@ -58,7 +59,6 @@ def geocode_csv(input_file, pickle_name="reference.pickle"):
     data = gpd.GeoDataFrame(data, geometry='geometry')
     data.crs = {'init': 'epsg:4326'}
     df = geocode(data, str(pickle_name))
-    df = format_output(df)
     return df
 
 
@@ -72,7 +72,6 @@ def geocode_point(coord, pickle_name="reference.pickle"):
     data = gpd.GeoDataFrame(data, geometry='geometry')
     data.crs = {'init': 'epsg:4326'}
     df = geocode(data, str(pickle_name))
-    df = format_output(df)
     return df
 
 
