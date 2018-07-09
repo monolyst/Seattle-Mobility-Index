@@ -44,13 +44,13 @@ def geocode(gdf, pickle_name="reference.pickle"):
     df = df.drop(columns = ['index_right'])
     df = df.sort_values(by='geography')
     df = pd.DataFrame(df)
-    df = df.drop(['geometry'],axis=1)
+    df = df.drop(['geometry'], axis=1)
     df['lat'] = df['lat'].astype(float)
     df['lon'] = df['lon'].astype(float)
     df = df.set_index(['lat', 'lon','geography'], append='key').unstack()
     df.columns = df.columns.droplevel()
-    values = {'Block_Group': 'N/A', 'Neighborhood_Long': 'N/A', 'Neighborhood_Short': 'N/A',
-              'Seattle_City_Council_District': 'N/A', 'Urban_Village': 'N/A', 'Zipcode': 'N/A'}
+    values = {'Block_Group': 0, 'Neighborhood_Long': 'N/A', 'Neighborhood_Short': 'N/A',
+              'Seattle_City_Council_District': 'N/A', 'Urban_Village': 'N/A', 'Zipcode': 0}
     df = df.fillna(value=values)
     df = format_output(df)
     return df
