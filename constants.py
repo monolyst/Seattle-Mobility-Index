@@ -36,6 +36,8 @@ REFERENCE_PICKLE = 'reference.pickle'
 # Categories for basket
 POST_OFFICE = 'post_office'
 SUPERMARKET = 'supermarket'
+CLASS = 'class'
+RANK = 'rank'
 
 # Numeric Constants
 PROXIMITY_THRESHOLD = 0.8 # 5-6 miles
@@ -43,17 +45,18 @@ METERS_TO_MILES = 1609
 DEG_INTO_MILES = 69
 CITY_CENTER = [47.6062, -122.3321]
 
-
 # API constants
 DIST_MATRIX_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?'
 IMPERIAL_UNITS = 'imperial'
 DRIVING_MODE = 'driving'
 
 # Google API naming
-GOOGLE_LAT = 'lat'
-GOOGLE_LON = 'lng' 
-CLASS = 'class'
-RANK = 'rank'
+GOOGLE_PLACES_LAT = 'lat'
+GOOGLE_PLACES_LON = 'lng' 
+GOOGLE_START_LAT = 'start_lat'
+GOOGLE_START_LON = 'start_lon'
+GOOGLE_END_LAT = 'end_lat'
+GOOGLE_END_LON = 'end_lon'
 
 # Seattle Census Data naming
 CENSUS_LAT = 'CT_LAT'
