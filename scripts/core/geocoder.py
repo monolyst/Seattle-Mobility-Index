@@ -64,6 +64,7 @@ def format_output(df):
     df['Neighborhood_Long'] = df['Neighborhood_Long'].astype(str)
     df['Neighborhood_Short'] = df['Neighborhood_Short'].astype(str)
     df['Seattle_City_Council_District'] = df['Seattle_City_Council_District'].astype(str)
+    df['Urban_Village'] = df['Urban_Village'].astype(str)
     df['Zipcode'] = df['Zipcode'].astype(np.int64)
     return df
 
