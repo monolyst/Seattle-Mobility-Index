@@ -77,8 +77,6 @@ class BasketCalculator:
             blockgroup = row[BLOCKGROUP]
             origin_lat = row[CENSUS_LAT]
             origin_lon = row[CENSUS_LON]
-            # Filter for proximity 
-            filtered_df = self.filter_destinations(origin_lat, origin_lon, dest_df)
             distances = self.calculate_distance_to_basket(origin_lat, origin_lon, filtered_df) 
             for place_id, data in distances.items():
                 distance = data[DISTANCE]
@@ -88,7 +86,7 @@ class BasketCalculator:
 
         dist_df = pd.DataFrame(dist_matrix, columns=[PAIR, DISTANCE, PLACE_CLASS])
     
-        # rank it
+        # rank it by proximity
         dist_df = self.rank_destinations(dist_df)
 
         return dist_df 
