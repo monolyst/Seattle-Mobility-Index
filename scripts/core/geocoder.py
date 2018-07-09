@@ -1,10 +1,31 @@
 """
-command to run script is $ python geocoder.py FILE_FORTMAT INPUT OUTPUT_NAME PICKLE_NAME
+Python module for the universal geocoder. Module can be called from the terminal
+or imported into another script.
+
+To run the geocoder from the terminal:
+$ python geocoder.py FILE_FORTMAT INPUT OUTPUT_NAME PICKLE_NAME
+- FILE_FORTMAT can be csv or point
+- INPUT depends on the file format, and is either the csv name or a lat/lon pair
+  in the form (LAT, LON)
+- OUTPUT_NAME is the desired name to write to csv
+- PICKLE_NAME (optional) include name of pickle file, default is reference.pickle
+
+Methods can be called from other python modules based on file format passed.
+Call:
+- geocode(gdf, pickle_name) if passing geodataframe, pickle_name parameter
+  is optional, and default value if nothing is passed is reference.pickle
+- geocode_point(coord, pickle_name) if passing lat/lon pair in format (LAT, LON),
+  pickle_name parameter is optional, and default value if nothing is passed is 
+  reference.pickle
+- geocode_csv(input_file, pickle_name) if csv passed with lat, lon header,
+  pickle_name parameter is optional, and default value if nothing is passed is 
+  reference.pickle
 """ 
 import os
 import sys
 import pandas as pd
 import geopandas as gpd
+import numpy as np
 from shapely.geometry import Point
 import geocoder_input as gi
 
@@ -24,11 +45,26 @@ def geocode(gdf, pickle_name="reference.pickle"):
     df = df.sort_values(by='geography')
     df = pd.DataFrame(df)
     df = df.drop(['geometry'],axis=1)
+    df['lat'] = df['lat'].astype(float)
+    df['lon'] = df['lon'].astype(float)
     df = df.set_index(['lat', 'lon','geography'], append='key').unstack()
     df.columns = df.columns.droplevel()
     values = {'Block_Group': 'N/A', 'Neighborhood_Long': 'N/A', 'Neighborhood_Short': 'N/A',
               'Seattle_City_Council_District': 'N/A', 'Urban_Village': 'N/A', 'Zipcode': 'N/A'}
     df = df.fillna(value=values)
+    df = format_output(df)
+    return df
+
+
+def format_output(df):
+    df = df.reset_index().drop(['level_0'], axis=1)
+    df['lat'] = df['lat'].astype(float)
+    df['lon'] = df['lon'].astype(float)
+    df['Block_Group'] = df['Block_Group'].astype(np.int64)
+    df['Neighborhood_Long'] = df['Neighborhood_Long'].astype(str)
+    df['Neighborhood_Short'] = df['Neighborhood_Short'].astype(str)
+    df['Seattle_City_Council_District'] = df['Seattle_City_Council_District'].astype(str)
+    df['Zipcode'] = df['Zipcode'].astype(np.int64)
     return df
 
 
@@ -61,13 +97,16 @@ def geocode_point(coord, pickle_name="reference.pickle"):
 
 def write_to_csv(df, PROCESSED_DIR, output_file):
     decoded = df
-    decoded.to_csv(PROCESSED_DIR + output_file)
+    decoded.to_csv(PROCESSED_DIR + output_file, index=False)
 
 
 def main(argv):
     CHOICE = str(sys.argv[1])
     output_file = str(sys.argv[3]) + '.csv'
-    pickle_name = str(sys.argv[4])
+    try:
+        pickle_name = str(sys.argv[4])
+    except:
+        pickle_name = "reference.pickle"
     if CHOICE == "csv":
         # add directory where the file should be found
         input_file = '../../seamo/data/test/' + str(sys.argv[2]) + '.csv'
