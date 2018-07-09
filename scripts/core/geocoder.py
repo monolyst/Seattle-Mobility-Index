@@ -104,9 +104,11 @@ def main(argv):
     CHOICE = str(sys.argv[1])
     output_file = str(sys.argv[3]) + '.csv'
     try:
-        pickle_name = str(sys.argv[4])
+        sys.argv[4]
     except:
         pickle_name = "reference.pickle"
+    else:
+        pickle_name = str(sys.argv[4])
     if CHOICE == "csv":
         # add directory where the file should be found
         input_file = '../../seamo/data/test/' + str(sys.argv[2]) + '.csv'
