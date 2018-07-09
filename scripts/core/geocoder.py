@@ -5,6 +5,7 @@ import os
 import sys
 import pandas as pd
 import geopandas as gpd
+import numpy as np
 from shapely.geometry import Point
 import geocoder_input as gi
 
@@ -24,11 +25,25 @@ def geocode(gdf, pickle_name="reference.pickle"):
     df = df.sort_values(by='geography')
     df = pd.DataFrame(df)
     df = df.drop(['geometry'],axis=1)
+    df['lat'] = df['lat'].astype(float)
+    df['lon'] = df['lon'].astype(float)
     df = df.set_index(['lat', 'lon','geography'], append='key').unstack()
     df.columns = df.columns.droplevel()
     values = {'Block_Group': 'N/A', 'Neighborhood_Long': 'N/A', 'Neighborhood_Short': 'N/A',
               'Seattle_City_Council_District': 'N/A', 'Urban_Village': 'N/A', 'Zipcode': 'N/A'}
     df = df.fillna(value=values)
+    return df
+
+
+def format_output(df):
+    df = df.reset_index().drop(['level_0'],axis=1)
+    df['lat'] = df['lat'].astype(float)
+    df['lon'] = df['lon'].astype(float)
+    df['Block_Group'] = df['Block_Group'].astype(np.int64)
+    df['Neighborhood_Long'] = df['Neighborhood_Long'].astype(str)
+    df['Neighborhood_Short'] = df['Neighborhood_Short'].astype(str)
+    df['Seattle_City_Council_District'] = df['Seattle_City_Council_District'].astype(str)
+    df['Zipcode'] = df['Zipcode'].astype(np.int64)
     return df
 
 
@@ -43,6 +58,7 @@ def geocode_csv(input_file, pickle_name="reference.pickle"):
     data = gpd.GeoDataFrame(data, geometry='geometry')
     data.crs = {'init': 'epsg:4326'}
     df = geocode(data, str(pickle_name))
+    df = format_output(df)
     return df
 
 
@@ -56,12 +72,13 @@ def geocode_point(coord, pickle_name="reference.pickle"):
     data = gpd.GeoDataFrame(data, geometry='geometry')
     data.crs = {'init': 'epsg:4326'}
     df = geocode(data, str(pickle_name))
+    df = format_output(df)
     return df
 
 
 def write_to_csv(df, PROCESSED_DIR, output_file):
     decoded = df
-    decoded.to_csv(PROCESSED_DIR + output_file)
+    decoded.to_csv(PROCESSED_DIR + output_file, index=False)
 
 
 def main(argv):
