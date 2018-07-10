@@ -1,8 +1,12 @@
 
 class Trip(object):
-	def __init__(self, origin, destination)
+	def __init__(self, origin, destination, mode):
 	self.origin
-	self.
+	self.mode
+
+    def mode_viable():
+
+    def cost():
 
 # geocode itself
 
