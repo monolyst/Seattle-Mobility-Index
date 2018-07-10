@@ -32,7 +32,7 @@ import geocoder_input as gi
 #Read in shapes files for block group, neighborhoods, zipcode, council district and urban villages
 DATADIR = os.path.join(os.pardir, os.pardir, 'seamo/data/raw/shapefiles/')
 PROCESSED_DIR = os.path.join(os.pardir, os.pardir, 'seamo/data/processed/')
-PICKLE_DIR = os.path.join(os.pardir, os.pardir, 'seamo/data/processed/pickles/')
+PICKLE_DIR = os.path.join(PROCESSED_DIR, 'pickles/')
 
 #Geocoder function
 def geocode(gdf, pickle_name="reference.pickle"):
@@ -49,9 +49,9 @@ def geocode(gdf, pickle_name="reference.pickle"):
     df['lon'] = df['lon'].astype(float)
     df = df.set_index(['lat', 'lon','geography'], append='key').unstack()
     df.columns = df.columns.droplevel()
-    values = {'Block_Group': 0, 'Neighborhood_Long': 'N/A', 'Neighborhood_Short': 'N/A',
-              'Seattle_City_Council_District': 'N/A', 'Urban_Village': 'N/A', 'Zipcode': 0}
-    df = df.fillna(value=values)
+    # values = {'Block_Group': 0, 'Neighborhood_Long': 'N/A', 'Neighborhood_Short': 'N/A',
+    #           'Seattle_City_Council_District': 'N/A', 'Urban_Village': 'N/A', 'Zipcode': 0}
+    # df = df.fillna(value=values)
     df = format_output(df)
     return df
 
