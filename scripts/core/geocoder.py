@@ -32,24 +32,22 @@ import geocoder_input as gi
 import constants as cn
 
 #Read in shapes files for block group, neighborhoods, zipcode, council district and urban villages
-DATADIR = os.path.join(os.pardir, os.pardir, 'seamo/data/raw/shapefiles/')
-PROCESSED_DIR = os.path.join(os.pardir, os.pardir, 'seamo/data/processed/')
-PICKLE_DIR = os.path.join(PROCESSED_DIR, 'pickles/')
+SHAPEFILE_DIR = cn.SHAPEFILE_DIR
+PROCESSED_DIR = cn.PROCESSED_DIR
+PICKLE_DIR = cn.PICKLE_DIR
 
 #Geocoder function
-def geocode(gdf, pickle_name="reference.pickle"):
+def geocode(gdf, pickle_name=cn.REFERENCE_PICKLE):
     """ 
     input_file.csv needs header lat, lon
     """
     reference = get_reference(pickle_name)
     df = gpd.sjoin(gdf, reference, how = 'left')
     df = df.drop(columns = ['index_right'])
-    df = df.sort_values(by='geography')
+    df = df.sort_values(by=cn.GEOGRAPHY)
     df = pd.DataFrame(df)
-    df = df.drop(['geometry'], axis=1)
-    df['lat'] = df['lat'].astype(float)
-    df['lon'] = df['lon'].astype(float)
-    df = df.set_index(['lat', 'lon','geography'], append='key').unstack()
+    df = df.drop([cn.GEOMETRY], axis=1)
+    df = df.set_index([cn.LAT, cn.LON, cn.GEOGRAPHY], append=cn.KEY).unstack()
     df.columns = df.columns.droplevel()
     # values = {'Block_Group': 0, 'Neighborhood_Long': 'N/A', 'Neighborhood_Short': 'N/A',
     #           'Seattle_City_Council_District': 'N/A', 'Urban_Village': 'N/A', 'Zipcode': 0}
@@ -60,40 +58,40 @@ def geocode(gdf, pickle_name="reference.pickle"):
 
 def format_output(df):
     df = df.reset_index().drop(['level_0'], axis=1)
-    df['lat'] = df['lat'].astype(float)
-    df['lon'] = df['lon'].astype(float)
-    df['Block_Group'] = df['Block_Group'].astype(np.int64)
-    df['Neighborhood_Long'] = df['Neighborhood_Long'].astype(str)
-    df['Neighborhood_Short'] = df['Neighborhood_Short'].astype(str)
-    df['Seattle_City_Council_District'] = df['Seattle_City_Council_District'].astype(str)
-    df['Urban_Village'] = df['Urban_Village'].astype(str)
-    df['Zipcode'] = df['Zipcode'].astype(np.int64)
+    df[cn.LAT] = df[cn.LAT].astype(float)
+    df[cn.LON] = df[cn.LON].astype(float)
+    df[cn.BLOCK_GROUP] = df[cn.BLOCK_GROUP].astype(np.int64)
+    df[cn.NBHD_LONG] = df[cn.NBHD_LONG].astype(str)
+    df[cn.NBHD_SHORT] = df[cn.NBHD_SHORT].astype(str)
+    df[cn.COUNCIL_DISTRICT] = df[cn.COUNCIL_DISTRICT].astype(str)
+    df[cn.URBAN_VILLAGE] = df[cn.URBAN_VILLAGE].astype(str)
+    df[cn.ZIPCODE] = df[cn.ZIPCODE].astype(np.int64)
     return df
 
 
-def get_reference(pickle_name="reference.pickle"):
-    reference = gi.get_reference(DATADIR, PICKLE_DIR, pickle_name)
+def get_reference(pickle_name=cn.REFERENCE_PICKLE):
+    reference = gi.get_reference(SHAPEFILE_DIR, PICKLE_DIR, pickle_name)
     return reference
 
 
-def geocode_csv(input_file, pickle_name="reference.pickle"):
+def geocode_csv(input_file, pickle_name=cn.REFERENCE_PICKLE):
     data = pd.read_csv(str(input_file))
-    data['geometry'] = data.apply(lambda x: Point((float(x[1]), float(x[0]))), axis=1)
-    data = gpd.GeoDataFrame(data, geometry='geometry')
-    data.crs = {'init': 'epsg:4326'}
+    data[cn.GEOMETRY] = data.apply(lambda x: Point((float(x[1]), float(x[0]))), axis=1)
+    data = gpd.GeoDataFrame(data, geometry=cn.GEOMETRY)
+    data.crs = cn.CRS_EPSG
     df = geocode(data, str(pickle_name))
     return df
 
 
-def geocode_point(coord, pickle_name="reference.pickle"):
+def geocode_point(coord, pickle_name=cn.REFERENCE_PICKLE):
     coord = str(coord).split(", ")
     left = coord[0][1:]
     right = coord[1][:-1]
-    data = pd.DataFrame(data={'lat': [left], 'lon': [right],
-        'geometry': [Point((float(right), float(left)))]})
-    data = data[['lat', 'lon', 'geometry']]
-    data = gpd.GeoDataFrame(data, geometry='geometry')
-    data.crs = {'init': 'epsg:4326'}
+    data = pd.DataFrame(data={cn.LAT: [left], cn.LON: [right],
+        cn.GEOMETRY: [Point((float(right), float(left)))]})
+    data = data[[cn.LAT, cn.LON, cn.GEOMETRY]]
+    data = gpd.GeoDataFrame(data, geometry=cn.GEOMETRY)
+    data.crs = cn.CRS_EPSG
     df = geocode(data, str(pickle_name))
     return df
 
@@ -109,7 +107,7 @@ def main(argv):
     try:
         sys.argv[4]
     except:
-        pickle_name = "reference.pickle"
+        pickle_name = cn.REFERENCE_PICKLE
     else:
         pickle_name = str(sys.argv[4])
     if CHOICE == "csv":
