@@ -1,0 +1,4 @@
+
+
+class IndexBaseClass(Object):
+	
