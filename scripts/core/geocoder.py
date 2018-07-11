@@ -29,7 +29,7 @@ import geopandas as gpd
 import numpy as np
 from shapely.geometry import Point
 import geocoder_input as gi
-import common.constants as cn
+import constants as cn
 
 #Read in shapes files for block group, neighborhoods, zipcode, council district and urban villages
 DATADIR = os.path.join(os.pardir, os.pardir, 'seamo/data/raw/shapefiles/')
