@@ -78,10 +78,10 @@ G = [0,1,2,3] # school
 H = [0,1,2,3] # cafe
 
 # Filepaths
-SHAPEFILE_DIR = os.path.join(os.pardir, os.pardir, 'seamo/data/raw/shapefiles/')
-PROCESSED_DIR = os.path.join(os.pardir, os.pardir, 'seamo/data/processed/')
-RAW_DIR = os.path.join(os.pardir, os.pardir, 'seamo/data/raw/')
-PICKLE_DIR = os.path.join(os.pardir, os.pardir, 'seamo/data/processed/pickles/')
+SHAPEFILE_DIR = os.path.join(os.pardir, 'seamo/data/raw/shapefiles/')
+PROCESSED_DIR = os.path.join(os.pardir, 'seamo/data/processed/')
+RAW_DIR = os.path.join(os.pardir, 'seamo/data/raw/')
+PICKLE_DIR = os.path.join(os.pardir, 'seamo/data/processed/pickles/')
 ORIGIN_FP = os.path.join(RAW_DIR, 'SeattleCensusBlocksandNeighborhoodCorrelationFile.csv') 
 DEST_FP = os.path.join(RAW_DIR, 'GoogleMatrix_Places_Full.csv')
 
