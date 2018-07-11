@@ -3,6 +3,7 @@ import pandas as pd
 import geopandas as gpd
 from shapely.geometry import Point
 import pickle
+import contants as cn
 
 #Read in shapes files for block group, neighborhoods, zipcode, council district and urban villages
 # DATADIR = os.path.join(os.getcwd(), '../../seamo/data/raw/shapefiles/')
@@ -17,12 +18,12 @@ def read_shapefile(shapefile, column_name, name, DATADIR):
     return geography
 
 def make_reference(DATADIR, directory, pickle_name):
-    blkgrp = read_shapefile('blkgrp10_shore', 'GEO_ID_GRP', 'Block_Group', DATADIR)
-    nbhd_short = read_shapefile('Neighborhoods', 'S_HOOD', 'Neighborhood_Short', DATADIR)
-    nbhd_long = read_shapefile('Neighborhoods', 'L_HOOD', 'Neighborhood_Long', DATADIR)
-    zipcode = read_shapefile('zipcode', 'ZIPCODE', 'Zipcode', DATADIR)
-    council_district = read_shapefile('sccdst', 'SCCDST', 'Seattle_City_Council_District', DATADIR)
-    urban_village = read_shapefile('DPD_uvmfg_polygon', 'UV_NAME', 'Urban_Village', DATADIR)
+    BLOCK_GROUP = read_shapefile('BLKGRP_FNAME', 'GEO_ID_GRP', 'Block_Group', DATADIR)
+    NBHD_SHORT = read_shapefile('Neighborhoods', 'S_HOOD', 'Neighborhood_Short', DATADIR)
+    NBHD_LONG = read_shapefile('Neighborhoods', 'L_HOOD', 'Neighborhood_Long', DATADIR)
+    ZIPCODE = read_shapefile('zipcode', 'ZIPCODE', 'Zipcode', DATADIR)
+    COUNCIL_DISTRICT = read_shapefile('sccdst', 'SCCDST', 'Seattle_City_Council_District', DATADIR)
+    URBAN_VILLAGE = read_shapefile('DPD_uvmfg_polygon', 'UV_NAME', 'Urban_Village', DATADIR)
     reference = pd.concat([blkgrp, nbhd_short, nbhd_long, zipcode, council_district, urban_village])
     make_pickle(directory, reference, pickle_name)
     return reference

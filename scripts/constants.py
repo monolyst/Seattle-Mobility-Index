@@ -17,6 +17,7 @@ ZIPCODE = 'zipcode'
 URBAN_VILLAGE = 'urban_village'
 GEOMETRY = 'geometry'
 KEY = 'key'
+GEOGRAPHY = 'geography'
 CRS_EPSG = {'init' :'epsg:4326'}
 
 # Shapefiles
