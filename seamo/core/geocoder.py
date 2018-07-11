@@ -112,7 +112,7 @@ def main(argv):
         pickle_name = str(sys.argv[4])
     if CHOICE == "csv":
         # add directory where the file should be found
-        input_file = '../../seamo/data/test/' + str(sys.argv[2]) + '.csv'
+        input_file = os.path.join(PROCESSED_DIR, 'test/', str(sys.argv[2]) + '.csv')
         df = geocode_csv(input_file, pickle_name)
         write_to_csv(df, PROCESSED_DIR, output_file)
     elif CHOICE == "point":
