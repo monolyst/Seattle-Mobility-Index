@@ -50,6 +50,7 @@ CITY_CENTER = [47.6062, -122.3321]
 DIST_MATRIX_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?'
 IMPERIAL_UNITS = 'imperial'
 DRIVING_MODE = 'driving'
+GOOGLE_DIST_MATRIX_OUT = 'google_dist_matrix_out'
 
 # Google API naming
 GOOGLE_PLACES_LAT = 'lat'
@@ -87,3 +88,4 @@ PICKLE_DIR = os.path.join(PROCESSED_DIR, 'pickles/')
 ORIGIN_FP = os.path.join(RAW_DIR, 'SeattleCensusBlocksandNeighborhoodCorrelationFile.csv') 
 DEST_FP = os.path.join(RAW_DIR, 'GoogleMatrix_Places_Full.csv')
 DB_DIR = os.path.join(PROCESSED_DIR, 'databases/')
+CSV_DIR = os.path.join(PROCESSED_DIR, 'csv/')
