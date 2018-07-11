@@ -7,10 +7,11 @@ import sqlite3
 class IndexBaseClass(object):
     DATADIR = cn.CSV_DIR
 
-    def __init__(self, day_type, time_span, travel_mode):
+    def __init__(self, day_type, time_span, travel_mode, datadir=DATADIR):
         self.day_type = day_type
         self.time_span = time_span
         self.travel_mode = travel_mode
+        self.datadir = datadir
         self.trip_data = query_trip_data()
 
 
@@ -24,3 +25,5 @@ class IndexBaseClass(object):
 
 
     def get_data(filename, datadir=DATADIR):
+        df = pd.read_csv(str(filename) + '.csv')
+        return df
