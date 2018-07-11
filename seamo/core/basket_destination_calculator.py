@@ -26,11 +26,6 @@ DATADIR = os.path.join(os.getcwd(), "../../seamo/data/raw")
 PROXIMITY_THRESHOLD = 0.8 # 5-6 miles
 METERS_TO_MILES = 1609
 
-# API constants
-DIST_MATRIX_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?'
-UNITS = 'imperial'
-MODE = 'driving'
-
 # Google API naming
 PLACE_LAT = 'lat'
 PLACE_LON = 'lng' 
@@ -41,9 +36,6 @@ DISTANCE = 'distance'
 PAIR = 'pair'
 
 # Seattle Census Data naming
-CENSUS_LAT = 'CT_LAT'
-CENSUS_LON = 'CT_LON'
-BLOCKGROUP = 'BLOCKGROUP'
 
 ORIGIN_FP = os.path.join(DATADIR, 'SeattleCensusBlocksandNeighborhoodCorrelationFile.csv') 
 DEST_FP = os.path.join(DATADIR, 'GoogleMatrix_Places_Full.csv') 
@@ -91,12 +83,12 @@ class BasketCalculator:
         """
         dist_matrix = [] 
         for i, row in origin_df.iterrows():
-            blockgroup = row[BLOCKGROUP]
-            origin = Coordinate(row[CENSUS_LAT], row[CENSUS_LON])
+            blockgroup = row[cn.BLOCKGROUP]
+            origin = Coordinate(row[cn.CENSUS_LAT], row[cn.CENSUS_LON])
             distances = self.calculate_distance_to_basket(origin, filtered_df) 
             for place_id, data in distances.items():
-                distance = data[DISTANCE]
-                dest_class = data[PLACE_CLASS]
+                distance = data[cn.DISTANCE]
+                dest_class = data[cn.CLASS]
                 pair = "{0}-{1}".format(blockgroup, place_id) 
                 dist_matrix.append([pair, distance, dest_class])
 
@@ -116,7 +108,7 @@ class BasketCalculator:
         Output: dataframe with an added 'rank' column
         """
         # Group by blockgroup and destination class
-        grouped = dist_df.groupby([BLOCKGROUP, PLACE_CLASS])
+        grouped = dist_df.groupby([cn.BLOCKGROUP, PLACE_CLASS])
         # Rank by proximity (closest is highest) 
         dist_df[PLACE_RANK] = grouped[DISTANCE].rank(
             ascending=True, method='first')
@@ -134,9 +126,9 @@ class BasketCalculator:
         """ 
         distance = 0 
 
-        url = DIST_MATRIX_URL +\
-              'units={0}'.format(UNITS) +\
-              '&mode={0}'.format(MODE) +\
+        url = cn.DIST_MATRIX_URL +\
+              'units={0}'.format(cn.IMPERIAL_UNITS) +\
+              '&mode={0}'.format(cn.DRIVING_MODE) +\
               '&origins={0}'.format(str(origin)) +\
               "&destinations={0}".format(str(destination)) +\
               "&key={0}".format(api_key)
