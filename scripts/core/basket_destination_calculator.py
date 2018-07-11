@@ -47,6 +47,22 @@ BLOCKGROUP = 'BLOCKGROUP'
 ORIGIN_FP = os.path.join(DATADIR, 'SeattleCensusBlocksandNeighborhoodCorrelationFile.csv') 
 DEST_FP = os.path.join(DATADIR, 'GoogleMatrix_Places_Full.csv') 
 
+class Coordinate:
+    """
+    Coordinate class.
+    """
+    def __init__(self, lat, lon):
+        """
+        Initialize with a latitude and a longitude.
+        """
+        self.lat = lat
+        self.lon = lon
+
+    def __str__(self):
+        """
+        Format is 'lat,lon'
+        """
+        return "{0},{1}".format(self.lat, self.lon)
 
 class BasketCalculator:
 
@@ -184,16 +200,16 @@ class BasketCalculator:
 
         """ 
         distances = {}
-        
+        # This will need to be refactored to reflect the new Coord class!!        
         for index, row in dest_df.iterrows():
             dest_lat = row[PLACE_LAT]
             dest_lon = row[PLACE_LON] 
+
+            destination = Coordinate(row[PLACE_LAT], row[PLACE_LON])
             dest_class = row[PLACE_CLASS]
     
+
             place_id = row['place_id']
-            # Build the origin and destination strings
-            origin = str(origin_lat) + "," + str(origin_lon)
-            destination = str(dest_lat) + "," + str(dest_lon)
 
             distance = self.calculate_distance(origin, destination)
             if distance:
