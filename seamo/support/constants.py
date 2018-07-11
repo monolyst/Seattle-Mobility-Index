@@ -80,7 +80,7 @@ G = [0,1,2,3] # school
 H = [0,1,2,3] # cafe
 
 # Filepaths
-DATADIR = '/data/'
+DATADIR = 'data/'
 SHAPEFILE_DIR = os.path.join(DATADIR, 'raw/shapefiles/')
 PROCESSED_DIR = os.path.join(DATADIR, 'processed/')
 RAW_DIR = os.path.join(DATADIR, 'raw/')
