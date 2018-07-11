@@ -3,7 +3,7 @@ import pandas as pd
 import geopandas as gpd
 from shapely.geometry import Point
 import pickle
-import contants as cn
+import constants as cn
 
 #Read in shapes files for block group, neighborhoods, zipcode, council district and urban villages
 # DATADIR = os.path.join(os.getcwd(), '../../seamo/data/raw/shapefiles/')
