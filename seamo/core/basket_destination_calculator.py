@@ -14,7 +14,7 @@ possible origin-destination pair by their driving distance.
 The basket definition is created by using parameters to filter each 
 class of destination.
 """
-
+import __init__
 import json
 import os
 from urllib.request import Request, urlopen
@@ -85,7 +85,7 @@ class BasketCalculator:
         for i, row in origin_df.iterrows():
             blockgroup = row[cn.BLOCKGROUP]
             origin = Coordinate(row[cn.CENSUS_LAT], row[cn.CENSUS_LON])
-            distances = self.calculate_distance_to_basket(origin, filtered_df) 
+            distances = self.calculate_distance_to_basket(origin, dest_df) 
             for place_id, data in distances.items():
                 distance = data[cn.DISTANCE]
                 dest_class = data[cn.CLASS]
