@@ -1,5 +1,5 @@
 import unittest
-import scripts.preproc.geography_processor as gp
+import preproc.geography_processor as gp
 
 class UniGeoTest(unittest.TestCase):
 

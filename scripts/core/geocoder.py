@@ -21,6 +21,7 @@ Call:
   pickle_name parameter is optional, and default value if nothing is passed is 
   reference.pickle
 """ 
+#import __init__
 import os
 import sys
 import pandas as pd
@@ -28,6 +29,7 @@ import geopandas as gpd
 import numpy as np
 from shapely.geometry import Point
 import geocoder_input as gi
+import constants as cn
 
 #Read in shapes files for block group, neighborhoods, zipcode, council district and urban villages
 DATADIR = os.path.join(os.pardir, os.pardir, 'seamo/data/raw/shapefiles/')
