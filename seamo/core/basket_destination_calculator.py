@@ -14,21 +14,17 @@ possible origin-destination pair by their driving distance.
 The basket definition is created by using parameters to filter each 
 class of destination.
 """
-
+import __init__
 import json
 import os
 from urllib.request import Request, urlopen
 
+import constants as cn
 import pandas as pd
 
 DATADIR = os.path.join(os.getcwd(), "../../seamo/data/raw")
 PROXIMITY_THRESHOLD = 0.8 # 5-6 miles
 METERS_TO_MILES = 1609
-
-# API constants
-DIST_MATRIX_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?'
-UNITS = 'imperial'
-MODE = 'driving'
 
 # Google API naming
 PLACE_LAT = 'lat'
@@ -40,13 +36,26 @@ DISTANCE = 'distance'
 PAIR = 'pair'
 
 # Seattle Census Data naming
-CENSUS_LAT = 'CT_LAT'
-CENSUS_LON = 'CT_LON'
-BLOCKGROUP = 'BLOCKGROUP'
 
 ORIGIN_FP = os.path.join(DATADIR, 'SeattleCensusBlocksandNeighborhoodCorrelationFile.csv') 
 DEST_FP = os.path.join(DATADIR, 'GoogleMatrix_Places_Full.csv') 
 
+class Coordinate:
+    """
+    Coordinate class.
+    """
+    def __init__(self, lat, lon):
+        """
+        Initialize with a latitude and a longitude.
+        """
+        self.lat = lat
+        self.lon = lon
+
+    def __str__(self):
+        """
+        Format is 'lat,lon'
+        """
+        return "{0},{1}".format(self.lat, self.lon)
 
 class BasketCalculator:
 
@@ -74,13 +83,12 @@ class BasketCalculator:
         """
         dist_matrix = [] 
         for i, row in origin_df.iterrows():
-            blockgroup = row[BLOCKGROUP]
-            origin_lat = row[CENSUS_LAT]
-            origin_lon = row[CENSUS_LON]
-            distances = self.calculate_distance_to_basket(origin_lat, origin_lon, filtered_df) 
+            blockgroup = row[cn.BLOCKGROUP]
+            origin = Coordinate(row[cn.CENSUS_LAT], row[cn.CENSUS_LON])
+            distances = self.calculate_distance_to_basket(origin, dest_df) 
             for place_id, data in distances.items():
-                distance = data[DISTANCE]
-                dest_class = data[PLACE_CLASS]
+                distance = data[cn.DISTANCE]
+                dest_class = data[cn.CLASS]
                 pair = "{0}-{1}".format(blockgroup, place_id) 
                 dist_matrix.append([pair, distance, dest_class])
 
@@ -100,51 +108,29 @@ class BasketCalculator:
         Output: dataframe with an added 'rank' column
         """
         # Group by blockgroup and destination class
-        grouped = dist_df.groupby([BLOCKGROUP, PLACE_CLASS])
+        grouped = dist_df.groupby([cn.BLOCKGROUP, PLACE_CLASS])
         # Rank by proximity (closest is highest) 
         dist_df[PLACE_RANK] = grouped[DISTANCE].rank(
             ascending=True, method='first')
         return dist_df
 
 
-    def filter_destinations(self, origin_lat, origin_lon, dest_df):
-        """
-        Filter general destinations for proximity within a threshold. 
-        Keep all citywide and urban_village destinations. 
-
-        Input: origin_lat, origin_lon, destinations dataframe
-        Output: dataframe
-        """
-        min_lat = origin_lat - PROXIMITY_THRESHOLD
-        max_lat = origin_lat + PROXIMITY_THRESHOLD
-        min_lon = origin_lon - PROXIMITY_THRESHOLD
-        max_lon = origin_lon + PROXIMITY_THRESHOLD
-
-        dest_df = dest_df[(dest_df[PLACE_CLASS] == "citywide") | 
-                        (dest_df[PLACE_CLASS] == "urban_village") | 
-                        ((dest_df[PLACE_LAT] > min_lat) & (dest_df[PLACE_LAT] < max_lat) &
-                        (dest_df[PLACE_LON] > min_lon) & (dest_df[PLACE_LON] < max_lon)
-                        )
-                        ]
-        return dest_df
-        
-
     def calculate_distance(self, origin, destination):
         """
         Calculate the distance between an origin and destination pair.
         Calls Google Distance Matrix API.
     
-        Input:  origin (string)
-                destination (string)
+        Input:  origin (Coordinate)
+                destination (Coordinate)
         Output: distance in miles (int)
         """ 
         distance = 0 
 
-        url = DIST_MATRIX_URL +\
-              'units={0}'.format(UNITS) +\
-              '&mode={0}'.format(MODE) +\
-              '&origins={0}'.format(origin) +\
-              "&destinations={0}".format(destination) +\
+        url = cn.DIST_MATRIX_URL +\
+              'units={0}'.format(cn.IMPERIAL_UNITS) +\
+              '&mode={0}'.format(cn.DRIVING_MODE) +\
+              '&origins={0}'.format(str(origin)) +\
+              "&destinations={0}".format(str(destination)) +\
               "&key={0}".format(api_key)
         request = Request(url)
         try: 
@@ -170,30 +156,25 @@ class BasketCalculator:
         return distance 
 
 
-    def calculate_distance_to_basket(self, origin_lat, origin_lon, dest_df):
+    def calculate_distance_to_basket(self, origin, dest_df):
         """Calculate the distance (and travel time) to each destination
         and produce a CSV file of the data.
         This calls the Google Matrix API.
 
         Inputs:
-            origin_lat (float)
-            origin_lon (float)
+            origin (Coordinate)
             dest_df (DataFrame)
         Output:
             distances (dict)
 
         """ 
         distances = {}
-        
+
         for index, row in dest_df.iterrows():
-            dest_lat = row[PLACE_LAT]
-            dest_lon = row[PLACE_LON] 
+            destination = Coordinate(row[PLACE_LAT], row[PLACE_LON])
             dest_class = row[PLACE_CLASS]
-    
+            #TODO: Replace with constant when that is merged into master.
             place_id = row['place_id']
-            # Build the origin and destination strings
-            origin = str(origin_lat) + "," + str(origin_lon)
-            destination = str(dest_lat) + "," + str(dest_lon)
 
             distance = self.calculate_distance(origin, destination)
             if distance:
