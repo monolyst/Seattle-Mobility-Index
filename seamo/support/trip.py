@@ -2,17 +2,18 @@
 Base Trip Class
 """
 class Trip(object):
-    def __init__(self, origin, destination, mode, distance, duration, category):
+    def __init__(self, origin, destination, mode, distance, duration, category, pair, departure_time):
         self.origin = origin
         self.destination = destination
         self.mode = mode
         self.distance = distance
         self.duration = calculate_duration(duration)
         self.category = category
+        self.cost = calculate_cost(mode)
         self.persona = None
         self.time_of_day = None
         self.type_of_day = None
-        self.cost = calculate_cost(mode)
+        self.trip_id = None
 
     def set_persona(self, persona):
         self.persona = persona
@@ -22,6 +23,10 @@ class Trip(object):
 
     def calculate_duration(duration):
         self.duration = duration
+
+    def get_trip_id(self, pair, mode, departure_time):
+        #parse departure time
+        self.departure_time = str(origin.block_group()) + '_' + pair + mode # + parsed departure time
 
 # geocode itself
 
