@@ -1,4 +1,4 @@
-import __init__
+import init
 import sqlite3
 import sys
 import re
