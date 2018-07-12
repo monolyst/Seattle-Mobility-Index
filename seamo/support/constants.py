@@ -19,6 +19,10 @@ GEOMETRY = 'geometry'
 KEY = 'key'
 GEOGRAPHY = 'geography'
 CRS_EPSG = {'init' :'epsg:4326'}
+SHAPE_AREA = 'Shape_area'
+AREA = 'area'
+
+# Seattle Polygon
 
 # Shapefiles
 BLKGRP_FNAME = 'blkgrp10_shore'
@@ -89,4 +93,5 @@ PICKLE_DIR = os.path.join(PROCESSED_DIR, 'pickles/')
 ORIGIN_FP = os.path.join(RAW_DIR, 'SeattleCensusBlocksandNeighborhoodCorrelationFile.csv') 
 DEST_FP = os.path.join(RAW_DIR, 'GoogleMatrix_Places_Full.csv')
 DB_DIR = os.path.join(PROCESSED_DIR, 'databases/')
-CSV_DIR = os.path.join(PROCESSED_DIR, 'csv/')
+CSV_DIR = os.path.join(PROCESSED_DIR, 'csv_files/')
+GEN_SHAPEFILE_DIR = os.path.join(PROCESSED_DIR, 'shapefiles/')

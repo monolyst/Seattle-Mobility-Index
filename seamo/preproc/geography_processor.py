@@ -1,5 +1,6 @@
 import init
 import os
+import sys
 import pandas as pd
 import geopandas as gpd
 from fiona.crs import from_epsg
@@ -16,35 +17,34 @@ import constants as cn
 def read_file_into_dataframe(desired_geometry, name, crs):
     # shapefile filepath
     desired_geometry = str(desired_geometry) + '.shp'
-    FP = os.path.join(os.pardir, os.pardir,
-        'seamo/data/raw/shapefiles/', desired_geometry)
+    FP = os.path.join(cn.SHAPEFILE_DIR, desired_geometry)
 
     # read filepath into dataframe
     df = gpd.read_file(FP)
 
     # convert stateplane to lat/long
-    df = df.to_crs({'init': 'epsg:4326'})
+    df = df.to_crs(cn.CRS_EPSG)
 
     # select desired columns and convert into geodataframe
-    if desired_geometry == 'blkgrp10_shore' + '.shp':
-        gdf = gpd.GeoDataFrame(df.loc[:, (name, 'Shape_area', 'geometry')],
-            crs=crs, geometry='geometry')
+    if desired_geometry == cn.BLKGRP_FNAME + '.shp':
+        gdf = gpd.GeoDataFrame(df.loc[:, (name, cn.SHAPE_AREA, cn.GEOMETRY)],
+            crs=crs, geometry=cn.GEOMETRY)
 
         # process columns from geodataframe
-        tract_blkgrp = gdf.loc[:, 'GEO_ID_GRP'].str[6:].astype(str)
-        geometry = gdf.loc[:, 'geometry']
-        area = gdf.loc[:, 'Shape_area']
+        tract_blkgrp = gdf.loc[:, cn.BLKGRP_KEY].str[6:].astype(str)
+        geometry = gdf.loc[:, cn.GEOMETRY]
+        area = gdf.loc[:, cn.SHAPE_AREA]
 
         # convert series back to dataframe
         tract_blkgrp.to_frame(name='tract_blkgrp')
-        geometry.to_frame(name='geometry')
-        area.to_frame(name='area')
+        geometry.to_frame(name=cn.GEOMETRY)
+        area.to_frame(name=cn.AREA)
         gdf = pd.concat([tract_blkgrp, geometry, area],axis=1)
-        gdf.columns = ['tract_blkgrp', 'geometry', 'area']
+        gdf.columns = ['tract_blkgrp', cn.GEOMETRY, cn.AREA]
     else:
-        gdf = gpd.GeoDataFrame(df.loc[:, (name, 'geometry')],
-            crs=crs, geometry='geometry')
-        gdf.columns = ['key', 'geometry']
+        gdf = gpd.GeoDataFrame(df.loc[:, (name, cn.GEOMETRY)],
+            crs=crs, geometry=cn.GEOMETRY)
+        gdf.columns = [cn.KEY, cn.GEOMETRY]
     return gdf
 
 
@@ -57,7 +57,7 @@ def process_data(desired_geometry, name, crs, outline, rectangle):
 
     # spatial join between king county and seattle
     data = sjoin(gdf, seattle, op='intersects')
-    data = data[['key', 'geometry']]
+    data = data[[cn.KEY, cn.GEOMETRY]]
     mask = data.key.duplicated(keep='first')
     data = data[~mask]
 
@@ -74,33 +74,35 @@ def seattle_outline(df, crs):
     # plt.show()
     boundary.crs = from_epsg(4326)
     outline = gpd.GeoDataFrame(boundary, crs=crs)
-    outline.columns = ['geometry']
+    outline.columns = [cn.GEOMETRY]
     return outline
 
 
 def write_to_csv(desired_output, data):
-    desired_output = str(desired_output) + '.csv'
-    PRCOESSED_FP = os.path.join(os.pardir, os.pardir,
-        'seamo/data/processed/csv_files/', desired_output)
+    PRCOESSED_FP = os.path.join(cn.CSV_DIR, str(desired_output) + '.csv')
     data.to_csv(PRCOESSED_FP)
 
+def write_to_shapefile(desired_output, data):
+    desired_output = os.path.join(cn.GEN_SHAPEFILE_DIR, str(desired_output) + '.shp')
+    driver = 'ESRI Shapefile'
+    data.to_file(desired_output, driver=driver)
 
-def main():
+
+def process():
     # create boundary for seattle
-    crs = {'init': 'epsg:4326'}
+    crs = cn.CRS_EPSG
     rectangle = gpd.GeoDataFrame([Polygon([(-122.435896, 47.734000),
         (-122.285766, 47.734000),
         (-122.285766, 47.735004),
         (-122.246627, 47.683255),
         (-122.245314, 47.495860),
         (-122.435896, 47.495860)])],
-        columns=['geometry'], geometry='geometry')
+        columns=[cn.GEOMETRY], geometry=cn.GEOMETRY)
     rectangle.crs = from_epsg(4326)
 
     # Block Group
     # shape file and correlation csv filepaths
-    SEATTLE_FP = 'seamo/data/raw/SeattleCensusBlocksandNeighborhoodCorrelationFile.xlsx'
-    SEATTLE_FP = os.path.join(os.pardir, os.pardir, SEATTLE_FP)
+    SEATTLE_FP = os.path.join(cn.RAW_DIR, 'SeattleCensusBlocksandNeighborhoodCorrelationFile.xlsx')
 
     # read filepath into dataframe
     seattle_data = pd.read_excel(SEATTLE_FP)
@@ -113,19 +115,19 @@ def main():
     s.columns = ['tract_blkgrp']
 
     # process King County correlation dataframe
-    gdf = read_file_into_dataframe('blkgrp10_shore', 'GEO_ID_GRP', crs)
+    gdf = read_file_into_dataframe(cn.BLKGRP_FNAME, cn.BLKGRP_KEY, crs)
 
     # inner join on Seattle census tract/block groups
     gdf = pd.merge(s, gdf, left_on='tract_blkgrp',
         right_on='tract_blkgrp', how='inner')
 
     # convert pandas dataframe to geopandas dataframe
-    gdf = gpd.GeoDataFrame(gdf, crs=crs, geometry='geometry')
+    gdf = gpd.GeoDataFrame(gdf, crs=crs, geometry=cn.GEOMETRY)
     gdf.crs = from_epsg(4326)
 
     # overlay boundary of seattle with current outline to remove noise
     data = sp.spatial_overlays(gdf, rectangle, how='intersection')
-    data = data[['tract_blkgrp', 'area', 'geometry']]
+    data = data[['tract_blkgrp', cn.AREA, cn.GEOMETRY]]
 
     # plot map
     # data.plot(cmap="tab20b")
@@ -134,39 +136,58 @@ def main():
     centroids = data.geometry.centroid
     data['tract_blkgrp'] = '530330' + data['tract_blkgrp'].astype(str)
     blkgrps = pd.concat([data, centroids.y, centroids.x], axis=1)
-    blkgrps.columns = ['geoid', 'area', 'geometry', 'lat', 'long']
+    blkgrps.columns = [cn.KEY, cn.AREA, cn.GEOMETRY, cn.LAT, cn.LON]
+    # print(blkgrps.head())
 
     # outline of seattle used for overlay intersection
     outline = seattle_outline(blkgrps, crs)
 
     # Short Neighborhood
-    short_nbhd = process_data('Neighborhoods', 'S_Hood',
+    short_nbhd = process_data(cn.NBHD_FNAME, cn.NBHD_SHORT_KEY,
         crs, outline, rectangle)
 
     # Long Neighborhood
-    long_nbhd = process_data('Neighborhoods', 'N_Hood',
+    long_nbhd = process_data(cn.NBHD_FNAME, cn.NBHD_LONG_KEY,
         crs, outline, rectangle)
 
     # Council District
-    coucil_districts = process_data('sccdst', 'NAME',
+    coucil_districts = process_data(cn.COUNCIL_DISTRICT_FNAME, cn.COUNCIL_DISTRICT_KEY,
         crs, outline, rectangle)
 
     # Zipcode
-    zipcodes = process_data('zipcode', 'ZIPCODE',
+    zipcodes = process_data(cn.ZIPCODE_FNAME, cn.ZIPCODE_KEY,
         crs, outline, rectangle)
 
     # Urban Village
-    urban_villages = process_data('DPD_uvmfg_polygon', 'UV_NAME',
+    urban_villages = process_data(cn.URBAN_VILLAGE_FNAME, cn.URBAN_VILLAGE_KEY,
         crs, outline, rectangle)
 
+    return blkgrps, short_nbhd, long_nbhd, coucil_districts, zipcodes, urban_villages
+
+def main(argv):
+    try:
+        sys.argv[1]
+    except:
+        raise "need an input"
+    else:
+        choice = str(sys.argv[1])
+    blkgrps, short_nbhd, long_nbhd, coucil_districts, zipcodes, urban_villages = process()
     # write to csv file
-    write_to_csv('SeattleShortNeighborhoods', short_nbhd)
-    write_to_csv('SeattleLongNeighborhoods', long_nbhd)
-    write_to_csv('SeattleCouncilDistricts', coucil_districts)
-    write_to_csv('SeattleZipcodes', zipcodes)
-    write_to_csv('SeattleUrbanVillages', urban_villages)
-    write_to_csv('SeattleCensusBlockGroups', blkgrps)
+    if '0' in choice:
+        write_to_csv('SeattleShortNeighborhoods', short_nbhd)
+    elif '1' in choice:
+        write_to_csv('SeattleLongNeighborhoods', long_nbhd)
+    elif '2' in choice:
+        write_to_csv('SeattleCouncilDistricts', coucil_districts)
+    elif '3' in choice:
+        write_to_csv('SeattleZipcodes', zipcodes)
+    elif '4' in choice:
+        write_to_csv('SeattleUrbanVillages', urban_villages)
+    elif '5' in choice:
+        # print(blkgrps.head())
+        write_to_csv('SeattleCensusBlockGroups', blkgrps)
+        write_to_shapefile('SeattleCensusBlockGroups', blkgrps)
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])
