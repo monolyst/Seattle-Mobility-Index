@@ -40,23 +40,6 @@ PAIR = 'pair'
 ORIGIN_FP = os.path.join(DATADIR, 'SeattleCensusBlocksandNeighborhoodCorrelationFile.csv') 
 DEST_FP = os.path.join(DATADIR, 'GoogleMatrix_Places_Full.csv') 
 
-class Coordinate:
-    """
-    Coordinate class.
-    """
-    def __init__(self, lat, lon):
-        """
-        Initialize with a latitude and a longitude.
-        """
-        self.lat = lat
-        self.lon = lon
-
-    def __str__(self):
-        """
-        Format is 'lat,lon'
-        """
-        return "{0},{1}".format(self.lat, self.lon)
-
 class BasketCalculator:
 
     origin_df = pd.read_csv(ORIGIN_FP)
