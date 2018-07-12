@@ -59,6 +59,7 @@ GOOGLE_START_LAT = 'start_lat'
 GOOGLE_START_LON = 'start_lon'
 GOOGLE_END_LAT = 'end_lat'
 GOOGLE_END_LON = 'end_lon'
+PLACE_ID = 'place_id'
 
 # Seattle Census Data naming
 CENSUS_LAT = 'CT_LAT'

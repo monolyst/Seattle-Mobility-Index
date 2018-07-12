@@ -22,23 +22,6 @@ from urllib.request import Request, urlopen
 import constants as cn
 import pandas as pd
 
-DATADIR = os.path.join(os.getcwd(), "../../seamo/data/raw")
-PROXIMITY_THRESHOLD = 0.8 # 5-6 miles
-METERS_TO_MILES = 1609
-
-# Google API naming
-PLACE_LAT = 'lat'
-PLACE_LON = 'lng' 
-PLACE_CLASS = 'class'
-PLACE_RANK = 'rank'
-
-DISTANCE = 'distance'
-PAIR = 'pair'
-
-# Seattle Census Data naming
-
-ORIGIN_FP = os.path.join(DATADIR, 'SeattleCensusBlocksandNeighborhoodCorrelationFile.csv') 
-DEST_FP = os.path.join(DATADIR, 'GoogleMatrix_Places_Full.csv') 
 
 class Coordinate:
     """
@@ -51,16 +34,18 @@ class Coordinate:
         self.lat = lat
         self.lon = lon
 
+
     def __str__(self):
         """
         Format is 'lat,lon'
         """
         return "{0},{1}".format(self.lat, self.lon)
 
+
 class BasketCalculator:
 
-    origin_df = pd.read_csv(ORIGIN_FP)
-    dest_df = pd.read_csv(DEST_FP)
+    origin_df = pd.read_csv(cn.ORIGIN_FP)
+    dest_df = pd.read_csv(cn.DEST_FP)
 
     def __init__(self, api_key):
         """
@@ -92,7 +77,7 @@ class BasketCalculator:
                 pair = "{0}-{1}".format(blockgroup, place_id) 
                 dist_matrix.append([pair, distance, dest_class])
 
-        dist_df = pd.DataFrame(dist_matrix, columns=[PAIR, DISTANCE, PLACE_CLASS])
+        dist_df = pd.DataFrame(dist_matrix, columns=[cn.PAIR, cn.DISTANCE, cn.CLASS])
     
         # rank it by proximity
         dist_df = self.rank_destinations(dist_df)
@@ -108,9 +93,9 @@ class BasketCalculator:
         Output: dataframe with an added 'rank' column
         """
         # Group by blockgroup and destination class
-        grouped = dist_df.groupby([cn.BLOCKGROUP, PLACE_CLASS])
+        grouped = dist_df.groupby([cn.BLOCKGROUP, cn.CLASS])
         # Rank by proximity (closest is highest) 
-        dist_df[PLACE_RANK] = grouped[DISTANCE].rank(
+        dist_df[cn.RANK] = grouped[cn.DISTANCE].rank(
             ascending=True, method='first')
         return dist_df
 
@@ -171,16 +156,16 @@ class BasketCalculator:
         distances = {}
 
         for index, row in dest_df.iterrows():
-            destination = Coordinate(row[PLACE_LAT], row[PLACE_LON])
-            dest_class = row[PLACE_CLASS]
-            #TODO: Replace with constant when that is merged into master.
-            place_id = row['place_id']
+            destination = Coordinate(row[cn.GOOGLE_PLACES_LAT], 
+                                     row[cn.GOOGLE_PLACES_LON])
+            dest_class = row[cn.CLASS]
+            place_id = row[cn.PLACE_ID]
 
             distance = self.calculate_distance(origin, destination)
             if distance:
                 # Store the distance and the class of destination
-                distances[place_id] = { DISTANCE: distance,
-                                        PLACE_CLASS: dest_class }
+                distances[cn.PLACE_ID] = { cn.DISTANCE: distance,
+                                           cn.CLASS: dest_class }
 
         return distances
 
@@ -195,9 +180,9 @@ class BasketCalculator:
         Output: dataframe
         """
 
-        for i in range(len(CLASS_LIST)):
-            origin_df = origin_df[(origin_df[PLACE_CLASS] != CLASS_LIST[i]) | 
-                (origin_df[PLACE_RANK] <= basket_combination[i])]
+        for i, category in enumerate(cn.BASKET_CATEGORIES)):
+            origin_df = origin_df[(origin_df[cn.CLASS] != category) | 
+                (origin_df[cn.RANK] <= basket_combination[i])]
 
         return origin_df
 
