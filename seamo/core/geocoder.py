@@ -21,7 +21,7 @@ Call:
   pickle_name parameter is optional, and default value if nothing is passed is 
   reference.pickle
 """ 
-#import __init__
+import __init__
 import os
 import sys
 import pandas as pd

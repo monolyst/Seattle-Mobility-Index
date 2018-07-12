@@ -41,7 +41,7 @@ CLASS = 'class'
 RANK = 'rank'
 
 # Numeric Constants
-PROXIMITY_THRESHOLD = 0.8 # 5-6 miles
+PROXIMITY_THRESHOLD = 0.8 # 5-6 miles in lat-long coords
 METERS_TO_MILES = 1609
 DEG_INTO_MILES = 69
 CITY_CENTER = [47.6062, -122.3321]
@@ -50,6 +50,7 @@ CITY_CENTER = [47.6062, -122.3321]
 DIST_MATRIX_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?'
 IMPERIAL_UNITS = 'imperial'
 DRIVING_MODE = 'driving'
+GOOGLE_DIST_MATRIX_OUT = 'google_dist_matrix_out'
 
 # Google API naming
 GOOGLE_PLACES_LAT = 'lat'
@@ -58,6 +59,7 @@ GOOGLE_START_LAT = 'start_lat'
 GOOGLE_START_LON = 'start_lon'
 GOOGLE_END_LAT = 'end_lat'
 GOOGLE_END_LON = 'end_lon'
+PLACE_ID = 'place_id'
 
 # Seattle Census Data naming
 CENSUS_LAT = 'CT_LAT'
@@ -79,10 +81,12 @@ G = [0,1,2,3] # school
 H = [0,1,2,3] # cafe
 
 # Filepaths
-SHAPEFILE_DIR = os.path.join(os.pardir, 'seamo/data/raw/shapefiles/')
-PROCESSED_DIR = os.path.join(os.pardir, 'seamo/data/processed/')
-RAW_DIR = os.path.join(os.pardir, 'seamo/data/raw/')
-PICKLE_DIR = os.path.join(os.pardir, 'seamo/data/processed/pickles/')
+DATADIR = 'data/'
+SHAPEFILE_DIR = os.path.join(DATADIR, 'raw/shapefiles/')
+PROCESSED_DIR = os.path.join(DATADIR, 'processed/')
+RAW_DIR = os.path.join(DATADIR, 'raw/')
+PICKLE_DIR = os.path.join(PROCESSED_DIR, 'pickles/')
 ORIGIN_FP = os.path.join(RAW_DIR, 'SeattleCensusBlocksandNeighborhoodCorrelationFile.csv') 
 DEST_FP = os.path.join(RAW_DIR, 'GoogleMatrix_Places_Full.csv')
-
+DB_DIR = os.path.join(PROCESSED_DIR, 'databases/')
+CSV_DIR = os.path.join(PROCESSED_DIR, 'csv/')
