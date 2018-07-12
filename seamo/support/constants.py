@@ -49,6 +49,7 @@ PROXIMITY_THRESHOLD = 0.8 # 5-6 miles in lat-long coords
 METERS_TO_MILES = 1609
 DEG_INTO_MILES = 69
 CITY_CENTER = [47.6062, -122.3321]
+EARTH_RADIUS_KM = 6373.0 # Approximate radius of Earth in km
 
 # API constants
 DIST_MATRIX_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?'
