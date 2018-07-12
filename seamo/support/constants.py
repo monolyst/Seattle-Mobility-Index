@@ -41,7 +41,7 @@ CLASS = 'class'
 RANK = 'rank'
 
 # Numeric Constants
-PROXIMITY_THRESHOLD = 0.8 # 5-6 miles
+PROXIMITY_THRESHOLD = 0.8 # 5-6 miles in lat-long coords
 METERS_TO_MILES = 1609
 DEG_INTO_MILES = 69
 CITY_CENTER = [47.6062, -122.3321]
@@ -60,6 +60,7 @@ GOOGLE_START_LAT = 'start_lat'
 GOOGLE_START_LON = 'start_lon'
 GOOGLE_END_LAT = 'end_lat'
 GOOGLE_END_LON = 'end_lon'
+PLACE_ID = 'place_id'
 
 # Seattle Census Data naming
 CENSUS_LAT = 'CT_LAT'
