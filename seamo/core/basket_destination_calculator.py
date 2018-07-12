@@ -23,26 +23,6 @@ import __init__
 import constants as cn
 
 
-
-class Coordinate:
-    """
-    Coordinate class.
-    """
-    def __init__(self, lat, lon):
-        """
-        Initialize with a latitude and a longitude.
-        """
-        self.lat = lat
-        self.lon = lon
-
-
-    def __str__(self):
-        """
-        Format is 'lat,lon'
-        """
-        return "{0},{1}".format(self.lat, self.lon)
-
-
 class BasketCalculator:
 
     origin_df = pd.read_csv(cn.ORIGIN_FP)
