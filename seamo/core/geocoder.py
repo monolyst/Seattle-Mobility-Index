@@ -84,9 +84,7 @@ def geocode_csv(input_file, pickle_name=cn.REFERENCE_PICKLE):
 
 
 def geocode_point(coord, pickle_name=cn.REFERENCE_PICKLE):
-    coord = str(coord).split(", ")
-    left = coord[0][1:]
-    right = coord[1][:-1]
+    left, right = split_coord(coord)
     data = pd.DataFrame(data={cn.LAT: [left], cn.LON: [right],
         cn.GEOMETRY: [Point((float(right), float(left)))]})
     data = data[[cn.LAT, cn.LON, cn.GEOMETRY]]
@@ -94,6 +92,13 @@ def geocode_point(coord, pickle_name=cn.REFERENCE_PICKLE):
     data.crs = cn.CRS_EPSG
     df = geocode(data, str(pickle_name))
     return df
+
+
+def split_coord(coord):
+    coord = str(coord).split(", ")
+    left = coord[0][1:]
+    right = coord[1][:-1]
+    return left, right
 
 
 def write_to_csv(df, PROCESSED_DIR, output_file):
