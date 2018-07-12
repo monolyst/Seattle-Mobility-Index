@@ -117,7 +117,7 @@ class BasketCalculator:
               '&mode={0}'.format(cn.DRIVING_MODE) +\
               '&origins={0}'.format(str(origin)) +\
               "&destinations={0}".format(str(destination)) +\
-              "&key={0}".format(api_key)
+              "&key={0}".format(self.api_key)
         request = Request(url)
         try:
             response = urlopen(request).read()
@@ -183,7 +183,7 @@ class BasketCalculator:
 
         for i, category in enumerate(cn.BASKET_CATEGORIES):
             origin_df = origin_df[(origin_df[cn.CLASS] != category) |
-                (origin_df[cn.RANK] <= basket_combination[i])]
+                        (origin_df[cn.RANK] <= basket_combination[i])]
 
         return origin_df
 
