@@ -23,7 +23,6 @@ import __init__
 import constants as cn
 
 
-
 class Coordinate:
     """
     Coordinate class.
@@ -42,6 +41,11 @@ class Coordinate:
         """
         return "{0},{1}".format(self.lat, self.lon)
 
+    def calculate_distance(self, coordinate):
+        """
+        Calculate the distance between two coordinates
+        """
+        return distance
 
 class BasketCalculator:
 
@@ -101,7 +105,7 @@ class BasketCalculator:
         return dist_df
 
 
-    def calculate_distance(self, origin, destination):
+    def calculate_distance_API(self, origin, destination):
         """
         Calculate the distance between an origin and destination pair.
         Calls Google Distance Matrix API.
@@ -142,6 +146,12 @@ class BasketCalculator:
         return distance
 
 
+    def calculate_distance_haversine(self, origin, destination):
+        """
+        Calculate haversine distance between two points
+        """
+        return distance
+
     def calculate_distance_to_basket(self, origin, dest_df):
         """Calculate the distance (and travel time) to each destination
         and produce a CSV file of the data.
@@ -171,21 +181,31 @@ class BasketCalculator:
         return distances
 
 
-    def create_basket(self, origin_df, basket_combination):
+    def create_basket(self, dist_df, basket_combination):
         """
         Given a list of integers denoting counts for basket categories
-        and a dataframe of origins (blockgroups), create a basket of destinations
-        for each blockgroup.
+        and a dataframe of origin-destination pairs with each destination for 
+        each class ranked by proximity to the origin, create a basket of 
+        destinations for each blockgroup.
 
-        Input: origin_df (dataframe), basket_combination (list)
+        Input: dist_df (dataframe), basket_combination (list)
         Output: dataframe
         """
-
+        # A list to store intermediate dataframes organized by destination class
+        dfs_by_class = []
+        
         for i, category in enumerate(cn.BASKET_CATEGORIES):
-            origin_df = origin_df[(origin_df[cn.CLASS] != category) |
-                        (origin_df[cn.RANK] <= basket_combination[i])]
+            class_df = dist_df[(dist_df[cn.CLASS] == category) & 
+                        (dist_df[cn.RANK] <= basket_combination[i])]
+            dfs_by_class.append(class_df)
 
-        return origin_df
+        # Concatenate the intermediate dataframes
+        basket_df = pd.concat(dfs_by_class)
+
+        # Note: Need to post-process the column names.
+
+        return basket_df
+
 
 if __name__ == "__main__":
     """
@@ -197,10 +217,16 @@ if __name__ == "__main__":
     origin_df = BasketCalculator.origin_df
     dest_df = BasketCalculator.dest_df
 
-    distance_df = basket_calculator.origins_to_distances(origin_df, dest_df)
+    # distance_df = basket_calculator.origins_to_distances(origin_df, dest_df)
     # Is it a problem that this is all stored in memory until write to file?   
 
-    output_fp = "basket.csv"
-    distance_df.to_csv(output_fp)
+    cn.BASKET
+    google_dist_fp = cn.GOOGLE_DIST_FP
+    
+    dist_df = pd.read_csv(google_dist_fp)
+    basket = basket_calculator.create_basket(dist_df, BEST_BASKET)
+    
+    basket.to_csv("basket-steve.csv") 
+
     # Import Darius csv to sql code
     # Output to sql.
