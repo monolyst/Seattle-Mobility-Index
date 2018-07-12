@@ -3,6 +3,9 @@ Constants to be used throughout the code base.
 """
 import os
 
+# Market Basket of Destinations
+BASKET = [1, 13, 1, 2, 1, 1, 1, 1, 3, 1] 
+
 # Strings
 # Column Names
 DISTANCE = 'distance'
