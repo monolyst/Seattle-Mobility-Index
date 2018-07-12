@@ -107,7 +107,7 @@ def write_to_csv(df, PROCESSED_DIR, output_file):
 
 
 def main(argv):
-    CHOICE = str(sys.argv[1])
+    choice = str(sys.argv[1])
     output_file = str(sys.argv[3]) + '.csv'
     try:
         sys.argv[4]
@@ -115,12 +115,12 @@ def main(argv):
         pickle_name = cn.REFERENCE_PICKLE
     else:
         pickle_name = str(sys.argv[4])
-    if CHOICE == "csv":
+    if choice == "csv":
         # add directory where the file should be found
         input_file = os.path.join(PROCESSED_DIR, 'test/', str(sys.argv[2]) + '.csv')
         df = geocode_csv(input_file, pickle_name)
         write_to_csv(df, PROCESSED_DIR, output_file)
-    elif CHOICE == "point":
+    elif choice == "point":
         coord = str(sys.argv[2])
         df = geocode_point(coord, pickle_name)
         write_to_csv(df, PROCESSED_DIR, output_file)
