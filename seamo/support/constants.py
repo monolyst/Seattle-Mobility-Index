@@ -44,8 +44,9 @@ CLASS = 'class'
 RANK = 'rank'
 
 # Numeric Constants
-PROXIMITY_THRESHOLD = 0.8 # 5-6 miles in lat-long coords
+PROXIMITY_THRESHOLD_MILES = 5
 METERS_TO_MILES = 1609
+KM_TO_MILES = 0.621371
 DEG_INTO_MILES = 69
 CITY_CENTER = [47.6062, -122.3321]
 EARTH_RADIUS_KM = 6373.0 # Approximate radius of Earth in km
