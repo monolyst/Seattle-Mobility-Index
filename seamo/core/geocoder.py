@@ -39,6 +39,7 @@ PICKLE_DIR = cn.PICKLE_DIR
 #Geocoder function
 def geocode(gdf, pickle_name=cn.REFERENCE_PICKLE):
     """ 
+    Input:  GeoPandas DataFrame gdf: cn.LAT, cn.LON
     input_file.csv needs header lat, lon
     """
     reference = get_reference(pickle_name)
@@ -70,8 +71,12 @@ def format_output(df):
 
 
 def get_reference(pickle_name=cn.REFERENCE_PICKLE):
-    reference = gi.get_reference(SHAPEFILE_DIR, PICKLE_DIR, pickle_name)
-    return reference
+    """
+    :param str pickle_name: name of the pickle file
+    :return GeoDataFrame:
+    """
+    reference_gdf = gi.get_reference(SHAPEFILE_DIR, PICKLE_DIR, pickle_name)
+    return reference_gdf
 
 
 def geocode_csv(input_file, pickle_name=cn.REFERENCE_PICKLE):
