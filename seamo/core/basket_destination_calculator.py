@@ -19,8 +19,8 @@ from urllib.request import Request, urlopen
 
 import pandas as pd
 
-import constants as cn
 import __init__
+import constants as cn
 
 
 
