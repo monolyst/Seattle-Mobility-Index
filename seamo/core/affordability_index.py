@@ -5,16 +5,11 @@ import constants as cn
 class AffordabilityIndex(index_base_class):
     DATADIR = cn.CSV_DIR
 
-    def __init__(self, time_of_day, type_of_day, travel_mode, travel_cost,
-        db_name=cn.GOOGLE_DIST_MATRIX_OUT, datadir=DATADIR):
-        self.time_of_day = time_of_day
-        self.type_of_day = type_of_day
-        self.travel_mode = travel_mode
+    def __init__(self, time_of_day, type_of_day, travel_mode,
+        db_name=cn.GOOGLE_DIST_MATRIX_OUT, datadir=DATADIR, travel_cost):
+        super().__init__(self, time_of_day, type_of_day, travel_mode,
+            db_name=cn.GOOGLE_DIST_MATRIX_OUT, datadir=DATADIR)
         self.travel_cost = travel_cost
-        self.datadir = datadir
-        self.trip_data = query_trip_data(db_name)
-        self.score = None
-
 
     def query_trip_data(self, db_name=cn.GOOGLE_DIST_MATRIX_OUT):
         db_file = os.path.join(cn.DB_DIR, db_name + '.db')
