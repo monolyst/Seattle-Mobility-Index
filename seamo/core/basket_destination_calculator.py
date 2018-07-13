@@ -65,24 +65,23 @@ class BasketCalculator:
                 outf.write(','.join(cols))
                 outf.write('\n')
 
-        else:
-            with open(fp, 'a+') as outf:
-                for i, row in origin_df.iterrows():
-                    blockgroup = row[cn.BLOCKGROUP]
-                    origin_lat, origin_lon = row[cn.CENSUS_LAT], row[cn.CENSUS_LON]
-                    origin = Coordinate(origin_lat, origin_lon)
-                    distances = self.calculate_distances(origin, dest_df, method, threshold)
-                    for place_id, data in distances.items():
-                        distance = data[cn.DISTANCE]
-                        dest_class = data[cn.CLASS]
-                        end_lat = data[cn.GOOGLE_END_LAT]
-                        end_lon = data[cn.GOOGLE_END_LON]
-                        pair = "{0}-{1}".format(blockgroup, place_id)
-                        row = [blockgroup, pair, distance, dest_class,
-                               origin_lat, origin_lon, end_lat, end_lon]
+        with open(fp, 'a+') as outf:
+            for i, row in origin_df.iterrows():
+                blockgroup = row[cn.BLOCKGROUP]
+                origin_lat, origin_lon = row[cn.CENSUS_LAT], row[cn.CENSUS_LON]
+                origin = Coordinate(origin_lat, origin_lon)
+                distances = self.calculate_distances(origin, dest_df, method, threshold)
+                for place_id, data in distances.items():
+                    distance = data[cn.DISTANCE]
+                    dest_class = data[cn.CLASS]
+                    end_lat = data[cn.GOOGLE_END_LAT]
+                    end_lon = data[cn.GOOGLE_END_LON]
+                    pair = "{0}-{1}".format(blockgroup, place_id)
+                    row = [blockgroup, pair, distance, dest_class,
+                           origin_lat, origin_lon, end_lat, end_lon]
 
-                        outf.write(','.join(row))
-                        outf.write('\n')
+                    outf.write(','.join([str(e) for e in row]))
+                    outf.write('\n')
        
         return
 
@@ -118,6 +117,7 @@ class BasketCalculator:
               '&mode={0}'.format(cn.DRIVING_MODE) +\
               '&origins={0}'.format(str(origin)) +\
               "&destinations={0}".format(str(destination)) +\
+              "&departure_time={0}".format(cn.TIMESTAMP) +\
               "&key={0}".format(self.api_key)
         request = Request(url)
         try:
