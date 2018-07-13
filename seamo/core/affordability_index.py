@@ -1,17 +1,16 @@
 import init
+import index_base_class
 import constants as cn
-import pandas as pd
-import geopandas as gpd
-import sqlite3
 
-class IndexBaseClass(object):
+class AffordabilityIndex(index_base_class):
     DATADIR = cn.CSV_DIR
 
-    def __init__(self, time_of_day, type_of_day, travel_mode,
+    def __init__(self, time_of_day, type_of_day, travel_mode, travel_cost,
         db_name=cn.GOOGLE_DIST_MATRIX_OUT, datadir=DATADIR):
         self.time_of_day = time_of_day
         self.type_of_day = type_of_day
         self.travel_mode = travel_mode
+        self.travel_cost = travel_cost
         self.datadir = datadir
         self.trip_data = query_trip_data(db_name)
         self.score = None
@@ -30,7 +29,7 @@ class IndexBaseClass(object):
         df = pd.read_csv(str(filename) + '.csv')
         return df
 
-    def calculate_score(self):
+    def calculate_score(self, travel_cost):
         pass
 
 
