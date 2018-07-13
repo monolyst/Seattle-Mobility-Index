@@ -22,7 +22,7 @@ class Trip(object):
     def calculate_cost(self):
         self.cost = 0
 
-    def calculate_duration(duration):
+    def calculate_duration(self, duration):
         self.duration = duration
 
     def get_trip_id(self, pair, mode, departure_time):
@@ -38,7 +38,7 @@ class CarTrip(Trip):
     def calculate_cost(self, mile_rate, parking, toll_data=0):
         self.cost = self.distance * mile_rate + parking + toll_data
 
-    def calculate_duration(duration, duration_in_traffic=0):
+    def calculate_duration(self, duration, duration_in_traffic=0):
         # Not sure if this right
         self.duration = duration + duration_in_traffic
 
