@@ -5,7 +5,7 @@ Basket Destination Calculator
 This script constructs a market basket of destinations relevant to people
 who travel in Seattle. The basket may nearby points of interest and activity
 centers that are specific to each origin, and citywide destinations
-that are the same for all starting points. 
+that are the same for all starting points.
 
 https://public.tableau.com/views/Basket_of_Destinations/Dashboard?:embed=y&:display_count=yes
 
@@ -15,6 +15,7 @@ The basket definition is created by using parameters to filter each
 class of destination.
 """
 import json
+import os
 from urllib.request import Request, urlopen
 
 import pandas as pd
@@ -33,54 +34,57 @@ class BasketCalculator:
     def __init__(self, api_key):
         """
         Initialize BasketCalculator with an API key.
-       
+      
         Inputs: api_key (string)
         """
         self.api_key = api_key
 
 
-    def origins_to_distances(self, origin_df=origin_df, dest_df=dest_df,
-                             method='haversine', threshold=True):
+    def origins_to_destinations(self, fp, origin_df=origin_df, dest_df=dest_df,
+                                method='haversine', threshold=True):
         """
         For every origin, store the distance to every destination in the
-        full basket of destinations. 
-        Distance is calculated either with haversine or 
+        full basket of destinations.
+        Distance is calculated either with haversine or
         via the Google Distance Matrix API.
 
-        Inputs: origin_df (dataframe)
+        Inputs: fp (filepath)
+                origin_df (dataframe)
                 dest_df (dataframe)
                 method (string)
                 threshold (Boolean)
         Outputs: dist_df (dataframe)
-       
+      
         """
-        dist_matrix = []
-        for i, row in origin_df.iterrows():
-            blockgroup = row[cn.BLOCKGROUP]
-            origin_lat, origin_lon = row[cn.CENSUS_LAT], row[cn.CENSUS_LON]
-            origin = Coordinate(origin_lat, origin_lon)
-            distances = self.calculate_distances(origin, dest_df, method, threshold)
-            for place_id, data in distances.items():
-                distance = data[cn.DISTANCE]
-                dest_class = data[cn.CLASS]
-                end_lat = data[cn.GOOGLE_END_LAT]
-                end_lon = data[cn.GOOGLE_END_LON]
-                pair = "{0}-{1}".format(blockgroup, place_id)
-                row = [blockgroup, pair, distance, dest_class,
-                       origin_lat, origin_lon, end_lat, end_lon]
-                dist_matrix.append(row)
-
-        
-        cols = [cn.BLOCKGROUP, cn.PAIR, cn.DISTANCE, cn.CLASS, 
+        cols = [cn.BLOCKGROUP, cn.PAIR, cn.DISTANCE, cn.CLASS,
                 cn.GOOGLE_START_LAT, cn.GOOGLE_START_LON,
                 cn.GOOGLE_END_LAT, cn.GOOGLE_END_LON]
+        
+        if not os.path.exists(fp):
+            with open(fp, 'w+') as outf:
+                outf.write(','.join(cols))
+                outf.write('\n')
 
-        dist_df = pd.DataFrame(dist_matrix, columns=cols)
-   
-        # rank it by proximity
-        dist_df = self.rank_destinations(dist_df)
+        else:
+            with open(fp, 'a+') as outf:
+                for i, row in origin_df.iterrows():
+                    blockgroup = row[cn.BLOCKGROUP]
+                    origin_lat, origin_lon = row[cn.CENSUS_LAT], row[cn.CENSUS_LON]
+                    origin = Coordinate(origin_lat, origin_lon)
+                    distances = self.calculate_distances(origin, dest_df, method, threshold)
+                    for place_id, data in distances.items():
+                        distance = data[cn.DISTANCE]
+                        dest_class = data[cn.CLASS]
+                        end_lat = data[cn.GOOGLE_END_LAT]
+                        end_lon = data[cn.GOOGLE_END_LON]
+                        pair = "{0}-{1}".format(blockgroup, place_id)
+                        row = [blockgroup, pair, distance, dest_class,
+                               origin_lat, origin_lon, end_lat, end_lon]
 
-        return dist_df
+                        outf.write(','.join(row))
+                        outf.write('\n')
+       
+        return
 
 
     def rank_destinations(self, dist_df):
@@ -102,7 +106,7 @@ class BasketCalculator:
         """
         Calculate the distance between an origin and destination pair.
         Calls Google Distance Matrix API.
-   
+  
         Input:  origin (Coordinate)
                 destination (Coordinate)
         Output: distance in miles (int)
@@ -121,7 +125,7 @@ class BasketCalculator:
         except:
             message = "URL open error."
             with open('API_error.log', 'a+') as outf:
-                outf.write("{0} {1} {2}\n".format(origin, destination, message)
+                outf.write("{0} {1} {2}\n".format(origin, destination, message))
             pass
 
         data = json.loads(response)
@@ -129,7 +133,7 @@ class BasketCalculator:
         if data['status'] != 'OK':
             message = data['error_message']
             with open('API_error.log', 'a+') as outf:
-                outf.write("{0} {1} {2}\n".format(origin, destination, message)
+                outf.write("{0} {1} {2}\n".format(origin, destination, message))
             pass
         else:
             elements = data['rows'][0]['elements']
@@ -138,7 +142,7 @@ class BasketCalculator:
                 # If the origin-destination pair is not found, should write to a log.
                 message = 'Could not find the distance for this pair.'
                 with open('API_error.log', 'a+') as outf:
-                    outf.write("{0} {1} {2}\n".format(origin, destination, message)
+                    outf.write("{0} {1} {2}\n".format(origin, destination, message))
                 pass
             elif element['status'] == 'OK':
                 distance = element['distance']['value']
@@ -150,8 +154,8 @@ class BasketCalculator:
         """
         inputs: origin (Coordinate)
                 destination (Coordinate)
-        output: distance (float) 
-                Distance in miles. 
+        output: distance (float)
+                Distance in miles.
 
         Calculate haversine distance between two points.
         Returns distance in miles.
@@ -188,17 +192,17 @@ class BasketCalculator:
             elif method == 'haversine':
                 distance = self.calculate_distance_haversine(origin, destination)
 
-            data = {cn.GOOGLE_PLACES_LAT: end_lat,
-                    cn.GOOGLE_PLACES_LON: end_lon,
+            data = {cn.GOOGLE_END_LAT: end_lat,
+                    cn.GOOGLE_END_LON: end_lon,
                     cn.DISTANCE: distance,
                     cn.CLASS: dest_class}
 
             # If the distance is within the threshold (5 miles)
             # or if the destination is a citywide
-            if threshold: 
+            if threshold:
                 if distance <= cn.PROXIMITY_THRESHOLD_MILES or dest_class == 'citywide':
                     # Store the distance and the class of destination
-                    distances[place_id] = data 
+                    distances[place_id] = data
             else:
                 distances[place_id] = data
 
@@ -208,8 +212,8 @@ class BasketCalculator:
     def create_basket(self, dist_df, basket_combination):
         """
         Given a list of integers denoting counts for basket categories
-        and a dataframe of origin-destination pairs with each destination for 
-        each class ranked by proximity to the origin, create a basket of 
+        and a dataframe of origin-destination pairs with each destination for
+        each class ranked by proximity to the origin, create a basket of
         destinations for each blockgroup.
 
         Input: dist_df (dataframe), basket_combination (list)
@@ -217,9 +221,9 @@ class BasketCalculator:
         """
         # A list to store intermediate dataframes organized by destination class
         dfs_by_class = []
-        
+       
         for i, category in enumerate(cn.BASKET_CATEGORIES):
-            class_df = dist_df[(dist_df[cn.CLASS] == category) & 
+            class_df = dist_df[(dist_df[cn.CLASS] == category) &
                         (dist_df[cn.RANK] <= basket_combination[i])]
             dfs_by_class.append(class_df)
 
@@ -241,8 +245,8 @@ if __name__ == "__main__":
     origin_df = BasketCalculator.origin_df
     dest_df = BasketCalculator.dest_df
 
-    # distance_df = basket_calculator.origins_to_distances(origin_df, dest_df)
+    # distance_df = basket_calculator.origins_to_destinations(origin_df, dest_df)
     # basket = basket_calculator.create_basket(dist_df, cn.BASKET)
-    
+   
     # Import Darius csv to sql code
     # Output to sql.
