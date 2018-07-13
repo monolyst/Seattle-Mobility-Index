@@ -119,20 +119,27 @@ class BasketCalculator:
         try:
             response = urlopen(request).read()
         except:
-            raise Exception("Couldn't open link.") 
+            message = "URL open error."
+            with open('API_error.log', 'a+') as outf:
+                outf.write("{0} {1} {2}\n".format(origin, destination, message)
+            pass
 
         data = json.loads(response)
 
         if data['status'] != 'OK':
             message = data['error_message']
-            raise Exception(message)
-            # Going to make a SeamoError type.
+            with open('API_error.log', 'a+') as outf:
+                outf.write("{0} {1} {2}\n".format(origin, destination, message)
+            pass
         else:
             elements = data['rows'][0]['elements']
             element = elements[0]
             if element['status'] == 'NOT_FOUND':
                 # If the origin-destination pair is not found, should write to a log.
-                raise Exception('Could not find the distance for that pair.') 
+                message = 'Could not find the distance for this pair.'
+                with open('API_error.log', 'a+') as outf:
+                    outf.write("{0} {1} {2}\n".format(origin, destination, message)
+                pass
             elif element['status'] == 'OK':
                 distance = element['distance']['value']
 
@@ -153,7 +160,7 @@ class BasketCalculator:
         return distance
 
 
-    def calculate_distances(self, origin, dest_df, method="haversine", threshold=False):
+    def calculate_distances(self, origin, dest_df, method, threshold):
         """Calculate the distance (and travel time) to each destination
         and produce a CSV file of the data.
         If threshold is True, only store distances within a threshold in miles.
@@ -176,9 +183,9 @@ class BasketCalculator:
             dest_class = row[cn.CLASS]
             place_id = row[cn.PLACE_ID]
 
-            if method == "API":
+            if method == 'API':
                 distance = self.calculate_distance_API(origin, destination)
-            else:
+            elif method == 'haversine':
                 distance = self.calculate_distance_haversine(origin, destination)
 
             data = {cn.GOOGLE_PLACES_LAT: end_lat,
