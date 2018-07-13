@@ -24,6 +24,7 @@ import constants as cn
 
 from coordinate import Coordinate
 
+
 class BasketCalculator:
 
     origin_df = pd.read_csv(cn.ORIGIN_FP)
@@ -38,30 +39,41 @@ class BasketCalculator:
         self.api_key = api_key
 
 
-    def origins_to_distances(self, origin_df=origin_df, dest_df=dest_df):
+    def origins_to_distances(self, origin_df=origin_df, dest_df=dest_df,
+                             method='haversine', threshold=True):
         """
         For every origin, store the distance to every destination in the
-        full basket of destinations. Distance is calculated via the Google
-        Distance Matrix API.
+        full basket of destinations. 
+        Distance is calculated either with haversine or 
+        via the Google Distance Matrix API.
 
-        Inputs: origin_df (dataframe), dest_df (dataframe)
+        Inputs: origin_df (dataframe)
+                dest_df (dataframe)
+                method (string)
+                threshold (Boolean)
         Outputs: dist_df (dataframe)
        
         """
         dist_matrix = []
         for i, row in origin_df.iterrows():
             blockgroup = row[cn.BLOCKGROUP]
-            origin = Coordinate(row[cn.CENSUS_LAT], row[cn.CENSUS_LON])
-            distances = self.calculate_distance_to_basket(origin, dest_df)
+            origin_lat, origin_lon = row[cn.CENSUS_LAT], row[cn.CENSUS_LON]
+            origin = Coordinate(origin_lat, origin_lon)
+            distances = self.calculate_distances(origin, dest_df, method, threshold)
             for place_id, data in distances.items():
                 distance = data[cn.DISTANCE]
                 dest_class = data[cn.CLASS]
+                end_lat = data[cn.GOOGLE_END_LAT]
+                end_lon = data[cn.GOOGLE_END_LON]
                 pair = "{0}-{1}".format(blockgroup, place_id)
-                dist_matrix.append([pair, distance, dest_class])
+                row = [blockgroup, pair, distance, dest_class,
+                       origin_lat, origin_lon, end_lat, end_lon]
+                dist_matrix.append(row)
 
         
-        cols = [cn.BLOCKGROUP, cn.DISTANCE, cn.CLASS]
-
+        cols = [cn.BLOCKGROUP, cn.PAIR, cn.DISTANCE, cn.CLASS, 
+                cn.GOOGLE_START_LAT, cn.GOOGLE_START_LON,
+                cn.GOOGLE_END_LAT, cn.GOOGLE_END_LON]
 
         dist_df = pd.DataFrame(dist_matrix, columns=cols)
    
@@ -141,15 +153,17 @@ class BasketCalculator:
         return distance
 
 
-    def calculate_distances(self, origin, dest_df, method="haversine"):
+    def calculate_distances(self, origin, dest_df, method="haversine", threshold=False):
         """Calculate the distance (and travel time) to each destination
         and produce a CSV file of the data.
+        If threshold is True, only store distances within a threshold in miles.
         Use Haversine or Google API
 
         Inputs:
             origin (Coordinate)
             dest_df (DataFrame)
             method (string)
+            threshold (Boolean)
         Output:
             distances (dict)
 
@@ -157,8 +171,8 @@ class BasketCalculator:
         distances = {}
 
         for index, row in dest_df.iterrows():
-            destination = Coordinate(row[cn.GOOGLE_PLACES_LAT],
-                                     row[cn.GOOGLE_PLACES_LON])
+            end_lat, end_lon = row[cn.GOOGLE_PLACES_LAT], row[cn.GOOGLE_PLACES_LON]
+            destination = Coordinate(end_lat, end_lon)
             dest_class = row[cn.CLASS]
             place_id = row[cn.PLACE_ID]
 
@@ -166,10 +180,20 @@ class BasketCalculator:
                 distance = self.calculate_distance_API(origin, destination)
             else:
                 distance = self.calculate_distance_haversine(origin, destination)
+
+            data = {cn.GOOGLE_PLACES_LAT: end_lat,
+                    cn.GOOGLE_PLACES_LON: end_lon,
+                    cn.DISTANCE: distance,
+                    cn.CLASS: dest_class}
+
+            # If the distance is within the threshold (5 miles)
+            # or if the destination is a citywide
+            if threshold: 
                 if distance <= cn.PROXIMITY_THRESHOLD_MILES or dest_class == 'citywide':
                     # Store the distance and the class of destination
-                    distances[place_id] = { cn.DISTANCE: distance,
-                                            cn.CLASS: dest_class }
+                    distances[place_id] = data 
+            else:
+                distances[place_id] = data
 
         return distances
 
@@ -211,14 +235,7 @@ if __name__ == "__main__":
     dest_df = BasketCalculator.dest_df
 
     # distance_df = basket_calculator.origins_to_distances(origin_df, dest_df)
-    # Is it a problem that this is all stored in memory until write to file?   
-
-    google_dist_fp = cn.GOOGLE_DIST_FP
+    # basket = basket_calculator.create_basket(dist_df, cn.BASKET)
     
-    dist_df = pd.read_csv(google_dist_fp)
-    basket = basket_calculator.create_basket(dist_df, cn.BASKET)
-    
-    basket.to_csv("basket-steve.csv") 
-
     # Import Darius csv to sql code
     # Output to sql.
