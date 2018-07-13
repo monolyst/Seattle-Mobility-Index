@@ -22,6 +22,7 @@ import pandas as pd
 import __init__
 import constants as cn
 
+from coordinate import Coordinate
 
 class BasketCalculator:
 
@@ -58,7 +59,11 @@ class BasketCalculator:
                 pair = "{0}-{1}".format(blockgroup, place_id)
                 dist_matrix.append([pair, distance, dest_class])
 
-        dist_df = pd.DataFrame(dist_matrix, columns=[cn.PAIR, cn.DISTANCE, cn.CLASS])
+        
+        cols = [cn.BLOCKGROUP, cn.DISTANCE, cn.CLASS]
+
+
+        dist_df = pd.DataFrame(dist_matrix, columns=cols)
    
         # rank it by proximity
         dist_df = self.rank_destinations(dist_df)
@@ -124,18 +129,27 @@ class BasketCalculator:
 
     def calculate_distance_haversine(self, origin, destination):
         """
-        Calculate haversine distance between two points
+        inputs: origin (Coordinate)
+                destination (Coordinate)
+        output: distance (float) 
+                Distance in miles. 
+
+        Calculate haversine distance between two points.
+        Returns distance in miles.
         """
+        distance = origin.haversine_distance(destination)
         return distance
 
-    def calculate_distance_to_basket(self, origin, dest_df):
+
+    def calculate_distances(self, origin, dest_df, method="haversine"):
         """Calculate the distance (and travel time) to each destination
         and produce a CSV file of the data.
-        This calls the Google Matrix API.
+        Use Haversine or Google API
 
         Inputs:
             origin (Coordinate)
             dest_df (DataFrame)
+            method (string)
         Output:
             distances (dict)
 
@@ -148,11 +162,14 @@ class BasketCalculator:
             dest_class = row[cn.CLASS]
             place_id = row[cn.PLACE_ID]
 
-            distance = self.calculate_distance(origin, destination)
-            if distance:
-                # Store the distance and the class of destination
-                distances[cn.PLACE_ID] = { cn.DISTANCE: distance,
-                                           cn.CLASS: dest_class }
+            if method == "API":
+                distance = self.calculate_distance_API(origin, destination)
+            else:
+                distance = self.calculate_distance_haversine(origin, destination)
+                if distance <= cn.PROXIMITY_THRESHOLD_MILES or dest_class == 'citywide':
+                    # Store the distance and the class of destination
+                    distances[place_id] = { cn.DISTANCE: distance,
+                                            cn.CLASS: dest_class }
 
         return distances
 
@@ -196,11 +213,10 @@ if __name__ == "__main__":
     # distance_df = basket_calculator.origins_to_distances(origin_df, dest_df)
     # Is it a problem that this is all stored in memory until write to file?   
 
-    cn.BASKET
     google_dist_fp = cn.GOOGLE_DIST_FP
     
     dist_df = pd.read_csv(google_dist_fp)
-    basket = basket_calculator.create_basket(dist_df, BEST_BASKET)
+    basket = basket_calculator.create_basket(dist_df, cn.BASKET)
     
     basket.to_csv("basket-steve.csv") 
 
