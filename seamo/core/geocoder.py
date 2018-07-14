@@ -37,12 +37,12 @@ PROCESSED_DIR = cn.PROCESSED_DIR
 PICKLE_DIR = cn.PICKLE_DIR
 
 #Geocoder function
-def geocode(gdf, pickle_name=cn.REFERENCE_PICKLE):
+def geocode(gdf, pickle_name=cn.REFERENCE_PICKLE, reference_type=cn.BLOCK_GROUP):
     """ 
     Input:  GeoPandas DataFrame gdf: cn.LAT, cn.LON
     input_file.csv needs header lat, lon
     """
-    reference = get_reference(pickle_name)
+    reference = get_reference(reference_type, pickle_name)
     df = gpd.sjoin(gdf, reference, how = 'left')
     df = df.drop(columns = ['index_right'])
     df = df.sort_values(by=cn.GEOGRAPHY)
@@ -70,16 +70,22 @@ def format_output(df):
     return df
 
 
-def get_reference(pickle_name=cn.REFERENCE_PICKLE):
+def get_reference(reference_type=cn.BLOCK_GROUP, pickle_name=cn.REFERENCE_PICKLE):
     """
     :param str pickle_name: name of the pickle file
     :return GeoDataFrame:
     """
-    reference_gdf = gi.get_reference(SHAPEFILE_DIR, PICKLE_DIR, pickle_name)
+    if reference_type == cn.BLOCK_GROUP:
+        reference_gdf = gi.get_reference(SHAPEFILE_DIR, PICKLE_DIR, pickle_name, reference_type)
+
+    elif reference_type == cn.BLOCK_FACE:
+        if pickle_name == cn.REFERENCE_PICKLE:
+            pickle_name = cn.PARKING_REFERENCE
+        reference_gdf = gi.get_reference(SHAPEFILE_DIR, PICKLE_DIR, pickle_name, reference_type)
     return reference_gdf
 
 
-def geocode_csv(input_file, pickle_name=cn.REFERENCE_PICKLE):
+def geocode_csv(input_file, pickle_name=cn.REFERENCE_PICKLE, reference_type=cn.BLOCK_GROUP):
     data = pd.read_csv(str(input_file))
     data[cn.GEOMETRY] = data.apply(lambda x: Point((float(x[1]), float(x[0]))), axis=1)
     data = gpd.GeoDataFrame(data, geometry=cn.GEOMETRY)
@@ -88,7 +94,7 @@ def geocode_csv(input_file, pickle_name=cn.REFERENCE_PICKLE):
     return df
 
 
-def geocode_point(coord, pickle_name=cn.REFERENCE_PICKLE):
+def geocode_point(coord, pickle_name=cn.REFERENCE_PICKLE, reference_type=cn.BLOCK_GROUP):
     left, right = split_coord(coord)
     data = pd.DataFrame(data={cn.LAT: [left], cn.LON: [right],
         cn.GEOMETRY: [Point((float(right), float(left)))]})

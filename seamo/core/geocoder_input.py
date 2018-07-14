@@ -28,15 +28,32 @@ def make_reference(DATADIR, directory, pickle_name):
     make_pickle(directory, reference, pickle_name)
     return reference
 
+def make_parking_reference(DATADIR, directory, pickle_name):
+    shapefile = str(cn.PARKING_FNAME) + '.shp'
+    reference = gpd.read_file(os.path.join(DATADIR, shapefile))
+    # add columns desired
+    reference = reference.to_crs(cn.CRS_EPSG)
+    # name columns
+    make_pickle(directory, reference, pickle_name)
+
 def make_pickle(directory, reference, pickle_name):
     with open(os.path.join(directory, str(pickle_name)), 'wb') as pickle_file:
         pickle.dump(reference, pickle_file)
 
-def get_reference(DATADIR, directory, pickle_name):
+def check_exists(DATADIR, directory, pickle_name, method):
     fname = directory + str(pickle_name)
     try:
         reference = pickle.load(open(fname, 'rb'))
         return reference
     except:
-        reference = make_reference(DATADIR, directory, str(pickle_name))
+        reference = (DATADIR, directory, str(pickle_name))
+        return reference
+
+def get_reference(DATADIR, directory, pickle_name, reference_type=cn.BLOCK_GROUP):
+    # import pdb; pdb.set_trace()
+    if reference_type == cn.BLOCK_GROUP:
+        reference = check_exists(DATADIR, directory, pickle_name, make_reference)
+        return reference
+    elif reference_type == cn.BLOCK_FACE:
+        reference = check_exists(DATADIR, directory, pickle_name, make_parking_reference)
         return reference

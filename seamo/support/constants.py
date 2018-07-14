@@ -37,6 +37,7 @@ COUNCIL_DISTRICT_KEY = 'SCCDST'
 URBAN_VILLAGE_FNAME = 'DPD_uvmfg_polygon'
 URBAN_VILLAGE_KEY = 'UV_NAME'
 REFERENCE_PICKLE = 'reference.pickle'
+PARKING_REFERENCE = 'parking_reference.pickle'
 
 # Categories for basket
 POST_OFFICE = 'post_office'
