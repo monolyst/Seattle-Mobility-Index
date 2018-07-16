@@ -229,20 +229,3 @@ class BasketCalculator:
         # Note: Need to post-process the column names.
 
         return basket_df
-
-
-if __name__ == "__main__":
-    """
-    Ask the user for their API key.
-    """
-    api_key = input("Enter your Google API key: ")
-    basket_calculator = BasketCalculator(api_key)
-
-    origin_df = BasketCalculator.origin_df
-    dest_df = BasketCalculator.dest_df
-
-    # distance_df = basket_calculator.origins_to_destinations(origin_df, dest_df)
-    # basket = basket_calculator.create_basket(dist_df, cn.BASKET)
-   
-    # Import Darius csv to sql code
-    # Output to sql.
