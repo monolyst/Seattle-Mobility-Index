@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import geopandas as gpd
+import numpy as np
 from shapely.geometry import Point
 import pickle
 import constants as cn
@@ -8,14 +9,25 @@ import constants as cn
 #Read in shapes files for block group, neighborhoods, zipcode, council district and urban villages
 # DATADIR = os.path.join(os.getcwd(), '../../seamo/data/raw/shapefiles/')
 
-def read_shapefile(shapefile, column_name, name, DATADIR):
+def read_shapefile(shapefile, column_name, name, DATADIR,
+    reference_type=cn.BLOCK_GROUP):
     shapefile = str(shapefile) + '.shp'
-    geography = gpd.read_file(os.path.join(DATADIR, shapefile))
-    geography = geography.loc[:, (column_name, cn.GEOMETRY)]
-    geography = geography.to_crs(cn.CRS_EPSG)
-    geography.columns = [cn.KEY, cn.GEOMETRY]
-    geography[cn.GEOGRAPHY] = str(name)
-    return geography
+    gdf = gpd.read_file(os.path.join(DATADIR, shapefile))
+    if reference_type == cn.BLOCK_GROUP:
+        geography = gdf.loc[:, (column_name, cn.GEOMETRY)]
+        geography = geography.to_crs(cn.CRS_EPSG)
+        geography.columns = [cn.KEY, cn.GEOMETRY]
+        geography[cn.GEOGRAPHY] = str(name)
+        return geography
+    elif reference_type == cn.BLOCK_FACE:
+        parking = gdf.loc[:, (column_name, cn.PARKING_CATEGORY, cn.WEEKDAY_MORNING_RATE,
+            cn.WEEKDAY_AFTERNOON_RATE, cn.WEEKDAY_EVENING_RATE, cn.WEEKDAY_MORNING_START,
+            cn.WEEKDAY_AFTERNOON_START, cn.WEEKDAY_EVENING_START, cn.WEEKDAY_MORNING_END,
+            cn.WEEKDAY_AFTERNOON_END, cn.WEEKDAY_EVENING_END, cn.WEEKEND_MORNING_RATE,
+            cn.WEEKEND_AFTERNOON_RATE, cn.WEEKEND_EVENING_RATE, cn.WEEKEND_MORNING_START,
+            cn.WEEKEND_AFTERNOON_START, cn.WEEKEND_EVENING_START, cn.WEEKEND_MORNING_END,
+            cn.WEEKEND_AFTERNOON_END, cn.WEEKEND_EVENING_END, cn.GEOMETRY)]
+        parking = parking.to_crs(cn.CRS_EPSG)
 
 def make_reference(DATADIR, directory, pickle_name):
     blkgrp = read_shapefile(cn.BLKGRP_FNAME, cn.BLKGRP_KEY, cn.BLOCK_GROUP, DATADIR)
@@ -29,11 +41,7 @@ def make_reference(DATADIR, directory, pickle_name):
     return reference
 
 def make_parking_reference(DATADIR, directory, pickle_name):
-    shapefile = str(cn.PARKING_FNAME) + '.shp'
-    reference = gpd.read_file(os.path.join(DATADIR, shapefile))
-    # add columns desired
-    reference = reference.to_crs(cn.CRS_EPSG)
-    # name columns
+    reference = (cn.BLOCK_FACE_FNAME, cn.BLOCK_NUMBER, cn.BLOCK_FACE, DATADIR, cn.BLOCK_FACE)
     make_pickle(directory, reference, pickle_name)
 
 def make_pickle(directory, reference, pickle_name):
