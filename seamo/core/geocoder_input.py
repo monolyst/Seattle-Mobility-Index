@@ -36,7 +36,8 @@ def read_shapefile(shapefile, column_name, name, DATADIR,
             cn.WEEKEND_AFTERNOON_RATE, cn.WEEKEND_EVENING_RATE, cn.WEEKEND_MORNING_START,
             cn.WEEKEND_AFTERNOON_START, cn.WEEKEND_EVENING_START, cn.WEEKEND_MORNING_END,
             cn.WEEKEND_AFTERNOON_END, cn.WEEKEND_EVENING_END, cn.GEOMETRY)]
-        parking = parking.to_crs(cn.CRS_EPSG)
+        parking.crs = cn.CRS_EPSG
+        return parking
 
 def make_reference(DATADIR, directory, pickle_name):
     blkgrp = read_shapefile(cn.BLKGRP_FNAME, cn.BLKGRP_KEY, cn.BLOCK_GROUP, DATADIR)
@@ -50,15 +51,24 @@ def make_reference(DATADIR, directory, pickle_name):
     return reference
 
 def make_parking_reference(DATADIR, directory, pickle_name):
-    reference = (cn.BLOCK_FACE_FNAME, cn.BLOCK_NUMBER, cn.BLOCK_FACE, DATADIR, cn.BLOCK_FACE)
+    reference = read_shapefile(cn.BLOCK_FACE_FNAME, cn.BLOCK_NUMBER, cn.BLOCK_FACE, DATADIR, cn.BLOCK_FACE)
     intervals = [cn.WEEKDAY_MORNING_START, cn.WEEKDAY_AFTERNOON_START, cn.WEEKDAY_EVENING_START,
         cn.WEEKDAY_MORNING_END, cn.WEEKDAY_AFTERNOON_END, cn.WEEKDAY_EVENING_END,
         cn.WEEKEND_MORNING_START, cn.WEEKEND_AFTERNOON_START, cn.WEEKEND_EVENING_START,
         cn.WEEKEND_MORNING_END, cn.WEEKEND_AFTERNOON_END,cn.WEEKEND_EVENING_END]
     for interval in intervals:
-        df[interval] = df[interval].apply(lambda x: int(x/60) if pd.notnull(x) else x)
-        df[interval] = df[interval].apply(lambda x: x if x != 0 else np.nan)
-    make_pickle(directory, reference, pickle_name)
+        reference[interval] = reference[interval].apply(lambda x: int(x/60) if pd.notnull(x) else x)
+        reference[interval] = reference[interval].apply(lambda x: x if x != 0 else np.nan)
+
+    # Make a copy of the blockface geoDataFrame because buffer replaces the geometry column with the buffer polygons
+    print(type(reference.geometry))
+    # import pdb; pdb.set_trace()
+    parking_buff = reference.copy()
+    #The distance value is in degrees beucase we are using epsg4326. 
+    parking_buff.geometry = reference.geometry.buffer(0.0001) 
+
+    make_pickle(directory, parking_buff, pickle_name)
+    return parking_buff
 
 def make_pickle(directory, reference, pickle_name):
     with open(os.path.join(directory, str(pickle_name)), 'wb') as pickle_file:
@@ -70,7 +80,7 @@ def check_exists(DATADIR, directory, pickle_name, method):
         reference = pickle.load(open(fname, 'rb'))
         return reference
     except:
-        reference = (DATADIR, directory, str(pickle_name))
+        reference = method(DATADIR, directory, str(pickle_name))
         return reference
 
 def get_reference(DATADIR, directory, pickle_name, reference_type=cn.BLOCK_GROUP):

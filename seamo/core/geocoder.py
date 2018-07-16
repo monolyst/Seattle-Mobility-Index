@@ -82,6 +82,12 @@ def get_reference(reference_type=cn.BLOCK_GROUP, pickle_name=cn.REFERENCE_PICKLE
         if pickle_name == cn.REFERENCE_PICKLE:
             pickle_name = cn.PARKING_REFERENCE
         reference_gdf = gi.get_reference(SHAPEFILE_DIR, PICKLE_DIR, pickle_name, reference_type)
+        print(type(reference_gdf))
+    try:
+        reference_gdf.crs
+    except:
+        reference_gdf.crs = cn.CRS_EPSG
+    print(reference_gdf.crs)
     return reference_gdf
 
 
@@ -90,7 +96,7 @@ def geocode_csv(input_file, pickle_name=cn.REFERENCE_PICKLE, reference_type=cn.B
     data[cn.GEOMETRY] = data.apply(lambda x: Point((float(x[1]), float(x[0]))), axis=1)
     data = gpd.GeoDataFrame(data, geometry=cn.GEOMETRY)
     data.crs = cn.CRS_EPSG
-    df = geocode(data, str(pickle_name))
+    df = geocode(data, str(pickle_name), reference_type)
     return df
 
 
@@ -101,7 +107,7 @@ def geocode_point(coord, pickle_name=cn.REFERENCE_PICKLE, reference_type=cn.BLOC
     data = data[[cn.LAT, cn.LON, cn.GEOMETRY]]
     data = gpd.GeoDataFrame(data, geometry=cn.GEOMETRY)
     data.crs = cn.CRS_EPSG
-    df = geocode(data, str(pickle_name))
+    df = geocode(data, str(pickle_name), reference_type)
     return df
 
 
