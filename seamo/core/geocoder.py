@@ -82,12 +82,10 @@ def get_reference(reference_type=cn.BLOCK_GROUP, pickle_name=cn.REFERENCE_PICKLE
         if pickle_name == cn.REFERENCE_PICKLE:
             pickle_name = cn.PARKING_REFERENCE
         reference_gdf = gi.get_reference(SHAPEFILE_DIR, PICKLE_DIR, pickle_name, reference_type)
-        print(type(reference_gdf))
     try:
         reference_gdf.crs
     except:
         reference_gdf.crs = cn.CRS_EPSG
-    print(reference_gdf.crs)
     return reference_gdf
 
 

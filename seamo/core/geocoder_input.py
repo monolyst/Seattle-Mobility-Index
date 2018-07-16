@@ -36,6 +36,7 @@ def read_shapefile(shapefile, column_name, name, DATADIR,
             cn.WEEKEND_AFTERNOON_RATE, cn.WEEKEND_EVENING_RATE, cn.WEEKEND_MORNING_START,
             cn.WEEKEND_AFTERNOON_START, cn.WEEKEND_EVENING_START, cn.WEEKEND_MORNING_END,
             cn.WEEKEND_AFTERNOON_END, cn.WEEKEND_EVENING_END, cn.GEOMETRY)]
+        parking.drop(gdf[gdf.geometry == 'None'].index, inplace=True)
         parking.crs = cn.CRS_EPSG
         return parking
 
@@ -61,11 +62,9 @@ def make_parking_reference(DATADIR, directory, pickle_name):
         reference[interval] = reference[interval].apply(lambda x: x if x != 0 else np.nan)
 
     # Make a copy of the blockface geoDataFrame because buffer replaces the geometry column with the buffer polygons
-    print(type(reference.geometry))
-    # import pdb; pdb.set_trace()
     parking_buff = reference.copy()
-    #The distance value is in degrees beucase we are using epsg4326. 
-    parking_buff.geometry = reference.geometry.buffer(0.0001) 
+    #The distance value is in degrees beucase we are using epsg4326.
+    parking_buff.geometry = reference.geometry.buffer(cn.BUFFER_SIZE)
 
     make_pickle(directory, parking_buff, pickle_name)
     return parking_buff
