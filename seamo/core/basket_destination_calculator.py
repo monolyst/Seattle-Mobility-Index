@@ -122,30 +122,26 @@ class BasketCalculator:
         request = Request(url)
         try:
             response = urlopen(request).read()
+            data = json.loads(response)
+
+            if data['status'] != 'OK':
+                message = data['error_message']
+                with open('API_error.log', 'a+') as outf:
+                    outf.write("{0} {1} {2}\n".format(origin, destination, message))
+            else:
+                elements = data['rows'][0]['elements']
+                element = elements[0]
+                if element['status'] == 'NOT_FOUND':
+                    # If the origin-destination pair is not found, should write to a log.
+                    message = 'Could not find the distance for this pair.'
+                    with open('API_error.log', 'a+') as outf:
+                        outf.write("{0} {1} {2}\n".format(origin, destination, message))
+                elif element['status'] == 'OK':
+                    distance = element['distance']['value']
         except:
             message = "URL open error."
             with open('API_error.log', 'a+') as outf:
                 outf.write("{0} {1} {2}\n".format(origin, destination, message))
-            return distance 
-
-        data = json.loads(response)
-
-        if data['status'] != 'OK':
-            message = data['error_message']
-            with open('API_error.log', 'a+') as outf:
-                outf.write("{0} {1} {2}\n".format(origin, destination, message))
-            return distance 
-        else:
-            elements = data['rows'][0]['elements']
-            element = elements[0]
-            if element['status'] == 'NOT_FOUND':
-                # If the origin-destination pair is not found, should write to a log.
-                message = 'Could not find the distance for this pair.'
-                with open('API_error.log', 'a+') as outf:
-                    outf.write("{0} {1} {2}\n".format(origin, destination, message))
-                return distance 
-            elif element['status'] == 'OK':
-                distance = element['distance']['value']
 
         return distance
 
