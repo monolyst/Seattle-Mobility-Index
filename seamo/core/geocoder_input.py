@@ -19,7 +19,16 @@ def read_shapefile(shapefile, column_name, name, DATADIR,
         geography.columns = [cn.KEY, cn.GEOMETRY]
         geography[cn.GEOGRAPHY] = str(name)
         return geography
+
     elif reference_type == cn.BLOCK_FACE:
+        for col in gdf:
+            # get dtype for column
+            col_type = gdf[col].dtype 
+            # check if it is a number
+            if col_type == int or col_type == float:
+                gdf[col].fillna(0, inplace=True)
+            else:
+                gdf[col].fillna('None', inplace=True)
         parking = gdf.loc[:, (column_name, cn.PARKING_CATEGORY, cn.WEEKDAY_MORNING_RATE,
             cn.WEEKDAY_AFTERNOON_RATE, cn.WEEKDAY_EVENING_RATE, cn.WEEKDAY_MORNING_START,
             cn.WEEKDAY_AFTERNOON_START, cn.WEEKDAY_EVENING_START, cn.WEEKDAY_MORNING_END,
@@ -42,6 +51,13 @@ def make_reference(DATADIR, directory, pickle_name):
 
 def make_parking_reference(DATADIR, directory, pickle_name):
     reference = (cn.BLOCK_FACE_FNAME, cn.BLOCK_NUMBER, cn.BLOCK_FACE, DATADIR, cn.BLOCK_FACE)
+    intervals = [cn.WEEKDAY_MORNING_START, cn.WEEKDAY_AFTERNOON_START, cn.WEEKDAY_EVENING_START,
+        cn.WEEKDAY_MORNING_END, cn.WEEKDAY_AFTERNOON_END, cn.WEEKDAY_EVENING_END,
+        cn.WEEKEND_MORNING_START, cn.WEEKEND_AFTERNOON_START, cn.WEEKEND_EVENING_START,
+        cn.WEEKEND_MORNING_END, cn.WEEKEND_AFTERNOON_END,cn.WEEKEND_EVENING_END]
+    for interval in intervals:
+        df[interval] = df[interval].apply(lambda x: int(x/60) if pd.notnull(x) else x)
+        df[interval] = df[interval].apply(lambda x: x if x != 0 else np.nan)
     make_pickle(directory, reference, pickle_name)
 
 def make_pickle(directory, reference, pickle_name):
