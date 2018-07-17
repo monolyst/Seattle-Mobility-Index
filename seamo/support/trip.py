@@ -7,9 +7,9 @@ class Trip(object):
         self.destination = destination
         self.mode = mode
         self.distance = distance
-        self.duration = calculate_duration(duration)
+        self.duration = self.calculate_duration(duration)
         self.category = category
-        self.cost = calculate_cost(mode)
+        self.cost = self.calculate_cost(mode)
         self.rank = rank
         self.persona = None
         self.time_of_day = None
@@ -33,7 +33,7 @@ class Trip(object):
 class CarTrip(Trip):
     def __init__(self, origin, destination, mode, distance, category, duration_in_traffic=0):
         super().__init__(self, origin, destination, mode="car", distance, category)
-        self.duration = calculate_duration(duration, duration_in_traffic)
+        self.duration = self.calculate_duration(duration, duration_in_traffic)
 
     def calculate_cost(self, mile_rate, parking, toll_data=0):
         self.cost = self.distance * mile_rate + parking + toll_data

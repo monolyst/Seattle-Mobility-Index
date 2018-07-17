@@ -4,7 +4,7 @@ import pandas as pd
 import geopandas as gpd
 import sqlite3
 
-class IndexBaseClass(object):
+class IndexBase(object):
     DATADIR = cn.CSV_DIR
 
     def __init__(self, time_of_day, type_of_day, travel_mode,
@@ -13,7 +13,7 @@ class IndexBaseClass(object):
         self.type_of_day = type_of_day
         self.travel_mode = travel_mode
         self.datadir = datadir
-        self.trip_data = query_trip_data(db_name)
+        self.trip_data = self.query_trip_data(db_name)
         self.score = None
 
 
