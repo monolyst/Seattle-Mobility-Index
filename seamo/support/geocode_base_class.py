@@ -18,6 +18,7 @@ class GeocodeBase(object):
         """ 
         input_file.csv needs header lat, lon
         """
+        self.pickle_name = pickle_name
         # reference = get_reference(pickle_name)
         # df = gpd.sjoin(gdf, reference, how = 'left')
         # df = df.drop(columns = ['index_right'])

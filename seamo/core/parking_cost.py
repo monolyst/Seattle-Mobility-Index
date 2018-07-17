@@ -46,11 +46,13 @@ class ParkingCost(gbc.GeocodeBase):
         Input:  GeoPandas DataFrame gdf: cn.LAT, cn.LON
         input_file.csv needs header lat, lon
         """
+        super().geocode(gdf, pickle_name)
         reference = self.get_reference(pickle_name)
         df = gpd.sjoin(gdf, reference, how = 'left')
         df = df.drop(columns = ['index_right'])
         df = pd.DataFrame(df)
         df = df.drop([cn.GEOMETRY], axis=1)
+        self.dataframe = df
         return df
 
 

@@ -46,7 +46,7 @@ class Geocoder(gbc.GeocodeBase):
         """ 
         input_file.csv needs header lat, lon
         """
-        self.pickle_name = pickle_name
+        super().geocode(gdf, pickle_name)
         reference = self.get_reference(pickle_name)
         df = gpd.sjoin(gdf, reference, how = 'left')
         df = df.drop(columns = ['index_right'])
@@ -56,7 +56,7 @@ class Geocoder(gbc.GeocodeBase):
         df = df.set_index([cn.LAT, cn.LON, cn.GEOGRAPHY], append=cn.KEY).unstack()
         df.columns = df.columns.droplevel()
         df = self.format_output(df)
-        self.dataFrame = df
+        self.dataframe = df
         return df
 
 
