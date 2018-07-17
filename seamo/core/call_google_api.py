@@ -36,20 +36,20 @@ if __name__ == "__main__":
         # subset_df = distance_df.iloc[180000:280000]
         subset_df = distance_df.iloc[188342:300000]
     else:
-        subset_df = distance_df.iloc[255785:]
+        subset_df = distance_df[300001:]
 
     cols = [cn.BLOCKGROUP, cn.PAIR, cn.DISTANCE, cn.CLASS,
             cn.GOOGLE_START_LAT, cn.GOOGLE_START_LON,
             cn.GOOGLE_END_LAT, cn.GOOGLE_END_LON]
         
 
-    FILEPATH = 'api_distances.csv'
-    if not os.path.exists(FILEPATH):
-        with open(FILEPATH, 'w+') as outf:
+    OUTPUT_FP = cn.API_DIST_FP 
+    if not os.path.exists(OUTPUT_FP):
+        with open(OUTPUT_FP, 'w+') as outf:
             outf.write(','.join(cols))
             outf.write('\n')
 
-    with open(FILEPATH, 'a+') as outf:
+    with open(OUTPUT_FP, 'a+') as outf:
         for index, row in subset_df.iterrows():
             blockgroup = row[cn.BLOCKGROUP]
             origin_lat = row[cn.GOOGLE_START_LAT]

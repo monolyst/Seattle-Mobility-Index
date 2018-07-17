@@ -2,6 +2,10 @@ import __init__
 import constants as cn
 from basket_destination_calculator import BasketCalculator
 
+"""
+Calculate distances using haversine formula. 
+Filter combinations using a threshold.
+"""
 # Instantiate a basket calculator without an API key.
 bc = BasketCalculator('null')
 origin_df = BasketCalculator.origin_df
