@@ -56,7 +56,7 @@ DIST_MATRIX_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?'
 IMPERIAL_UNITS = 'imperial'
 DRIVING_MODE = 'driving'
 GOOGLE_DIST_MATRIX_OUT = 'google_dist_matrix_out'
-TIMESTAMP = '1531846800' # Tuesday, July 17, 10AM UTC
+TIMESTAMP = '1531933200' # Wednesday, July 18, 10AM UTC
 
 
 # Google API naming
