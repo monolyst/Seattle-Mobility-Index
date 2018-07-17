@@ -42,7 +42,6 @@ class GeocodeBase(object):
 
 
     def geocode_point(self, coord, pickle_name):
-        # import pdb; pdb.set_trace()
         left, right = self.split_coord(coord)
         data = pd.DataFrame(data={cn.LAT: [left], cn.LON: [right], cn.GEOMETRY:
             [Point((float(right), float(left)))]})

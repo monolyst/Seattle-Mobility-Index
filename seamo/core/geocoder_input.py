@@ -11,7 +11,6 @@ import geocode_input_base_class as gib
 
 class GeocoderInput(gib.GeocodeInputBase):
     def __init__(self):
-        # import pdb; pdb.set_trace()
         super().__init__()
 
     def read_shapefile(self, raw_dir, shapefile, column_name, name):

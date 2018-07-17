@@ -8,7 +8,7 @@ import pickle
 import constants as cn
 import geocode_input_base_class as gib
 
-#Read in shapes files for block group, neighborhoods, zipcode, council district and urban villages
+# Read in shapes files for block group, neighborhoods, zipcode, council district and urban villages
 # DATADIR = os.path.join(os.getcwd(), '../../seamo/data/raw/shapefiles/')
 class ParkingCostInput(gib.GeocodeInputBase):
     def __init__(self):

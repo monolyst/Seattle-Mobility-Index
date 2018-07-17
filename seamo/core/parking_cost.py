@@ -51,9 +51,6 @@ class ParkingCost(gbc.GeocodeBase):
         df = df.drop(columns = ['index_right'])
         df = pd.DataFrame(df)
         df = df.drop([cn.GEOMETRY], axis=1)
-        # values = {'Block_Group': 0, 'Neighborhood_Long': 'N/A', 'Neighborhood_Short': 'N/A',
-        #           'Seattle_City_Council_District': 'N/A', 'Urban_Village': 'N/A', 'Zipcode': 0}
-        # df = df.fillna(value=values)
         return df
 
 
