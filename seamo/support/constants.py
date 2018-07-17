@@ -45,12 +45,10 @@ WEEKEND_MORNING_END = 'weekend_morning_end'
 WEEKEND_AFTERNOON_END = 'weekend_afternoon_end'
 WEEKEND_EVENING_END = 'weekend_evening_end'
 BUFFER_SIZE = 0.0005
-PARKING_COLUMNS = ['BLOCK_NBR', 'PARKING_CA', 'WKD_RATE1', 'WKD_START1', 'WKD_END1', 
-                'WKD_RATE2', 'WKD_START2', 'WKD_END2',
-                'WKD_RATE3', 'WKD_START3', 'WKD_END3',
-                'SAT_RATE1', 'SAT_START1', 'SAT_END1',
-                'SAT_RATE2', 'SAT_START2', 'SAT_END2',
-                'SAT_RATE3', 'SAT_START3', 'SAT_END3', GEOMETRY]
+PARKING_COLUMNS = ['BLOCK_NBR', 'PARKING_CA', 'WKD_RATE1', 'WKD_RATE2', 'WKD_RATE3',
+                'WKD_START1', 'WKD_END1', 'WKD_START2', 'WKD_END2', 'WKD_START3',
+                'WKD_END3', 'SAT_RATE1', 'SAT_RATE2', 'SAT_RATE3', 'SAT_START1',
+                'SAT_END1', 'SAT_START2', 'SAT_END2', 'SAT_START3', 'SAT_END3', GEOMETRY]
 
 
 
