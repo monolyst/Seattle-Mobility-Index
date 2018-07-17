@@ -9,10 +9,11 @@ import geocode_input_base_class as gib
 import constants as cn
 
 class GeocodeBase(object):
-    def __init__(self):
+    def __init__(self, crs):
         self.dataframe = None
         self.pickle_name = None
         self.reference = None
+        self.crs = crs
 
     def geocode(self, gdf, pickle_name):
         """ 
@@ -26,7 +27,7 @@ class GeocodeBase(object):
         
 
 
-    def get_reference(self, pickle_name):
+    def __get_reference__(self, pickle_name):
         gi = gib.GeocodeInputBase()
         # reference = gi.get_reference(SHAPEFILE_DIR, PICKLE_DIR, pickle_name)
         # return reference
@@ -37,29 +38,29 @@ class GeocodeBase(object):
         data = pd.read_csv(str(input_file))
         data[cn.GEOMETRY] = data.apply(lambda x: Point((float(x[1]), float(x[0]))), axis=1)
         data = gpd.GeoDataFrame(data, geometry=cn.GEOMETRY)
-        data.crs = cn.CRS_EPSG
+        data.crs = self.crs
         df = self.geocode(data, str(pickle_name))
         return df
 
 
     def geocode_point(self, coord, pickle_name):
-        left, right = self.split_coord(coord)
+        left, right = self.__split_coord__(coord)
         data = pd.DataFrame(data={cn.LAT: [left], cn.LON: [right], cn.GEOMETRY:
             [Point((float(right), float(left)))]})
         data = data[[cn.LAT, cn.LON, cn.GEOMETRY]]
         data = gpd.GeoDataFrame(data, geometry=cn.GEOMETRY)
-        data.crs = cn.CRS_EPSG
+        data.crs = self.crs
         df = self.geocode(data, str(pickle_name))
         return df
 
 
-    def split_coord(self, coord):
+    def __split_coord__(self, coord):
         coord = str(coord).split(", ")
         left = coord[0][1:]
         right = coord[1][:-1]
         return left, right
 
 
-    def write_to_csv(self, df, PROCESSED_DIR, output_file):
+    def write_to_csv(self, df, processed_dir, output_file):
         decoded = df
-        decoded.to_csv(PROCESSED_DIR + output_file, index=False)
+        decoded.to_csv(processed_dir + output_file, index=False)

@@ -34,11 +34,9 @@ import geocode_base_class as gbc
 
 class ParkingCost(gbc.GeocodeBase):
     #Read in shapes files for block group, neighborhoods, zipcode, council district and urban villages
-    def __init__(self):
-        super().__init__()
-        self.SHAPEFILE_DIR = cn.SHAPEFILE_DIR
-        self.PROCESSED_DIR = cn.PROCESSED_DIR
-        self.PICKLE_DIR = cn.PICKLE_DIR
+    def __init__(self, crs=cn.CRS_EPSG):
+        super().__init__(crs)
+
 
     # Geocoder function
     def geocode(self, gdf, pickle_name=cn.PARKING_REFERENCE):
@@ -47,7 +45,7 @@ class ParkingCost(gbc.GeocodeBase):
         input_file.csv needs header lat, lon
         """
         super().geocode(gdf, pickle_name)
-        reference = self.get_reference(pickle_name)
+        reference = self.__get_reference__(pickle_name)
         df = gpd.sjoin(gdf, reference, how = 'left')
         df = df.drop(columns = ['index_right'])
         df = pd.DataFrame(df)
@@ -56,13 +54,14 @@ class ParkingCost(gbc.GeocodeBase):
         return df
 
 
-    def get_reference(self, pickle_name=cn.PARKING_REFERENCE):
+    def __get_reference__(self, pickle_name=cn.PARKING_REFERENCE):
         """
         :param str pickle_name: name of the pickle file
         :return GeoDataFrame:
         """
         gi = pci.ParkingCostInput()
-        reference_gdf = gi.get_reference(self.SHAPEFILE_DIR, self.PICKLE_DIR, pickle_name)
+        reference_gdf = gi.get_reference(cn.SHAPEFILE_DIR, cn.PICKLE_DIR, pickle_name)
+        self.reference = reference_gdf
         return reference_gdf
 
 
@@ -74,29 +73,3 @@ class ParkingCost(gbc.GeocodeBase):
     def geocode_point(self, coord, pickle_name=cn.PARKING_REFERENCE):
         df = super().geocode_point(coord, pickle_name)
         return df
-
-
-    def main(argv):
-        choice = str(sys.argv[1])
-        output_file = str(sys.argv[3]) + '.csv'
-        try:
-            sys.argv[4]
-        except:
-            pickle_name = cn.REFERENCE_PICKLE
-        else:
-            pickle_name = str(sys.argv[4])
-        if choice == "csv":
-            # add directory where the file should be found
-            input_file = os.path.join(PROCESSED_DIR, 'test/', str(sys.argv[2]) + '.csv')
-            df = geocode_csv(input_file, pickle_name)
-            write_to_csv(df, PROCESSED_DIR, output_file)
-        elif choice == "point":
-            coord = str(sys.argv[2])
-            df = geocode_point(coord, pickle_name)
-            write_to_csv(df, PROCESSED_DIR, output_file)
-        else:
-            raise "invalid input"
-
-
-    if __name__ == "__main__":
-        main(sys.argv[1:])
