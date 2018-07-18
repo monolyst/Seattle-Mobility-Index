@@ -17,6 +17,7 @@ class BasketCalcTest(unittest.Testcase):
     def test_create_basket():
         # Check that each blockgroup has a basket of 25 
         # Check that the count for each category matches basket
+        # Check that every pair is unique
         pass
 
 if __name__ == "__main__":
