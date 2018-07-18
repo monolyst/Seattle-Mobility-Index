@@ -59,7 +59,7 @@ class Coordinate:
         return distance
 
 
-    def __geocode__(lat, lon):
+    def __geocode__(self, lat, lon):
         geo = geocoder.Geocoder()
         df = geo.geocode_point((destination.lat, destination.lon))
         self.block_group = min(df[cn.BLOCK_GROUP])
