@@ -19,7 +19,7 @@ class Coordinate:
         Stringify a Coordinate.
         Format is 'lat,lon'
         """
-        return "{0},{1}".format(self.lat, self.lon)
+        return "{0}, {1}".format(self.lat, self.lon)
 
 
     def haversine_distance(self, coordinate):

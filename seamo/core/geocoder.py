@@ -52,12 +52,12 @@ class Geocoder(gbc.GeocodeBase):
         df = df.drop([cn.GEOMETRY], axis=1)
         df = df.set_index([cn.LAT, cn.LON, cn.GEOGRAPHY], append=cn.KEY).unstack()
         df.columns = df.columns.droplevel()
-        df = self.format_output(df)
+        df = self.__format_output__(df)
         self.dataframe = df
         return df
 
 
-    def format_output(self, df):
+    def __format_output__(self, df):
         df = df.reset_index().drop(['level_0'], axis=1)
         df[cn.LAT] = df[cn.LAT].astype(float)
         df[cn.LON] = df[cn.LON].astype(float)

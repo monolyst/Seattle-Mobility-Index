@@ -49,6 +49,8 @@ PARKING_COLUMNS = ['BLOCK_NBR', 'PARKING_CA', 'WKD_RATE1', 'WKD_RATE2', 'WKD_RAT
                 'WKD_START1', 'WKD_END1', 'WKD_START2', 'WKD_END2', 'WKD_START3',
                 'WKD_END3', 'SAT_RATE1', 'SAT_RATE2', 'SAT_RATE3', 'SAT_START1',
                 'SAT_END1', 'SAT_START2', 'SAT_END2', 'SAT_START3', 'SAT_END3', GEOMETRY]
+NO_PARKING_ALLOWED = 'No Parking Allowed'
+RATE = 'rate'
 
 
 
@@ -83,6 +85,7 @@ DEG_INTO_MILES = 69
 MIN_TO_HR = 60
 CITY_CENTER = [47.6062, -122.3321]
 EARTH_RADIUS_KM = 6373.0 # Approximate radius of Earth in km
+AAA_RATE = 0.56
 
 # API constants
 DIST_MATRIX_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?'
