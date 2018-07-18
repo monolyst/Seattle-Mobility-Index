@@ -78,7 +78,7 @@ class CarTrip(Trip):
         options = options.loc[options[str(col + cn.RATE)].idxmin()].drop_duplicates()
         self.cost_to_park = int(options[str(col + cn.RATE)])
         self.parking_category = min(options[cn.PARKING_CATEGORY])
-        return distance * self.mile_rate + self.cost_to_park + duration * value_of_time_rate / cn.MIN_TO_HR
+        return self.distance * self.mile_rate + self.cost_to_park + self.duration * self.value_of_time_rate / cn.MIN_TO_HR
 
     def __get_time_date__(self, duration, departure_time):
         date_time = parser.parse(departure_time) + dt.timedelta(minutes=float(duration))
