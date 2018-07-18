@@ -101,7 +101,7 @@ class BasketCalculator:
         return dist_df
 
 
-    def calculate_distance_API(self, origin, destination):
+    def calculate_distance_API(self, origin, destination, reader=None):
         """
         Calculate the distance between an origin and destination pair.
         Calls Google Distance Matrix API.
@@ -121,7 +121,10 @@ class BasketCalculator:
               "&key={0}".format(self.api_key)
         request = Request(url)
         try:
-            response = urlopen(request).read()
+            if reader is None:
+                response = urlopen(request).read()
+            else:
+                response = reader()
             data = json.loads(response)
 
             if data['status'] != 'OK':
@@ -225,7 +228,5 @@ class BasketCalculator:
 
         # Concatenate the intermediate dataframes
         basket_df = pd.concat(dfs_by_class)
-
-        # Note: Need to post-process the column names.
 
         return basket_df
