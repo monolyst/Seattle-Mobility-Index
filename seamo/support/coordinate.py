@@ -1,5 +1,6 @@
+import init
 from math import sin, cos, sqrt, atan2, radians
-
+from core import geocoder
 import constants as cn
 
 class Coordinate:
@@ -12,6 +13,13 @@ class Coordinate:
         """
         self.lat = lat
         self.lon = lon
+        self.block_group = None
+        self.neighborhood_long = None
+        self.neighborhood_short = None
+        self.council_district = None
+        self.urban_village = None
+        self.zipcode = None
+        self.__geocode__(self.lat, self.lon)
 
 
     def __str__(self):
@@ -49,3 +57,14 @@ class Coordinate:
         distance = cn.EARTH_RADIUS_KM * c 
 
         return distance
+
+
+    def __geocode__(lat, lon):
+        geo = geocoder.Geocoder()
+        df = geo.geocode_point((destination.lat, destination.lon))
+        self.block_group = min(df[cn.BLOCK_GROUP])
+        self.neighborhood_long = min(df[cn.NBHD_LONG])
+        self.neighborhood_short = min(df[cn.NBHD_SHORT])
+        self.council_district = min(df[cn.COUNCIL_DISTRICT])
+        self.urban_village = min(df[cn.URBAN_VILLAGE])
+        self.zipcode = min(df[cn.ZIPCODE])
