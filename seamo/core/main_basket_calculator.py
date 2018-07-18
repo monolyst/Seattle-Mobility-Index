@@ -7,12 +7,23 @@ from coordinate import Coordinate
 
 
 """
-Ask the user for their API key.
+1. Calculate distances using haversine formula.
+2. Filter universe of destinations based on threshold.
+    output: haversine_distances.csv
+3. Make API calls to Google Distance Matrix to get distances.
+    output: api_distances.csv
+4. Rank destinations by class and by proximity to a block group.
+    output: ranked_destinations.csv
+5. Create basket of destinations for each block group.
+    output: input_baskets.csv
 
-Calculate distances using haversine and filter.
-
-Then, using the filtered distances, call Google (only some)
 """
+# Instantiate a basket calculator without an API key.
+bc = BasketCalculator('null')
+origin_df = BasketCalculator.origin_df
+dest_df = BasketCalculator.dest_df
+dist_fp = cn.HAVERSINE_DIST_FP
+# bc.origins_to_destinations(dist_fp, origin_df, dest_df, 'haversine', True)
 api_key = input("Enter your Google API key: ")
 
 bc = BasketCalculator()
@@ -52,3 +63,10 @@ with open(OUTPUT_FP, 'a+') as outf:
             outf.write('\n')
    
 
+bc = BasketCalculator('null') 
+api_distances = cn.API_DIST_FP
+dist_df = pd.read_csv(api_distances)
+ranked_df = bc.rank_destinations(dist_df)
+ranked_df.to_csv('ranked_destinations.csv')
+baskets_df = bc.create_basket(ranked_df, cn.BASKET)
+baskets_df.to_csv('input_baskets.csv')
