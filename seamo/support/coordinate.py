@@ -61,7 +61,7 @@ class Coordinate:
 
     def __geocode__(self, lat, lon):
         geo = geocoder.Geocoder()
-        df = geo.geocode_point((lat, lon))
+        df = geo.geocode_point((float(lat), float(lon)))
         self.block_group = min(df[cn.BLOCK_GROUP])
         self.neighborhood_long = min(df[cn.NBHD_LONG])
         self.neighborhood_short = min(df[cn.NBHD_SHORT])
