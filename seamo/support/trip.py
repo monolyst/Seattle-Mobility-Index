@@ -46,13 +46,16 @@ class Trip(object):
     def __calculate_duration__(self, duration):
         self.duration = duration
 
-    def get_place(self, place, **geocode_attributes):
-        if place == self.origin or place == self.destination:
-            print(place)
+    def get_place(self, place, **kwargs):
+        if place == origin:
+            place = self.origin
+        elif place == destination:
+            place = self.destination
         else:
             raise "not a place"
-        for attribute in geocode_attributes:
-            print(place.attribute)
+        print(place)
+        for attribute in kwargs:
+            print(place.get_attribute(attribute))
 
     def get_trip_id(self, pair, mode, departure_time):
         #parse departure time
