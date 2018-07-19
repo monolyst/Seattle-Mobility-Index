@@ -61,7 +61,7 @@ class Coordinate:
 
     def __geocode__(self, lat, lon):
         geo = geocoder.Geocoder()
-        df = geo.geocode_point((destination.lat, destination.lon))
+        df = geo.geocode_point((float(lat), float(lon)))
         self.block_group = min(df[cn.BLOCK_GROUP])
         self.neighborhood_long = min(df[cn.NBHD_LONG])
         self.neighborhood_short = min(df[cn.NBHD_SHORT])
@@ -71,18 +71,18 @@ class Coordinate:
 
 
     def get_attribute(self, attribute):
-        if attribute == block_group:
+        if attribute == 'block_group':
             attribute = self.block_group
-        elif attribute == neighborhood_long:
+        elif attribute == 'neighborhood_long':
             attribute = self.neighborhood_long
-        elif attribute == neighborhood_short:
+        elif attribute == 'neighborhood_short':
             attribute = self.neighborhood_short
-        elif attribute == council_district:
+        elif attribute == 'council_district':
             attribute = self.council_district
-        elif attribute == urban_village:
+        elif attribute == 'urban_village':
             attribute = self.urban_village
-        elif attribute == zipcode:
+        elif attribute == 'zipcode':
             attribute = self.zipcode
         else:
             print("invalid attribute passed")
-        print(attribute)
+        return attribute
