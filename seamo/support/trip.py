@@ -109,20 +109,34 @@ class CarTrip(Trip):
 
 
 class TransitTrip(Trip):
-    def __init__(self, origin, destination, distance, category, pair, departure_time, rank):
-        super().__init__(self, origin, destination, 'transit', distance, category, pair, departure_time, rank)
-
+    def __init__(self, origin, destination, distance, duration, category, pair, departure_time, rank, fare_value, value_of_time_rate=cn.VOT_RATE):
+        super().__init__(origin, destination, 'transit', distance, duration, category, pair, departure_time, rank)
+        self.fare_value = fare_value
+        self.value_of_time_rate = value_of_time_rate
+        self.cost = self.calculate_cost(self.fare_value)
+        
     def __calculate_cost__(self, fare_value):
-        self.cost = fare_value
+        return self.fare_value + self.duration * self.value_of_time_rate / cn.MIN_TO_HR
     
-
-
 class BikeTrip(Trip):
-    def __init__(self, origin, destination, distance, category, pair, departure_time, rank):
-        super().__init__(self, origin, destination, 'bike', distance, category, pair, departure_time, rank)
+    def __init__(self, origin, destination, distance, duration, category, pair, departure_time, rank):
+        super().__init__(origin, destination, 'bike', distance, duration, category, pair, departure_time, rank)
+        self.cost = self.distance * cn.BIKE_RATE
 
+    def __calculate_cost__(self):
+         return self.cost + self.duration * self.value_of_time_rate / cn.MIN_TO_HR
     
 
 class WalkTrip(Trip):
-    def __init__(self, origin, destination, distance, category):
-        super().__init__(self, origin, destination, 'walk', distance, category, pair, departure_time, rank)
+    def __init__(self, origin, destination, distance, duration, category):
+        super().__init__(origin, destination, 'walk', distance, duration, category, pair, departure_time, rank)
+        self.value_of_time_rate = cn.VOT_RATE
+        self.cost = self.__calculate_cost__(self.value_of_time_rate)
+
+        
+    def __calculate_cost__(self, value_of_time_rate):
+        return self.duration * self.value_of_time_rate / cn.MIN_TO_HR
+
+
+
+

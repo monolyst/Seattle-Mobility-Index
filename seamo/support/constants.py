@@ -86,7 +86,8 @@ MIN_TO_HR = 60
 CITY_CENTER = [47.6062, -122.3321]
 EARTH_RADIUS_KM = 6373.0 # Approximate radius of Earth in km
 AAA_RATE = 0.56
-VOT_RATE = 14
+VOT_RATE = 14.10
+BIKE_RATE = 0.15
 
 # API constants
 DIST_MATRIX_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?'
