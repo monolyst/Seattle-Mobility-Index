@@ -46,6 +46,17 @@ class Trip(object):
     def __calculate_duration__(self, duration):
         self.duration = duration
 
+    def get_place(self, place, **kwargs):
+        if place == origin:
+            place = self.origin
+        elif place == destination:
+            place = self.destination
+        else:
+            raise "not a place"
+        print(place)
+        for attribute in kwargs:
+            print(place.get_attribute(attribute))
+
     def get_trip_id(self, pair, mode, departure_time):
         #parse departure time
         self.departure_time = str(origin.block_group()) + '_' + pair + mode # + parsed departure time
@@ -65,7 +76,7 @@ class CarTrip(Trip):
         
     def __calculate_duration__(self, duration, duration_in_traffic=0):
         # Not sure if this right
-        return duration + duration_in_traffic
+        return self.duration + self.duration_in_traffic
 
     def __calculate_cost__(self, destination, duration, departure_time, mile_rate, value_of_time_rate):
 #         super().__calculate_cost__()
