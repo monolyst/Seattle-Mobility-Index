@@ -74,7 +74,7 @@ api_distances = cn.API_DIST_FP
 dist_df = pd.read_csv(api_distances)
 ranked_df = rank_destinations(dist_df)
 ranked_df.to_csv('ranked_destinations.csv')
-baskets_df = create_basket(ranked_df, cn.BASKET)
+baskets_df = create_basket(ranked_df, cn.FINAL_BASKET)
 baskets_df.to_csv('baskets.csv')
 # Also need to put out the compressed formats where dests are in one col
 bgs = { blockgroup: { 'origin' : None, 'destinations' : [], 'pair': None, 'class': None } for blockgroup in df['BLOCKGROUP'].values }
