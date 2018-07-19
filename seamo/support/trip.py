@@ -44,17 +44,17 @@ class Trip(object):
     #     self.cost = 0
 
     def __calculate_duration__(self, duration):
-        self.duration = duration
+        return duration
 
-    def get_place(self, place, **kwargs):
-        if place == origin:
+    def get_place(self, place, *args):
+        if place == 'origin':
             place = self.origin
-        elif place == destination:
+        elif place == 'destination':
             place = self.destination
         else:
             raise "not a place"
         print(place)
-        for attribute in kwargs:
+        for attribute in args:
             print(place.get_attribute(attribute))
 
     def get_trip_id(self, pair, mode, departure_time):
