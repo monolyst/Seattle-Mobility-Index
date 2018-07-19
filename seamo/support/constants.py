@@ -74,7 +74,7 @@ IMPERIAL_UNITS = 'imperial'
 DRIVING_MODE = 'driving'
 GOOGLE_DIST_MATRIX_OUT = 'google_dist_matrix_out'
 TIMESTAMP = '1531933200' # Wednesday, July 18, 10AM UTC
-
+API_CALL_LIMIT = 100000
 
 # Google API naming
 GOOGLE_PLACES_LAT = 'lat'
@@ -84,6 +84,9 @@ GOOGLE_START_LON = 'start_lon'
 GOOGLE_END_LAT = 'end_lat'
 GOOGLE_END_LON = 'end_lon'
 PLACE_ID = 'place_id'
+ORIGIN = 'origin'
+DESTINATION = 'destination'
+DESTINATIONS = 'destinations'
 
 # Seattle Census Data naming
 CENSUS_LAT = 'CT_LAT'
@@ -114,6 +117,8 @@ GOOGLE_DIST_FP = os.path.join(RAW_DIR, 'GoogleMatrix_Dist_Out.csv')
 DB_DIR = os.path.join(PROCESSED_DIR, 'databases/')
 CSV_DIR = os.path.join(PROCESSED_DIR, 'csv_files/')
 HAVERSINE_DIST_FP = os.path.join(CSV_DIR, 'haversine_distances.csv')
+DISTANCE_QUEUE_FP = os.path.join(CSV_DIR, 'distance_queue.csv')
 API_DIST_FP = os.path.join(CSV_DIR, 'api_distances.csv')
 RANKED_DEST_FP = os.path.join(CSV_DIR, 'ranked_destinations.csv')
-BASKETS_FP = os.path.join(CSV_DIR, 'input_baskets.csv')
+BASKETS_FP = os.path.join(CSV_DIR, 'baskets.csv')
+INPUT_BASKETS_FP = os.path.join(CSV_DIR, 'input_baskets.csv')
