@@ -68,3 +68,21 @@ class Coordinate:
         self.council_district = min(df[cn.COUNCIL_DISTRICT])
         self.urban_village = min(df[cn.URBAN_VILLAGE])
         self.zipcode = min(df[cn.ZIPCODE])
+
+
+    def get_attribute(self, attribute):
+        if attribute == block_group:
+            attribute = self.block_group
+        elif attribute == neighborhood_long:
+            attribute = self.neighborhood_long
+        elif attribute == neighborhood_short:
+            attribute = self.neighborhood_short
+        elif attribute == council_district:
+            attribute = self.council_district
+        elif attribute == urban_village:
+            attribute = self.urban_village
+        elif attribute == zipcode:
+            attribute = self.zipcode
+        else:
+            print("invalid attribute passed")
+        print(attribute)
