@@ -46,6 +46,14 @@ class Trip(object):
     def __calculate_duration__(self, duration):
         self.duration = duration
 
+    def get_place(self, place, **geocode_attributes):
+        if place == self.origin or place == self.destination:
+            print(place)
+        else:
+            raise "not a place"
+        for attribute in geocode_attributes:
+            print(place.attribute)
+
     def get_trip_id(self, pair, mode, departure_time):
         #parse departure time
         self.departure_time = str(origin.block_group()) + '_' + pair + mode # + parsed departure time
@@ -65,7 +73,7 @@ class CarTrip(Trip):
         
     def __calculate_duration__(self, duration, duration_in_traffic=0):
         # Not sure if this right
-        return duration + duration_in_traffic
+        return self.duration + self.duration_in_traffic
 
     def __calculate_cost__(self, destination, duration, departure_time, mile_rate, value_of_time_rate):
 #         super().__calculate_cost__()
