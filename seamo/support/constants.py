@@ -18,6 +18,8 @@ GEOMETRY = 'geometry'
 KEY = 'key'
 GEOGRAPHY = 'geography'
 CRS_EPSG = {'init' :'epsg:4326'}
+SHAPE_AREA = 'Shape_area'
+AREA = 'area'
 
 # Parking
 BLOCK_FACE = 'block_face'
@@ -63,10 +65,12 @@ COUNCIL_DISTRICT_FNAME = 'sccdst'
 COUNCIL_DISTRICT_KEY = 'SCCDST'
 URBAN_VILLAGE_FNAME = 'DPD_uvmfg_polygon'
 URBAN_VILLAGE_KEY = 'UV_NAME'
+BLOCK_FACE_FNAME = 'Blockface'
 REFERENCE_PICKLE = 'reference.pickle'
+PARKING_REFERENCE = 'parking_reference.pickle'
 
 # Constants for basket
-FINAL_BASKET = [1, 13, 1, 2, 1, 1, 1, 1, 3, 1] 
+FINAL_BASKET = [1, 13, 1, 2, 1, 1, 1, 1, 3, 1]
 BASKET_SIZE = 25
 URBAN_VILLAGE = 'urban_villlage'
 CITYWIDE = 'citywide'
@@ -113,7 +117,7 @@ API_CALL_LIMIT = 100000
 
 # Google API naming
 GOOGLE_PLACES_LAT = 'lat'
-GOOGLE_PLACES_LON = 'lng' 
+GOOGLE_PLACES_LON = 'lng'
 GOOGLE_START_LAT = 'start_lat'
 GOOGLE_START_LON = 'start_lon'
 GOOGLE_END_LAT = 'end_lat'
@@ -146,7 +150,7 @@ SHAPEFILE_DIR = os.path.join(DATADIR, 'raw/shapefiles/')
 PROCESSED_DIR = os.path.join(DATADIR, 'processed/')
 RAW_DIR = os.path.join(DATADIR, 'raw/')
 PICKLE_DIR = os.path.join(PROCESSED_DIR, 'pickles/')
-ORIGIN_FP = os.path.join(RAW_DIR, 'SeattleCensusBlocksandNeighborhoodCorrelationFile.csv') 
+ORIGIN_FP = os.path.join(RAW_DIR, 'SeattleCensusBlocksandNeighborhoodCorrelationFile.csv')
 DEST_FP = os.path.join(RAW_DIR, 'GoogleMatrix_Places_Full.csv')
 GOOGLE_DIST_FP = os.path.join(RAW_DIR, 'GoogleMatrix_Dist_Out.csv')
 DB_DIR = os.path.join(PROCESSED_DIR, 'databases/')
