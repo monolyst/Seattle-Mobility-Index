@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<title>Blockface</title>
+<onlink>https://gisdata.seattle.gov/server/rest/services/SDOT/SDOT_Blockface/MapServer/0</onlink>
+</citeinfo>
+</citation>
+<descript>
+<abstract>Displays blockfaces for all segments of the street network. Identifies the elements of the block, such as peak hour restrictions, length of the block, parking categories, and restricted parking zones.  
+
+| Update Cycle: Weekly 
+| Attribute Information: 
+| Contact Email: DOT_IT_GIS@seattle.gov 
+
+
+  ---  
+Parking by Category - Parking attributes at the blockface level for use in the Seattle Parking Map.  
+Attribute: Parking _Category | Alias: Parking Category | Attribute Values: 
+Carpool Parking, 
+Paid Parking, 
+Restricted Parking Zone, 
+Time Limit Parking, No Parking Allowed, 
+Unrestricted Parking 
+  ---  
+Restricted Parking Zones(RPZs) - RPZs local shows streets having restricted parking permit parking signs within each zone. RPZs Citywide shows locations of all the Restricted Parking Zones Citywide.  
+Attributes: RPZ_ZONE; RPZ_Area</abstract>
+<purpose>Blockfaces in Seattle - includes block elements such as peak hour restrictions, parking categories, and restricted parking zones.  </purpose>
+</descript>
+<status>
+<update>Monthly</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-122.4754</westbc>
+<eastbc>-122.2008</eastbc>
+<northbc>47.7582</northbc>
+<southbc>47.4814</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>ISO 19115 Topic Categories</themekt>
+<themekey>transportation</themekey>
+</theme>
+<theme>
+<themekt>None</themekt>
+<themekey>Blockface</themekey>
+<themekey>Transportation</themekey>
+<themekey>GIS</themekey>
+<themekey>SDOT</themekey>
+<themekey>Seattle</themekey>
+<themekey>WA</themekey>
+<themekey>RPZ</themekey>
+<themekey>Parking</themekey>
+<themekey>Block ID</themekey>
+<themekey>Peak Hour</themekey>
+<themekey>018</themekey>
+</theme>
+</keywords>
+<accconst>None</accconst>
+<useconst>PDDL | This item is meant for public access and use.  The City of Seattle makes no representation or warranty as to its accuracy.
+
+
+Important | The City of Seattle has created this service for our GIS Open Data website.  We do reserve the right to alter, suspend, re-host, or retire this service at any time and without notice.  GIS staff will provide notification of changes via the Comments RSS capability in ArcGIS Online.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>Seattle IT</cntorg>
+<cntper>SDOT</cntper>
+</cntorgp>
+<cntpos>Senior GIS Analyst</cntpos>
+<cntaddr>
+<addrtype>mailing and physical</addrtype>
+<city>Seattle</city>
+<state>WA</state>
+<postal>98104</postal>
+</cntaddr>
+<cntemail>DOT_IT_GIS@seattle.gov</cntemail>
+</cntinfo>
+</ptcontac>
+</idinfo>
+<metainfo>
+<metd>20180427</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>City of Seattle</cntorg>
+<cntper>SDOT</cntper>
+</cntorgp>
+<cntpos>Senior GIS Analyst</cntpos>
+<cntaddr>
+<addrtype>mailing and physical</addrtype>
+<city>Seattle</city>
+<state>Washington</state>
+<postal>98104</postal>
+<country>US</country>
+</cntaddr>
+<cntemail>DOT_IT_GIS@seattle.gov</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>
