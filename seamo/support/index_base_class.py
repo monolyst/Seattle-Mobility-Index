@@ -3,6 +3,7 @@ import constants as cn
 import pandas as pd
 import geopandas as gpd
 import sqlite3
+import support.trip as tp
 
 class IndexBase(object):
     DATADIR = cn.CSV_DIR
@@ -31,6 +32,7 @@ class IndexBase(object):
         return df
 
     def calculate_score(self):
-        pass
+        trip = tp.Trip(origin, destination, distance, duration, category,
+                pair, departure_time, rank)
 
 

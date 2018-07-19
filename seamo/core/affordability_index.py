@@ -17,7 +17,7 @@ class AffordabilityIndex(index_base_class):
         df = pd.read_csv(str(filename) + '.csv')
         return df
 
-    def calculate_score(self, travel_cost, mode):
+    def define_trip(self, travel_cost, mode):
         if mode == 'car':
             car = tp.CarTrip(origin, destination, distance, duration, category,
                 pair, departure_time, rank)
@@ -31,4 +31,15 @@ class AffordabilityIndex(index_base_class):
             walk = tp.WalkTrip(origin, destination, distance, duration, category,
                 pair, departure_time, rank)
 
+    def calculate_score(self):
+        trip1 = self.define_trip()
+        trip2 = self.define_trip()
+
+        blkgrp_trip_cost = sum(trip1, trip2) / num_trips
+        normalized = normalize(blkgrp_trip_cost)
+
+        income_adjusted = blkgrp_trip_cost / income
+        income_normalized = normalize(income_adjusted)
+
+        return normalized, income_normalized
 
