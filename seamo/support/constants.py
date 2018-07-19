@@ -3,9 +3,6 @@ Constants to be used throughout the code base.
 """
 import os
 
-# Market Basket of Destinations
-BASKET = [1, 13, 1, 2, 1, 1, 1, 1, 3, 1] 
-
 # Strings
 # Column Names
 DISTANCE = 'distance'
@@ -37,9 +34,30 @@ URBAN_VILLAGE_FNAME = 'DPD_uvmfg_polygon'
 URBAN_VILLAGE_KEY = 'UV_NAME'
 REFERENCE_PICKLE = 'reference.pickle'
 
-# Categories for basket
-POST_OFFICE = 'post_office'
+# Constants for basket
+FINAL_BASKET = [1, 13, 1, 2, 1, 1, 1, 1, 3, 1] 
+BASKET_SIZE = 25
+URBAN_VILLAGE = 'urban_villlage'
+CITYWIDE = 'citywide'
+DESTINATION_PARK = 'destination_park'
 SUPERMARKET = 'supermarket'
+LIBRARY = 'library'
+HOSPITAL = 'hospital'
+PHARMACY = 'pharmacy'
+POST_OFFICE = 'post_office'
+SCHOOL = 'school'
+CAFE = 'cafe'
+BASKET_CATEGORIES = [URBAN_VILLAGE,
+                    CITYWIDE,
+                    DESTINATION_PARK,
+                    SUPERMARKET,
+                    LIBRARY,
+                    HOSPITAL,
+                    PHARMACY,
+                    POST_OFFICE,
+                    SCHOOL,
+                    CAFE]
+
 CLASS = 'class'
 RANK = 'rank'
 
@@ -72,8 +90,6 @@ PLACE_ID = 'place_id'
 CENSUS_LAT = 'CT_LAT'
 CENSUS_LON = 'CT_LON'
 BLOCKGROUP = 'BLOCKGROUP'
-BASKET_CATEGORIES = ["urban village", "citywide", "destination park", "supermarket", "library",  "hospital", "pharmacy", "post_office", "school", "cafe"]
-BASKET_SIZE = 25
 
 # Parameter domains
 AA = [0,1,2,3,4] # urban village
