@@ -5,6 +5,34 @@ import os
 import numpy as np
 
 # Strings
+
+# Constants for basket
+FINAL_BASKET = [1, 13, 1, 2, 1, 1, 1, 1, 3, 1]
+BASKET_SIZE = 25
+URBAN_VILLAGE = 'urban_village'
+CITYWIDE = 'citywide'
+DESTINATION_PARK = 'destination_park'
+SUPERMARKET = 'supermarket'
+LIBRARY = 'library'
+HOSPITAL = 'hospital'
+PHARMACY = 'pharmacy'
+POST_OFFICE = 'post_office'
+SCHOOL = 'school'
+CAFE = 'cafe'
+BASKET_CATEGORIES = [URBAN_VILLAGE,
+                    CITYWIDE,
+                    DESTINATION_PARK,
+                    SUPERMARKET,
+                    LIBRARY,
+                    HOSPITAL,
+                    PHARMACY,
+                    POST_OFFICE,
+                    SCHOOL,
+                    CAFE]
+
+CLASS = 'class'
+RANK = 'rank'
+
 # Column Names
 DISTANCE = 'distance'
 LAT = 'lat'
@@ -83,33 +111,6 @@ URBAN_VILLAGE_KEY = 'UV_NAME'
 BLOCK_FACE_FNAME = 'Blockface'
 REFERENCE_PICKLE = 'reference.pickle'
 PARKING_REFERENCE = 'parking_reference.pickle'
-
-# Constants for basket
-FINAL_BASKET = [1, 13, 1, 2, 1, 1, 1, 1, 3, 1]
-BASKET_SIZE = 25
-URBAN_VILLAGE = 'urban_village'
-CITYWIDE = 'citywide'
-DESTINATION_PARK = 'destination_park'
-SUPERMARKET = 'supermarket'
-LIBRARY = 'library'
-HOSPITAL = 'hospital'
-PHARMACY = 'pharmacy'
-POST_OFFICE = 'post_office'
-SCHOOL = 'school'
-CAFE = 'cafe'
-BASKET_CATEGORIES = [URBAN_VILLAGE,
-                    CITYWIDE,
-                    DESTINATION_PARK,
-                    SUPERMARKET,
-                    LIBRARY,
-                    HOSPITAL,
-                    PHARMACY,
-                    POST_OFFICE,
-                    SCHOOL,
-                    CAFE]
-
-CLASS = 'class'
-RANK = 'rank'
 
 # Numeric Constants
 PROXIMITY_THRESHOLD = 0.8 # 5-6 miles in lat-long coords
