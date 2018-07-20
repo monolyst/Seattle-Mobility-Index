@@ -115,7 +115,7 @@ GOOGLE_DIST_MATRIX_OUT = 'google_dist_matrix_out'
 TIMESTAMP = '1531933200' # Wednesday, July 18, 10AM UTC
 API_CALL_LIMIT = 100000
 
-# Google API naming
+# Google API and distance data column naming
 GOOGLE_PLACES_LAT = 'lat'
 GOOGLE_PLACES_LON = 'lng'
 GOOGLE_START_LAT = 'start_lat'
@@ -126,6 +126,7 @@ PLACE_ID = 'place_id'
 ORIGIN = 'origin'
 DESTINATION = 'destination'
 DESTINATIONS = 'destinations'
+PLACE_IDS = 'place_ids'
 
 # Seattle Census Data naming
 CENSUS_LAT = 'CT_LAT'
