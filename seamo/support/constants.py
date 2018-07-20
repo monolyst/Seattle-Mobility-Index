@@ -88,7 +88,6 @@ PARKING_REFERENCE = 'parking_reference.pickle'
 # Constants for basket
 FINAL_BASKET = [1, 13, 1, 2, 1, 1, 1, 1, 3, 1]
 BASKET_SIZE = 25
-# URBAN_VILLAGE = 'urban_village'
 CITYWIDE = 'citywide'
 DESTINATION_PARK = 'destination_park'
 SUPERMARKET = 'supermarket'
