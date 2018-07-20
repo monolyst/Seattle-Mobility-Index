@@ -37,6 +37,7 @@ class Coordinate:
 
         input: coordinate (Coordinate)
         output: distance (float)
+                in miles
         """
        
         # This Coordinate 
@@ -55,7 +56,9 @@ class Coordinate:
         c = 2 * atan2(sqrt(a), sqrt(1 - a))
 
         distance = cn.EARTH_RADIUS_KM * c 
-
+        # Convert to miles
+        distance *= cn.KM_TO_MILES
+    
         return distance
 
 

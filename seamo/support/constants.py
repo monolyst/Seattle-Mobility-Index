@@ -15,7 +15,6 @@ NBHD_LONG = 'neighborhood_long'
 NBHD_SHORT = 'neighborhood_short'
 COUNCIL_DISTRICT = 'seattle_city_council_district'
 ZIPCODE = 'zipcode'
-URBAN_VILLAGE = 'urban_village'
 GEOMETRY = 'geometry'
 KEY = 'key'
 GEOGRAPHY = 'geography'
@@ -53,6 +52,7 @@ PARKING_COLUMNS = ['BLOCK_NBR', 'PARKING_CA', 'WKD_RATE1', 'WKD_RATE2', 'WKD_RAT
 NO_PARKING_ALLOWED = 'No Parking Allowed'
 RATE = 'rate'
 
+
 # geocode exception handling
 GEOCODE_NAN_DF = {LAT:[np.nan], LON:[np.nan], BLOCK_GROUP:[np.nan],
                 NBHD_LONG:[np.nan], NBHD_SHORT:[np.nan], COUNCIL_DISTRICT:[np.nan],
@@ -84,15 +84,37 @@ BLOCK_FACE_FNAME = 'Blockface'
 REFERENCE_PICKLE = 'reference.pickle'
 PARKING_REFERENCE = 'parking_reference.pickle'
 
-# Categories for basket
-POST_OFFICE = 'post_office'
+# Constants for basket
+FINAL_BASKET = [1, 13, 1, 2, 1, 1, 1, 1, 3, 1]
+BASKET_SIZE = 25
+URBAN_VILLAGE = 'urban_villlage'
+CITYWIDE = 'citywide'
+DESTINATION_PARK = 'destination_park'
 SUPERMARKET = 'supermarket'
+LIBRARY = 'library'
+HOSPITAL = 'hospital'
+PHARMACY = 'pharmacy'
+POST_OFFICE = 'post_office'
+SCHOOL = 'school'
+CAFE = 'cafe'
+BASKET_CATEGORIES = [URBAN_VILLAGE,
+                    CITYWIDE,
+                    DESTINATION_PARK,
+                    SUPERMARKET,
+                    LIBRARY,
+                    HOSPITAL,
+                    PHARMACY,
+                    POST_OFFICE,
+                    SCHOOL,
+                    CAFE]
+
 CLASS = 'class'
 RANK = 'rank'
 
 # Numeric Constants
 PROXIMITY_THRESHOLD = 0.8 # 5-6 miles in lat-long coords
 METERS_TO_MILES = 1609
+KM_TO_MILES = 0.621371
 DEG_INTO_MILES = 69
 MIN_TO_HR = 60
 CITY_CENTER = [47.6062, -122.3321]
@@ -106,22 +128,26 @@ DIST_MATRIX_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?'
 IMPERIAL_UNITS = 'imperial'
 DRIVING_MODE = 'driving'
 GOOGLE_DIST_MATRIX_OUT = 'google_dist_matrix_out'
+TIMESTAMP = '1531933200' # Wednesday, July 18, 10AM UTC
+API_CALL_LIMIT = 100000
 
-# Google API naming
+# Google API and distance data column naming
 GOOGLE_PLACES_LAT = 'lat'
-GOOGLE_PLACES_LON = 'lng' 
+GOOGLE_PLACES_LON = 'lng'
 GOOGLE_START_LAT = 'start_lat'
 GOOGLE_START_LON = 'start_lon'
 GOOGLE_END_LAT = 'end_lat'
 GOOGLE_END_LON = 'end_lon'
 PLACE_ID = 'place_id'
+ORIGIN = 'origin'
+DESTINATION = 'destination'
+DESTINATIONS = 'destinations'
+PLACE_IDS = 'place_ids'
 
 # Seattle Census Data naming
 CENSUS_LAT = 'CT_LAT'
 CENSUS_LON = 'CT_LON'
 BLOCKGROUP = 'BLOCKGROUP'
-BASKET_CATEGORIES = ["urban village", "citywide", "destination park", "supermarket", "library",  "hospital", "pharmacy", "post_office", "school", "cafe"]
-BASKET_SIZE = 25
 
 # Parameter domains
 AA = [0,1,2,3,4] # urban village
@@ -141,9 +167,16 @@ SHAPEFILE_DIR = os.path.join(DATADIR, 'raw/shapefiles/')
 PROCESSED_DIR = os.path.join(DATADIR, 'processed/')
 RAW_DIR = os.path.join(DATADIR, 'raw/')
 PICKLE_DIR = os.path.join(PROCESSED_DIR, 'pickles/')
-ORIGIN_FP = os.path.join(RAW_DIR, 'SeattleCensusBlocksandNeighborhoodCorrelationFile.csv') 
+ORIGIN_FP = os.path.join(RAW_DIR, 'SeattleCensusBlocksandNeighborhoodCorrelationFile.csv')
 DEST_FP = os.path.join(RAW_DIR, 'GoogleMatrix_Places_Full.csv')
+GOOGLE_DIST_FP = os.path.join(RAW_DIR, 'GoogleMatrix_Dist_Out.csv')
 DB_DIR = os.path.join(PROCESSED_DIR, 'databases/')
 CSV_DIR = os.path.join(PROCESSED_DIR, 'csv_files/')
 GEN_SHAPEFILE_DIR = os.path.join(PROCESSED_DIR, 'shapefiles/')
 TEST_DIR = os.path.join(DATADIR, 'test/')
+HAVERSINE_DIST_FP = os.path.join(CSV_DIR, 'haversine_distances.csv')
+DISTANCE_QUEUE_FP = os.path.join(CSV_DIR, 'distance_queue.csv')
+API_DIST_FP = os.path.join(CSV_DIR, 'api_distances.csv')
+RANKED_DEST_FP = os.path.join(CSV_DIR, 'ranked_destinations.csv')
+BASKETS_FP = os.path.join(CSV_DIR, 'baskets.csv')
+INPUT_BASKETS_FP = os.path.join(CSV_DIR, 'input_baskets.csv')
