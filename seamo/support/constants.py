@@ -2,6 +2,7 @@
 Constants to be used throughout the code base.
 """
 import os
+import numpy as np
 
 # Strings
 # Column Names
@@ -52,7 +53,18 @@ PARKING_COLUMNS = ['BLOCK_NBR', 'PARKING_CA', 'WKD_RATE1', 'WKD_RATE2', 'WKD_RAT
 NO_PARKING_ALLOWED = 'No Parking Allowed'
 RATE = 'rate'
 
+# geocode exception handling
+GEOCODE_NAN_DF = {LAT:[np.nan], LON:[np.nan], BLOCK_GROUP:[np.nan],
+                NBHD_LONG:[np.nan], NBHD_SHORT:[np.nan], COUNCIL_DISTRICT:[np.nan],
+                URBAN_VILLAGE:[np.nan], ZIPCODE:[np.nan]}
 
+PARKING_NAN_DF = {BLOCK_NUMBER: [np.nan], PARKING_CATEGORY:[np.nan], WEEKDAY_MORNING_RATE:[np.nan],
+                WEEKDAY_AFTERNOON_RATE:[np.nan], WEEKDAY_EVENING_RATE:[np.nan], WEEKDAY_MORNING_START:[np.nan],
+                WEEKDAY_MORNING_END:[np.nan], WEEKDAY_AFTERNOON_START:[np.nan], WEEKDAY_AFTERNOON_END:[np.nan],
+                WEEKDAY_EVENING_START:[np.nan], WEEKDAY_EVENING_END:[np.nan], WEEKEND_MORNING_RATE:[np.nan],
+                WEEKEND_AFTERNOON_RATE:[np.nan], WEEKEND_EVENING_RATE:[np.nan], WEEKEND_MORNING_START:[np.nan],
+                WEEKEND_MORNING_END:[np.nan], WEEKEND_AFTERNOON_START:[np.nan], WEEKEND_AFTERNOON_END:[np.nan],
+                WEEKEND_EVENING_START:[np.nan], WEEKEND_EVENING_END:[np.nan]}
 
 # Seattle Polygon
 
