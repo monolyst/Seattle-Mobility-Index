@@ -20,7 +20,7 @@ from urllib.request import Request, urlopen
 
 import pandas as pd
 
-import __init__
+import init
 import constants as cn
 
 from coordinate import Coordinate
