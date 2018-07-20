@@ -15,6 +15,7 @@ NBHD_LONG = 'neighborhood_long'
 NBHD_SHORT = 'neighborhood_short'
 COUNCIL_DISTRICT = 'seattle_city_council_district'
 ZIPCODE = 'zipcode'
+URBAN_VILLAGE = 'urban_village'
 GEOMETRY = 'geometry'
 KEY = 'key'
 GEOGRAPHY = 'geography'
@@ -87,7 +88,7 @@ PARKING_REFERENCE = 'parking_reference.pickle'
 # Constants for basket
 FINAL_BASKET = [1, 13, 1, 2, 1, 1, 1, 1, 3, 1]
 BASKET_SIZE = 25
-URBAN_VILLAGE = 'urban_villlage'
+# URBAN_VILLAGE = 'urban_village'
 CITYWIDE = 'citywide'
 DESTINATION_PARK = 'destination_park'
 SUPERMARKET = 'supermarket'
