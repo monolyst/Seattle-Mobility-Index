@@ -94,27 +94,32 @@ ranked_df.to_csv(cn.RANKED_DEST_FP)
 baskets_df = create_basket(ranked_df, cn.FINAL_BASKET)
 baskets_df.to_csv(cn.BASKETS_FP)
 # Also need to put out the compressed formats where dests are in one col
-bgs = { blockgroup: { cn.ORIGIN : None, cn.DESTINATIONS : [], cn.PAIR: None, cn.CLASS: None } for blockgroup in df[cn.BLOCKGROUP].values }
-for index, row in df.iterrows():
+bgs = { blockgroup: { cn.ORIGIN : None, 
+                      cn.DESTINATIONS : [], 
+                      cn.PLACE_IDS : [], 
+                      cn.CLASS: None } for blockgroup in df[cn.BLOCKGROUP].values }
+for index, row in baskets_df.iterrows():
     origin = "{0},{1}".format(row[cn.GOOGLE_START_LAT], row[cn.GOOGLE_START_LON])
     destination = "{0},{1}".format(row[cn.GOOGLE_END_LAT], row[cn.GOOGLE_END_LON])
     pair = row[cn.PAIR]
+    # Grab the second part of pair
+    place_id = pair.split('-')[-1]
 
+    bgs[row[cn.BLOCKGROUP]][cn.PLACE_IDS].append(place_id) 
     bgs[row[cn.BLOCKGROUP]][cn.DESTINATIONS].append(destination) 
     bgs[row[cn.BLOCKGROUP]][cn.ORIGIN] = origin
-    bgs[row[cn.BLOCKGROUP]][cn.PAIR] = paircols = [cn.BLOCKGROUP, cn.PAIR, cn.ORIGIN, cn.DESTINATIONS]
+    cols = [cn.BLOCKGROUP, cn.PLACE_IDS, cn.ORIGIN, cn.DESTINATIONS]
 rows = []
-new_df = pd.DataFrame(columns=cols)
 for bg, data in bgs.items():
     origin = data[cn.ORIGIN]
-    pair = data[cn.PAIR]
+    # Separate place ids with commas
+    place_ids = ",".join(data[cn.PLACE_IDS]) 
     # Separate destinations with a pipe
     dests = "|".join(data[cn.DESTINATIONS])
     new_row = { cn.BLOCKGROUP : bg,
                 cn.ORIGIN: origin,
-                cn.PAIR: pair,
-                cn.DESTINATIONS: dests
-                    }
+                cn.PLACE_IDS: place_ids,
+                cn.DESTINATIONS: dests }
     rows.append(new_row)
 new_df = pd.DataFrame(rows, columns=cols)
 new_df.to_csv(cn.INPUT_BASKETS_FP)
