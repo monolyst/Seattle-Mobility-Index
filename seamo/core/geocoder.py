@@ -53,8 +53,6 @@ class Geocoder(gbc.GeocodeBase):
         else:
             df = self._find_overlap_in_reference(gdf, pickle_name, reference_gdf)
             df = df.sort_values(by=cn.GEOGRAPHY)
-            # df = pd.DataFrame(df)
-            # df = df.drop([cn.GEOMETRY], axis=1)
             df = df.set_index([cn.LAT, cn.LON, cn.GEOGRAPHY], append=cn.KEY).unstack()
             df.columns = df.columns.droplevel()
             df = self._format_output(df)
