@@ -2,6 +2,7 @@
 Constants to be used throughout the code base.
 """
 import os
+import numpy as np
 
 # Strings
 # Column Names
@@ -50,6 +51,20 @@ PARKING_COLUMNS = ['BLOCK_NBR', 'PARKING_CA', 'WKD_RATE1', 'WKD_RATE2', 'WKD_RAT
                 'SAT_END1', 'SAT_START2', 'SAT_END2', 'SAT_START3', 'SAT_END3', GEOMETRY]
 NO_PARKING_ALLOWED = 'No Parking Allowed'
 RATE = 'rate'
+
+
+# geocode exception handling
+GEOCODE_NAN_DF = {LAT:[np.nan], LON:[np.nan], BLOCK_GROUP:[np.nan],
+                NBHD_LONG:[np.nan], NBHD_SHORT:[np.nan], COUNCIL_DISTRICT:[np.nan],
+                URBAN_VILLAGE:[np.nan], ZIPCODE:[np.nan]}
+
+PARKING_NAN_DF = {BLOCK_NUMBER: [np.nan], PARKING_CATEGORY:[np.nan], WEEKDAY_MORNING_RATE:[np.nan],
+                WEEKDAY_AFTERNOON_RATE:[np.nan], WEEKDAY_EVENING_RATE:[np.nan], WEEKDAY_MORNING_START:[np.nan],
+                WEEKDAY_MORNING_END:[np.nan], WEEKDAY_AFTERNOON_START:[np.nan], WEEKDAY_AFTERNOON_END:[np.nan],
+                WEEKDAY_EVENING_START:[np.nan], WEEKDAY_EVENING_END:[np.nan], WEEKEND_MORNING_RATE:[np.nan],
+                WEEKEND_AFTERNOON_RATE:[np.nan], WEEKEND_EVENING_RATE:[np.nan], WEEKEND_MORNING_START:[np.nan],
+                WEEKEND_MORNING_END:[np.nan], WEEKEND_AFTERNOON_START:[np.nan], WEEKEND_AFTERNOON_END:[np.nan],
+                WEEKEND_EVENING_START:[np.nan], WEEKEND_EVENING_END:[np.nan]}
 
 # Seattle Polygon
 
@@ -105,7 +120,8 @@ MIN_TO_HR = 60
 CITY_CENTER = [47.6062, -122.3321]
 EARTH_RADIUS_KM = 6373.0 # Approximate radius of Earth in km
 AAA_RATE = 0.56
-VOT_RATE = 14
+VOT_RATE = 14.10
+BIKE_RATE = 0.15
 
 # API constants
 DIST_MATRIX_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?'
@@ -156,10 +172,11 @@ DEST_FP = os.path.join(RAW_DIR, 'GoogleMatrix_Places_Full.csv')
 GOOGLE_DIST_FP = os.path.join(RAW_DIR, 'GoogleMatrix_Dist_Out.csv')
 DB_DIR = os.path.join(PROCESSED_DIR, 'databases/')
 CSV_DIR = os.path.join(PROCESSED_DIR, 'csv_files/')
+GEN_SHAPEFILE_DIR = os.path.join(PROCESSED_DIR, 'shapefiles/')
+TEST_DIR = os.path.join(DATADIR, 'test/')
 HAVERSINE_DIST_FP = os.path.join(CSV_DIR, 'haversine_distances.csv')
 DISTANCE_QUEUE_FP = os.path.join(CSV_DIR, 'distance_queue.csv')
 API_DIST_FP = os.path.join(CSV_DIR, 'api_distances.csv')
 RANKED_DEST_FP = os.path.join(CSV_DIR, 'ranked_destinations.csv')
 BASKETS_FP = os.path.join(CSV_DIR, 'baskets.csv')
 INPUT_BASKETS_FP = os.path.join(CSV_DIR, 'input_baskets.csv')
-GEN_SHAPEFILE_DIR = os.path.join(PROCESSED_DIR, 'shapefiles/')

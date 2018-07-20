@@ -26,11 +26,12 @@ import os
 import sys
 import pandas as pd
 import geopandas as gpd
-import numpy as np
 from shapely.geometry import Point
+import numpy as np
 import geocoder_input
 import constants as cn
 import geocode_base_class as gbc
+import support.seamo_exceptions as se
 
 class Geocoder(gbc.GeocodeBase):
     #Read in shapes files for block group, neighborhoods, zipcode, council district and urban villages
@@ -43,21 +44,23 @@ class Geocoder(gbc.GeocodeBase):
         """ 
         input_file.csv needs header lat, lon
         """
-        super().geocode(gdf, pickle_name)
-        reference = self.__get_reference__(pickle_name)
-        df = gpd.sjoin(gdf, reference, how = 'left')
-        df = df.drop(columns = ['index_right'])
-        df = df.sort_values(by=cn.GEOGRAPHY)
-        df = pd.DataFrame(df)
-        df = df.drop([cn.GEOMETRY], axis=1)
-        df = df.set_index([cn.LAT, cn.LON, cn.GEOGRAPHY], append=cn.KEY).unstack()
-        df.columns = df.columns.droplevel()
-        df = self.__format_output__(df)
+        reference_gdf = self._get_geocode_reference(pickle_name)
+        try:
+            self._find_overlap_in_reference(gdf, pickle_name, reference_gdf)
+        except se.NoOverlapSpatialJoinError:
+            print('No overlap found')
+            df = pd.DataFrame(cn.GEOCODE_NAN_DF)
+        else:
+            df = self._find_overlap_in_reference(gdf, pickle_name, reference_gdf)
+            df = df.sort_values(by=cn.GEOGRAPHY)
+            df = df.set_index([cn.LAT, cn.LON, cn.GEOGRAPHY], append=cn.KEY).unstack()
+            df.columns = df.columns.droplevel()
+            df = self._format_output(df)
         self.dataframe = df
         return df
 
 
-    def __format_output__(self, df):
+    def _format_output(self, df):
         df = df.reset_index().drop(['level_0'], axis=1)
         df[cn.LAT] = df[cn.LAT].astype(float)
         df[cn.LON] = df[cn.LON].astype(float)
@@ -70,11 +73,9 @@ class Geocoder(gbc.GeocodeBase):
         return df
 
 
-    def __get_reference__(self, pickle_name=cn.REFERENCE_PICKLE):
+    def _get_geocode_reference(self, pickle_name=cn.REFERENCE_PICKLE):
         gi = geocoder_input.GeocoderInput()
-        reference_gdf = gi.get_reference(cn.SHAPEFILE_DIR, cn.PICKLE_DIR, pickle_name)
-        self.reference = reference_gdf
-        return reference_gdf
+        return self._get_reference(pickle_name, gi)
 
 
     def geocode_csv(self, input_file, pickle_name=cn.REFERENCE_PICKLE):

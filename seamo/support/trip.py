@@ -9,7 +9,7 @@ import datetime as dt
 Base Trip Class
 """
 class Trip(object):
-    def __init__(self, origin, destination, mode, distance, duration, category,
+    def __init__(self, origin, destination, mode, distance, duration, basket_category,
         pair, departure_time, rank):
         print(origin)
         self.origin = self.__convert_to_coord__(origin)
@@ -17,7 +17,7 @@ class Trip(object):
         self.mode = mode
         self.distance = distance
         self.duration = self.__calculate_duration__(duration)
-        self.category = category
+        self.basket_category = basket_category
         self.departure_time = departure_time
         self.pair = pair
         self.rank = rank
@@ -44,17 +44,17 @@ class Trip(object):
     #     self.cost = 0
 
     def __calculate_duration__(self, duration):
-        self.duration = duration
+        return duration
 
-    def get_place(self, place, **kwargs):
-        if place == origin:
+    def get_place(self, place, *args):
+        if place == 'origin':
             place = self.origin
-        elif place == destination:
+        elif place == 'destination':
             place = self.destination
         else:
             raise "not a place"
         print(place)
-        for attribute in kwargs:
+        for attribute in args:
             print(place.get_attribute(attribute))
 
     def get_trip_id(self, pair, mode, departure_time):
@@ -63,9 +63,9 @@ class Trip(object):
 
 
 class CarTrip(Trip):
-    def __init__(self, origin, destination, distance, duration, category, pair, departure_time, rank, 
+    def __init__(self, origin, destination, distance, duration, basket_category, pair, departure_time, rank, 
                  mile_rate=cn.AAA_RATE, value_of_time_rate=cn.VOT_RATE, duration_in_traffic=0):
-        super().__init__(origin, destination, 'car', distance, duration, category, pair, departure_time, rank)
+        super().__init__(origin, destination, 'car', distance, duration, basket_category, pair, departure_time, rank)
         self.mile_rate = mile_rate
         self.cost_to_park = None
         self.parking_category = None
@@ -109,20 +109,34 @@ class CarTrip(Trip):
 
 
 class TransitTrip(Trip):
-    def __init__(self, origin, destination, distance, category, pair, departure_time, rank):
-        super().__init__(self, origin, destination, 'transit', distance, category, pair, departure_time, rank)
-
+    def __init__(self, origin, destination, distance, duration, basket_category, pair, departure_time, rank, fare_value, value_of_time_rate=cn.VOT_RATE):
+        super().__init__(origin, destination, 'transit', distance, duration, basket_category, pair, departure_time, rank)
+        self.fare_value = fare_value
+        self.value_of_time_rate = value_of_time_rate
+        self.cost = self.calculate_cost(self.fare_value)
+        
     def __calculate_cost__(self, fare_value):
-        self.cost = fare_value
+        return self.fare_value + self.duration * self.value_of_time_rate / cn.MIN_TO_HR
     
-
-
 class BikeTrip(Trip):
-    def __init__(self, origin, destination, distance, category, pair, departure_time, rank):
-        super().__init__(self, origin, destination, 'bike', distance, category, pair, departure_time, rank)
+    def __init__(self, origin, destination, distance, duration, basket_category, pair, departure_time, rank):
+        super().__init__(origin, destination, 'bike', distance, duration, basket_category, pair, departure_time, rank)
+        self.cost = self.distance * cn.BIKE_RATE
 
+    def __calculate_cost__(self):
+         return self.cost + self.duration * self.value_of_time_rate / cn.MIN_TO_HR
     
 
 class WalkTrip(Trip):
-    def __init__(self, origin, destination, distance, category):
-        super().__init__(self, origin, destination, 'walk', distance, category, pair, departure_time, rank)
+    def __init__(self, origin, destination, distance, duration, basket_category):
+        super().__init__(origin, destination, 'walk', distance, duration, basket_category, pair, departure_time, rank)
+        self.value_of_time_rate = cn.VOT_RATE
+        self.cost = self.__calculate_cost__(self.value_of_time_rate)
+
+        
+    def __calculate_cost__(self, value_of_time_rate):
+        return self.duration * self.value_of_time_rate / cn.MIN_TO_HR
+
+
+
+

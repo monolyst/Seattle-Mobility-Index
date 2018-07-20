@@ -3,10 +3,9 @@ import os
 import sys
 import pandas as pd
 import geopandas as gpd
-import numpy as np
 from shapely.geometry import Point
-import geocode_input_base_class as gib
 import constants as cn
+import support.seamo_exceptions as se
 
 class GeocodeBase(object):
     def __init__(self, crs):
@@ -15,20 +14,26 @@ class GeocodeBase(object):
         self.reference = None
         self.crs = crs
 
-    def geocode(self, gdf, pickle_name):
+    def _find_overlap_in_reference(self, gdf, pickle_name, reference):
         """ 
         input_file.csv needs header lat, lon
         """
         self.pickle_name = pickle_name
-        # reference = get_reference(pickle_name)
-        # df = gpd.sjoin(gdf, reference, how = 'left')
-        # df = df.drop(columns = ['index_right'])
-        # return df
-        
+        try:
+            gpd.sjoin(gdf, reference, how = 'left')
+        except:
+            raise se.NoOverlapSpatialJoinError('No overlap between gdf and reference.\
+                Check if lat/lon were inputted correctly.')
+        else:
+            df = gpd.sjoin(gdf, reference, how = 'left')
+            df = df.drop(columns = ['index_right', cn.GEOMETRY])
+            return df
 
 
-    def __get_reference__(self, pickle_name):
-        gi = gib.GeocodeInputBase()
+    def _get_reference(self, pickle_name, geocode_input_instance):
+        reference_gdf = geocode_input_instance.get_reference(cn.SHAPEFILE_DIR, cn.PICKLE_DIR, pickle_name)
+        self.reference = reference_gdf
+        return reference_gdf
         # reference = gi.get_reference(SHAPEFILE_DIR, PICKLE_DIR, pickle_name)
         # return reference
 
@@ -44,7 +49,7 @@ class GeocodeBase(object):
 
 
     def geocode_point(self, coord, pickle_name):
-        left, right = self.__split_coord__(coord)
+        left, right = self._split_coord(coord)
         data = pd.DataFrame(data={cn.LAT: [left], cn.LON: [right], cn.GEOMETRY:
             [Point((float(right), float(left)))]})
         data = data[[cn.LAT, cn.LON, cn.GEOMETRY]]
@@ -54,7 +59,7 @@ class GeocodeBase(object):
         return df
 
 
-    def __split_coord__(self, coord):
+    def _split_coord(self, coord):
         coord = str(coord).split(", ")
         left = coord[0][1:]
         right = coord[1][:-1]

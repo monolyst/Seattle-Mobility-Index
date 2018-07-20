@@ -31,6 +31,7 @@ from shapely.geometry import Point
 import parking_cost_input as pci
 import constants as cn
 import geocode_base_class as gbc
+import support.seamo_exceptions as se
 
 class ParkingCost(gbc.GeocodeBase):
     #Read in shapes files for block group, neighborhoods, zipcode, council district and urban villages
@@ -44,25 +45,25 @@ class ParkingCost(gbc.GeocodeBase):
         Input:  GeoPandas DataFrame gdf: cn.LAT, cn.LON
         input_file.csv needs header lat, lon
         """
-        super().geocode(gdf, pickle_name)
-        reference = self.__get_reference__(pickle_name)
-        df = gpd.sjoin(gdf, reference, how = 'left')
-        df = df.drop(columns = ['index_right'])
-        df = pd.DataFrame(df)
-        df = df.drop([cn.GEOMETRY], axis=1)
+        reference_gdf = self._get_parking_reference(pickle_name)
+        try:
+            self._find_overlap_in_reference(gdf, pickle_name, reference_gdf)
+        except se.NoOverlapSpatialJoinError:
+            print('No overlap found')
+            df = pd.DataFrame(cn.PARKING_NAN_DF)
+        else:
+            df = self._find_overlap_in_reference(gdf, pickle_name, reference_gdf)
         self.dataframe = df
         return df
 
 
-    def __get_reference__(self, pickle_name=cn.PARKING_REFERENCE):
+    def _get_parking_reference(self, pickle_name=cn.PARKING_REFERENCE):
         """
         :param str pickle_name: name of the pickle file
         :return GeoDataFrame:
         """
         gi = pci.ParkingCostInput()
-        reference_gdf = gi.get_reference(cn.SHAPEFILE_DIR, cn.PICKLE_DIR, pickle_name)
-        self.reference = reference_gdf
-        return reference_gdf
+        return self._get_reference(pickle_name, gi)
 
 
     def geocode_csv(self, input_file, pickle_name=cn.PARKING_REFERENCE):
