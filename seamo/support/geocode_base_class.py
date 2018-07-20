@@ -3,7 +3,6 @@ import os
 import sys
 import pandas as pd
 import geopandas as gpd
-import numpy as np
 from shapely.geometry import Point
 import geocode_input_base_class as gib
 import constants as cn
@@ -20,14 +19,18 @@ class GeocodeBase(object):
         input_file.csv needs header lat, lon
         """
         self.pickle_name = pickle_name
-        # reference = get_reference(pickle_name)
-        # df = gpd.sjoin(gdf, reference, how = 'left')
-        # df = df.drop(columns = ['index_right'])
-        # return df
+        reference = get_reference(pickle_name)
+        try:
+            df = gpd.sjoin(gdf, reference, how = 'left')
+        except:
+            raise exception
+
+        df = df.drop(columns = ['index_right'])
+        return df
         
 
 
-    def __get_reference__(self, pickle_name):
+    def _get_reference(self, pickle_name):
         gi = gib.GeocodeInputBase()
         # reference = gi.get_reference(SHAPEFILE_DIR, PICKLE_DIR, pickle_name)
         # return reference

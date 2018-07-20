@@ -26,7 +26,6 @@ import os
 import sys
 import pandas as pd
 import geopandas as gpd
-import numpy as np
 from shapely.geometry import Point
 import geocoder_input
 import constants as cn
@@ -43,7 +42,10 @@ class Geocoder(gbc.GeocodeBase):
         """ 
         input_file.csv needs header lat, lon
         """
-        super().geocode(gdf, pickle_name)
+        try:
+            df = super().geocode(gdf, pickle_name)
+        except Exception:
+
         reference = self.__get_reference__(pickle_name)
         df = gpd.sjoin(gdf, reference, how = 'left')
         df = df.drop(columns = ['index_right'])
@@ -57,16 +59,16 @@ class Geocoder(gbc.GeocodeBase):
         return df
 
 
-    def __format_output__(self, df):
+    def _format_output(self, df):
         df = df.reset_index().drop(['level_0'], axis=1)
         df[cn.LAT] = df[cn.LAT].astype(float)
         df[cn.LON] = df[cn.LON].astype(float)
-        df[cn.BLOCK_GROUP] = df[cn.BLOCK_GROUP].astype(np.int64)
+        df[cn.BLOCK_GROUP] = df[cn.BLOCK_GROUP].astype(int)
         df[cn.NBHD_LONG] = df[cn.NBHD_LONG].astype(str)
         df[cn.NBHD_SHORT] = df[cn.NBHD_SHORT].astype(str)
         df[cn.COUNCIL_DISTRICT] = df[cn.COUNCIL_DISTRICT].astype(str)
         df[cn.URBAN_VILLAGE] = df[cn.URBAN_VILLAGE].astype(str)
-        df[cn.ZIPCODE] = df[cn.ZIPCODE].astype(np.int64)
+        df[cn.ZIPCODE] = df[cn.ZIPCODE].astype(int)
         return df
 
 
