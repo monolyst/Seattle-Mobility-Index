@@ -13,8 +13,8 @@ Base Trip Class
 class Trip(object):
     def __init__(self, origin, destination, mode, distance, duration, basket_category,
         pair, departure_time, rank, value_of_time_rate=cn.VOT_RATE):
-        self.origin = self._convert_to_coord(origin)
-        self.destination = self._convert_to_coord(destination)
+        self._origin = self._convert_to_coord(origin)
+        self._destination = self._convert_to_coord(destination)
         self.mode = mode
         self.distance = distance
         self.duration = self._calculate_duration(duration)
@@ -48,9 +48,9 @@ class Trip(object):
 
     def get_place(self, place, *args):
         if place == 'origin':
-            place = self.origin
+            place = self._origin
         elif place == 'destination':
-            place = self.destination
+            place = self._destination
         else:
             raise "not a place"
         print(place)
@@ -71,7 +71,7 @@ class CarTrip(Trip):
         self.parking_category = None
         self.duration_in_traffic = duration_in_traffic
         self.duration = self._calculate_car_duration(duration, duration_in_traffic)
-        self.cost = self._calculate_cost(self.destination, self.duration, self.departure_time,
+        self.cost = self._calculate_cost(self._destination, self.duration, self.departure_time,
             self.mile_rate, self.value_of_time_rate)
 
     def _calculate_car_duration(self, duration, duration_in_traffic=0):
@@ -114,7 +114,7 @@ class CarTrip(Trip):
 
 
 class TransitTrip(Trip):
-    def __init__(self, origin, destination, distance, duration, basket_category, pair, departure_time, rank, fare_value,):
+    def __init__(self, origin, destination, distance, duration, basket_category, pair, departure_time, rank, fare_value):
         super().__init__(origin, destination, 'transit', distance, duration, basket_category, pair, departure_time, rank)
         self.fare_value = fare_value
         self.cost = self._calculate_cost(self.fare_value)

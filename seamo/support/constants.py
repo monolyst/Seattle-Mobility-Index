@@ -144,7 +144,16 @@ ORIGIN = 'origin'
 DESTINATION = 'destination'
 DESTINATIONS = 'destinations'
 PLACE_IDS = 'place_ids'
+DURATION = 'duration'
+DURATION_IN_TRAFFIC = 'duration_in_traffic'
+DEPARTURE_TIME = 'departure_time'
+FARE_VALUE = 'fare_value'
 
+# modes
+CAR = 'car'
+TRANSIT = 'transit'
+BIKE = 'bike'
+WALK = 'walk'
 # Seattle Census Data naming
 CENSUS_LAT = 'CT_LAT'
 CENSUS_LON = 'CT_LON'
