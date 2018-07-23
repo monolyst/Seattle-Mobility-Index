@@ -1,5 +1,6 @@
+import init
 from math import sin, cos, sqrt, atan2, radians
-
+from core import geocoder
 import constants as cn
 
 class Coordinate:
@@ -12,6 +13,13 @@ class Coordinate:
         """
         self.lat = lat
         self.lon = lon
+        self.block_group = None
+        self.neighborhood_long = None
+        self.neighborhood_short = None
+        self.council_district = None
+        self.urban_village = None
+        self.zipcode = None
+        self._geocode(self.lat, self.lon)
 
 
     def __str__(self):
@@ -19,7 +27,7 @@ class Coordinate:
         Stringify a Coordinate.
         Format is 'lat,lon'
         """
-        return "{0},{1}".format(self.lat, self.lon)
+        return "{0}, {1}".format(self.lat, self.lon)
 
 
     def haversine_distance(self, coordinate):
@@ -29,6 +37,7 @@ class Coordinate:
 
         input: coordinate (Coordinate)
         output: distance (float)
+                in miles
         """
        
         # This Coordinate 
@@ -47,5 +56,36 @@ class Coordinate:
         c = 2 * atan2(sqrt(a), sqrt(1 - a))
 
         distance = cn.EARTH_RADIUS_KM * c 
-
+        # Convert to miles
+        distance *= cn.KM_TO_MILES
+    
         return distance
+
+
+    def _geocode(self, lat, lon):
+        geo = geocoder.Geocoder()
+        df = geo.geocode_point((float(lat), float(lon)))
+        self.block_group = min(df[cn.BLOCK_GROUP])
+        self.neighborhood_long = min(df[cn.NBHD_LONG])
+        self.neighborhood_short = min(df[cn.NBHD_SHORT])
+        self.council_district = min(df[cn.COUNCIL_DISTRICT])
+        self.urban_village = min(df[cn.URBAN_VILLAGE])
+        self.zipcode = min(df[cn.ZIPCODE])
+
+
+    def get_attribute(self, attribute):
+        if attribute == 'block_group':
+            attribute = self.block_group
+        elif attribute == 'neighborhood_long':
+            attribute = self.neighborhood_long
+        elif attribute == 'neighborhood_short':
+            attribute = self.neighborhood_short
+        elif attribute == 'council_district':
+            attribute = self.council_district
+        elif attribute == 'urban_village':
+            attribute = self.urban_village
+        elif attribute == 'zipcode':
+            attribute = self.zipcode
+        else:
+            print("invalid attribute passed")
+        return attribute
