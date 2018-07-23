@@ -67,7 +67,7 @@ class CarTrip(Trip):
         duration_in_traffic=0, mile_rate=cn.AAA_RATE):
         super().__init__(origin, destination, 'car', distance, duration, basket_category, pair, departure_time, rank)
         self.mile_rate = mile_rate
-        self.cost_to_park = None
+        self.cost_to_park = np.nan
         self.parking_category = None
         self.duration_in_traffic = duration_in_traffic
         self.duration = self._calculate_car_duration(duration, duration_in_traffic)
@@ -86,7 +86,6 @@ class CarTrip(Trip):
             pc.geocode_point((float(destination.lat), float(destination.lon)))
         except se.NoParkingAvailableError as e:
             print("parking not available")
-            self.cost_to_park = np.nan
             return np.nan
         else:
             df = pc.geocode_point((float(destination.lat), float(destination.lon)))
