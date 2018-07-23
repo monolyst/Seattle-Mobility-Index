@@ -17,15 +17,6 @@ class AffordabilityIndex(index_base_class):
         self.trip_data = self.get_sql_data()
 
 
-    def get_csv_data(self, filename, datadir=DATADIR):
-        df = pd.read_csv(str(filename) + '.csv')
-        return df
-
-    def get_sql_data(self, filename, datadir=DATADIR):
-        df = daq.sql_to_df()
-        return df
-
-
     def calculate_score(self):
         trips = [] # will be a list of trip objects
         for row in range(len(viable_modes)):
@@ -45,5 +36,3 @@ class AffordabilityIndex(index_base_class):
         income_normalized = normalize(income_adjusted)
 
         return normalized, income_normalized
-
-
