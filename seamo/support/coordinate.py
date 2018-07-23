@@ -19,7 +19,7 @@ class Coordinate:
         self.council_district = None
         self.urban_village = None
         self.zipcode = None
-        self.__geocode__(self.lat, self.lon)
+        self._geocode(self.lat, self.lon)
 
 
     def __str__(self):
@@ -62,7 +62,7 @@ class Coordinate:
         return distance
 
 
-    def __geocode__(self, lat, lon):
+    def _geocode(self, lat, lon):
         geo = geocoder.Geocoder()
         df = geo.geocode_point((float(lat), float(lon)))
         self.block_group = min(df[cn.BLOCK_GROUP])
