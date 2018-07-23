@@ -17,3 +17,7 @@ class NoOverlapSpatialJoinError(Exception):
         self.message = message
     # msg: geodataframe has overlapping polygons representing geographic features
     # please how shapefiles are processed.
+
+class NoParkingAvailableError(NoOverlapSpatialJoinError):
+    def __init__(self, message):
+        self.message = message

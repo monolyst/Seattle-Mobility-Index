@@ -4,6 +4,8 @@ from core import parking_cost, geocoder
 from support import coordinate
 from dateutil import parser
 import datetime as dt
+import support.seamo_exceptions as se
+import numpy as np
 
 """
 Base Trip Class
@@ -80,15 +82,22 @@ class CarTrip(Trip):
         self.cost = super()._calculate_base_cost(self.duration)
         col = self._get_time_date(duration, departure_time)
         pc = parking_cost.ParkingCost()
-        df = pc.geocode_point((float(destination.lat), float(destination.lon)))
+        try:
+            pc.geocode_point((float(destination.lat), float(destination.lon)))
+        except se.NoParkingAvailableError as e:
+            print("parking not available")
+            self.cost_to_park = np.nan
+            return np.nan
+        else:
+            df = pc.geocode_point((float(destination.lat), float(destination.lon)))
 
-        options = df.loc[:, (cn.PARKING_CATEGORY, str(col + cn.RATE))]
-        options = options[options[cn.PARKING_CATEGORY] != cn.NO_PARKING_ALLOWED]
-        options = options.loc[options[str(col + cn.RATE)].idxmin()].drop_duplicates()
-        self.cost_to_park = int(options[str(col + cn.RATE)])
-        self.parking_category = min(options[cn.PARKING_CATEGORY])
-        return self.cost + (self.distance * self.mile_rate) + self.cost_to_park
-
+            options = df.loc[:, (cn.PARKING_CATEGORY, str(col + cn.RATE))]
+            options = options[options[cn.PARKING_CATEGORY] != cn.NO_PARKING_ALLOWED]
+            options = options.loc[options[str(col + cn.RATE)].idxmin()].drop_duplicates()
+            self.cost_to_park = int(options[str(col + cn.RATE)])
+            self.parking_category = min(options[cn.PARKING_CATEGORY])
+            return self.cost + (self.distance * self.mile_rate) + self.cost_to_park
+        
     def _get_time_date(self, duration, departure_time):
         date_time = parser.parse(departure_time) + dt.timedelta(minutes=float(duration))
         date = date_time.date()
@@ -103,7 +112,6 @@ class CarTrip(Trip):
         elif time.hour > 17 and time.hour <= 22:
             time_frame = 'evening'
         return day_type + '_' + time_frame + '_'
-
 
 
 class TransitTrip(Trip):
