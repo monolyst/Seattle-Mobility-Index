@@ -5,7 +5,6 @@ from index_base_class import IndexBaseClass
 class ModeChoiceCalculator(IndexBaseClass):
 	"""
 	"""
-
 	def __init__(self):
 		pass
 
@@ -15,10 +14,8 @@ class ModeChoiceCalculator(IndexBaseClass):
 			viable = 1
 		elif trip.mode == cn.BIKE and trip.duration < 60:
 			viable = 1
-		
 		elif trip.mode == cn.TRANSIT and trip.duration < 60:
 			viable = 1
-
 		elif trip.mode == cn.WALK and trip.duration < 45:
 			viable = 1
 
