@@ -68,6 +68,7 @@ class CarTrip(Trip):
         self.parking_category = None
         self.duration_in_traffic = duration_in_traffic
         self.duration = self._calculate_car_duration(duration, duration_in_traffic)
+        # import pdb; pdb.set_trace()
         self.cost = self._calculate_cost(self._destination, self.duration, self.departure_time,
             self.mile_rate, self.value_of_time_rate)
 

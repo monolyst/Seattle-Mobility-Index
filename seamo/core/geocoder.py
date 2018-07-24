@@ -84,5 +84,6 @@ class Geocoder(gbc.GeocodeBase):
 
 
     def geocode_point(self, coord, pickle_name=cn.REFERENCE_PICKLE):
-        df = super().geocode_point(coord, pickle_name)
+        df = super().geocode_point(coord)
+        df = self.geocode(df, str(pickle_name))
         return df

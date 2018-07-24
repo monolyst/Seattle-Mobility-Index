@@ -76,7 +76,8 @@ BUFFER_SIZE = 0.0005
 PARKING_COLUMNS = ['BLOCK_NBR', 'PARKING_CA', 'WKD_RATE1', 'WKD_RATE2', 'WKD_RATE3',
                 'WKD_START1', 'WKD_END1', 'WKD_START2', 'WKD_END2', 'WKD_START3',
                 'WKD_END3', 'SAT_RATE1', 'SAT_RATE2', 'SAT_RATE3', 'SAT_START1',
-                'SAT_END1', 'SAT_START2', 'SAT_END2', 'SAT_START3', 'SAT_END3', GEOMETRY]
+                'SAT_END1', 'SAT_START2', 'SAT_END2', 'SAT_START3', 'SAT_END3',
+                'PRIMARYDIS', GEOMETRY]
 NO_PARKING_ALLOWED = 'No Parking Allowed'
 RATE = 'rate'
 
@@ -170,6 +171,32 @@ E = [0,1,2,3] # pharmacy
 F = [0,1,2,3] # post office
 G = [0,1,2,3] # school
 H = [0,1,2,3] # cafe
+
+# Council Districts
+COUNCIL_DISTRICT1 = 'SCC1'
+COUNCIL_DISTRICT2 = 'SCC2'
+COUNCIL_DISTRICT3 = 'SCC3'
+COUNCIL_DISTRICT4 = 'SCC4'
+COUNCIL_DISTRICT5 = 'SCC5'
+COUNCIL_DISTRICT6 = 'SCC6'
+COUNCIL_DISTRICT7 = 'SCC7'
+DISTRICT1 = 'DISTRICT1'
+DISTRICT2 = 'DISTRICT2'
+DISTRICT3 = 'DISTRICT3'
+DISTRICT4 = 'DISTRICT4'
+DISTRICT5 = 'DISTRICT5'
+DISTRICT6 = 'DISTRICT6'
+DISTRICT7 = 'DISTRICT7'
+DISTRICT1_PICKLE = 'parking_district1.pickle'
+DISTRICT2_PICKLE = 'parking_district2.pickle'
+DISTRICT3_PICKLE = 'parking_district3.pickle'
+DISTRICT4_PICKLE = 'parking_district4.pickle'
+DISTRICT5_PICKLE = 'parking_district5.pickle'
+DISTRICT6_PICKLE = 'parking_district6.pickle'
+DISTRICT7_PICKLE = 'parking_district7.pickle'
+PRIMARY_DISTRICT = 'PRIMARYDIS'
+
+
 
 # Filepaths
 DATADIR = 'data/'

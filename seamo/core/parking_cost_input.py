@@ -14,7 +14,7 @@ class ParkingCostInput(gib.GeocodeInputBase):
     def __init__(self):
         super().__init__()
 
-    def read_shapefile(self, raw_dir, shapefile):
+    def read_shapefile(self, raw_dir, shapefile, council_district):
         gdf = super().read_shapefile(raw_dir, shapefile)
         for col in gdf:
             # get dtype for column
@@ -25,6 +25,8 @@ class ParkingCostInput(gib.GeocodeInputBase):
             else:
                 gdf[col].fillna('None', inplace=True)
         gdf = gdf.loc[:, cn.PARKING_COLUMNS]
+        gdf = gdf[gdf[cn.PRIMARY_DISTRICT] == council_district]
+        gdf = gdf.drop(columns = [cn.PRIMARY_DISTRICT])
         gdf.columns = [cn.BLOCK_FACE, cn.PARKING_CATEGORY, cn.WEEKDAY_MORNING_RATE,
             cn.WEEKDAY_AFTERNOON_RATE, cn.WEEKDAY_EVENING_RATE, cn.WEEKDAY_MORNING_START,
             cn.WEEKDAY_MORNING_END, cn.WEEKDAY_AFTERNOON_START, cn.WEEKDAY_AFTERNOON_END,
@@ -38,7 +40,14 @@ class ParkingCostInput(gib.GeocodeInputBase):
 
 
     def make_reference(self, raw_dir, processed_dir, pickle_name):
-        parking = self.read_shapefile(raw_dir, cn.BLOCK_FACE_FNAME)
+        council_district = {cn.DISTRICT1_PICKLE: cn.DISTRICT1,
+                    cn.DISTRICT2_PICKLE: cn.DISTRICT2,
+                    cn.DISTRICT3_PICKLE: cn.DISTRICT3,
+                    cn.DISTRICT4_PICKLE: cn.DISTRICT4,
+                    cn.DISTRICT5_PICKLE: cn.DISTRICT5,
+                    cn.DISTRICT6_PICKLE: cn.DISTRICT6,
+                    cn.DISTRICT7_PICKLE: cn.DISTRICT7}[pickle_name]
+        parking = self.read_shapefile(raw_dir, cn.BLOCK_FACE_FNAME, council_district)        
         intervals = [cn.WEEKDAY_MORNING_START, cn.WEEKDAY_AFTERNOON_START, cn.WEEKDAY_EVENING_START,
             cn.WEEKDAY_MORNING_END, cn.WEEKDAY_AFTERNOON_END, cn.WEEKDAY_EVENING_END,
             cn.WEEKEND_MORNING_START, cn.WEEKEND_AFTERNOON_START, cn.WEEKEND_EVENING_START,
