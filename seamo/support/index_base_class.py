@@ -10,10 +10,7 @@ class IndexBase(object):
 
     def __init__(self, time_of_day, type_of_day, travel_mode,
         db_name=cn.GOOGLE_DIST_MATRIX_OUT, datadir=DATADIR):
-        self.time_of_day = time_of_day
-        self.type_of_day = type_of_day
-        self.travel_mode = travel_mode
-        self.datadir = datadir
+        # self.datadir = datadir
         self.trip_data = self.get_sql_data(db_name)
         self.score = None
 
