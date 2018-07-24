@@ -4,6 +4,7 @@ from index_base_class import IndexBaseClass
 
 class ModeChoiceCalculator(IndexBaseClass):
     """
+    
     """
     def __init__(self):
         pass
@@ -25,6 +26,12 @@ class ModeChoiceCalculator(IndexBaseClass):
         #Make threasholds constants
         
         return viable
+
+    def calculate_availability(self, blkgrp):
+        #for every block group
+        # sum viability and divide by number of available hours
+            #4 modes, 25 destnations, 12 hours
+        #remaining number will be between 0-100 so we can classify into index
 
 
 
