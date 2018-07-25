@@ -101,13 +101,24 @@ class ModeChoiceCalculator(IndexBaseClass):
         mode_avail = sum([trip.viable for trip in trips])
         mode_index = mode_aval/cn.HOURS #(?) name constant
 
+        return mode_index
 
 
-    def calculate_availability(self, blkgrp):
-        #for every block group
-        # sum viability and divide by number of available hours
-            #4 modes, 25 destnations, 12 hours
-        #remaining number will be between 0-100 so we can classify into index
+
+    def create_availability_csv(self, blkgrp_dict):
+        data = []
+        for blkgrp, trips in blkgrp_dict.items():
+            mode_index= calculate_mode_avail(trips)
+            row={ 'blockgroup': blkgrp, 'mode_index': mode_index}
+            data.append(row)
+        df = pd.DataFrame(data)
+
+        df.to_csv('mobility_index.csv')
+
+
+
+
+
 
 
 
