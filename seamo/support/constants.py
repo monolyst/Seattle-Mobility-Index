@@ -150,17 +150,17 @@ CENSUS_LAT = 'CT_LAT'
 CENSUS_LON = 'CT_LON'
 BLOCKGROUP = 'BLOCKGROUP'
 
-# Parameter domains
-AA = [0,1,2,3,4] # urban village
+# Destination class domains
+AA = [1,2,3,4] # urban village
 BB = [8,9,10,11,12,13] # citywide destination
-A = [0,1,2,3] # destination park
-B = [0,1,2,3] # supermarket
-C = [0,1,2,3] # library
-D = [0,1,2,3] # hospital
-E = [0,1,2,3] # pharmacy
-F = [0,1,2,3] # post office
-G = [0,1,2,3] # school
-H = [0,1,2,3] # cafe
+A = [1,2,3] # destination park
+B = [1,2,3] # supermarket
+C = [1,2,3] # library
+D = [1,2,3] # hospital
+E = [1,2,3] # pharmacy
+F = [1,2,3] # post office
+G = [1,2,3] # school
+H = [1,2,3] # cafe
 
 # Filepaths
 DATADIR = 'data/'
