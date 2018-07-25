@@ -175,8 +175,6 @@ def calculate_features(google_input, basket_combination):
     
     return (final_result)
 
-
-#BASKET_SIZE = 40
 BASKET_SIZE = cn.BASKET_SIZE
 
 def calculate_mse(psrc_output, google_input):
