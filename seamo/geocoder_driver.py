@@ -5,6 +5,27 @@ import core.geocoder as geocoder
 import core.parking_cost as parking_cost
 import preproc.geography_processor as gp
 import constants as cn
+import time
+from dateutil import parser
+import datetime as dt
+import trip
+
+
+SEATTLE_ORIGIN = (47.6145, -122.3210)
+SEATTLE_DESTINATION = (47.6145, -122.3210)
+
+NONSEATTLE_ORIGIN = (-122.3210, 47.6145)
+NONSEATTLE_DESTINATION = (-122.3210, 47.6145)
+
+DURATION = 32.183333
+DISTANCE = 16.040398
+DURATION_IN_TRAFFIC = 3.303167
+BASKET_CATEGORY = cn.CITYWIDE
+PAIR = '530330006001-Overlake-Redmond'
+DEPARTURE_TIME = '2018-06-06 12:41:31.092964'
+RANK = 14.0
+BASE_COST = DURATION * cn.VOT_RATE / cn.MIN_TO_HR
+PARKING_COST = 3.0
 
 # geo = geocoder.Geocoder()
 # decoded = geo.geocode_point((47.6145, -122.3210))
@@ -12,13 +33,20 @@ import constants as cn
 # print(decoded)
 # print(decoded)
 # print(geo.dataframe)
-# print(geo.dataframe)
+# print(geo.dataframe
 
-pc = parking_cost.ParkingCost()
-# decoded = pc.geocode_csv(os.path.join(cn.TEST_DIR, 'test1000.csv'))
-decoded = pc.geocode_point((47.6145, -122.3210))
+# start = time.time()
+def run_code():
+    for repititions in range(100):
+        trip.CarTrip(SEATTLE_ORIGIN, SEATTLE_DESTINATION, DISTANCE, DURATION, BASKET_CATEGORY, PAIR, DEPARTURE_TIME, RANK, DURATION_IN_TRAFFIC)
+        # pc = parking_cost.ParkingCost()
+        # # decoded = pc.geocode_csv(os.path.join(cn.TEST_DIR, 'test1000.csv'))
+        # decoded = pc.geocode_point((47.6145, -122.3210))
+# end = time.time()
 # decoded1 = pc.geocode_point((-122.3210, 47.6145))
-print(decoded)
+# print(decoded)
+# elapsed = parser.parse(end-start)
+# print(end-start, 'seconds')
 # print(pc.dataframe)
 # print(pc.dataframe)
 
