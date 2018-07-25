@@ -228,4 +228,6 @@ BASKETS_FP = os.path.join(CSV_DIR, 'baskets.csv')
 INPUT_BASKETS_FP = os.path.join(CSV_DIR, 'input_baskets.csv')
 DYNAMODB_OUT_DIR = os.path.join(RAW_DIR + 'dynamodb_out/')
 MODE_CHOICE_FP = os.path.join(CSV_DIR, 'mode_choice_scores.csv')
+MODE_CHOICE_FP = os.path.join(CSV_DIR, 'mode_choice_scores.csv')
+DISTANCES_OUT_FP = os.path.join(CSV_DIR, 'google_dist_matrix_out.csv')
 

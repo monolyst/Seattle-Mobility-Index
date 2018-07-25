@@ -16,8 +16,8 @@ class ModeChoiceCalculator(IndexBaseClass):
 
     def is_viable(self, trip):
         """
-        This function takes in a Trip and returns whether a trip is viable (1) or
-        not viable (1) as a fuction of trip.mode and trip.duration.
+        This function takes in a Trip and returns a value indicating whether a trip is viable (1) or
+        not viable (0) as a fuction of trip.mode and trip.duration.
         """
 
         viable = 0
@@ -33,24 +33,13 @@ class ModeChoiceCalculator(IndexBaseClass):
             #can we take into account proximity? thinking of nearby locations with bad connections
             # or disnant locations with good connections. Most relevant for bus.
 
-        #Make threasholds constants
         
         return viable
 
     
-    def csv_to_dataframe(self, csv_filepath):
-        """
-        Inputs a csv filepath and converts into pandas DataFrame
-        """
-
-        df =pd.read_csv(csv_filepath)
-
-        return df
-
-    
     def extract_blkgrp(self, trip_id):
         """
-        Takes in a trip_id string and returns the blkgroup ID
+        Takes in a trip_id string and returns the blockgroup ID
         """
         blkgrp = trip_id.split('++')[0]
 
@@ -143,7 +132,8 @@ class ModeChoiceCalculator(IndexBaseClass):
 
 
 
-
-
+# time of day weight for modes. Walking dependent of time of day, dark or not.
+# need to cary things?
+# elevation?
 
 
