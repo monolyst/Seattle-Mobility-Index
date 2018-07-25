@@ -1,13 +1,14 @@
 import init
 import constants as cn
-from index_base_class import IndexBaseClass
+from index_base_class import IndexBase
 from trip import Trip
 
 import pandas as pd
 
+from collections import defaultdict
 
 
-class ModeChoiceCalculator(IndexBaseClass):
+class ModeChoiceCalculator(IndexBase):
     """
     
     """
@@ -20,6 +21,9 @@ class ModeChoiceCalculator(IndexBaseClass):
         not viable (0) as a fuction of trip.mode and trip.duration.
         """
 
+
+        # We might need to adjust this such that it operates on DF rows,
+        # not Trip objects.
         viable = 0
         if trip.mode == cn.CAR and trip.duration < cn.CAR_TIME_THRESHOLD:
             viable = 1
@@ -37,34 +41,14 @@ class ModeChoiceCalculator(IndexBaseClass):
         return viable
 
     
-    def extract_blkgrp(self, trip_id):
-        """
-        Takes in a trip_id string and returns the blockgroup ID
-        """
-        blkgrp = trip_id.split('++')[0]
-
-        return blkgrp
-
-    
-    def extract_dest(self, trip_id):
-        """
-        Takes in a trip_id string and returns the destination ID
-        """
-        dest = trip_id.split('++')[1]
-
-        return dest
-
-
     def trip_from_row(self, row):
         """
         Given a dataframe with the available variables, create a trip class 
         with these variables. Returns trip.
         """
 
-        #Need to change strings for constants
-        trip_id = row[cn.TRIP_ID]
-        origin = self.extract_blkgrp(trip_id)
-        destination = self.extract_dest(trip_id)
+        origin = row[cn.BLOCK_GROUP] 
+        destination = row[cn.DESTINATION] 
         mode = row[cn.MODE]
         distance = row[cn.DISTANCE]
         duration = row[cn.DURATION]
@@ -77,6 +61,7 @@ class ModeChoiceCalculator(IndexBaseClass):
         departure_time = row[cn.DEPARTURE_TIME]
         rank = None
 
+        # This is going to change. 
         trip = Trip(trip_id, origin, destination, mode, distance, duration, basket_category, 
             pair, departure_time, rank)
         return trip
@@ -129,11 +114,6 @@ class ModeChoiceCalculator(IndexBaseClass):
 
         df.to_csv(cn.MODE_CHOICE_FP)
 
-
-
-
 # time of day weight for modes. Walking dependent of time of day, dark or not.
 # need to cary things?
 # elevation?
-
-
