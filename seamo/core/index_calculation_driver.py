@@ -6,7 +6,7 @@ from mode_choice_calculator import ModeChoiceCalculator
 import pandas as pd
 
 mc = ModeChoiceCalculator()
-df = pd.read_csv(DISTANCES_OUT_FP)
+df = pd.read_csv(cn.DISTANCES_OUT_FP)
 
 
 blockgroup_dict = mc.create_blockgroup_dict(df)
