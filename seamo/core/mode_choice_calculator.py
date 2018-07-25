@@ -15,6 +15,11 @@ class ModeChoiceCalculator(IndexBaseClass):
         pass
 
     def is_viable(self, trip):
+        """
+        This function takes in a Trip and returns whether a trip is viable (1) or
+        not viable (1) as a fuction of trip.mode and trip.duration.
+        """
+
         viable = 0
         if trip.mode == cn.CAR and trip.duration < 60:
             viable = 1
@@ -34,18 +39,28 @@ class ModeChoiceCalculator(IndexBaseClass):
 
     
     def csv_to_dataframe(self, csv_filepath):
+        """
+        Inputs a csv filepath and converts into pandas DataFrame
+        """
+
         df =pd.read_csv(csv_filepath)
 
         return df
 
     
     def extract_blkgrp(self, trip_id):
+        """
+        Takes in a trip_id string and returns the blkgroup ID
+        """
         blkgrp = trip_id.split('++')[0]
 
         return blkgrp
 
     
     def extract_dest(self, trip_id):
+        """
+        Takes in a trip_id string and returns the destination ID
+        """
         dest = trip_id.split('++')[1]
 
         return dest
@@ -54,7 +69,7 @@ class ModeChoiceCalculator(IndexBaseClass):
     def trip_from_row(self, row):
         """
         Given a dataframe with the available variables, create a trip class 
-        with these variables
+        with these variables. Returns trip.
         """
 
         #Need to change strings for constants
@@ -64,6 +79,9 @@ class ModeChoiceCalculator(IndexBaseClass):
         mode = row['mode']
         distance = row['distance']
         duration = row['duration']
+        # the attributes initiated to None is because we currently don't have 
+        # them. We might need to revise the trip class to eliminate them or the data to have
+        # the necesary data.
         basket_category = None
         pair = None
         #convert departure time to date-time object
@@ -93,7 +111,8 @@ class ModeChoiceCalculator(IndexBaseClass):
 
     def calculate_mode_avail(self, trips):
         """
-        trips is a list of Trips
+        Input: trips (list of Trips)
+        Output: mode index for the list of trips as a function of viability
 
         """
         #make sure trip has viable attribute
@@ -106,6 +125,12 @@ class ModeChoiceCalculator(IndexBaseClass):
 
 
     def create_availability_csv(self, blkgrp_dict):
+        """
+        Takes in a blockgroup dictionary where blokgroups are keys and list of trips from
+        that blockgroups are corresponding values, estimates the availability score for each blockroup
+        and returns the csv with each block group's mobility score.
+
+        """
         data = []
         for blkgrp, trips in blkgrp_dict.items():
             mode_index= calculate_mode_avail(trips)
