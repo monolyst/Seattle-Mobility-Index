@@ -31,9 +31,8 @@ class GeocodeBase(object):
 
 
     def _get_reference(self, pickle_name, geocode_input_instance):
-        reference_gdf = geocode_input_instance.get_reference(cn.SHAPEFILE_DIR, cn.PICKLE_DIR, pickle_name)
-        self.reference = reference_gdf
-        return reference_gdf
+        self.reference = geocode_input_instance.get_reference(cn.SHAPEFILE_DIR, cn.PICKLE_DIR, pickle_name)
+        return self.reference
         # reference = gi.get_reference(SHAPEFILE_DIR, PICKLE_DIR, pickle_name)
         # return reference
 
@@ -48,15 +47,14 @@ class GeocodeBase(object):
         return df
 
 
-    def geocode_point(self, coord, pickle_name):
+    def geocode_point(self, coord):
         left, right = self._split_coord(coord)
         data = pd.DataFrame(data={cn.LAT: [left], cn.LON: [right], cn.GEOMETRY:
             [Point((float(right), float(left)))]})
         data = data[[cn.LAT, cn.LON, cn.GEOMETRY]]
         data = gpd.GeoDataFrame(data, geometry=cn.GEOMETRY)
         data.crs = self.crs
-        df = self.geocode(data, str(pickle_name))
-        return df
+        return data
 
 
     def _split_coord(self, coord):
