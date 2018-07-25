@@ -149,6 +149,11 @@ DURATION = 'duration'
 DURATION_IN_TRAFFIC = 'duration_in_traffic'
 DEPARTURE_TIME = 'departure_time'
 FARE_VALUE = 'fare_value'
+MODE = 'mode'
+ADDRESS = 'address'
+TYPE = 'type'
+RATING = 'rating'
+FARE = 'fare'
 
 # modes
 CAR = 'car'
@@ -159,6 +164,7 @@ WALK = 'walk'
 CENSUS_LAT = 'CT_LAT'
 CENSUS_LON = 'CT_LON'
 BLOCKGROUP = 'BLOCKGROUP'
+CITY = 'city'
 
 # Parameter domains
 AA = [0,1,2,3,4] # urban village
@@ -218,3 +224,4 @@ RANKED_DEST_FP = os.path.join(CSV_DIR, 'ranked_destinations.csv')
 BASKETS_FP = os.path.join(CSV_DIR, 'baskets.csv')
 INPUT_BASKETS_FP = os.path.join(CSV_DIR, 'input_baskets.csv')
 DYNAMODB_OUT_DIR = os.path.join(RAW_DIR + 'dynamodb_out/')
+

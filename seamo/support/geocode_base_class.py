@@ -65,5 +65,4 @@ class GeocodeBase(object):
 
 
     def write_to_csv(self, df, processed_dir, output_file):
-        decoded = df
-        decoded.to_csv(processed_dir + output_file, index=False)
+        df.to_csv(processed_dir + output_file, index=False)
