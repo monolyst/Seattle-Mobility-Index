@@ -21,13 +21,13 @@ class ModeChoiceCalculator(IndexBaseClass):
         """
 
         viable = 0
-        if trip.mode == cn.CAR and trip.duration < 60:
+        if trip.mode == cn.CAR and trip.duration < cn.CAR_TIME_THRESHOLD:
             viable = 1
-        elif trip.mode == cn.BIKE and trip.duration < 60:
+        elif trip.mode == cn.BIKE and trip.duration < cn.BIKE_TIME_THRESHOLD:
             viable = 1
-        elif trip.mode == cn.TRANSIT and trip.duration < 60:
+        elif trip.mode == cn.TRANSIT and trip.duration < cn.TRANSIT_TIME_THRESHOLD:
             viable = 1
-        elif trip.mode == cn.WALK and trip.duration < 45:
+        elif trip.mode == cn.WALK and trip.duration < cn.WALK_TIME_THRESHOLD:
             viable = 1
 
             #can we take into account proximity? thinking of nearby locations with bad connections
@@ -73,19 +73,19 @@ class ModeChoiceCalculator(IndexBaseClass):
         """
 
         #Need to change strings for constants
-        trip_id = row['trip_id']
+        trip_id = row[cn.TRIP_ID]
         origin = self.extract_blkgrp(trip_id)
         destination = self.extract_dest(trip_id)
-        mode = row['mode']
-        distance = row['distance']
-        duration = row['duration']
+        mode = row[cn.MODE]
+        distance = row[cn.DISTANCE]
+        duration = row[cn.DURATION]
         # the attributes initiated to None is because we currently don't have 
         # them. We might need to revise the trip class to eliminate them or the data to have
         # the necesary data.
         basket_category = None
         pair = None
         #convert departure time to date-time object
-        departure_time = row['departure_time']
+        departure_time = row[cn.DEPARTURE_TIME]
         rank = None
 
         trip = Trip(trip_id, origin, destination, mode, distance, duration, basket_category, 
@@ -102,7 +102,7 @@ class ModeChoiceCalculator(IndexBaseClass):
         for index, row in df.iterrows():
             trip = self.trip_from_row(row)
             blkgrp = trip.origin
-            viable= row['viable']
+            viable= row[cn.VIABLE]
             #need a way to add viable to trip
             blkgrp_dict[blkgrp].append(trip)
 
@@ -118,7 +118,7 @@ class ModeChoiceCalculator(IndexBaseClass):
         #make sure trip has viable attribute
         # Hours of data availability, HOURS constant should be float
         mode_avail = sum([trip.viable for trip in trips])
-        mode_index = mode_aval/cn.HOURS #(?) name constant
+        mode_index = mode_aval/cn.TRAVEL_HOURS #(?) name constant
 
         return mode_index
 
@@ -134,11 +134,11 @@ class ModeChoiceCalculator(IndexBaseClass):
         data = []
         for blkgrp, trips in blkgrp_dict.items():
             mode_index= calculate_mode_avail(trips)
-            row={ 'blockgroup': blkgrp, 'mode_index': mode_index}
+            row={ cn.BLOCK_GROUP: blkgrp, cn.MODE_CHOICE_INDEX: mode_index}
             data.append(row)
         df = pd.DataFrame(data)
 
-        df.to_csv('mobility_index.csv')
+        df.to_csv(cn.MODE_CHOICE_FP)
 
 
 
