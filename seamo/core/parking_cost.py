@@ -69,8 +69,7 @@ class ParkingCost(gbc.GeocodeBase):
 
 
     def geocode_csv(self, input_file, pickle_name):
-        df = super().geocode_csv(input_file, pickle_name)
-        return df
+        return super().geocode_csv(input_file, pickle_name)
 
 
     def geocode_point(self, coord):
@@ -83,5 +82,4 @@ class ParkingCost(gbc.GeocodeBase):
                     cn.COUNCIL_DISTRICT5: cn.DISTRICT5_PICKLE,
                     cn.COUNCIL_DISTRICT6: cn.DISTRICT6_PICKLE,
                     cn.COUNCIL_DISTRICT7: cn.DISTRICT7_PICKLE}[point.council_district]
-        df = self.geocode(df, str(pickle_name))
-        return df
+        return self.geocode(df, str(pickle_name))
