@@ -80,7 +80,7 @@ class ModeChoiceCalculator(IndexBase):
         this function assumes that the df has a column for trip viability
         """
         blkgrp_dict = defaultdict(list)
-        for index, row in df.iterrows():
+        for _, row in df.iterrows():
             trip = self.trip_from_row(row)
             blkgrp = trip.origin
             viable= row[cn.VIABLE]
