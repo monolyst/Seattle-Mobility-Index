@@ -58,7 +58,7 @@ def proximity_ratio(df_destinations):
     print((df_destinations.loc[df_destinations['origin'] == '530330049002']))
     print((df_destinations.loc[df_destinations['origin'] == '530330049003']))    
     """
-    return(df_blockgroup[['origin', 'proximity_ratio_test']])
+    return df_blockgroup[['origin', 'proximity_ratio_test']]
 
 
 def vert_hori_ratio(df_destinations, df_blockgroup):
@@ -77,7 +77,7 @@ def vert_hori_ratio(df_destinations, df_blockgroup):
     df_blockgroup2 = df_destinations.groupby(['origin'], as_index=False)['vertical_horizontal_ratio_test'].mean()
     result_merged = pd.merge(left=df_blockgroup, right=df_blockgroup2, how='inner', left_on='origin', right_on='origin')
     
-    return(result_merged)
+    return result_merged
 
 
 def average_distance(df_destinations, df_blockgroup):
@@ -94,7 +94,7 @@ def average_distance(df_destinations, df_blockgroup):
     result_merged = pd.merge(left=df_blockgroup, right=df_blockgroup2, how='inner', left_on='origin', right_on='origin')
     result_merged.rename(columns = {'distance': 'average_distance_test'}, inplace=True)
     
-    return(result_merged)
+    return result_merged
 
 
 
@@ -117,7 +117,7 @@ def distance_from_citycenter(df_destinations, df_blockgroup):
     result_merged = pd.merge(left=df_blockgroup, right=df_blockgroup2, how='inner', left_on='origin', right_on='origin')
     result_merged.rename(columns = {'distance_from_citycenter_val': 'distance_from_citycenter_test'}, inplace=True)
       
-    return(result_merged)
+    return result_merged
 
 
 def prepare_psrc(psrc_raw):
@@ -139,7 +139,7 @@ def prepare_psrc(psrc_raw):
     result_merged = with_distance_from_citycenter
     result_merged.sort_values(by=['origin'])
     
-    return (result_merged)
+    return result_merged
 
 
 def calculate_features(google_input, basket_combination):
@@ -168,7 +168,7 @@ def calculate_features(google_input, basket_combination):
     
     final_result = with_distance_from_citycenter.sort_values(by = ['origin'])
     
-    return (final_result)
+    return final_result
 
 BASKET_SIZE = cn.BASKET_SIZE
 
@@ -221,7 +221,7 @@ def calculate_mse(psrc_output, google_input):
     print("The index of the best basket is: ", best_loc)
     print(final_combinations.loc[best_loc])
     
-    return(final_combinations, final_mses)
+    return final_combinations, final_mses
 
 
 # Load PSRC data and pre-process; column names should be determined at a group meeting
