@@ -162,19 +162,20 @@ F = [1,2,3] # post office
 G = [1,2,3] # school
 H = [1,2,3] # cafe
 
-# Filepaths
+# Directory paths
 DATADIR = 'data/'
-SHAPEFILE_DIR = os.path.join(DATADIR, 'raw/shapefiles/')
-PROCESSED_DIR = os.path.join(DATADIR, 'processed/')
 RAW_DIR = os.path.join(DATADIR, 'raw/')
+SHAPEFILE_DIR = os.path.join(RAW_DIR, 'shapefiles/')
+PROCESSED_DIR = os.path.join(DATADIR, 'processed/')
 PICKLE_DIR = os.path.join(PROCESSED_DIR, 'pickles/')
+DB_DIR = os.path.join(PROCESSED_DIR, 'databases/')
+CSV_DIR = os.path.join(PROCESSED_DIR, 'csv_files/')
+TEST_DIR = os.path.join(DATADIR, 'test/')
+GEN_SHAPEFILE_DIR = os.path.join(PROCESSED_DIR, 'shapefiles/')
+# Filepaths
 ORIGIN_FP = os.path.join(RAW_DIR, 'SeattleCensusBlocksandNeighborhoodCorrelationFile.csv')
 DEST_FP = os.path.join(RAW_DIR, 'GoogleMatrix_Places_Full.csv')
 GOOGLE_DIST_FP = os.path.join(RAW_DIR, 'GoogleMatrix_Dist_Out.csv')
-DB_DIR = os.path.join(PROCESSED_DIR, 'databases/')
-CSV_DIR = os.path.join(PROCESSED_DIR, 'csv_files/')
-GEN_SHAPEFILE_DIR = os.path.join(PROCESSED_DIR, 'shapefiles/')
-TEST_DIR = os.path.join(DATADIR, 'test/')
 HAVERSINE_DIST_FP = os.path.join(CSV_DIR, 'haversine_distances.csv')
 DISTANCE_QUEUE_FP = os.path.join(CSV_DIR, 'distance_queue.csv')
 API_DIST_FP = os.path.join(CSV_DIR, 'api_distances.csv')
