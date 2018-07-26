@@ -32,6 +32,7 @@ import parking_cost_input as pci
 import constants as cn
 import geocode_base_class as gbc
 import support.seamo_exceptions as se
+import coordinate
 
 class ParkingCost(gbc.GeocodeBase):
     #Read in shapes files for block group, neighborhoods, zipcode, council district and urban villages
@@ -40,7 +41,7 @@ class ParkingCost(gbc.GeocodeBase):
 
 
     # Geocoder function
-    def geocode(self, gdf, pickle_name=cn.PARKING_REFERENCE):
+    def geocode(self, gdf, pickle_name):
         """ 
         Input:  GeoPandas DataFrame gdf: cn.LAT, cn.LON
         input_file.csv needs header lat, lon
@@ -51,7 +52,6 @@ class ParkingCost(gbc.GeocodeBase):
         except se.NoOverlapSpatialJoinError as e:
             print('No overlap found')
             df = pd.DataFrame(cn.PARKING_NAN_DF)
-            # reraise(e, None, sys.exec_info()[2])
             raise se.NoParkingAvailableError("No Parking Available")
         else:
             df = self._find_overlap_in_reference(gdf, pickle_name, reference_gdf)
@@ -59,7 +59,7 @@ class ParkingCost(gbc.GeocodeBase):
         return df
 
 
-    def _get_parking_reference(self, pickle_name=cn.PARKING_REFERENCE):
+    def _get_parking_reference(self, pickle_name):
         """
         :param str pickle_name: name of the pickle file
         :return GeoDataFrame:
@@ -68,11 +68,18 @@ class ParkingCost(gbc.GeocodeBase):
         return self._get_reference(pickle_name, gi)
 
 
-    def geocode_csv(self, input_file, pickle_name=cn.PARKING_REFERENCE):
-        df = super().geocode_csv(input_file, pickle_name)
-        return df
+    def geocode_csv(self, input_file, pickle_name):
+        return super().geocode_csv(input_file, pickle_name)
 
 
-    def geocode_point(self, coord, pickle_name=cn.PARKING_REFERENCE):
-        df = super().geocode_point(coord, pickle_name)
-        return df
+    def geocode_point(self, coord):
+        df = super().geocode_point(coord)
+        point = coordinate.Coordinate(df[cn.LAT], df[cn.LON])
+        pickle_name = {cn.COUNCIL_DISTRICT1: cn.DISTRICT1_PICKLE,
+                    cn.COUNCIL_DISTRICT2: cn.DISTRICT2_PICKLE,
+                    cn.COUNCIL_DISTRICT3: cn.DISTRICT3_PICKLE,
+                    cn.COUNCIL_DISTRICT4: cn.DISTRICT4_PICKLE,
+                    cn.COUNCIL_DISTRICT5: cn.DISTRICT5_PICKLE,
+                    cn.COUNCIL_DISTRICT6: cn.DISTRICT6_PICKLE,
+                    cn.COUNCIL_DISTRICT7: cn.DISTRICT7_PICKLE}[point.council_district]
+        return self.geocode(df, str(pickle_name))

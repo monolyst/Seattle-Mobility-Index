@@ -74,18 +74,10 @@ class Coordinate:
 
 
     def get_attribute(self, attribute):
-        if attribute == 'block_group':
-            attribute = self.block_group
-        elif attribute == 'neighborhood_long':
-            attribute = self.neighborhood_long
-        elif attribute == 'neighborhood_short':
-            attribute = self.neighborhood_short
-        elif attribute == 'council_district':
-            attribute = self.council_district
-        elif attribute == 'urban_village':
-            attribute = self.urban_village
-        elif attribute == 'zipcode':
-            attribute = self.zipcode
-        else:
-            print("invalid attribute passed")
+        attribute = {cn.BLOCK_GROUP: self.block_group,
+                    cn.NBHD_LONG: self.neighborhood_long,
+                    cn.NBHD_SHORT: self.neighborhood_short,
+                    cn.COUNCIL_DISTRICT: self.council_district,
+                    cn.URBAN_VILLAGE: self.urban_village,
+                    cn.ZIPCODE: self.zipcode}[attribute]
         return attribute
