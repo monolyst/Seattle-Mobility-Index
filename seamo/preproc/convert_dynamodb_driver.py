@@ -21,6 +21,6 @@ walk = walking.dataframe
 walking.write_to_csv(walk, cn.GOOGLE_DIST_MATRIX_OUT + '_walking')
 
 
-# df = pd.concat([car, train, bike, walk])
-# daq.write_to_csv(df, cn.GOOGLE_DIST_MATRIX_OUT + '.csv')
+df = pd.concat([car, train, bike, walk])
+daq.write_to_csv(df, cn.GOOGLE_DIST_MATRIX_OUT + '.csv')
 print('done')

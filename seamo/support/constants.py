@@ -224,4 +224,5 @@ RANKED_DEST_FP = os.path.join(CSV_DIR, 'ranked_destinations.csv')
 BASKETS_FP = os.path.join(CSV_DIR, 'baskets.csv')
 INPUT_BASKETS_FP = os.path.join(CSV_DIR, 'input_baskets.csv')
 DYNAMODB_OUT_DIR = os.path.join(RAW_DIR + 'dynamodb_out/')
+SEATTLE_BLOCK_GROUPS_FP = os.path.join(CSV_DIR, 'SeattleCensusBlockGroups.csv')
 

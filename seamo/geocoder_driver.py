@@ -27,18 +27,19 @@ RANK = 14.0
 BASE_COST = DURATION * cn.VOT_RATE / cn.MIN_TO_HR
 PARKING_COST = 3.0
 
-# geo = geocoder.Geocoder()
-# decoded = geo.geocode_point((47.6145, -122.3210))
+geo = geocoder.Geocoder()
+# (47.51008433, -122.3805399)
+decoded = geo.geocode_point((47.6145, -122.3210))
 # # decoded1 = decoded = geo.geocode_point((-122.3210, 47.6145))
-# print(decoded)
+print(decoded)
 # print(decoded)
 # print(geo.dataframe)
 # print(geo.dataframe
 
 # start = time.time()
-def run_code():
-    for repititions in range(100):
-        trip.CarTrip(SEATTLE_ORIGIN, SEATTLE_DESTINATION, DISTANCE, DURATION, BASKET_CATEGORY, PAIR, DEPARTURE_TIME, RANK, DURATION_IN_TRAFFIC)
+# def run_code():
+#     for repititions in range(100):
+#         trip.CarTrip(SEATTLE_ORIGIN, SEATTLE_DESTINATION, DISTANCE, DURATION, BASKET_CATEGORY, PAIR, DEPARTURE_TIME, RANK, DURATION_IN_TRAFFIC)
         # pc = parking_cost.ParkingCost()
         # # decoded = pc.geocode_csv(os.path.join(cn.TEST_DIR, 'test1000.csv'))
         # decoded = pc.geocode_point((47.6145, -122.3210))
