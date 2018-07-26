@@ -7,7 +7,7 @@ class Coordinate:
     """
     Coordinate class.
     """
-    def __init__(self, lat, lon):
+    def __init__(self, lat, lon, geocode=False):
         """
         Initialize Coordinate with a latitude and a longitude (both floats).
         """
@@ -19,7 +19,8 @@ class Coordinate:
         self.council_district = None
         self.urban_village = None
         self.zipcode = None
-        self._geocode(self.lat, self.lon)
+        if geocode:
+            self._geocode(self.lat, self.lon)
 
 
     def __str__(self):
