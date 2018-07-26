@@ -12,26 +12,39 @@ import numpy as np
 Base Trip Class
 """
 class Trip(object):
-    def __init__(self, origin, destination, mode, distance, duration, basket_category, departure_time, value_of_time_rate=cn.VOT_RATE):
-        self._origin = origin
-        self._destination = self._convert_to_coord(destination)
+    def __init__(self, origin, dest_lat, dest_lon, departure_time, mode, distance, duration, 
+                basket_category, citywide_type=None, value_of_time_rate=cn.VOT_RATE):
+        """
+        Input:
+            origin: string (a block group ID)
+            dest_lat: float
+            dest_lon: float
+        """
+        self.origin = origin
+        self.destination = coordinate.Coordinate(dest_lat, dest_lon) 
         self.mode = mode
+        self.departure_time = departure_time
         self.distance = distance
         self.duration = duration
         self.basket_category = basket_category
-        self.departure_time = departure_time
         self.value_of_time_rate = cn.VOT_RATE
-        self.cost = self._calculate_base_cost(self.duration, self.value_of_time_rate)
+        self.cost = None
         self.persona = None
         self.time_of_day = None
         self.type_of_day = None
         
 
-    def _convert_to_coord(self, pair):
-        pair = str(pair).split(", ")
-        left = pair[0][1:]
-        right = pair[1][:-1]
-        return coordinate.Coordinate(left, right)
+    def set_cost(self):
+        self.cost = self._calculate_base_cost(self.duration, self.value_of_time_rate)
+        
+
+    def set_viability(self, viability):
+        """
+        Input:
+            viability (0 or 1)
+        """
+        self.viable = viability
+
 
     def get_origin_coordinate(self):
         """
@@ -48,7 +61,7 @@ class Trip(object):
     def _calculate_base_cost(self, duration, value_of_time_rate=cn.VOT_RATE):
         return duration * value_of_time_rate / cn.MIN_TO_HR
 
-    def destination(self, *args):
+    def print_destination(self, *args):
         print(self._destination)
         for attribute in args:
             print(self._destination.get_attribute(attribute))
@@ -100,6 +113,7 @@ class CarTrip(Trip):
         else:
             day_type = 'weekend'
         if time.hour >= 8 and time.hour <= 11:
+            
             time_frame = 'morning'
         elif time.hour > 11 and time.hour <= 17:
             time_frame = 'afternoon'
