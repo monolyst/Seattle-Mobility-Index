@@ -27,6 +27,7 @@ class Trip(object):
         self.distance = distance
         self.duration = duration
         self.basket_category = basket_category
+        self.citywide_type = citywide_type
         self.value_of_time_rate = cn.VOT_RATE
         self.cost = None
         self.persona = None
