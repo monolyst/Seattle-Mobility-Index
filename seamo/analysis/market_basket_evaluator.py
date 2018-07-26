@@ -36,11 +36,6 @@ G = [0,1,2,3] # school
 H = [0,1,2,3] # cafe
 
 
-FILEPATH = os.path.join(os.pardir, os.pardir, 'seamo/analysis/')
-DATADIR = os.path.join(os.pardir, os.pardir, 'seamo/data/raw/')
-PROCESSED_DIR = os.path.join(os.pardir, os.pardir, 'seamo/data/processed/')
-
-
 def proximity_ratio(df_destinations):
     
     """
@@ -230,19 +225,19 @@ def calculate_mse(psrc_output, google_input):
 
 
 # Load PSRC data and pre-process; column names should be determined at a group meeting
-psrc_rawdat = pd.read_csv(DATADIR + "PSRC_full_final_july3.csv", dtype={'origin': str, 'destination': str})
+psrc_rawdat = pd.read_csv(cn.RAW_DIR + "PSRC_full_final_july3.csv", dtype={'origin': str, 'destination': str})
 
 psrc_rawdat['distance'] = pd.to_numeric(psrc_rawdat['distance'], errors='coerce')
 #psrc_rawdat.head()
 
 
 # Load Google API data 
-input_destinations = pd.read_csv(DATADIR + 'GoogleMatrix_Places_Dist.csv', dtype={'origin': str})
+input_destinations = pd.read_csv(cn.RAW_DIR + 'GoogleMatrix_Places_Dist.csv', dtype={'origin': str})
 input_destinations.rename(columns = {'lat': 'dest_lat', 'lng': 'dest_lon', 'orig_lng': 'orig_lon'}, inplace=True)
 
 
 # Load blockgroup data with latitude and longitudes; will be merged with Google API
-blockgroup_mapping = pd.read_csv(PROCESSED_DIR + 'SeattleCensusBlockGroups.csv', dtype={'tract_blkgrp': str})
+blockgroup_mapping = pd.read_csv(cn.PROCESSED_DIR + 'SeattleCensusBlockGroups.csv', dtype={'tract_blkgrp': str})
 
 print("blockgroup_mapping is loaded!")
 
@@ -282,7 +277,7 @@ print(res.head())
 print("all done!")
 
 
-res.to_csv(PROCESSED_DIR + 'mses.csv')
-comb.to_csv(PROCESSED_DIR + 'comb.csv')
+res.to_csv(cn.PROCESSED_DIR + 'mses.csv')
+comb.to_csv(cn.PROCESSED_DIR + 'comb.csv')
 
 
