@@ -49,6 +49,10 @@ GEOGRAPHY = 'geography'
 CRS_EPSG = {'init' :'epsg:4326'}
 SHAPE_AREA = 'Shape_area'
 AREA = 'area'
+MODE = 'mode'
+TRIP_ID = 'trip_id'
+VIABLE = 'viable'
+MODE_CHOICE_INDEX = 'mode_index'
 
 # Parking
 BLOCK_FACE = 'block_face'
@@ -124,6 +128,11 @@ EARTH_RADIUS_KM = 6373.0 # Approximate radius of Earth in km
 AAA_RATE = 0.56
 VOT_RATE = 14.10
 BIKE_RATE = 0.15
+CAR_TIME_THRESHOLD = 60 #minutes
+BIKE_TIME_THRESHOLD = 60 #minutes
+TRANSIT_TIME_THRESHOLD = 60 #minutes
+WALK_TIME_THRESHOLD = 45 #minutes
+TRAVEL_HOURS = 12.0 #Total daily hours for which API calls are made
 
 # API constants
 DIST_MATRIX_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?'
@@ -224,5 +233,6 @@ RANKED_DEST_FP = os.path.join(CSV_DIR, 'ranked_destinations.csv')
 BASKETS_FP = os.path.join(CSV_DIR, 'baskets.csv')
 INPUT_BASKETS_FP = os.path.join(CSV_DIR, 'input_baskets.csv')
 DYNAMODB_OUT_DIR = os.path.join(RAW_DIR + 'dynamodb_out/')
+MODE_CHOICE_FP = os.path.join(CSV_DIR, 'mode_choice_scores.csv')
+DISTANCES_OUT_FP = os.path.join(CSV_DIR, 'google_dist_matrix_out.csv')
 SEATTLE_BLOCK_GROUPS_FP = os.path.join(CSV_DIR, 'SeattleCensusBlockGroups.csv')
-
