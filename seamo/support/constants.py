@@ -158,6 +158,11 @@ DURATION = 'duration'
 DURATION_IN_TRAFFIC = 'duration_in_traffic'
 DEPARTURE_TIME = 'departure_time'
 FARE_VALUE = 'fare_value'
+MODE = 'mode'
+ADDRESS = 'address'
+TYPE = 'type'
+RATING = 'rating'
+FARE = 'fare'
 
 # modes
 CAR = 'car'
@@ -168,6 +173,7 @@ WALK = 'walk'
 CENSUS_LAT = 'CT_LAT'
 CENSUS_LON = 'CT_LON'
 BLOCKGROUP = 'BLOCKGROUP'
+CITY = 'city'
 
 # Parameter domains
 AA = [0,1,2,3,4] # urban village
@@ -228,6 +234,5 @@ BASKETS_FP = os.path.join(CSV_DIR, 'baskets.csv')
 INPUT_BASKETS_FP = os.path.join(CSV_DIR, 'input_baskets.csv')
 DYNAMODB_OUT_DIR = os.path.join(RAW_DIR + 'dynamodb_out/')
 MODE_CHOICE_FP = os.path.join(CSV_DIR, 'mode_choice_scores.csv')
-MODE_CHOICE_FP = os.path.join(CSV_DIR, 'mode_choice_scores.csv')
 DISTANCES_OUT_FP = os.path.join(CSV_DIR, 'google_dist_matrix_out.csv')
-
+SEATTLE_BLOCK_GROUPS_FP = os.path.join(CSV_DIR, 'SeattleCensusBlockGroups.csv')

@@ -1,4 +1,5 @@
 import init
+import pandas as pd
 import constants as cn
 from core import parking_cost, geocoder
 from support import coordinate
@@ -11,24 +12,19 @@ import numpy as np
 Base Trip Class
 """
 class Trip(object):
-    def __init__(self, origin, destination, mode, distance, duration, basket_category,
-        pair, departure_time, rank, value_of_time_rate=cn.VOT_RATE):
-        self._origin = self._convert_to_coord(origin)
+    def __init__(self, origin, destination, mode, distance, duration, basket_category, departure_time, value_of_time_rate=cn.VOT_RATE):
+        self._origin = origin
         self._destination = self._convert_to_coord(destination)
         self.mode = mode
         self.distance = distance
         self.duration = duration
         self.basket_category = basket_category
         self.departure_time = departure_time
-        self.pair = pair
-        self.rank = rank
         self.value_of_time_rate = cn.VOT_RATE
         self.cost = self._calculate_base_cost(self.duration, self.value_of_time_rate)
-        self.rank = rank
         self.persona = None
         self.time_of_day = None
         self.type_of_day = None
-        self.trip_id = None
         
 
     def _convert_to_coord(self, pair):
@@ -37,32 +33,31 @@ class Trip(object):
         right = pair[1][:-1]
         return coordinate.Coordinate(left, right)
 
+    def get_origin_coordinate(self):
+        """
+        This returns a coordinate object. You can access centroid lat/lon and
+        geocoded information from this object.
+        """
+        seattle_block_groups = pd.read_csv(cn.SEATTLE_BLOCK_GROUPS_FP)
+        df = seattle_block_groups[seattle_block_groups[cn.KEY] == self._origin]
+        return coordinate.Coordinate(df.lat, df.lon)
+
     def set_persona(self, persona):
         self.persona = persona
 
     def _calculate_base_cost(self, duration, value_of_time_rate=cn.VOT_RATE):
         return duration * value_of_time_rate / cn.MIN_TO_HR
 
-    def get_place(self, place, *args):
-        if place == 'origin':
-            place = self._origin
-        elif place == 'destination':
-            place = self._destination
-        else:
-            raise "not a place"
-        print(place)
+    def destination(self, *args):
+        print(self._destination)
         for attribute in args:
-            print(place.get_attribute(attribute))
-
-    def get_trip_id(self, pair, mode, departure_time):
-        #parse departure time
-        self.departure_time = str(origin.block_group()) + '_' + pair + mode # + parsed departure time
+            print(self._destination.get_attribute(attribute))
 
 
 class CarTrip(Trip):
-    def __init__(self, origin, destination, distance, duration, basket_category, pair, departure_time, rank,
+    def __init__(self, origin, destination, distance, duration, basket_category, departure_time,
         duration_in_traffic=0, mile_rate=cn.AAA_RATE):
-        super().__init__(origin, destination, 'car', distance, duration, basket_category, pair, departure_time, rank)
+        super().__init__(origin, destination, 'car', distance, duration, basket_category, departure_time)
         self.mile_rate = mile_rate
         self.cost_to_park = np.nan
         self.parking_category = None
@@ -116,8 +111,8 @@ class CarTrip(Trip):
 
 
 class TransitTrip(Trip):
-    def __init__(self, origin, destination, distance, duration, basket_category, pair, departure_time, rank, fare_value):
-        super().__init__(origin, destination, 'transit', distance, duration, basket_category, pair, departure_time, rank)
+    def __init__(self, origin, destination, distance, duration, basket_category, departure_time, fare_value):
+        super().__init__(origin, destination, 'car', distance, duration, basket_category, departure_time)
         self.fare_value = fare_value
         self.cost = self._calculate_cost(self.fare_value)
         
@@ -126,8 +121,8 @@ class TransitTrip(Trip):
         return self.cost + fare_value
     
 class BikeTrip(Trip):
-    def __init__(self, origin, destination, distance, duration, basket_category, pair, departure_time, rank, bike_rate=cn.BIKE_RATE):
-        super().__init__(origin, destination, 'bike', distance, duration, basket_category, pair, departure_time, rank)
+    def __init__(self, origin, destination, distance, duration, basket_category, departure_time, bike_rate=cn.BIKE_RATE):
+        super().__init__(origin, destination, 'car', distance, duration, basket_category, departure_time)
         self.bike_rate = bike_rate
         self.cost = self._calculate_cost(self.distance, self.duration, self.bike_rate)
 
@@ -137,8 +132,8 @@ class BikeTrip(Trip):
     
 
 class WalkTrip(Trip):
-    def __init__(self, origin, destination, distance, duration, basket_category, pair, departure_time, rank):
-        super().__init__(origin, destination, 'walk', distance, duration, basket_category, pair, departure_time, rank)
+    def __init__(self, origin, destination, distance, duration, basket_category, departure_time):
+        super().__init__(origin, destination, 'car', distance, duration, basket_category, departure_time)
 
 
 

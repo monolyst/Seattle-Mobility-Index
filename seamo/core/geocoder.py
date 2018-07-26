@@ -55,6 +55,7 @@ class Geocoder(gbc.GeocodeBase):
             df = df.sort_values(by=cn.GEOGRAPHY)
             df = df.set_index([cn.LAT, cn.LON, cn.GEOGRAPHY], append=cn.KEY).unstack()
             df.columns = df.columns.droplevel()
+            # print(df)
             df = self._format_output(df)
         self.dataframe = df
         return df
