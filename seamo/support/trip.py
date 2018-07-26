@@ -25,6 +25,7 @@ class Trip(object):
         self.persona = None
         self.time_of_day = None
         self.type_of_day = None
+        self.viable = None
         
 
     def _convert_to_coord(self, pair):

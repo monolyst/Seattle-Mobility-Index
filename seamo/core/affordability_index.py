@@ -2,8 +2,9 @@ import init
 import index_base_class
 import pandas as pd
 import constants as cn
-import support.trip as tp
-import support.data_accessor as daq
+import trip as tp
+import data_accessor as daq
+from mode_choice_calculator import ModeChoiceCalculator
 
 class AffordabilityIndex(index_base_class):
     DATADIR = cn.CSV_DIR #db dir?
@@ -17,7 +18,15 @@ class AffordabilityIndex(index_base_class):
         self.trip_data = self.get_sql_data()
 
 
-    def calculate_score(self):
+    def _load_google_trip_data(self):
+
+
+    def _get_viable_modes(self):
+        mc = ModeChoiceCalculator()
+        mc
+
+
+    def _load_trips(self):
         trips = [] # will be a list of trip objects
         for row in range(len(viable_modes)):
             # this syntax functions like a switch-case statement in java,
@@ -29,7 +38,11 @@ class AffordabilityIndex(index_base_class):
             if viable_modes[row] == 1:
                 trips.append(self.define_trip(mode, row))
 
-        blkgrp_trip_cost = sum(trip1, trip2) / num_trips
+
+    def calculate_score(self):
+        
+
+        blkgrp_trip_cost = sum(trips) / num_trips
         normalized = normalize(blkgrp_trip_cost)
 
         income_adjusted = blkgrp_trip_cost / income
