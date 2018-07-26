@@ -12,7 +12,14 @@ class ModeChoiceCalculator(IndexBase):
     """
     
     """
-    def __init__(self):
+    def __init__(self, car_time_threshold=cn.CAR_TIME_THRESHOLD, bike_time_threshold=cn.BIKE_TIME_THRESHOLD, 
+        transit_time_threshold=cn.TRANSIT_TIME_THRESHOLD, walk_time_threshold=cn.WALK_TIME_THRESHOLD):
+
+        self.car_time_threshold = car_time_threshold
+        self.bike_time_threshold = bike_time_threshold
+        self.transit_time_threshold = transit_time_threshold
+        self.walk_time_threshold = walk_time_threshold
+
         pass
 
     def is_viable(self, trip):
@@ -25,13 +32,13 @@ class ModeChoiceCalculator(IndexBase):
         # We might need to adjust this such that it operates on DF rows,
         # not Trip objects.
         viable = 0
-        if trip.mode == cn.CAR and trip.duration < cn.CAR_TIME_THRESHOLD:
+        if trip.mode == cn.CAR and trip.duration < self.car_time_threshold:
             viable = 1
-        elif trip.mode == cn.BIKE and trip.duration < cn.BIKE_TIME_THRESHOLD:
+        elif trip.mode == cn.BIKE and trip.duration < self.bike_time_threshold:
             viable = 1
-        elif trip.mode == cn.TRANSIT and trip.duration < cn.TRANSIT_TIME_THRESHOLD:
+        elif trip.mode == cn.TRANSIT and trip.duration < self.transit_time_threshold:
             viable = 1
-        elif trip.mode == cn.WALK and trip.duration < cn.WALK_TIME_THRESHOLD:
+        elif trip.mode == cn.WALK and trip.duration < self.walk_time_threshold:
             viable = 1
 
             #can we take into account proximity? thinking of nearby locations with bad connections
