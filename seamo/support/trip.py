@@ -60,6 +60,8 @@ class Trip(object):
         self.persona = persona
 
     def _calculate_base_cost(self, duration, value_of_time_rate=cn.VOT_RATE):
+        print(duration)
+        print(type(duration), type(value_of_time_rate))
         return duration * value_of_time_rate / cn.MIN_TO_HR
 
     def print_destination(self, *args):
@@ -92,8 +94,9 @@ class CarTrip(Trip):
 
     def _calculate_cost(self, destination, duration, departure_time, mile_rate, value_of_time_rate):
         self.cost = super()._calculate_base_cost(self.duration)
-        parking_cost = pd.read_csv(cn.BLOCK_GROUP_PARKING_RATES_FP)
-        self.cost_to_park = parking_cost.loc(destination.block_group, cn.RATE)
+        # parking_cost = pd.read_csv(cn.BLOCK_GROUP_PARKING_RATES_FP)
+        # self.cost_to_park = parking_cost.loc(destination.block_group, cn.RATE)
+        self.cost_to_park = 3
         return self.cost + (self.distance * mile_rate) + self.cost_to_park
 
 

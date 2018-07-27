@@ -15,18 +15,14 @@ class AffordabilityIndex(IndexBase):
         #     db_name=cn.GOOGLE_DIST_MATRIX_OUT, datadir=DATADIR)
         self.affordability_scores = None
 
-
-    def _load_google_trip_data(self):
-
-
-    def _get_viable_modes(self):
-        mc = ModeChoiceCalculator()
-        return mc.create_blockgroup_dict(pd.read_csv(cn.SEATTLE_BLOCK_GROUPS_FP))
+    # def _get_viable_modes(self):
+    #     mc = ModeChoiceCalculator()
+    #     return mc.create_blockgroup_dict(pd.read_csv(cn.SEATTLE_BLOCK_GROUPS_FP))
 
 
     def create_blockgroup_cost_df(self, viable_modes):
         blkgrp_mode_cost_df = pd.DataFrame({cn.BLOCK_GROUP: [], cn.COST: []})
-        for key, values in dict.items():
+        for key, values in viable_modes.items():
             blkgrp = key
             num_trips = len(values)
             cost = 0
@@ -40,7 +36,7 @@ class AffordabilityIndex(IndexBase):
 
 
     def calculate_score(self):
-        income = pd.read_excel(cn.BLOCK_GROUP_DEMOGRAPHICS_FP).loc(:, (cn.INCOME_BLOCKGROUP, cn.MEDIAN_HOUSEHOLD_INCOME))
+        income = pd.read_excel(cn.BLOCK_GROUP_DEMOGRAPHICS_FP).loc[:, (cn.INCOME_BLOCKGROUP, cn.MEDIAN_HOUSEHOLD_INCOME)]
         blkgrp_mode_cost_df = self.create_blockgroup_cost_df(viable_modes)
         blkgrp_mode_cost_df[cn.ADJUSTED_FOR_INCOME] = blkgrp_mode_cost_df.apply(lambda x: x[cn.COST] /
             income.loc(x[cn.BLOCK_GROUP], cn.MEDIAN_HOUSEHOLD_INCOME))
