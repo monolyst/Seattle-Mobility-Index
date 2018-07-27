@@ -5,17 +5,15 @@ import constants as cn
 import trip as tp
 import data_accessor as daq
 from mode_choice_calculator import ModeChoiceCalculator
+from index_base_class import IndexBase
 
-class AffordabilityIndex(index_base_class):
+class AffordabilityIndex(IndexBase):
     DATADIR = cn.CSV_DIR #db dir?
 
-    def __init__(self, time_of_day, type_of_day, travel_mode,
-        db_name=cn.GOOGLE_DIST_MATRIX_OUT, datadir=DATADIR, travel_cost):
-        super().__init__(self, time_of_day, type_of_day, travel_mode,
-            db_name=cn.GOOGLE_DIST_MATRIX_OUT, datadir=DATADIR)
-        self.travel_cost = travel_cost
-        self.median_income_data = self.get_csv_data(cn.CENSUS_DATA_FNAME) #replace with actual constant name
-        self.trip_data = self.get_sql_data()
+    def __init__(self):
+        # super().__init__(self, time_of_day, type_of_day, travel_mode,
+        #     db_name=cn.GOOGLE_DIST_MATRIX_OUT, datadir=DATADIR)
+        self.affordability_scores = None
 
 
     def _load_google_trip_data(self):
@@ -23,29 +21,31 @@ class AffordabilityIndex(index_base_class):
 
     def _get_viable_modes(self):
         mc = ModeChoiceCalculator()
-        mc
+        return mc.create_blockgroup_dict(pd.read_csv(cn.SEATTLE_BLOCK_GROUPS_FP))
 
 
-    def _load_trips(self):
-        trips = [] # will be a list of trip objects
-        for row in range(len(viable_modes)):
-            # this syntax functions like a switch-case statement in java,
-            # see: https://simonwillison.net/2004/May/7/switch/
-            mode = {0: lambda row: cn.CAR,
-                    1: lambda row: cn.TRANSIT,
-                    2: lambda row: cn.BIKE,
-                    3: lambda row: cn.WALK}[row % 4](row)
-            if viable_modes[row] == 1:
-                trips.append(self.define_trip(mode, row))
+    def create_blockgroup_cost_df(self, viable_modes):
+        blkgrp_mode_cost_df = pd.DataFrame({cn.BLOCK_GROUP: [], cn.COST: []})
+        for key, values in dict.items():
+            blkgrp = key
+            num_trips = len(values)
+            cost = 0
+            for trip in values:
+                trip.set_cost()
+                cost += trip.cost
+            cost /= num_trips
+            blkgrp_mode_cost_df.append(pd.DataFrame({cn.BLOCK_GROUP: [key], cn.COST: [cost]}))
+        return blkgrp_mode_cost_df
+
 
 
     def calculate_score(self):
-        
-
-        blkgrp_trip_cost = sum(trips) / num_trips
-        normalized = normalize(blkgrp_trip_cost)
-
-        income_adjusted = blkgrp_trip_cost / income
-        income_normalized = normalize(income_adjusted)
-
-        return normalized, income_normalized
+        income = pd.read_excel(cn.BLOCK_GROUP_DEMOGRAPHICS_FP).loc(:, (cn.INCOME_BLOCKGROUP, cn.MEDIAN_HOUSEHOLD_INCOME))
+        blkgrp_mode_cost_df = self.create_blockgroup_cost_df(viable_modes)
+        blkgrp_mode_cost_df[cn.ADJUSTED_FOR_INCOME] = blkgrp_mode_cost_df.apply(lambda x: x[cn.COST] /
+            income.loc(x[cn.BLOCK_GROUP], cn.MEDIAN_HOUSEHOLD_INCOME))
+        # normalization
+        blkgrp_mode_cost_df[cn.NORMALIZED] = blkgrp_mode_cost_df.apply(lambda x: normalize(x[cn.COST]))
+        blkgrp_mode_cost_df[cn.INCOME_NORMALIZED] = blkgrp_mode_cost_df.apply(lambda x: normalize(x[cn.ADJUSTED_FOR_INCOME]))
+        self.affordability_scores = blkgrp_mode_cost_df
+        return self.blkgrp_mode_cost_df

@@ -8,7 +8,6 @@ import parking_cost
 import data_accessor as daq
 import constants as cn
 import seamo_exceptions as se
-from collections import defaultdict
 from parse_datetime import ParseDatetime
 
 class GenerateParkingData(object):
@@ -23,7 +22,7 @@ class GenerateParkingData(object):
         This will query prices for all 6 day/time combinations and
         return an average price value.
         """
-        blkgrp_parking_price_dict = defaultdict(list)
+        blkgrp_parking_price_df = pd.DataFrame({cn.BLOCK_GROUP: [], cn.PRICE: []})
         for _, row in self.blkgrp_df.iterrows():
             price = 0
             blkgrp = row[cn.KEY]
@@ -32,8 +31,8 @@ class GenerateParkingData(object):
                                 cn.WEEKEND_AFTERNOON_RATE, cn.WEEKEND_EVENING_RATE]:
                 price += self._get_price(row[cn.LAT], row[cn.LON], rate_column)
             price /= 6
-            blkgrp_parking_price_dict[blkgrp].append(price)
-        return pd.DataFrame(blkgrp_parking_price_dict)
+            blkgrp_parking_price_df.append(pd.DataFrame({cn.BLOCK_GROUP: [blkgrp], cn.PRICE: [price]}))
+        return blkgrp_parking_price_df
 
 
 
@@ -48,7 +47,7 @@ class GenerateParkingData(object):
         pc = parking_cost.ParkingCost()
         try:
             pc.geocode_point((float(blkgrp_lat), float(blkgrp_lon)))
-        except se.NoParkingAvailableError as e:
+        except: #se.NoParkingAvailableError as e:
             return 0
         else:
             df = pc.geocode_point((float(blkgrp_lat), float(blkgrp_lon)))

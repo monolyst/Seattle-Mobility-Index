@@ -77,12 +77,11 @@ class CarTrip(Trip):
         self.cost_to_park = np.nan
         self.parking_category = None
         self.duration = self.duration_in_traffic
-        # import pdb; pdb.set_trace()
         self.cost = None
 
-        def set_cost(self):
-            self._calculate_cost(self.destination, self.duration, self.departure_time,
-                self.mile_rate, self.value_of_time_rate)
+    def set_cost(self):
+        self.cost = self._calculate_cost(self.destination, self.duration, self.departure_time,
+            self.mile_rate, self.value_of_time_rate)
 
     def _calculate_car_duration(self, duration, duration_in_traffic=0):
         #TODO: do I want to save the original duration for car trips?
@@ -99,6 +98,9 @@ class TransitTrip(Trip):
     def __init__(self, origin, destination, distance, duration, basket_category, departure_time, fare_value):
         super().__init__(origin, destination, 'car', distance, duration, basket_category, departure_time)
         self.fare_value = fare_value
+        self.cost = None
+
+    def set_cost(self):
         self.cost = self._calculate_cost(self.fare_value)
         
     def _calculate_cost(self, fare_value):
@@ -109,6 +111,9 @@ class BikeTrip(Trip):
     def __init__(self, origin, destination, distance, duration, basket_category, departure_time, bike_rate=cn.BIKE_RATE):
         super().__init__(origin, destination, 'car', distance, duration, basket_category, departure_time)
         self.bike_rate = bike_rate
+        self.cost = None
+
+    def set_cost(self):
         self.cost = self._calculate_cost(self.distance, self.duration, self.bike_rate)
 
     def _calculate_cost(self, distance, duration, bike_rate):

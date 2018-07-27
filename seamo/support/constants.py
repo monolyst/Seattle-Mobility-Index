@@ -162,6 +162,7 @@ ADDRESS = 'address'
 TYPE = 'type'
 RATING = 'rating'
 FARE = 'fare'
+BLOCK_GROUP_PARKING_RATES = 'BlockGroupParkingRates'
 
 # modes
 DRIVING_MODE = 'driving'
@@ -230,6 +231,13 @@ AFTER_HOURS = 'after_hours'
 SATURDAY = 5
 WEEKDAY = 'weekday'
 WEEKEND = 'weekend'
+PRICE = 'price'
+COST = 'cost'
+ADJUSTED_FOR_INCOME = 'adjusted_for_income'
+MEDIAN_HOUSEHOLD_INCOME = 'Med_Hh_Income'
+INCOME_BLOCKGROUP = 'Blockgroup'
+NORMALIZED = 'normalized'
+INCOME_NORMALIZED = 'income_normalized'
 
 
 
@@ -252,8 +260,9 @@ API_DIST_FP = os.path.join(CSV_DIR, 'api_distances.csv')
 RANKED_DEST_FP = os.path.join(CSV_DIR, 'ranked_destinations.csv')
 BASKETS_FP = os.path.join(CSV_DIR, 'baskets.csv')
 INPUT_BASKETS_FP = os.path.join(CSV_DIR, 'input_baskets.csv')
-DYNAMODB_OUT_DIR = os.path.join(RAW_DIR + 'dynamodb_out/')
+DYNAMODB_OUT_DIR = os.path.join(RAW_DIR, 'dynamodb_out/')
 MODE_CHOICE_FP = os.path.join(CSV_DIR, 'mode_choice_scores.csv')
 DISTANCES_OUT_FP = os.path.join(CSV_DIR, 'google_dist_matrix_out.csv')
 SEATTLE_BLOCK_GROUPS_FP = os.path.join(CSV_DIR, 'SeattleCensusBlockGroups.csv')
 BLOCK_GROUP_PARKING_RATES_FP = os.path.join(CSV_DIR, 'BlockGroupParkingRates.csv')
+BLOCK_GROUP_DEMOGRAPHICS_FP = os.path.join(RAW_DIR, 'Blockgroup_demographics.xlsx')

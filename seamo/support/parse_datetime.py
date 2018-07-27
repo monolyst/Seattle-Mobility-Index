@@ -67,11 +67,11 @@ class ParseDatetime(object):
         Inputs: time object, start and end times
         Outputs: time classification
         """
-        if time.hour >= cn.MORNING_START and time.hour <= MORNING_END:
+        if time.hour >= morning_start and time.hour <= morning_start:
             time_frame = cn.MORNING
-        elif time.hour > cn.AFTERNOON_START and time.hour <= cn.AFTERNOON_END:
+        elif time.hour > afternoon_start and time.hour <= afternoon_end:
             time_frame = cn.AFTERNOON
-        elif time.hour > cn.EVENING_START and time.hour <= cn.EVENING_END:
+        elif time.hour > evening_start and time.hour <= evening_end:
             time_frame = cn.EVENING
         else:
             time_frame = cn.AFTER_HOURS
