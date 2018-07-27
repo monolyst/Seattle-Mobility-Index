@@ -137,7 +137,6 @@ TRAVEL_HOURS = 12.0 #Total daily hours for which API calls are made
 # API constants
 DIST_MATRIX_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?'
 IMPERIAL_UNITS = 'imperial'
-DRIVING_MODE = 'driving'
 GOOGLE_DIST_MATRIX_OUT = 'google_dist_matrix_out'
 TIMESTAMP = '1531933200' # Wednesday, July 18, 10AM UTC
 API_CALL_LIMIT = 100000
@@ -165,10 +164,10 @@ RATING = 'rating'
 FARE = 'fare'
 
 # modes
-CAR = 'car'
-TRANSIT = 'transit'
-BIKE = 'bike'
-WALK = 'walk'
+DRIVING_MODE = 'driving'
+TRANSIT_MODE = 'transit'
+BIKING_MODE = 'bicycling'
+WALKING_MODE = 'walking'
 # Seattle Census Data naming
 CENSUS_LAT = 'CT_LAT'
 CENSUS_LON = 'CT_LON'
