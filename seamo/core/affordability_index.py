@@ -30,6 +30,7 @@ class AffordabilityIndex(IndexBase):
                 trip.set_cost()
                 cost += trip.cost
             cost /= num_trips
+            print(pd.DataFrame({cn.BLOCK_GROUP: [key], cn.COST: [cost]}))
             blkgrp_mode_cost_df.append(pd.DataFrame({cn.BLOCK_GROUP: [key], cn.COST: [cost]}))
         return blkgrp_mode_cost_df
 

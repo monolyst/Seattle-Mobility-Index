@@ -60,8 +60,6 @@ class Trip(object):
         self.persona = persona
 
     def _calculate_base_cost(self, duration, value_of_time_rate=cn.VOT_RATE):
-        print(duration)
-        print(type(duration), type(value_of_time_rate))
         return duration * value_of_time_rate / cn.MIN_TO_HR
 
     def print_destination(self, *args):
@@ -79,7 +77,7 @@ class CarTrip(Trip):
         super().__init__(origin, dest_lat, dest_lon, 'car', distance, duration, basket_category, departure_time)
         self.destination = coordinate.Coordinate(dest_lat, dest_lon) 
         self.mile_rate = mile_rate
-        self.cost_to_park = np.nan
+        self.cost_to_park = None
         self.parking_category = None
         self.duration = duration_in_traffic
         self.cost = None
@@ -93,7 +91,7 @@ class CarTrip(Trip):
         return duration_in_traffic
 
     def _calculate_cost(self, destination, duration, departure_time, mile_rate, value_of_time_rate):
-        self.cost = super()._calculate_base_cost(self.duration)
+        self.cost = super()._calculate_base_cost(duration)
         # parking_cost = pd.read_csv(cn.BLOCK_GROUP_PARKING_RATES_FP)
         # self.cost_to_park = parking_cost.loc(destination.block_group, cn.RATE)
         self.cost_to_park = 3
@@ -107,10 +105,10 @@ class TransitTrip(Trip):
         self.cost = None
 
     def set_cost(self):
-        self.cost = self._calculate_cost(self.fare_value)
+        self.cost = self._calculate_cost(self.duration, self.fare_value)
         
-    def _calculate_cost(self, fare_value):
-        self.cost = super()._calculate_base_cost(self.duration)
+    def _calculate_cost(self, duration, fare_value):
+        self.cost = super()._calculate_base_cost(duration)
         return self.cost + fare_value
     
 class BikeTrip(Trip):
@@ -123,7 +121,7 @@ class BikeTrip(Trip):
         self.cost = self._calculate_cost(self.distance, self.duration, self.bike_rate)
 
     def _calculate_cost(self, distance, duration, bike_rate):
-        self.cost = super()._calculate_base_cost(self.duration)
+        self.cost = super()._calculate_base_cost(duration)
         return self.cost + (distance * bike_rate)
     
 
