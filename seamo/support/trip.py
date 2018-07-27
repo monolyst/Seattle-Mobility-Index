@@ -101,8 +101,16 @@ class CarTrip(Trip):
 class TransitTrip(Trip):
     def __init__(self, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time, fare_value):
         super().__init__(origin, dest_lat, dest_lon, 'car', distance, duration, basket_category, departure_time)
-        self.fare_value = fare_value
+        self.fare_value = self.get_fare_value(fare_value) 
         self.cost = None
+
+    def get_fare_value(self, fare_value):
+        """
+        TO DO: check for zero/empty/NaN fare value. Set this to zero or standard fare value. 
+        """
+        if np.isnan(fare_value): 
+            fare_value = 0
+        return fare_value
 
     def set_cost(self):
         self.cost = self._calculate_cost(self.duration, self.fare_value)
