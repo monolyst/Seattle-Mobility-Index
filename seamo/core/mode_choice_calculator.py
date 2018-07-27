@@ -1,7 +1,7 @@
 import init
 import constants as cn
+from trip import BikeTrip, CarTrip, TransitTrip, WalkTrip
 from index_base_class import IndexBase
-from trip import Trip
 
 import pandas as pd
 
@@ -39,21 +39,25 @@ class ModeChoiceCalculator(IndexBase):
         dest_lon = row[cn.LON]
     
         mode = row[cn.MODE]
+
         distance = row[cn.DISTANCE]
         duration = row[cn.DURATION]
+        duration_in_traffic = [cn.DURATION_IN_TRAFFIC]
+        fare_value = [cn.FARE_VALUE]
+
         basket_category = None
-    
+
         # Need to convert departure time to date-time object
         departure_time = row[cn.DEPARTURE_TIME]
         
-        trip = {cn.DRIVING_MODE: trip.CarTrip(origin, destination, distance,
+        trip = {cn.DRIVING_MODE: CarTrip(origin, dest_lat, dest_lon, distance,
                                               duration, basket_category,
                                               departure_time, duration_in_traffic),
-        cn.TRANSIT_MODE: trip.TransitTrip(origin, destination, distance, duration,
+        cn.TRANSIT_MODE: TransitTrip(origin, dest_lat, dest_lon, distance, duration,
                                           basket_category, departure_time, fare_value),
-        cn.BIKING_MODE: trip.BikeTrip(origin, destination, distance, duration,
+        cn.BIKING_MODE: BikeTrip(origin, dest_lat, dest_lon, distance, duration,
                                       basket_category, departure_time),
-        cn.WALKING_MODE: trip.WalkTrip(origin, destination, distance, duration,
+        cn.WALKING_MODE: WalkTrip(origin, dest_lat, dest_lon, distance, duration,
                                        basket_category, departure_time)}[mode]
 
         return trip
@@ -76,13 +80,13 @@ class ModeChoiceCalculator(IndexBase):
         # elevation?
 
         viable = 0
-        if trip.mode == cn.CAR and trip.duration < self.car_time_threshold:
+        if trip.mode == cn.DRIVING_MODE and trip.duration < self.car_time_threshold:
             viable = 1
-        elif trip.mode == cn.BIKE and trip.duration < self.bike_time_threshold:
+        elif trip.mode == cn.BIKING_MODE and trip.duration < self.bike_time_threshold:
             viable = 1
-        elif trip.mode == cn.TRANSIT and trip.duration < self.transit_time_threshold:
+        elif trip.mode == cn.TRANSIT_MODE and trip.duration < self.transit_time_threshold:
             viable = 1
-        elif trip.mode == cn.WALK and trip.duration < self.walk_time_threshold:
+        elif trip.mode == cn.WALKING_MODE and trip.duration < self.walk_time_threshold:
             viable = 1
 
         # TODO: can we take into account proximity? thinking of nearby locations
