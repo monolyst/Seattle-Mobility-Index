@@ -3,6 +3,7 @@ import constants as cn
 from trip import Trip
 from mode_choice_calculator import ModeChoiceCalculator
 
+import os
 import pandas as pd
 
 mc = ModeChoiceCalculator()
