@@ -1,7 +1,7 @@
 import init
 import constants as cn
+import trip
 from index_base_class import IndexBase
-from trip import Trip
 
 import pandas as pd
 
