@@ -34,7 +34,7 @@ class ModeChoiceCalculator(IndexBase):
         Depending on mode, return a subtype of Trip.
         Returns trip.
         """
-        origin = row[cn.BLOCK_GROUP] 
+        origin = row[cn.BLOCK_GROUP]
         dest_lat = row[cn.LAT]
         dest_lon = row[cn.LON]
     

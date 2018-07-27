@@ -9,7 +9,7 @@ class IndexBase(object):
     DATADIR = cn.CSV_DIR
 
     def __init__(self):
-
+      pass
 
     def get_csv_data(self, filename, datadir=DATADIR):
         df = pd.read_csv(str(filename) + '.csv')
