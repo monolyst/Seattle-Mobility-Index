@@ -96,6 +96,17 @@ household = household.loc[household['final_home_bg'].isin(blockgroup_mapping['ge
 def preprocess_household(household_dat):
     
     """
+    This function preprocesses household-level features below. 
+    Nominal categorical variables, such as years of residence are 
+    transformed into continuous values. 
+    Did not change income because each category is a multiple of another by a constant. 
+
+    Input: 
+        Household-level data (data frame)
+    Output:
+        A data frame with preprocessed selected features
+
+
     <Household-level features and categories>
 
     a. INCOME:
@@ -103,7 +114,7 @@ def preprocess_household(household_dat):
         2: $25,000-$49,999
         3: $50,000-$74,999
         4: $75,000-$99,999
-        5:$100,000 or more
+        5: $100,000 or more
         NaN: missing
 
     b. HOUSEHOLD SIZE: in this data, there is no household with size 8 or greater 
@@ -178,6 +189,18 @@ def preprocess_household(household_dat):
 def preprocess_person(hh_dat, person_dat):
 
     """
+    This function preprocesses person-level features and merge with household data. 
+    Nominal categorical variables, such as years of age are 
+    transformed into continuous values. 
+
+    Input: 
+        Preprocessed household-level data
+        Original perosn-level data
+    Output:
+        A data frame with preprocessed household + person features
+        Each raw represents a unique household ID
+
+
     <Person-level features and categories>
 
     a. AGE: Each category was mapped using the middle point of the age range
@@ -270,6 +293,19 @@ def preprocess_trip(hhps_dat, trip_dat):
 
 
    """
+   This function spits out the final result - a single household-level dataframe
+   with household, person, trip information. 
+   As always, nominal categorical variables, such as years of age are 
+   transformed into continuous values. In trip data, we created
+   dummy variables for mode choice and purpose before collapsing. 
+   
+   Input: 
+       Preprocessed household + person data (household-level)
+       Original trip-level data
+   Output:
+       A data frame with preprocessed household + person + trip features
+       Each raw represents a unique household ID
+
    <Trip-level features and categories>
 
    a. DISTANCE: travel distance in miles estimated by Google
