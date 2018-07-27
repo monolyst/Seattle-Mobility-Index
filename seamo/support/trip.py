@@ -75,11 +75,11 @@ class CarTrip(Trip):
     def __init__(self, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time,
         duration_in_traffic=0, mile_rate=cn.AAA_RATE):
         super().__init__(origin, dest_lat, dest_lon, 'car', distance, duration, basket_category, departure_time)
-        self.destination = coordinate.Coordinate(dest_lat, dest_lon, geocode=True) 
+        self.destination = coordinate.Coordinate(dest_lat, dest_lon) 
         self.mile_rate = mile_rate
         self.cost_to_park = np.nan
         self.parking_category = None
-        self.duration = self.duration_in_traffic
+        self.duration = duration_in_traffic
         self.cost = None
 
     def set_cost(self):
