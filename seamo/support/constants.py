@@ -135,8 +135,8 @@ REFERENCE_PICKLE = 'reference.pickle'
 PARKING_REFERENCE = 'parking_reference.pickle'
 
 # Numeric Constants
-BASKET_EVAL_PROX_MIN = 2 # 2 miles
-BASKET_EVAL_PROX_MAX = 10 # 10 miles
+BASKET_EVAL_PROX_MIN = 2.0 # miles
+BASKET_EVAL_PROX_MAX = 10.0 # miles
 PROXIMITY_THRESHOLD = 0.8 # 5-6 miles in lat-long coords
 METERS_TO_MILES = 1609
 KM_TO_MILES = 0.621371
