@@ -53,6 +53,7 @@ MODE = 'mode'
 TRIP_ID = 'trip_id'
 VIABLE = 'viable'
 MODE_CHOICE_INDEX = 'mode_index'
+SEATTLE_BLOCK_GROUPS_PICKLE = 'seattle_block_groups.pickle'
 
 # Parking
 BLOCK_FACE = 'block_face'
