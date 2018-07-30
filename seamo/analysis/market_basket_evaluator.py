@@ -1,24 +1,12 @@
-from datetime import datetime
-import init
-import constants as cn
-
-import itertools
-import json
-import math
-import time
-import string
-
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from pandas.io.json import json_normalize
 import shapely.wkt
 from sklearn.metrics import pairwise_distances
 from sklearn.metrics import mean_squared_error
-try:
-    from urllib.request import Request, urlopen  # Python 3
-except:
-    from urllib2 import Request, urlopen  # Python 2
+
+import init
+import constants as cn
 
 
 def proximity_ratio(df_destinations):
