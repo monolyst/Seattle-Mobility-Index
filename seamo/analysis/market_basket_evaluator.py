@@ -5,11 +5,9 @@ import constants as cn
 import itertools
 import json
 import math
-import os
 import time
 import string
 
-import geopandas as gpd
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -21,19 +19,6 @@ try:
     from urllib.request import Request, urlopen  # Python 3
 except:
     from urllib2 import Request, urlopen  # Python 2
-
-
-# Parameter domains
-AA = [0,1,2,3,4] # urban village
-BB = [8,9,10,11,12,13] # citywide destination
-A = [0,1,2,3] # destination park
-B = [0,1,2,3] # supermarket
-C = [0,1,2,3] # library
-D = [0,1,2,3] # hospital
-E = [0,1,2,3] # pharmacy
-F = [0,1,2,3] # post office
-G = [0,1,2,3] # school
-H = [0,1,2,3] # cafe
 
 
 def proximity_ratio(df_destinations):
@@ -185,7 +170,7 @@ def calculate_mse(psrc_output, google_input):
     score = []
     combinations = []
 
-    for x in itertools.product(AA,BB,A,B,C,D,E,F,G,H):
+    for x in cn.BASKET_COMBOS:
         if (sum(x) == BASKET_SIZE):
             combinations.append(x)
             df_google = calculate_features(google_input, list(x))
@@ -259,14 +244,10 @@ print("Google data are ready!")
 
 # One-time computation of psrc: generate three features
 df_psrc = prepare_psrc(psrc_rawdat.copy())
-#df_psrc.head()
 
 print("PSRC data are ready!")
 
-
-
 comb, res = calculate_mse(df_psrc, origin_merged.copy())
-#res
 print("The following is the head of combinations")
 print(comb.head())
 
@@ -277,7 +258,5 @@ print(res.head())
 print("all done!")
 
 
-res.to_csv(cn.PROCESSED_DIR + 'mses.csv')
-comb.to_csv(cn.PROCESSED_DIR + 'comb.csv')
-
-
+res.to_csv(cn.MSES_FP)
+comb.to_csv(cn.BASKET_COMBO_FP)
