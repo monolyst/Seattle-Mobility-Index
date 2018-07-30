@@ -26,11 +26,6 @@ def proximity_ratio(df_destinations):
     
     df_blockgroup = df_blockgroup[df_blockgroup['dist_2_to_10'] != 0]   
     df_blockgroup['proximity_ratio_test'] = df_blockgroup['dist_under_2'] / df_blockgroup['dist_2_to_10']
-    """
-    print((df_destinations.loc[df_destinations['origin'] == '530330048003']))
-    print((df_destinations.loc[df_destinations['origin'] == '530330049002']))
-    print((df_destinations.loc[df_destinations['origin'] == '530330049003']))    
-    """
     return df_blockgroup[['origin', 'proximity_ratio_test']]
 
 
@@ -43,7 +38,6 @@ def vert_hori_ratio(df_destinations, df_blockgroup):
     output:
         df_blockgroup - data frame with origin blockgroup and proximity ratio
     """
-    
     
     df_destinations['vertical_horizontal_ratio_test'] = pd.DataFrame(np.abs( (df_destinations['dest_lat'] - df_destinations['orig_lat']) /
                                                                              (df_destinations['dest_lon'] - df_destinations['orig_lon']) ))
@@ -94,7 +88,6 @@ def distance_from_citycenter(df_destinations, df_blockgroup):
 
 
 def prepare_psrc(psrc_raw):
-
     """
     This code calculates four features and adds them to the original PSRC data. 
     It just needs to be run once, as we are using it without filtering. 
@@ -116,7 +109,6 @@ def prepare_psrc(psrc_raw):
 
 
 def calculate_features(google_input, basket_combination):
-
     """
     This calculates three features using google API data; need to run separately for each basket combination
     It just needs to be run for every basket combination, as we are filtering it every time.  
@@ -143,10 +135,8 @@ def calculate_features(google_input, basket_combination):
     
     return final_result
 
-BASKET_SIZE = cn.BASKET_SIZE
 
 def calculate_mse(psrc_output, google_input):
-
     """
     This calculates three features for each basket combination, saves MSE to compare Google API with PSRC
     input:
@@ -159,7 +149,7 @@ def calculate_mse(psrc_output, google_input):
     combinations = []
 
     for x in cn.BASKET_COMBOS:
-        if (sum(x) == BASKET_SIZE):
+        if (sum(x) == cn.BASKET_SIZE):
             combinations.append(x)
             df_google = calculate_features(google_input, list(x))
             googled_psrc = psrc_output.loc[psrc_output['origin'].isin(df_google['origin'])]
@@ -186,7 +176,6 @@ def calculate_mse(psrc_output, google_input):
     
     
     final_combinations = pd.DataFrame(combinations, columns = cn.BASKET_CATEGORIES)
-    #print(final_combinations)
     
     best_loc = final_mses['rank_from_average_distance'].idxmin()
     print("Choose the following combination: \n")
@@ -197,17 +186,15 @@ def calculate_mse(psrc_output, google_input):
     return final_combinations, final_mses
 
 
-# Load PSRC data and pre-process; column names should be determined at a group meeting
-psrc_rawdat = pd.read_csv(cn.RAW_DIR + "PSRC_full_final_july3.csv", dtype={'origin': str, 'destination': str})
+# Load PSRC data and pre-process
+psrc_rawdat = pd.read_csv(cn.PSRC_FP, dtype={'origin': str, 'destination': str})
 
 psrc_rawdat['distance'] = pd.to_numeric(psrc_rawdat['distance'], errors='coerce')
-#psrc_rawdat.head()
 
 
 # Load Google API data 
 input_destinations = pd.read_csv(cn.RAW_DIR + 'GoogleMatrix_Places_Dist.csv', dtype={'origin': str})
 input_destinations.rename(columns = {'lat': 'dest_lat', 'lng': 'dest_lon', 'orig_lng': 'orig_lon'}, inplace=True)
-
 
 # Load blockgroup data with latitude and longitudes; will be merged with Google API
 blockgroup_mapping = pd.read_csv(cn.PROCESSED_DIR + 'SeattleCensusBlockGroups.csv', dtype={'tract_blkgrp': str})
@@ -221,14 +208,11 @@ blockgroup_mapping['orig_lon'] = pd.DataFrame([kk.x for kk in orig_pts])
 blockgroup_mapping['orig_lat'] = pd.DataFrame([kk.y for kk in orig_pts])
 origin_blockgroups = blockgroup_mapping [['tract_blkgrp', 'orig_lat', 'orig_lon']]
 
-
-
 # origin_merged will be an input data for 'evaluate_features' function
 origin_merged = pd.merge(left=input_destinations, right=origin_blockgroups, how='left', left_on='origin', right_on='tract_blkgrp')
 origin_merged = origin_merged[['origin', 'dest_lat', 'orig_lat','dest_lon', 'orig_lon', 'rank', 'distance', 'class']]
 
 print("Google data are ready!")
-
 
 # One-time computation of psrc: generate three features
 df_psrc = prepare_psrc(psrc_rawdat.copy())
@@ -245,6 +229,5 @@ print(res.head())
 
 print("all done!")
 
-
-res.to_csv(cn.MSES_FP)
 comb.to_csv(cn.BASKET_COMBO_FP)
+res.to_csv(cn.MSES_FP)
