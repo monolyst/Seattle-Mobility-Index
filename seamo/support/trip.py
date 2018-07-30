@@ -75,9 +75,8 @@ class CarTrip(Trip):
     def __init__(self, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time,
         duration_in_traffic=0, mile_rate=cn.AAA_RATE):
         super().__init__(origin, dest_lat, dest_lon, 'car', distance, duration, basket_category, departure_time)
-        self.destination = coordinate.Coordinate(dest_lat, dest_lon) 
         self.mile_rate = mile_rate
-        self.cost_to_park = np.nan
+        self.cost_to_park = None
         self.parking_category = None
         self.duration = duration_in_traffic
         self.cost = None
@@ -88,26 +87,47 @@ class CarTrip(Trip):
 
     def _calculate_car_duration(self, duration, duration_in_traffic=0):
         #TODO: do I want to save the original duration for car trips?
+        #TODO: make a specific exception for no min
         return duration_in_traffic
 
     def _calculate_cost(self, destination, duration, departure_time, mile_rate, value_of_time_rate):
-        self.cost = super()._calculate_base_cost(self.duration)
-        parking_cost = pd.read_csv(cn.BLOCK_GROUP_PARKING_RATES_FP)
-        self.cost_to_park = parking_cost.loc(destination.block_group, cn.RATE)
+        self.cost = super()._calculate_base_cost(duration)
+        try:
+            destination.set_geocode()
+            parking_cost = pd.read_csv(cn.BLOCK_GROUP_PARKING_RATES_FP)
+            self.cost_to_park = min(parking_cost.loc[parking_cost[cn.KEY] == destination.block_group, cn.RATE])
+        except (se.NotInSeattleError, ValueError) as e:
+            self.cost_to_park = 0
+        # else
+        # parking_cost = pd.read_csv(cn.BLOCK_GROUP_PARKING_RATES_FP)
+        # try:
+        #     min(parking_cost.loc[parking_cost[cn.KEY] == destination.block_group, cn.RATE])
+        # except ValueError:
+        #     self.cost_to_park = 0
+        # else:
+        #     self.cost_to_park = min(parking_cost.loc[parking_cost[cn.KEY] == destination.block_group, cn.RATE])
         return self.cost + (self.distance * mile_rate) + self.cost_to_park
 
 
 class TransitTrip(Trip):
     def __init__(self, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time, fare_value):
         super().__init__(origin, dest_lat, dest_lon, 'car', distance, duration, basket_category, departure_time)
-        self.fare_value = fare_value
+        self.fare_value = self.get_fare_value(fare_value) 
         self.cost = None
 
+    def get_fare_value(self, fare_value):
+        """
+        TO DO: check for zero/empty/NaN fare value. Set this to zero or standard fare value. 
+        """
+        if np.isnan(fare_value): 
+            fare_value = 0
+        return fare_value
+
     def set_cost(self):
-        self.cost = self._calculate_cost(self.fare_value)
+        self.cost = self._calculate_cost(self.duration, self.fare_value)
         
-    def _calculate_cost(self, fare_value):
-        self.cost = super()._calculate_base_cost(self.duration)
+    def _calculate_cost(self, duration, fare_value):
+        self.cost = super()._calculate_base_cost(duration)
         return self.cost + fare_value
     
 class BikeTrip(Trip):
@@ -120,7 +140,7 @@ class BikeTrip(Trip):
         self.cost = self._calculate_cost(self.distance, self.duration, self.bike_rate)
 
     def _calculate_cost(self, distance, duration, bike_rate):
-        self.cost = super()._calculate_base_cost(self.duration)
+        self.cost = super()._calculate_base_cost(duration)
         return self.cost + (distance * bike_rate)
     
 

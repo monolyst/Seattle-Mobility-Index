@@ -2,12 +2,13 @@ import init
 from math import sin, cos, sqrt, atan2, radians
 from core import geocoder
 import constants as cn
+import seamo_exceptions as se
 
 class Coordinate:
     """
     Coordinate class.
     """
-    def __init__(self, lat, lon, geocode=False):
+    def __init__(self, lat, lon):
         """
         Initialize Coordinate with a latitude and a longitude (both floats).
         """
@@ -19,8 +20,6 @@ class Coordinate:
         self.council_district = None
         self.urban_village = None
         self.zipcode = None
-        if geocode:
-            self._geocode(self.lat, self.lon)
 
 
     def __str__(self):
@@ -29,6 +28,13 @@ class Coordinate:
         Format is 'lat,lon'
         """
         return "{0}, {1}".format(self.lat, self.lon)
+
+
+    def set_geocode(self):
+        try:
+            self._geocode(self.lat, self.lon)
+        except ValueError:
+            raise se.NotInSeattleError("No Parking Data Available")
 
 
     def haversine_distance(self, coordinate):

@@ -42,23 +42,22 @@ class ModeChoiceCalculator(IndexBase):
 
         distance = row[cn.DISTANCE]
         duration = row[cn.DURATION]
-        duration_in_traffic = [cn.DURATION_IN_TRAFFIC]
-        fare_value = [cn.FARE_VALUE]
+        duration_in_traffic = row[cn.DURATION_IN_TRAFFIC]
+        fare_value = row[cn.FARE_VALUE]
 
         basket_category = None
 
         # Need to convert departure time to date-time object
         departure_time = row[cn.DEPARTURE_TIME]
         
-        trip = {cn.DRIVING_MODE: CarTrip(origin, dest_lat, dest_lon, distance,
-                                              duration, basket_category,
-                                              departure_time, duration_in_traffic),
-        cn.TRANSIT_MODE: TransitTrip(origin, dest_lat, dest_lon, distance, duration,
-                                          basket_category, departure_time, fare_value),
-        cn.BIKING_MODE: BikeTrip(origin, dest_lat, dest_lon, distance, duration,
-                                      basket_category, departure_time),
-        cn.WALKING_MODE: WalkTrip(origin, dest_lat, dest_lon, distance, duration,
-                                       basket_category, departure_time)}[mode]
+        trip = {cn.DRIVING_MODE: CarTrip(origin, dest_lat, dest_lon, departure_time, distance,
+                                              duration, basket_category, duration_in_traffic=duration_in_traffic),
+        cn.TRANSIT_MODE: TransitTrip(origin, dest_lat, dest_lon, departure_time, distance, duration,
+                                          basket_category, fare_value=fare_value),
+        cn.BIKING_MODE: BikeTrip(origin, dest_lat, dest_lon, departure_time, distance, duration,
+                                      basket_category),
+        cn.WALKING_MODE: WalkTrip(origin, dest_lat, dest_lon, departure_time, distance, duration,
+                                       basket_category)}[mode]
 
         return trip
 

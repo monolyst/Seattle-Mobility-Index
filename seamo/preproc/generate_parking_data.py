@@ -22,7 +22,7 @@ class GenerateParkingData(object):
         This will query prices for all 6 day/time combinations and
         return an average price value.
         """
-        blkgrp_parking_price_df = pd.DataFrame({cn.BLOCK_GROUP: [], cn.PRICE: []})
+        blkgrp_parking_price_df = pd.DataFrame({cn.BLOCK_GROUP: [], cn.RATE: []})
         for _, row in self.blkgrp_df.iterrows():
             price = 0
             blkgrp = row[cn.KEY]
@@ -31,7 +31,8 @@ class GenerateParkingData(object):
                                 cn.WEEKEND_AFTERNOON_RATE, cn.WEEKEND_EVENING_RATE]:
                 price += self._get_price(row[cn.LAT], row[cn.LON], rate_column)
             price /= 6
-            blkgrp_parking_price_df.append(pd.DataFrame({cn.BLOCK_GROUP: [blkgrp], cn.PRICE: [price]}))
+            blkgrp_parking_price_df = blkgrp_parking_price_df.append(pd.DataFrame({cn.BLOCK_GROUP: [blkgrp], cn.RATE: [price]}))
+        blkgrp_parking_df = blkgrp_parking_df.fillna(0)
         return blkgrp_parking_price_df
 
 

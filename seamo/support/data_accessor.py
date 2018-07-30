@@ -5,6 +5,7 @@ import re
 import os
 import sqlalchemy
 import constants as cn
+import pickle
 
 
 def df_to_sql(df, table_name):
@@ -27,3 +28,14 @@ def sql_to_df(db_name=cn.GOOGLE_DIST_MATRIX_OUT):
 
 def write_to_csv(df, output_file, processed_dir=cn.CSV_DIR):
     df.to_csv(os.path.join(processed_dir, output_file), index=False)
+
+
+
+def make_pickle(processed_dir, reference, pickle_name):
+    with open(os.path.join(processed_dir, str(pickle_name)), 'wb') as pickle_file:
+        pickle.dump(reference, pickle_file)
+
+
+def open_pickle(processed_dir, pickle_name):
+    fname = processed_dir + str(pickle_name)
+    return pickle.load(open(fname, 'rb'))
