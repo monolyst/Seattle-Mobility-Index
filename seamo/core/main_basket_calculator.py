@@ -93,22 +93,28 @@ ranked_df = rank_destinations(dist_df)
 ranked_df.to_csv(cn.RANKED_DEST_FP)
 baskets_df = create_basket(ranked_df, cn.FINAL_BASKET)
 baskets_df.to_csv(cn.BASKETS_FP)
-# Also need to put out the compressed formats where dests are in one col
+# Also put out a CSV wherein destinations are concatenated and pipe-separated
+# Destination place IDs and classes also concatenated
 bgs = { blockgroup: { cn.ORIGIN : None, 
                       cn.DESTINATIONS : [], 
                       cn.PLACE_IDS : [], 
-                      cn.CLASS: None } for blockgroup in df[cn.BLOCKGROUP].values }
-for index, row in baskets_df.iterrows():
+                      cn.CLASS: [] } for blockgroup in df[cn.BLOCKGROUP].values }
+for _, row in baskets_df.iterrows():
+    blkgrp = row[cn.BLOCKGROUP]
     origin = "{0},{1}".format(row[cn.GOOGLE_START_LAT], row[cn.GOOGLE_START_LON])
     destination = "{0},{1}".format(row[cn.GOOGLE_END_LAT], row[cn.GOOGLE_END_LON])
+    dest_class = row[cn.CLASS]
     pair = row[cn.PAIR]
-    # Grab the second part of pair
-    place_id = pair.split('-')[-1]
+    # Place ID is the part of pair after the origin string
+    # Can't split on '-' because some place IDs have dashes in the name
+    place_id = pair[13:]
 
-    bgs[row[cn.BLOCKGROUP]][cn.PLACE_IDS].append(place_id) 
-    bgs[row[cn.BLOCKGROUP]][cn.DESTINATIONS].append(destination) 
-    bgs[row[cn.BLOCKGROUP]][cn.ORIGIN] = origin
-    cols = [cn.BLOCKGROUP, cn.PLACE_IDS, cn.ORIGIN, cn.DESTINATIONS]
+    bgs[blkgrp][cn.PLACE_IDS].append(place_id) 
+    bgs[blkgrp][cn.DESTINATIONS].append(destination) 
+    bgs[blkgrp][cn.CLASS].append(dest_class) 
+    bgs[blkgrp][cn.ORIGIN] = origin
+
+cols = [cn.BLOCKGROUP, cn.PLACE_IDS, cn.ORIGIN, cn.DESTINATIONS, cn.CLASS]
 rows = []
 for bg, data in bgs.items():
     origin = data[cn.ORIGIN]
@@ -116,10 +122,12 @@ for bg, data in bgs.items():
     place_ids = ",".join(data[cn.PLACE_IDS]) 
     # Separate destinations with a pipe
     dests = "|".join(data[cn.DESTINATIONS])
+    dest_classes = "|".join(data[cn.CLASS])
     new_row = { cn.BLOCKGROUP : bg,
                 cn.ORIGIN: origin,
                 cn.PLACE_IDS: place_ids,
-                cn.DESTINATIONS: dests }
+                cn.DESTINATIONS: dests, 
+                cn.CLASS: dest_classes }
     rows.append(new_row)
 new_df = pd.DataFrame(rows, columns=cols)
 new_df.to_csv(cn.INPUT_BASKETS_FP)

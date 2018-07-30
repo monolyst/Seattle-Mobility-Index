@@ -55,6 +55,7 @@ class Geocoder(gbc.GeocodeBase):
             df = df.sort_values(by=cn.GEOGRAPHY)
             df = df.set_index([cn.LAT, cn.LON, cn.GEOGRAPHY], append=cn.KEY).unstack()
             df.columns = df.columns.droplevel()
+            # print(df)
             df = self._format_output(df)
         self.dataframe = df
         return df
@@ -79,10 +80,9 @@ class Geocoder(gbc.GeocodeBase):
 
 
     def geocode_csv(self, input_file, pickle_name=cn.REFERENCE_PICKLE):
-        df = super().geocode_csv(input_file, pickle_name)
-        return df
+        return super().geocode_csv(input_file, pickle_name)
 
 
     def geocode_point(self, coord, pickle_name=cn.REFERENCE_PICKLE):
-        df = super().geocode_point(coord, pickle_name)
-        return df
+        df = super().geocode_point(coord) 
+        return self.geocode(df, str(pickle_name))
