@@ -1,6 +1,7 @@
 """
 Constants to be used throughout the code base.
 """
+import itertools
 import os
 import numpy as np
 
@@ -29,6 +30,21 @@ BASKET_CATEGORIES = [URBAN_VILLAGE,
                     POST_OFFICE,
                     SCHOOL,
                     CAFE]
+
+# Ranges of counts for each class of destination
+AA = [1,2,3,4] # urban village
+BB = [8,9,10,11,12,13] # citywide destination
+A = [1,2,3] # destination park
+B = [1,2,3] # supermarket
+C = [1,2,3] # library
+D = [1,2,3] # hospital
+E = [1,2,3] # pharmacy
+F = [1,2,3] # post office
+G = [1,2,3] # school
+H = [1,2,3] # cafe
+
+# Cartesian product. Iterates through all possible basket combinations. 
+BASKET_COMBOS = itertools.product(AA, BB, A, B, C, D, E, F, G, H) 
 
 CLASS = 'class'
 RANK = 'rank'
@@ -150,17 +166,6 @@ CENSUS_LAT = 'CT_LAT'
 CENSUS_LON = 'CT_LON'
 BLOCKGROUP = 'BLOCKGROUP'
 
-# Destination class domains
-AA = [1,2,3,4] # urban village
-BB = [8,9,10,11,12,13] # citywide destination
-A = [1,2,3] # destination park
-B = [1,2,3] # supermarket
-C = [1,2,3] # library
-D = [1,2,3] # hospital
-E = [1,2,3] # pharmacy
-F = [1,2,3] # post office
-G = [1,2,3] # school
-H = [1,2,3] # cafe
 
 # Directory paths
 DATADIR = 'data/'
