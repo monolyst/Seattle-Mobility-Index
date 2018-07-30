@@ -10,7 +10,6 @@ import constants as cn
 
 
 def proximity_ratio(df_destinations):
-    
     """
     Calculate proximity ratio and summarize by blockgroups
     input: 
@@ -19,18 +18,21 @@ def proximity_ratio(df_destinations):
         df_blockgroup - data frame with origin blockgroup and proximity ratio
     """
     
-    # proximity ratio = no. trips under 2 miles / no. trips between 2 and 10 miles; rows with zero denominators are removed
-    df_destinations['dist_under_2'] = np.where(df_destinations['distance'] < 2.0, 1, 0)
-    df_destinations['dist_2_to_10'] = np.where((df_destinations['distance'] >= 2.0) & (df_destinations['distance'] < 10.0), 1, 0)
-    df_blockgroup = df_destinations.groupby(['origin'], as_index=False).agg({'dist_under_2':sum,'dist_2_to_10':sum})
+    lower_bound = cn.BASKET_EVAL_PROX_MIN
+    upper_bound = cn.BASKET_EVAL_PROX_MAX
+    
+    # trips under 2 miles / no. trips between 2 and 10 miles
+    # Remove rows with zero denominators
+    df_destinations['dist_under_2'] = np.where(df_destinations['distance'] < lower_bound, 1, 0)
+    df_destinations['dist_2_to_10'] = np.where((df_destinations['distance'] >= lower_bound) & (df_destinations['distance'] < upper_bound), 1, 0)
+    df_blockgroup = df_destinations.groupby([cn.ORIGIN], as_index=False).agg({'dist_under_2':sum,'dist_2_to_10':sum})
     
     df_blockgroup = df_blockgroup[df_blockgroup['dist_2_to_10'] != 0]   
     df_blockgroup['proximity_ratio_test'] = df_blockgroup['dist_under_2'] / df_blockgroup['dist_2_to_10']
-    return df_blockgroup[['origin', 'proximity_ratio_test']]
+    return df_blockgroup[[cn.ORIGIN, 'proximity_ratio_test']]
 
 
 def vert_hori_ratio(df_destinations, df_blockgroup):
-
     """
     Calculate the ratio between vertical distance and horizontal distance, for each blockgroup
     input: 
@@ -41,14 +43,13 @@ def vert_hori_ratio(df_destinations, df_blockgroup):
     
     df_destinations['vertical_horizontal_ratio_test'] = pd.DataFrame(np.abs( (df_destinations['dest_lat'] - df_destinations['orig_lat']) /
                                                                              (df_destinations['dest_lon'] - df_destinations['orig_lon']) ))
-    df_blockgroup2 = df_destinations.groupby(['origin'], as_index=False)['vertical_horizontal_ratio_test'].mean()
-    result_merged = pd.merge(left=df_blockgroup, right=df_blockgroup2, how='inner', left_on='origin', right_on='origin')
+    df_blockgroup2 = df_destinations.groupby([cn.ORIGIN], as_index=False)['vertical_horizontal_ratio_test'].mean()
+    result_merged = pd.merge(left=df_blockgroup, right=df_blockgroup2, how='inner', left_on=cn.ORIGIN, right_on=cn.ORIGIN)
     
     return result_merged
 
 
 def average_distance(df_destinations, df_blockgroup):
-
     """
     Calculate average travel distance of each blockgroup 
     input: 
@@ -57,16 +58,15 @@ def average_distance(df_destinations, df_blockgroup):
         df_blockgroup - data frame with origin blockgroup and proximity ratio
     """
     
-    df_blockgroup2 = df_destinations.groupby(['origin'], as_index=False)['distance'].mean()
-    result_merged = pd.merge(left=df_blockgroup, right=df_blockgroup2, how='inner', left_on='origin', right_on='origin')
-    result_merged.rename(columns = {'distance': 'average_distance_test'}, inplace=True)
+    df_blockgroup2 = df_destinations.groupby([cn.ORIGIN], as_index=False)['distance'].mean()
+    result_merged = pd.merge(left=df_blockgroup, right=df_blockgroup2, how='inner', left_on=cn.ORIGIN, right_on=cn.ORIGIN)
+    result_merged.rename(columns = {'distance': cn.AVG_DIST}, inplace=True)
     
     return result_merged
 
 
 
 def distance_from_citycenter(df_destinations, df_blockgroup):
-
     """
     Calculate Euclidean distance of destination from the city center  
     input: 
@@ -80,8 +80,8 @@ def distance_from_citycenter(df_destinations, df_blockgroup):
                                                 ((df_destinations['dest_lon'] - cn.CITY_CENTER[1]) * cn.DEG_INTO_MILES)**2
                                                 ))
     
-    df_blockgroup2 = df_destinations.groupby(['origin'], as_index=False)['distance_from_citycenter_val'].mean()
-    result_merged = pd.merge(left=df_blockgroup, right=df_blockgroup2, how='inner', left_on='origin', right_on='origin')
+    df_blockgroup2 = df_destinations.groupby([cn.ORIGIN], as_index=False)['distance_from_citycenter_val'].mean()
+    result_merged = pd.merge(left=df_blockgroup, right=df_blockgroup2, how='inner', left_on=cn.ORIGIN, right_on=cn.ORIGIN)
     result_merged.rename(columns = {'distance_from_citycenter_val': 'distance_from_citycenter_test'}, inplace=True)
       
     return result_merged
@@ -103,7 +103,7 @@ def prepare_psrc(psrc_raw):
     with_distance_from_citycenter = distance_from_citycenter(psrc_raw, with_average_distance)
     
     result_merged = with_distance_from_citycenter
-    result_merged.sort_values(by=['origin'])
+    result_merged.sort_values(by=[cn.ORIGIN])
     
     return result_merged
 
@@ -131,7 +131,7 @@ def calculate_features(google_input, basket_combination):
     with_average_distance = average_distance(filtered_data.copy(), with_vert_hori_ratio)
     with_distance_from_citycenter = distance_from_citycenter(filtered_data.copy(), with_average_distance)
     
-    final_result = with_distance_from_citycenter.sort_values(by = ['origin'])
+    final_result = with_distance_from_citycenter.sort_values(by = [cn.ORIGIN])
     
     return final_result
 
@@ -152,10 +152,10 @@ def calculate_mse(psrc_output, google_input):
         if (sum(x) == cn.BASKET_SIZE):
             combinations.append(x)
             df_google = calculate_features(google_input, list(x))
-            googled_psrc = psrc_output.loc[psrc_output['origin'].isin(df_google['origin'])]
+            googled_psrc = psrc_output.loc[psrc_output[cn.ORIGIN].isin(df_google[cn.ORIGIN])]
             proximity_ratio_mse = mean_squared_error(df_google['proximity_ratio_test'], googled_psrc['proximity_ratio_test'])
             vert_hori_ratio_mse = mean_squared_error(df_google['vertical_horizontal_ratio_test'], googled_psrc['vertical_horizontal_ratio_test'])
-            average_distance_mse = mean_squared_error(df_google['average_distance_test'], googled_psrc['average_distance_test'])
+            average_distance_mse = mean_squared_error(df_google[cn.AVG_DIST], googled_psrc[cn.AVG_DIST])
             distance_from_citycenter_mse = mean_squared_error(df_google['distance_from_citycenter_test'], googled_psrc['distance_from_citycenter_test'])
 
             mses = (proximity_ratio_mse, vert_hori_ratio_mse, average_distance_mse, distance_from_citycenter_mse)
@@ -187,13 +187,13 @@ def calculate_mse(psrc_output, google_input):
 
 
 # Load PSRC data and pre-process
-psrc_rawdat = pd.read_csv(cn.PSRC_FP, dtype={'origin': str, 'destination': str})
+psrc_rawdat = pd.read_csv(cn.PSRC_FP, dtype={cn.ORIGIN: str, cn.DESTINATION: str})
 
 psrc_rawdat['distance'] = pd.to_numeric(psrc_rawdat['distance'], errors='coerce')
 
 
 # Load Google API data 
-input_destinations = pd.read_csv(cn.RAW_DIR + 'GoogleMatrix_Places_Dist.csv', dtype={'origin': str})
+input_destinations = pd.read_csv(cn.RAW_DIR + 'GoogleMatrix_Places_Dist.csv', dtype={cn.ORIGIN: str})
 input_destinations.rename(columns = {'lat': 'dest_lat', 'lng': 'dest_lon', 'orig_lng': 'orig_lon'}, inplace=True)
 
 # Load blockgroup data with latitude and longitudes; will be merged with Google API
@@ -209,8 +209,8 @@ blockgroup_mapping['orig_lat'] = pd.DataFrame([kk.y for kk in orig_pts])
 origin_blockgroups = blockgroup_mapping [['tract_blkgrp', 'orig_lat', 'orig_lon']]
 
 # origin_merged will be an input data for 'evaluate_features' function
-origin_merged = pd.merge(left=input_destinations, right=origin_blockgroups, how='left', left_on='origin', right_on='tract_blkgrp')
-origin_merged = origin_merged[['origin', 'dest_lat', 'orig_lat','dest_lon', 'orig_lon', 'rank', 'distance', 'class']]
+origin_merged = pd.merge(left=input_destinations, right=origin_blockgroups, how='left', left_on=cn.ORIGIN, right_on='tract_blkgrp')
+origin_merged = origin_merged[[cn.ORIGIN, 'dest_lat', 'orig_lat','dest_lon', 'orig_lon', 'rank', 'distance', 'class']]
 
 print("Google data are ready!")
 
