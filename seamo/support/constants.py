@@ -65,6 +65,12 @@ GEOGRAPHY = 'geography'
 CRS_EPSG = {'init' :'epsg:4326'}
 SHAPE_AREA = 'Shape_area'
 AREA = 'area'
+# Columns specific to basket eval
+VERT_HORI_RATIO = 'vert_hori_ratio'
+PROX_RATIO = 'proximity_ratio'
+AVG_DIST = 'average_distance'
+DIST_CITY_CENTER = 'dist_from_city_center'
+
 
 # Parking
 BLOCK_FACE = 'block_face'
@@ -129,6 +135,8 @@ REFERENCE_PICKLE = 'reference.pickle'
 PARKING_REFERENCE = 'parking_reference.pickle'
 
 # Numeric Constants
+BASKET_EVAL_PROX_MIN = 2 # 2 miles
+BASKET_EVAL_PROX_MAX = 10 # 10 miles
 PROXIMITY_THRESHOLD = 0.8 # 5-6 miles in lat-long coords
 METERS_TO_MILES = 1609
 KM_TO_MILES = 0.621371
