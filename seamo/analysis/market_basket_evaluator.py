@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-from pandas.io.json import json_normalize
 import shapely.wkt
 from sklearn.metrics import pairwise_distances
 from sklearn.metrics import mean_squared_error
@@ -18,18 +17,21 @@ def proximity_ratio(df_destinations):
         df_blockgroup - data frame with origin blockgroup and proximity ratio
     """
     
-    lower_bound = cn.BASKET_EVAL_PROX_MIN
-    upper_bound = cn.BASKET_EVAL_PROX_MAX
+    lower_bound = cn.BASKET_EVAL_PROX_MIN # 2 miles
+    upper_bound = cn.BASKET_EVAL_PROX_MAX # 10 miles
     
-    # trips under 2 miles / no. trips between 2 and 10 miles
-    # Remove rows with zero denominators
-    df_destinations['dist_under_2'] = np.where(df_destinations['distance'] < lower_bound, 1, 0)
-    df_destinations['dist_2_to_10'] = np.where((df_destinations['distance'] >= lower_bound) & (df_destinations['distance'] < upper_bound), 1, 0)
+    # Ratio of trips under 2 miles to trips between 2 and 10 miles
+    df_destinations['dist_under_2'] = np.where(df_destinations[cn.DISTANCE] < lower_bound, 1, 0)
+    df_destinations['dist_2_to_10'] = np.where((df_destinations[cn.DISTANCE] >= lower_bound) & (df_destinations[cn.DISTANCE] < upper_bound), 1, 0)
     df_blockgroup = df_destinations.groupby([cn.ORIGIN], as_index=False).agg({'dist_under_2':sum,'dist_2_to_10':sum})
     
+    # Remove rows with zero denominators
     df_blockgroup = df_blockgroup[df_blockgroup['dist_2_to_10'] != 0]   
-    df_blockgroup['proximity_ratio_test'] = df_blockgroup['dist_under_2'] / df_blockgroup['dist_2_to_10']
-    return df_blockgroup[[cn.ORIGIN, 'proximity_ratio_test']]
+    
+    # Make new column with the data
+    df_blockgroup[cn.PROX_RATIO] = df_blockgroup['dist_under_2'] / df_blockgroup['dist_2_to_10']
+
+    return df_blockgroup[[cn.ORIGIN, cn.PROX_RATIO]]
 
 
 def vert_hori_ratio(df_destinations, df_blockgroup):
@@ -41,9 +43,9 @@ def vert_hori_ratio(df_destinations, df_blockgroup):
         df_blockgroup - data frame with origin blockgroup and proximity ratio
     """
     
-    df_destinations['vertical_horizontal_ratio_test'] = pd.DataFrame(np.abs( (df_destinations['dest_lat'] - df_destinations['orig_lat']) /
+    df_destinations[cn.VERT_HORI_RATIO] = pd.DataFrame(np.abs( (df_destinations['dest_lat'] - df_destinations['orig_lat']) /
                                                                              (df_destinations['dest_lon'] - df_destinations['orig_lon']) ))
-    df_blockgroup2 = df_destinations.groupby([cn.ORIGIN], as_index=False)['vertical_horizontal_ratio_test'].mean()
+    df_blockgroup2 = df_destinations.groupby([cn.ORIGIN], as_index=False)[cn.VERT_HORI_RATIO].mean()
     result_merged = pd.merge(left=df_blockgroup, right=df_blockgroup2, how='inner', left_on=cn.ORIGIN, right_on=cn.ORIGIN)
     
     return result_merged
@@ -58,12 +60,11 @@ def average_distance(df_destinations, df_blockgroup):
         df_blockgroup - data frame with origin blockgroup and proximity ratio
     """
     
-    df_blockgroup2 = df_destinations.groupby([cn.ORIGIN], as_index=False)['distance'].mean()
+    df_blockgroup2 = df_destinations.groupby([cn.ORIGIN], as_index=False)[cn.DISTANCE].mean()
     result_merged = pd.merge(left=df_blockgroup, right=df_blockgroup2, how='inner', left_on=cn.ORIGIN, right_on=cn.ORIGIN)
-    result_merged.rename(columns = {'distance': cn.AVG_DIST}, inplace=True)
+    result_merged.rename(columns = {cn.DISTANCE: cn.AVG_DIST}, inplace=True)
     
     return result_merged
-
 
 
 def distance_from_citycenter(df_destinations, df_blockgroup):
@@ -153,13 +154,12 @@ def calculate_mse(psrc_output, google_input):
             combinations.append(x)
             df_google = calculate_features(google_input, list(x))
             googled_psrc = psrc_output.loc[psrc_output[cn.ORIGIN].isin(df_google[cn.ORIGIN])]
-            proximity_ratio_mse = mean_squared_error(df_google['proximity_ratio_test'], googled_psrc['proximity_ratio_test'])
-            vert_hori_ratio_mse = mean_squared_error(df_google['vertical_horizontal_ratio_test'], googled_psrc['vertical_horizontal_ratio_test'])
+            proximity_ratio_mse = mean_squared_error(df_google[cn.PROX_RATIO], googled_psrc[cn.PROX_RATIO])
+            vert_hori_ratio_mse = mean_squared_error(df_google[cn.VERT_HORI_RATIO], googled_psrc[cn.VERT_HORI_RATIO])
             average_distance_mse = mean_squared_error(df_google[cn.AVG_DIST], googled_psrc[cn.AVG_DIST])
             distance_from_citycenter_mse = mean_squared_error(df_google['distance_from_citycenter_test'], googled_psrc['distance_from_citycenter_test'])
 
             mses = (proximity_ratio_mse, vert_hori_ratio_mse, average_distance_mse, distance_from_citycenter_mse)
-            #print("combination is :", x)
             score.append(mses)
             if (len(combinations) % 5000 == 0):
                 print("Still Processing..")
@@ -189,7 +189,7 @@ def calculate_mse(psrc_output, google_input):
 # Load PSRC data and pre-process
 psrc_rawdat = pd.read_csv(cn.PSRC_FP, dtype={cn.ORIGIN: str, cn.DESTINATION: str})
 
-psrc_rawdat['distance'] = pd.to_numeric(psrc_rawdat['distance'], errors='coerce')
+psrc_rawdat[cn.DISTANCE] = pd.to_numeric(psrc_rawdat[cn.DISTANCE], errors='coerce')
 
 
 # Load Google API data 
@@ -210,7 +210,7 @@ origin_blockgroups = blockgroup_mapping [['tract_blkgrp', 'orig_lat', 'orig_lon'
 
 # origin_merged will be an input data for 'evaluate_features' function
 origin_merged = pd.merge(left=input_destinations, right=origin_blockgroups, how='left', left_on=cn.ORIGIN, right_on='tract_blkgrp')
-origin_merged = origin_merged[[cn.ORIGIN, 'dest_lat', 'orig_lat','dest_lon', 'orig_lon', 'rank', 'distance', 'class']]
+origin_merged = origin_merged[[cn.ORIGIN, 'dest_lat', 'orig_lat','dest_lon', 'orig_lon', 'rank', cn.DISTANCE, 'class']]
 
 print("Google data are ready!")
 
