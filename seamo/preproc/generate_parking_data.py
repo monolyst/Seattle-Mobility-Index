@@ -32,6 +32,7 @@ class GenerateParkingData(object):
                 price += self._get_price(row[cn.LAT], row[cn.LON], rate_column)
             price /= 6
             blkgrp_parking_price_df = blkgrp_parking_price_df.append(pd.DataFrame({cn.BLOCK_GROUP: [blkgrp], cn.RATE: [price]}))
+        blkgrp_parking_df = blkgrp_parking_df.fillna(0)
         return blkgrp_parking_price_df
 
 

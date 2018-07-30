@@ -21,7 +21,7 @@ class AffordabilityIndex(IndexBase):
 
 
     def create_blockgroup_cost_df(self, viable_modes):
-        blkgrp_mode_cost_df = pd.DataFrame({cn.BLOCK_GROUP: [], cn.COST: []})
+        blkgrp_mode_cost_df = pd.DataFrame({cn.KEY: [], cn.COST: []})
         for key, values in viable_modes.items():
             blkgrp = key
             num_trips = len(values)
@@ -31,7 +31,7 @@ class AffordabilityIndex(IndexBase):
                 cost += trip.cost
             cost /= num_trips
             # print(pd.DataFrame({cn.BLOCK_GROUP: [key], cn.COST: [cost]}))
-            blkgrp_mode_cost_df =blkgrp_mode_cost_df.append(pd.DataFrame({cn.BLOCK_GROUP: [key], cn.COST: [cost]}))
+            blkgrp_mode_cost_df =blkgrp_mode_cost_df.append(pd.DataFrame({cn.KEY: [key], cn.COST: [cost]}))
         return blkgrp_mode_cost_df
 
 
@@ -40,7 +40,7 @@ class AffordabilityIndex(IndexBase):
         income = pd.read_excel(cn.BLOCK_GROUP_DEMOGRAPHICS_FP).loc[:, (cn.INCOME_BLOCKGROUP, cn.MEDIAN_HOUSEHOLD_INCOME)]
         blkgrp_mode_cost_df = self.create_blockgroup_cost_df(viable_modes)
         blkgrp_mode_cost_df[cn.ADJUSTED_FOR_INCOME] = blkgrp_mode_cost_df.apply(lambda x: x[cn.COST] /
-            income.loc(x[cn.BLOCK_GROUP], cn.MEDIAN_HOUSEHOLD_INCOME))
+            income.loc(x[cn.KEY], cn.MEDIAN_HOUSEHOLD_INCOME))
         # normalization
         blkgrp_mode_cost_df[cn.NORMALIZED] = blkgrp_mode_cost_df.apply(lambda x: normalize(x[cn.COST]))
         blkgrp_mode_cost_df[cn.INCOME_NORMALIZED] = blkgrp_mode_cost_df.apply(lambda x: normalize(x[cn.ADJUSTED_FOR_INCOME]))
