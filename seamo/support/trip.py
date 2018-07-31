@@ -7,8 +7,32 @@ import datetime as dt
 import support.seamo_exceptions as se
 import numpy as np
 
-"""
-Base Trip Class
+    """ Trip base class.
+
+    A trip is one of the base inputs for the Mobility Index. This class is created to facilitate
+    the use of trips as units of analysis within the individual Index Calculators (Mode choice, affordability, reliability).
+    The Trip Object is used to represent an individual Trip and store and keep track of its core attributes and 
+    defining variables.
+
+    Attributes:
+        origin: Block Group ID (string) of place where the trip originated.
+        destination: Coordinates of destination latitude and longitude (dest_lat, dest_lon)
+        mode: mode of the trip (WALKING,TRANSIT, DRIVING, CYCLING)
+        departure_time: string indicating the time when the trip started
+        distance: float indicating distance travelled between origin and destination.
+        duration: float indicating the time elapsed between origin and destination.
+        basket_category: string indicating the type of destination (i.e. school, hospital, pharmacy, post office, citywide destination, urban village, etc.)
+        citywide_type: string that stores categories for citywide destinations
+        value_of_time_rate: float, rate used as base for cost, representing opportunity cost of travel time
+        cost = float indicating the full cost of the trip
+        viable: value between 0 and 1 indicating the level of viability of the trip, as determined by the mode choice calculator.
+
+    TODO:
+    Revise attributes
+            persona = None * is a persona an attribute of a trip? Need to define
+            time_of_day (do we need this?)
+            type_of_day = None (do we need this?)
+ 
 """
 class Trip(object):
     def __init__(self, origin, dest_lat, dest_lon, departure_time, mode, distance, duration, 
@@ -36,33 +60,53 @@ class Trip(object):
         
 
     def set_cost(self):
+        """
+        Sets the cost of the trip based on the base rate. 
+        Only includes cost value of time.
+        """
         self.cost = self._calculate_base_cost(self.duration, self.value_of_time_rate)
         
 
     def set_viability(self, viability):
         """
+        Sets the viability of the trip. 
+        The value of viability can be determined using the mode choice calculator.
         Input:
-            viability (0 or 1)
+            viability (float between 0 and 1)
         """
         self.viable = viability
 
 
     def get_origin_coordinate(self):
         """
-        This returns a coordinate object. You can access centroid lat/lon and
-        geocoded information from this object.
+        This function returns a coordinate object that allows you to access the centroid lat/lon
+        of the  origin blockgroup and store the geocoded information of this object.
         """
         seattle_block_groups = pd.read_csv(cn.SEATTLE_BLOCK_GROUPS_FP)
         df = seattle_block_groups[seattle_block_groups[cn.KEY] == self._origin]
         return coordinate.Coordinate(df.lat, df.lon)
 
+    
     def set_persona(self, persona):
+        """
+        TODO: define how personas will relate to trip object. Currently unclear.
+        """
         self.persona = persona
 
     def _calculate_base_cost(self, duration, value_of_time_rate=cn.VOT_RATE):
+        """
+        Estimates trip cost from base rate. Includes only costs from time spent on trip.
+        """
         return duration * value_of_time_rate / cn.MIN_TO_HR
 
     def print_destination(self, *args):
+        """
+        Prints the geocoded 
+        Arguments are optional and can include any or all of the geocode attributes of a destination
+        such as blockgroup, neighborhood, zip code, council district, urban village, etc.
+
+        TODO: Make sure all the correct possible args are listed.
+        """
         print(self._destination)
         for attribute in args:
             print(self._destination.get_attribute(attribute))
@@ -70,6 +114,10 @@ class Trip(object):
 
 class CarTrip(Trip):
     """
+    Child class of Trip for trips made by car.
+    The distingusihing features are that car trips duration is based on time spent in traffic
+    and cost methods are specific to those incurred when driving (for example gas and parking).
+
     TODO: refactor self.destination in child constructor.
     """
     def __init__(self, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time,
@@ -82,8 +130,12 @@ class CarTrip(Trip):
         self.cost = None
 
     def set_cost(self):
+        """
+        sets cost of a car trip.
+        """
         self.cost = self._calculate_cost(self.destination, self.duration, self.departure_time,
-            self.mile_rate, self.value_of_time_rate)
+            self.mile_rate, self.value_of_time_rate).
+      
 
     def _calculate_car_duration(self, duration, duration_in_traffic=0):
         #TODO: do I want to save the original duration for car trips?
@@ -91,6 +143,9 @@ class CarTrip(Trip):
         return duration_in_traffic
 
     def _calculate_cost(self, destination, duration, departure_time, mile_rate, value_of_time_rate):
+        """
+        Cost methods to estimate costs during car trip (for example gas and parking)
+        """
         self.cost = super()._calculate_base_cost(duration)
         try:
             destination.set_geocode()
@@ -119,7 +174,7 @@ class TransitTrip(Trip):
 
     def get_fare_value(self, fare_value):
         """
-        TO DO: check for zero/empty/NaN fare value. Set this to zero or standard fare value. 
+        TODO: check for zero/empty/NaN fare value. Set this to zero or standard fare value. 
         """
         if np.isnan(fare_value): 
             fare_value = 0
