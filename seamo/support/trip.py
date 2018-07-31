@@ -11,8 +11,8 @@ import numpy as np
 Base Trip Class
 """
 class Trip(object):
-    def __init__(self, origin, dest_lat, dest_lon, departure_time, mode, distance, duration, 
-                basket_category, citywide_type=None, value_of_time_rate=cn.VOT_RATE, place_name=None):
+    def __init__(self, origin, dest_lat, dest_lon, mode, distance, duration, 
+                basket_category, departure_time, citywide_type=None, value_of_time_rate=cn.VOT_RATE, place_name=None):
         """
         Input:
             origin: string (a block group ID)
