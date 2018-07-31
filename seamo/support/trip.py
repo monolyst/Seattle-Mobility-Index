@@ -75,7 +75,7 @@ class CarTrip(Trip):
     """
     def __init__(self, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time,
         duration_in_traffic=0, mile_rate=cn.AAA_RATE):
-        super().__init__(origin, dest_lat, dest_lon, 'car', distance, duration, basket_category, departure_time)
+        super().__init__(origin, dest_lat, dest_lon, cn.DRIVING_MODE, distance, duration, basket_category, departure_time)
         self.mile_rate = mile_rate
         self.cost_to_park = None
         self.parking_category = None
@@ -112,7 +112,7 @@ class CarTrip(Trip):
 
 class TransitTrip(Trip):
     def __init__(self, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time, fare_value):
-        super().__init__(origin, dest_lat, dest_lon, 'car', distance, duration, basket_category, departure_time)
+        super().__init__(origin, dest_lat, dest_lon, cn.TRANSIT_MODE, distance, duration, basket_category, departure_time)
         self.fare_value = self.get_fare_value(fare_value) 
         self.cost = None
 
@@ -133,7 +133,7 @@ class TransitTrip(Trip):
     
 class BikeTrip(Trip):
     def __init__(self, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time, bike_rate=cn.BIKE_RATE):
-        super().__init__(origin, dest_lat, dest_lon, 'car', distance, duration, basket_category, departure_time)
+        super().__init__(origin, dest_lat, dest_lon, cn.BIKING_MODE, distance, duration, basket_category, departure_time)
         self.bike_rate = bike_rate
         self.cost = None
 
@@ -147,7 +147,7 @@ class BikeTrip(Trip):
 
 class WalkTrip(Trip):
     def __init__(self, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time):
-        super().__init__(origin, dest_lat, dest_lon, 'car', distance, duration, basket_category, departure_time)
+        super().__init__(origin, dest_lat, dest_lon, cn.WALKING_MODE, distance, duration, basket_category, departure_time)
 
 
 
