@@ -48,7 +48,14 @@ class Coordinate:
 
     def set_parking_cost(self):
         parking_rates = pd.read_csv(cn.BLOCK_GROUP_PARKING_RATES_FP)
-        self.parking_cost = min(parking_rates.loc[parking_rates[cn.KEY] == self.block_group, cn.RATE])
+        try:
+            min(parking_rates.loc[parking_rates[cn.KEY] == self.block_group, cn.RATE])
+        except (KeyError, ValueError) as e:
+            #TODO: fix!
+            self.parking_cost = 0
+            # raise se.NotInSeattleError("No Parking Data Available")
+        else:
+            self.parking_cost = min(parking_rates.loc[parking_rates[cn.KEY] == self.block_group, cn.RATE])
         return self
 
 

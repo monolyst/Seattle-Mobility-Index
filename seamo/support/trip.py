@@ -7,7 +7,8 @@ import datetime as dt
 import support.seamo_exceptions as se
 import numpy as np
 
-    """ Trip base class.
+"""
+Trip base class.
 
     A trip is one of the base inputs for the Mobility Index. This class is created to facilitate
     the use of trips as units of analysis within the individual Index Calculators (Mode choice, affordability, reliability).
@@ -134,7 +135,7 @@ class CarTrip(Trip):
         sets cost of a car trip.
         """
         self.cost = self._calculate_cost(self.destination, self.duration, self.departure_time,
-            self.mile_rate, self.value_of_time_rate).
+            self.mile_rate, self.value_of_time_rate)
       
 
     def _calculate_car_duration(self, duration, duration_in_traffic=0):
