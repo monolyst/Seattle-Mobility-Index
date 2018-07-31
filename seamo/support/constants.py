@@ -129,11 +129,11 @@ EARTH_RADIUS_KM = 6373.0 # Approximate radius of Earth in km
 AAA_RATE = 0.56
 VOT_RATE = 14.10
 BIKE_RATE = 0.15
-CAR_TIME_THRESHOLD = 60 #minutes
-BIKE_TIME_THRESHOLD = 60 #minutes
+CAR_TIME_THRESHOLD = 15 #minutes
+BIKE_TIME_THRESHOLD = 25 #minutes
 TRANSIT_TIME_THRESHOLD = 60 #minutes
 WALK_TIME_THRESHOLD = 45 #minutes
-TRAVEL_HOURS = 12.0 #Total daily hours for which API calls are made
+TRAVEL_HOURS = 14.0 #Total daily hours for which API calls are made
 
 # API constants
 DIST_MATRIX_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?'

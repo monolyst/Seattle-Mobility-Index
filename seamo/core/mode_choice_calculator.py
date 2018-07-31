@@ -50,15 +50,16 @@ class ModeChoiceCalculator(IndexBase):
         # Need to convert departure time to date-time object
         departure_time = row[cn.DEPARTURE_TIME]
         
-        trip = {cn.DRIVING_MODE: CarTrip(origin, dest_lat, dest_lon, departure_time, distance,
-                                              duration, basket_category, duration_in_traffic=duration_in_traffic),
-        cn.TRANSIT_MODE: TransitTrip(origin, dest_lat, dest_lon, departure_time, distance, duration,
-                                          basket_category, fare_value=fare_value),
-        cn.BIKING_MODE: BikeTrip(origin, dest_lat, dest_lon, departure_time, distance, duration,
-                                      basket_category),
-        cn.WALKING_MODE: WalkTrip(origin, dest_lat, dest_lon, departure_time, distance, duration,
-                                       basket_category)}[mode]
 
+        # Create a subclass of Trip based on mode
+        trip = {cn.DRIVING_MODE: CarTrip(origin, dest_lat, dest_lon, distance,
+                                         duration, basket_category, departure_time, duration_in_traffic=duration_in_traffic),
+        cn.TRANSIT_MODE: TransitTrip(origin, dest_lat, dest_lon, distance, duration,
+                                     basket_category, departure_time, fare_value=fare_value),
+        cn.BIKING_MODE: BikeTrip(origin, dest_lat, dest_lon, distance, duration,
+                                 basket_category, departure_time),
+        cn.WALKING_MODE: WalkTrip(origin, dest_lat, dest_lon, distance, duration,
+                                  basket_category, departure_time)}[mode]
         return trip
 
 
@@ -135,16 +136,17 @@ class ModeChoiceCalculator(IndexBase):
 
         This function assumes that each Trip in trips has a viability attribute
         """
-        
         # Hours of data availability, HOURS constant should be float
-        mode_avail = sum([trip.viable for trip in trips])
+        scores = {}
+        for mode in [cn.DRIVING_MODE, cn.BIKING_MODE, cn.TRANSIT_MODE, cn.WALKING_MODE]:
+            mode_avail = sum([trip.viable for trip in trips if trip.mode == mode])
+            mode_index = mode_avail
+            if mode == cn.DRIVING_MODE or mode == cn.TRANSIT_MODE:
+                mode_index /= cn.TRAVEL_HOURS
+            mode_index /= cn.BASKET_SIZE
+            scores[mode] = mode_index
+        return scores 
         
-        # TODO: Update the calculation. We have different Trip types in trips.
-        # 
-        mode_index = mode_avail/cn.TRAVEL_HOURS #(?) name constant
-
-        return mode_index
-
 
     def create_availability_csv(self, blkgrp_dict):
         """
@@ -154,11 +156,16 @@ class ModeChoiceCalculator(IndexBase):
 
         """
         data = []
-        for blkgrp, trips in blkgrp_dict.items():
-            mode_index= calculate_mode_avail(trips)
-            row={ cn.BLOCK_GROUP: blkgrp, cn.MODE_CHOICE_INDEX: mode_index}
+        for blkgrp, trips in data_dict.items():
+            mode_scores = calculate_mode_avail(trips)
+            row = mode_scores
+            mode_index = sum(mode_scores.values()) / 4
+            row[cn.BLOCK_GROUP] =  blkgrp
+            row[cn.MODE_CHOICE_INDEX] = mode_index
             data.append(row)
-        df = pd.DataFrame(data)
-
-        df.to_csv(cn.MODE_CHOICE_FP)
+            
+        cols=[cn.BLOCK_GROUP, cn.DRIVING_MODE, cn.BIKING_MODE, cn.TRANSIT_MODE, cn.WALKING_MODE, cn.MODE_CHOICE_INDEX]
+        df = pd.DataFrame(data, columns=cols)
+        # df.to_csv(cn.MODE_CHOICE_FP)
+        return df
 
