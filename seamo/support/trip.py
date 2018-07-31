@@ -94,10 +94,12 @@ class CarTrip(Trip):
         self.cost = super()._calculate_base_cost(duration)
         try:
             destination.set_geocode()
-            parking_cost = pd.read_csv(cn.BLOCK_GROUP_PARKING_RATES_FP)
-            self.cost_to_park = min(parking_cost.loc[parking_cost[cn.KEY] == destination.block_group, cn.RATE])
-        except (se.NotInSeattleError, ValueError) as e:
+            # parking_cost = pd.read_csv(cn.BLOCK_GROUP_PARKING_RATES_FP)
+            # self.cost_to_park = min(parking_cost.loc[parking_cost[cn.KEY] == destination.block_group, cn.RATE])
+        except: #(se.NotInSeattleError, ValueError) as e:
             self.cost_to_park = 0
+        destination.set_parking_cost()
+        self.cost_to_park = destination.parking_cost
         # else
         # parking_cost = pd.read_csv(cn.BLOCK_GROUP_PARKING_RATES_FP)
         # try:

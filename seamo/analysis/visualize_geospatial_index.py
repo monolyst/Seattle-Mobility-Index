@@ -13,11 +13,14 @@ $ plot_map('column_name', file_name='file_name')
 
 import init
 import os
+import altair as alt
 import pandas as pd
 import geopandas as gpd
+import json
 import constants as cn
 import shapely.wkt
 import data_accessor as daq
+from coordinate import Coordinate
 
 colors = 9
 cmap = 'Blues'
@@ -31,8 +34,16 @@ def get_blockgroup_geometries():
     """
     try:
         daq.open_pickle(cn.PICKLE_DIR, cn.SEATTLE_BLOCK_GROUPS_PICKLE)
-    except:
-        df = pd.read_csv(cn.SEATTLE_BLOCK_GROUPS_FP, dtype={cn.KEY: str}).loc[:, (cn.KEY, cn.GEOMETRY)]
+    except FileNotFoundError:
+        df = pd.read_csv(cn.SEATTLE_BLOCK_GROUPS_FP, dtype={cn.KEY: str}).loc[:, (cn.KEY, cn.GEOMETRY, cn.LAT, cn.LON)]
+        df.drop([266], inplace=True)
+        df[cn.COORDINATE] = df.apply(lambda x: Coordinate(x.lat, x.lon).set_geocode(), axis=1)
+        df[cn.NBHD_SHORT] = df[cn.COORDINATE].apply(lambda x: x.neighborhood_short)
+        df[cn.NBHD_LONG] = df[cn.COORDINATE].apply(lambda x: x.neighborhood_long)
+        df[cn.COUNCIL_DISTRICT] = df[cn.COORDINATE].apply(lambda x: x.council_district)
+        df[cn.URBAN_VILLAGE] = df[cn.COORDINATE].apply(lambda x: x.urban_village)
+        df[cn.ZIPCODE] = df[cn.COORDINATE].apply(lambda x: x.zipcode)
+        df.drop(columns = [cn.COORDINATE, cn.LAT, cn.LON], inplace=True)
         df.geometry = df.geometry.apply(shapely.wkt.loads)
         gdf = gpd.GeoDataFrame(df, crs=cn.CRS_EPSG, geometry=cn.GEOMETRY)
         daq.make_pickle(cn.PICKLE_DIR, gdf, cn.SEATTLE_BLOCK_GROUPS_PICKLE)
@@ -59,10 +70,11 @@ def merge_data(df=None, file_name=None, processed_dir=cn.CSV_DIR):
     Outputs: dataframe
     """
     block_groups = get_blockgroup_geometries()
-    if df == None:
-        attribute = load_choropleth_attribute(file_name, processed_dir)
-    else:
+    if df is not None:
         attribute = df
+    else:
+        attribute = load_choropleth_attribute(file_name, processed_dir)
+    
     return block_groups.merge(attribute, on=cn.KEY, how='inner')
     
 
@@ -76,3 +88,31 @@ def plot_map(attribute_column, df=None, file_name=None, processed_dir=cn.CSV_DIR
     gdf = gpd.GeoDataFrame(df, crs=cn.CRS_EPSG, geometry=cn.GEOMETRY)
     gdf.plot(column=attribute_column, cmap=cmap, figsize=figsize, scheme='equal_interval',
         k=colors, categorical=True, legend=True)
+    
+def prepare_for_altair(df=None, file_name=None, processed_dir=cn.CSV_DIR):
+    df = merge_data(df, file_name, processed_dir)
+    gdf = gpd.GeoDataFrame(df, crs=cn.CRS_EPSG, geometry=cn.GEOMETRY)
+    json_gdf = gdf.to_json()
+    json_features = json.loads(json_gdf)
+    return alt.Data(values=json_features['features'])
+
+def plot_map_altair(df=None, file_name=None, processed_dir=cn.CSV_DIR):
+    data_geo = prepare_for_altair(df, file_name, processed_dir)
+    multi = alt.selection_multi()
+    return alt.Chart(data_geo).mark_geoshape(
+        fill='lightgray',
+        stroke='white'
+    ).properties(
+        projection={'type': 'mercator'},
+        width=300,
+        height=600,
+        selection=multi
+    ).encode(
+        color='properties.mode_index:Q',
+        tooltip=('properties.key:Q', 'properties.neighborhood_short:N',
+                 'properties.neighborhood_long:N', 'properties.seattle_city_council_district:N',
+                 'properties.urban_village:N', 'properties.zipcode:N', 'properties.mode_index:Q',
+                 'properties.driving:Q', 'properties.transit:Q', 
+                 'properties.bicycling:Q', 'properties.walking:Q')
+
+    )

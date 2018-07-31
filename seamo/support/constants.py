@@ -164,6 +164,7 @@ TYPE = 'type'
 RATING = 'rating'
 FARE = 'fare'
 BLOCK_GROUP_PARKING_RATES = 'BlockGroupParkingRates'
+COORDINATE = 'coordinate'
 
 # modes
 DRIVING_MODE = 'driving'

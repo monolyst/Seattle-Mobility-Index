@@ -1,4 +1,5 @@
 import init
+import pandas as pd
 from math import sin, cos, sqrt, atan2, radians
 from core import geocoder
 import constants as cn
@@ -20,6 +21,7 @@ class Coordinate:
         self.council_district = None
         self.urban_village = None
         self.zipcode = None
+        self.parking_cost = None
 
 
     def __str__(self):
@@ -33,8 +35,21 @@ class Coordinate:
     def set_geocode(self):
         try:
             self._geocode(self.lat, self.lon)
-        except ValueError:
-            raise se.NotInSeattleError("No Parking Data Available")
+        except KeyError:
+            #TODO: fix!
+            self.block_group = None
+            self.neighborhood_long = None
+            self.neighborhood_short = None
+            self.council_district = None
+            self.urban_village = None
+            self.zipcode = None
+            # raise se.NotInSeattleError("No Parking Data Available")
+        return self
+
+    def set_parking_cost(self):
+        parking_rates = pd.read_csv(cn.BLOCK_GROUP_PARKING_RATES_FP)
+        self.parking_cost = min(parking_rates.loc[parking_rates[cn.KEY] == self.block_group, cn.RATE])
+        return self
 
 
     def haversine_distance(self, coordinate):
