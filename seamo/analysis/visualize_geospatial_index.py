@@ -107,7 +107,7 @@ def plot_map_altair(df=None, file_name=None, processed_dir=cn.CSV_DIR):
         height=600,
         selection=multi
     ).encode(
-        color=alt.condition(multi, 'properties.mode_index:Q', alt.value('lightgray')),
+        color=alt.condition(multi, 'blue', 'properties.mode_index:Q'),
         tooltip=('properties.key:Q', 'properties.neighborhood_short:N',
                  'properties.neighborhood_long:N', 'properties.seattle_city_council_district:N',
                  'properties.urban_village:N', 'properties.zipcode:N', 'properties.mode_index:Q',
