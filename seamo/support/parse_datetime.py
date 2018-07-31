@@ -18,49 +18,43 @@ class ParseDatetime(object):
         """
         self.departure_time = departure_time
         self.duration = duration
-        self.time_interval = self._get_time(self.departure_time, self.duration)
-        self.day_type = self._get_day(self.departure_time, self.duration)
+        self.date_time = self._strip_milliseconds()
+        self.time = self.date_time.time()
+        self.date = self.date_time.date()
+        self.time_interval = self._get_time()
+        self.day_type = self._get_day()
         if parking:
-            self.parking_time_interval = self._get_parking_time(self.departure_time, self.duration)
+            self.parking_time_interval = self._get_parking_time()
 
 
-    def _get_time(self, departure_time, duration):
+    def _get_time(self):
         """
         This function classifies a given time within SDOTs time categories (MORNING, AFTERNOON, EVENING)
-        Inputs: departure_time (string), duration (float)
         Outputs: time_interval (string)
         """
-        date_time = parser.parse(departure_time) + dt.timedelta(minutes=float(duration))
-        time = date_time.time()
-        return self._get_interval(time, cn.MORNING_START, cn.MORNING_END, cn.AFTERNOON_START,
+        return self._get_interval(self.time, cn.MORNING_START, cn.MORNING_END, cn.AFTERNOON_START,
             cn.AFTERNOON_END, cn.EVENING_START, cn.EVENING_END)
 
 
-    def _get_day(self, departure_time):
+    def _get_day(self):
         """
         Takes in a date_time + trip duration and classifies as WEEKDAY or WEEKEND
-        Inputs: departure_time (string), duration (duration)
         Outputs: day_type 
         """
-        date_time = parser.parse(departure_time) + dt.timedelta(minutes=float(duration))
-        date = date_time.date()
-        if date.weekday() < cn.SATURDAY:
+        if self.date.weekday() < cn.SATURDAY:
             day_type = cn.WEEKDAY
         else:
             day_type = cn.WEEKEND
         return day_type
 
 
-    def _get_parking_time_interval(self, departure_time, duration=0):
+    def _get_parking_time_interval(self):
         """
         Takes in a date_time + trip duration and classifies within SDOT's parking
         time intervals (for parking fee rates)
-        Inputs: departure_time (string), duration (float)
         Outputs: time_interval
         """
-        date_time = parser.parse(departure_time) + dt.timedelta(minutes=float(duration))
-        time = date_time.time()
-        return self._get_interval(time, cn.PARKING_MORNING_START, cn.PARKING_MORNING_END,
+        return self._get_interval(self.time, cn.PARKING_MORNING_START, cn.PARKING_MORNING_END,
             cn.PARKING_AFTERNOON_START, cn.PARKING_AFTERNOON_END, cn.PARKING_EVENING_START,
             cn.PARKING_EVENING_END)
 
@@ -83,32 +77,11 @@ class ParseDatetime(object):
         return time_frame
 
 
-    def _strip_milliseconds(self, departure_time, duration=0):
+    def _strip_milliseconds(self):
         """
         This method removed milliseconds from datetime object.
         Inputs: departure time, duration
         Outputs: datetime object
         """
-        date_time = parser.parse(departure_time) + dt.timedelta(minutes=float(duration))
+        date_time = parser.parse(self.departure_time) + dt.timedelta(minutes=float(self.duration))
         return date_time.replace(microsecond=0)
-
-    def get_time(self, departure_time, duration=0):
-        """
-        This gets time datetime object.
-        Inputs: departure time, duration
-        Outputs: datetime time object
-        """ 
-        return self._strip_milliseconds(departure_time, duration).time()
-
-
-    def get_date(self, departure_time, duration=0):
-        """
-        This gets day datetime object.
-        Inputs: departure time, duration
-        Outputs: datetime day object
-        """ 
-        return self._strip_milliseconds(departure_time, duration).date()
-    
-
-
-        
