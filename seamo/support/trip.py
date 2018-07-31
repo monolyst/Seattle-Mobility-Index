@@ -12,7 +12,7 @@ Base Trip Class
 """
 class Trip(object):
     def __init__(self, origin, dest_lat, dest_lon, departure_time, mode, distance, duration, 
-                basket_category, citywide_type=None, value_of_time_rate=cn.VOT_RATE):
+                basket_category, citywide_type=None, value_of_time_rate=cn.VOT_RATE, place_name=None):
         """
         Input:
             origin: string (a block group ID)
@@ -28,6 +28,7 @@ class Trip(object):
         self.basket_category = basket_category
         self.citywide_type = citywide_type
         self.value_of_time_rate = cn.VOT_RATE
+        self.place_name = place_name
         self.cost = None
         self.persona = None
         self.time_of_day = None
