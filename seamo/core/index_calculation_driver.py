@@ -27,9 +27,6 @@ print(trips_per_blockgroup)
 # block_cost_df = ac.create_blockgroup_cost_df()
 # print(block_cost_df.head())
 
-#calculate affordability index score
-<<<<<<< HEAD
+#calculate affordability index scores
 # block_cost_index = ac.calculate_score(trips_per_blockgroup)
-=======
-block_cost_index = ac.calculate_score(trips_per_blockgroup)
->>>>>>> dfd8eba819795205ddc73a83682ac107c516504e
+

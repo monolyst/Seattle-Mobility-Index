@@ -83,4 +83,32 @@ class ParseDatetime(object):
         return time_frame
 
 
+    def _strip_milliseconds(self, departure_time, duration=0):
+        """
+        This method removed milliseconds from datetime object.
+        Inputs: departure time, duration
+        Outputs: datetime object
+        """
+        date_time = parser.parse(departure_time) + dt.timedelta(minutes=float(duration))
+        return date_time.replace(microsecond=0)
+
+    def get_time(self, departure_time, duration=0):
+        """
+        This gets time datetime object.
+        Inputs: departure time, duration
+        Outputs: datetime time object
+        """ 
+        return self._strip_milliseconds(departure_time, duration).time()
+
+
+    def get_date(self, departure_time, duration=0):
+        """
+        This gets day datetime object.
+        Inputs: departure time, duration
+        Outputs: datetime day object
+        """ 
+        return self._strip_milliseconds(departure_time, duration).date()
+    
+
+
         
