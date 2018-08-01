@@ -52,7 +52,7 @@ class AffordabilityIndex(IndexBase):
         income = income[income['Year'] == 2016].loc[:, (cn.INCOME_BLOCKGROUP, cn.MEDIAN_HOUSEHOLD_INCOME)]
         # income.loc[income[cn.INCOME_BLOCKGROUP] == '530330111024', :]
 
-        blkgrp_mode_cost_df = block_cost_df        
+        blkgrp_mode_cost_df = self.create_avg_blockgroup_cost_df()        
         blkgrp_mode_cost_df[cn.ADJUSTED_FOR_INCOME] = blkgrp_mode_cost_df.apply(lambda x: (x[cn.COST] /
             float(income.loc[income[cn.INCOME_BLOCKGROUP] == x[cn.KEY], cn.MEDIAN_HOUSEHOLD_INCOME])), axis=1)
 #         # normalization
