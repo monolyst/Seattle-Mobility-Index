@@ -158,11 +158,11 @@ class ModeChoiceCalculator(IndexBase):
         return scores 
         
 
-    def create_availability_csv(self, blkgrp_dict):
+    def create_availability_df(self, blkgrp_dict):
         """
         Takes in a blockgroup dictionary where blokgroups are keys and list of trips from
         that blockgroups are corresponding values, estimates the availability score for each blockroup
-        and returns the csv with each block group's mobility score.
+        and returns dataframe with each block group's mobility score.
 
         """
         data = []
