@@ -1,17 +1,12 @@
 import init
 import os
 import constants as cn 
-from trip import Trip
 from mode_choice_calculator import ModeChoiceCalculator
 from affordability_index import AffordabilityIndex
 import data_accessor as daq
-import time
-
-import os
 import pandas as pd
 
 mc = ModeChoiceCalculator()
-start = time.time()
 try:
     daq.open_pickle(cn.PICKLE_DIR, 'mode_choice_calc.pickle')
 except:
@@ -34,10 +29,6 @@ ac = AffordabilityIndex(trips_per_blockgroup)
 # # import pdb; pdb.set_trace()
 block_cost_df = ac.create_avg_blockgroup_cost_df()
 print(block_cost_df.head())
-
-end = time.time()
-
-print(end-start, 'seconds')
 
 #calculate affordability index scores
 # block_cost_index = ac.calculate_score(trips_per_blockgroup)

@@ -134,6 +134,7 @@ BIKE_TIME_THRESHOLD = 25 #minutes
 TRANSIT_TIME_THRESHOLD = 60 #minutes
 WALK_TIME_THRESHOLD = 45 #minutes
 TRAVEL_HOURS = 14.0 #Total daily hours for which API calls are made
+PARKING_TIME_OFFSET = 9
 
 # API constants
 DIST_MATRIX_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?'

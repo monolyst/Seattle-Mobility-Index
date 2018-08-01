@@ -29,7 +29,7 @@ PARKING_COST = 3.0
 
 geo = geocoder.Geocoder()
 # (47.51008433, -122.3805399)
-decoded = geo.geocode_point((47.67250204, -122.3396924))
+decoded = geo.geocode_point((47.6145, -122.3210))
 # # decoded1 = decoded = geo.geocode_point((-122.3210, 47.6145))
 print(decoded)
 # print(decoded)

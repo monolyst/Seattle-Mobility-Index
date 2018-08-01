@@ -430,7 +430,7 @@
           <field>[COUNTY_STR]</field>
         </drill-path>
       </drill-paths>
-      <layout dim-ordering='alphabetic' dim-percentage='0.555851' measure-ordering='alphabetic' measure-percentage='0.444149' show-structure='true' />
+      <layout dim-ordering='alphabetic' dim-percentage='0.566731' measure-ordering='alphabetic' measure-percentage='0.433269' show-structure='true' />
       <semantic-values>
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
@@ -686,7 +686,7 @@
         </metadata-records>
       </connection>
       <aliases enabled='yes' />
-      <column datatype='integer' name='[Mode Index (bin)]' role='dimension' type='quantitative'>
+      <column aggregation='None' datatype='integer' name='[Mode Index (bin)]' role='dimension' type='quantitative'>
         <calculation class='bin' decimals='-2' formula='[mode_index]' peg='0' size='0.0189' />
       </column>
       <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
@@ -913,7 +913,7 @@
           </metadata-records>
         </connection>
       </extract>
-      <layout dim-ordering='alphabetic' dim-percentage='0.482713' measure-ordering='alphabetic' measure-percentage='0.517287' show-structure='true' />
+      <layout dim-ordering='alphabetic' dim-percentage='0.483366' measure-ordering='alphabetic' measure-percentage='0.516634' show-structure='true' />
       <semantic-values>
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
@@ -938,33 +938,58 @@
     <mapsource name='Tableau' />
   </mapsources>
   <actions>
-    <action caption='Filter 1 (generated)' name='[Action1]'>
+    <action caption='Filter1' name='[Action1]'>
       <activation auto-clear='true' type='on-select' />
-      <source dashboard='Dashboard 2' type='sheet' worksheet='Sheet 2' />
+      <source dashboard='Mode Choice' type='sheet' worksheet='Map' />
       <command command='tsc:tsl-filter'>
+        <param name='exclude' value='Map' />
         <param name='special-fields' value='all' />
-        <param name='target' value='Dashboard 2' />
-      </command>
-    </action>
-    <action caption='Filter 2 (generated)' name='[Action2]'>
-      <activation auto-clear='true' type='on-select' />
-      <source dashboard='Dashboard 2' type='sheet' worksheet='Sheet 3' />
-      <command command='tsc:tsl-filter'>
-        <param name='special-fields' value='all' />
-        <param name='target' value='Dashboard 2' />
-      </command>
-    </action>
-    <action caption='Filter 3 (generated)' name='[Action3]'>
-      <activation auto-clear='true' type='on-select' />
-      <source dashboard='Dashboard 2' type='sheet' worksheet='Sheet 1' />
-      <command command='tsc:tsl-filter'>
-        <param name='special-fields' value='all' />
-        <param name='target' value='Dashboard 2' />
+        <param name='target' value='Mode Choice' />
       </command>
     </action>
   </actions>
   <worksheets>
-    <worksheet name='Sheet 1'>
+    <worksheet name='Histogram'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='sample_mode_choice' name='federated.0e94e350s9c7rr11dosgf1knyyk7' />
+            <datasource caption='blkgrp10_shore' name='federated.0lmns770vhc9ru12ddwwj05d8vhg' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0e94e350s9c7rr11dosgf1knyyk7'>
+            <column aggregation='None' datatype='integer' name='[Mode Index (bin)]' role='dimension' type='quantitative'>
+              <calculation class='bin' decimals='-2' formula='[mode_index]' peg='0' size='0.0189' />
+            </column>
+            <column-instance column='[mode_index]' derivation='Count' name='[cnt:mode_index:qk]' pivot='key' type='quantitative' />
+            <column caption='Mode Index' datatype='real' name='[mode_index]' role='measure' type='quantitative' />
+            <column-instance column='[Mode Index (bin)]' derivation='None' name='[none:Mode Index (bin):qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <datasource-dependencies datasource='federated.0lmns770vhc9ru12ddwwj05d8vhg'>
+            <column caption='Geo Id Grp' datatype='string' name='[GEO_ID_GRP]' role='dimension' type='nominal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <mark-sizing custom-mark-size-in-axis-units='1.0' mark-alignment='mark-alignment-left' mark-sizing-setting='marks-scaling-on' use-custom-mark-size='false' />
+          </pane>
+        </panes>
+        <rows>[federated.0e94e350s9c7rr11dosgf1knyyk7].[cnt:mode_index:qk]</rows>
+        <cols>[federated.0e94e350s9c7rr11dosgf1knyyk7].[none:Mode Index (bin):qk]</cols>
+        <join-lod-include-overrides>
+          <column>[federated.0lmns770vhc9ru12ddwwj05d8vhg].[GEO_ID_GRP]</column>
+        </join-lod-include-overrides>
+        <show-full-range>
+          <column>[federated.0e94e350s9c7rr11dosgf1knyyk7].[Mode Index (bin)]</column>
+        </show-full-range>
+      </table>
+    </worksheet>
+    <worksheet name='Map'>
       <layout-options>
         <title>
           <formatted-text>
@@ -982,7 +1007,6 @@
             <mapsource name='Tableau' />
           </mapsources>
           <datasource-dependencies datasource='federated.0e94e350s9c7rr11dosgf1knyyk7'>
-            <column-instance column='[block_group]' derivation='Attribute' name='[attr:block_group:nk]' pivot='key' type='nominal' />
             <column-instance column='[neighborhood_short]' derivation='Attribute' name='[attr:neighborhood_short:nk]' pivot='key' type='nominal' />
             <column-instance column='[seattle_city_council_district]' derivation='Attribute' name='[attr:seattle_city_council_district:nk]' pivot='key' type='nominal' />
             <column-instance column='[urban_village]' derivation='Attribute' name='[attr:urban_village:nk]' pivot='key' type='nominal' />
@@ -1007,7 +1031,6 @@
             <column caption='Zipcode' datatype='real' default-format='*00000' name='[zipcode]' role='dimension' semantic-role='[ZipCode].[Name]' type='ordinal' />
           </datasource-dependencies>
           <datasource-dependencies datasource='federated.0lmns770vhc9ru12ddwwj05d8vhg'>
-            <column caption='Geo Id Grp' datatype='string' name='[GEO_ID_GRP]' role='dimension' type='nominal' />
             <column datatype='spatial' name='[Geometry]' role='measure' type='nominal' />
             <column-instance column='[Geometry]' derivation='Collect' name='[clct:Geometry:nk]' pivot='key' type='nominal' />
           </datasource-dependencies>
@@ -1017,19 +1040,15 @@
               <groupfilter function='member' level='[none:key:nk]' member='%null%' />
             </groupfilter>
           </filter>
-          <filter class='categorical' column='[federated.0lmns770vhc9ru12ddwwj05d8vhg].[Action (Geo Id Grp)]'>
-            <groupfilter function='level-members' level='[GEO_ID_GRP]' user:ui-action-filter='[Action4]' user:ui-enumeration='all' user:ui-marker='enumerate' />
-          </filter>
           <slices>
             <column>[federated.0e94e350s9c7rr11dosgf1knyyk7].[none:key:nk]</column>
-            <column>[federated.0lmns770vhc9ru12ddwwj05d8vhg].[Action (Geo Id Grp)]</column>
           </slices>
           <aggregation value='true' />
         </view>
         <style>
           <style-rule element='axis'>
-            <encoding attr='space' class='0' field='[federated.0lmns770vhc9ru12ddwwj05d8vhg].[Longitude (generated)]' field-type='quantitative' max='-13602361.063570185' min='-13633450.819074808' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
-            <encoding attr='space' class='0' field='[federated.0lmns770vhc9ru12ddwwj05d8vhg].[Latitude (generated)]' field-type='quantitative' max='6063915.9304586947' min='6022076.7149762828' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+            <encoding attr='space' class='0' field='[federated.0lmns770vhc9ru12ddwwj05d8vhg].[Longitude (generated)]' field-type='quantitative' max='-13596924.949510237' min='-13637589.448557952' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.0lmns770vhc9ru12ddwwj05d8vhg].[Latitude (generated)]' field-type='quantitative' max='6070254.9561658194' min='6020570.8877804549' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
           </style-rule>
           <style-rule element='mark'>
             <encoding attr='color' field='[federated.0e94e350s9c7rr11dosgf1knyyk7].[sum:mode_index:qk]' num-steps='5' palette='red_green_gold_diverging_10_0' reverse='true' type='interpolated' />
@@ -1078,10 +1097,8 @@
               <tooltip column='[federated.0e94e350s9c7rr11dosgf1knyyk7].[sum:driving:qk]' />
               <tooltip column='[federated.0e94e350s9c7rr11dosgf1knyyk7].[sum:transit:qk]' />
               <tooltip column='[federated.0e94e350s9c7rr11dosgf1knyyk7].[sum:bicycling:qk]' />
-              <tooltip column='[federated.0e94e350s9c7rr11dosgf1knyyk7].[attr:block_group:nk]' />
               <lod column='[federated.0e94e350s9c7rr11dosgf1knyyk7].[sum:walking:qk]' />
               <lod column='[federated.0e94e350s9c7rr11dosgf1knyyk7].[none:block_group:nk]' />
-              <lod column='[federated.0e94e350s9c7rr11dosgf1knyyk7].[none:key:nk]' />
               <geometry column='[federated.0lmns770vhc9ru12ddwwj05d8vhg].[clct:Geometry:nk]' />
             </encodings>
             <style>
@@ -1098,36 +1115,28 @@
         <tooltip-style tooltip-mode='sticky' />
       </table>
     </worksheet>
-    <worksheet name='Sheet 2'>
+    <worksheet name='Sheet 4'>
       <table>
         <view>
           <datasources>
             <datasource caption='sample_mode_choice' name='federated.0e94e350s9c7rr11dosgf1knyyk7' />
-            <datasource caption='blkgrp10_shore' name='federated.0lmns770vhc9ru12ddwwj05d8vhg' />
           </datasources>
           <datasource-dependencies datasource='federated.0e94e350s9c7rr11dosgf1knyyk7'>
-            <column datatype='integer' name='[Mode Index (bin)]' role='dimension' type='quantitative'>
+            <column aggregation='None' datatype='integer' name='[Mode Index (bin)]' role='dimension' type='quantitative'>
               <calculation class='bin' decimals='-2' formula='[mode_index]' peg='0' size='0.0189' />
             </column>
-            <column-instance column='[mode_index]' derivation='Count' name='[cnt:mode_index:qk]' pivot='key' type='quantitative' />
+            <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+              <calculation class='tableau' formula='1' />
+            </column>
             <column caption='Mode Index' datatype='real' name='[mode_index]' role='measure' type='quantitative' />
-            <column-instance column='[Mode Index (bin)]' derivation='None' name='[none:Mode Index (bin):ok]' pivot='key' type='ordinal' />
             <column-instance column='[Mode Index (bin)]' derivation='None' name='[none:Mode Index (bin):qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Number of Records]' derivation='Sum' name='[sum:Number of Records:qk]' pivot='key' type='quantitative' />
           </datasource-dependencies>
-          <datasource-dependencies datasource='federated.0lmns770vhc9ru12ddwwj05d8vhg'>
-            <column caption='Geo Id Grp' datatype='string' name='[GEO_ID_GRP]' role='dimension' type='nominal' />
-          </datasource-dependencies>
-          <filter class='categorical' column='[federated.0e94e350s9c7rr11dosgf1knyyk7].[Action (Mode Index (bin))]'>
-            <groupfilter function='level-members' level='[none:Mode Index (bin):ok]' user:ui-action-filter='[Action4]' user:ui-enumeration='all' user:ui-marker='enumerate' />
-          </filter>
-          <slices>
-            <column>[federated.0e94e350s9c7rr11dosgf1knyyk7].[Action (Mode Index (bin))]</column>
-          </slices>
           <aggregation value='true' />
         </view>
         <style />
         <panes>
-          <pane selection-relaxation-option='selection-relaxation-allow'>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow'>
             <view>
               <breakdown value='auto' />
             </view>
@@ -1135,30 +1144,20 @@
             <mark-sizing custom-mark-size-in-axis-units='1.0' mark-alignment='mark-alignment-left' mark-sizing-setting='marks-scaling-on' use-custom-mark-size='false' />
           </pane>
         </panes>
-        <rows>[federated.0e94e350s9c7rr11dosgf1knyyk7].[cnt:mode_index:qk]</rows>
+        <rows>[federated.0e94e350s9c7rr11dosgf1knyyk7].[sum:Number of Records:qk]</rows>
         <cols>[federated.0e94e350s9c7rr11dosgf1knyyk7].[none:Mode Index (bin):qk]</cols>
-        <join-lod-include-overrides>
-          <column>[federated.0lmns770vhc9ru12ddwwj05d8vhg].[GEO_ID_GRP]</column>
-        </join-lod-include-overrides>
-        <show-full-range>
-          <column>[federated.0e94e350s9c7rr11dosgf1knyyk7].[Mode Index (bin)]</column>
-        </show-full-range>
       </table>
     </worksheet>
-    <worksheet name='Sheet 3'>
+    <worksheet name='Stats'>
       <table>
         <view>
           <datasources>
             <datasource caption='sample_mode_choice' name='federated.0e94e350s9c7rr11dosgf1knyyk7' />
           </datasources>
           <datasource-dependencies datasource='federated.0e94e350s9c7rr11dosgf1knyyk7'>
-            <column datatype='integer' name='[Mode Index (bin)]' role='dimension' type='quantitative'>
-              <calculation class='bin' decimals='-2' formula='[mode_index]' peg='0' size='0.0189' />
-            </column>
             <column-instance column='[mode_index]' derivation='Avg' name='[avg:mode_index:qk]' pivot='key' type='quantitative' />
             <column-instance column='[mode_index]' derivation='Median' name='[med:mode_index:qk]' pivot='key' type='quantitative' />
             <column caption='Mode Index' datatype='real' name='[mode_index]' role='measure' type='quantitative' />
-            <column-instance column='[Mode Index (bin)]' derivation='None' name='[none:Mode Index (bin):ok]' pivot='key' type='ordinal' />
           </datasource-dependencies>
           <filter class='categorical' column='[federated.0e94e350s9c7rr11dosgf1knyyk7].[:Measure Names]'>
             <groupfilter function='union' user:op='manual'>
@@ -1166,11 +1165,7 @@
               <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0e94e350s9c7rr11dosgf1knyyk7].[med:mode_index:qk]&quot;' />
             </groupfilter>
           </filter>
-          <filter class='categorical' column='[federated.0e94e350s9c7rr11dosgf1knyyk7].[Action (Mode Index (bin))]'>
-            <groupfilter function='level-members' level='[none:Mode Index (bin):ok]' user:ui-action-filter='[Action1]' user:ui-enumeration='all' user:ui-marker='enumerate' />
-          </filter>
           <slices>
-            <column>[federated.0e94e350s9c7rr11dosgf1knyyk7].[Action (Mode Index (bin))]</column>
             <column>[federated.0e94e350s9c7rr11dosgf1knyyk7].[:Measure Names]</column>
           </slices>
           <aggregation value='true' />
@@ -1200,54 +1195,16 @@
         <cols />
       </table>
     </worksheet>
-    <worksheet name='Sheet 4'>
-      <table>
-        <view>
-          <datasources>
-            <datasource caption='sample_mode_choice' name='federated.0e94e350s9c7rr11dosgf1knyyk7' />
-          </datasources>
-          <datasource-dependencies datasource='federated.0e94e350s9c7rr11dosgf1knyyk7'>
-            <column datatype='integer' name='[Mode Index (bin)]' role='dimension' type='quantitative'>
-              <calculation class='bin' decimals='-2' formula='[mode_index]' peg='0' size='0.0189' />
-            </column>
-            <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
-              <calculation class='tableau' formula='1' />
-            </column>
-            <column caption='Mode Index' datatype='real' name='[mode_index]' role='measure' type='quantitative' />
-            <column-instance column='[Mode Index (bin)]' derivation='None' name='[none:Mode Index (bin):qk]' pivot='key' type='quantitative' />
-            <column-instance column='[Number of Records]' derivation='Sum' name='[sum:Number of Records:qk]' pivot='key' type='quantitative' />
-          </datasource-dependencies>
-          <aggregation value='true' />
-        </view>
-        <style />
-        <panes>
-          <pane id='1' selection-relaxation-option='selection-relaxation-allow'>
-            <view>
-              <breakdown value='auto' />
-            </view>
-            <mark class='Automatic' />
-            <mark-sizing custom-mark-size-in-axis-units='1.0' mark-alignment='mark-alignment-left' mark-sizing-setting='marks-scaling-on' use-custom-mark-size='false' />
-          </pane>
-        </panes>
-        <rows>[federated.0e94e350s9c7rr11dosgf1knyyk7].[sum:Number of Records:qk]</rows>
-        <cols>[federated.0e94e350s9c7rr11dosgf1knyyk7].[none:Mode Index (bin):qk]</cols>
-      </table>
-    </worksheet>
   </worksheets>
   <dashboards>
-    <dashboard name='Dashboard 1'>
-      <style />
-      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
-      <zones />
-    </dashboard>
-    <dashboard name='Dashboard 2'>
+    <dashboard name='Mode Choice'>
       <style />
       <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
       <zones>
         <zone h='100000' id='2' type='layout-basic' w='100000' x='0' y='0'>
           <zone h='98000' id='5' param='horz' type='layout-flow' w='98400' x='800' y='1000'>
             <zone h='98000' id='3' type='layout-basic' w='98400' x='800' y='1000'>
-              <zone h='88625' id='1' name='Sheet 1' w='49200' x='800' y='1000'>
+              <zone h='88625' id='1' name='Map' w='54100' x='800' y='1000'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -1255,7 +1212,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='9375' id='6' name='Sheet 1' pane-specification-id='0' param='[federated.0e94e350s9c7rr11dosgf1knyyk7].[sum:mode_index:qk]' type='color' w='49200' x='800' y='89625'>
+              <zone h='9375' id='6' name='Map' pane-specification-id='0' param='[federated.0e94e350s9c7rr11dosgf1knyyk7].[sum:mode_index:qk]' type='color' w='54100' x='800' y='89625'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -1263,7 +1220,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='43000' id='7' name='Sheet 2' w='49200' x='50000' y='1000'>
+              <zone h='43000' id='7' name='Histogram' w='44300' x='54900' y='1000'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -1271,7 +1228,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='55000' id='9' name='Sheet 3' w='49200' x='50000' y='44000'>
+              <zone h='55000' id='9' name='Stats' w='44300' x='54900' y='44000'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -1292,7 +1249,7 @@
     </dashboard>
   </dashboards>
   <windows saved-dpi-scale-factor='1.25' source-height='63'>
-    <window class='worksheet' name='Sheet 1'>
+    <window class='worksheet' maximized='true' name='Map'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -1319,7 +1276,7 @@
         </edge>
       </cards>
     </window>
-    <window class='worksheet' name='Sheet 2'>
+    <window class='worksheet' name='Histogram'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -1341,23 +1298,7 @@
         </edge>
       </cards>
     </window>
-    <window class='dashboard' name='Dashboard 1'>
-      <viewpoints />
-      <active id='-1' />
-    </window>
-    <window class='dashboard' maximized='true' name='Dashboard 2'>
-      <viewpoints>
-        <viewpoint name='Sheet 1'>
-          <zoom type='entire-view' />
-        </viewpoint>
-        <viewpoint name='Sheet 2'>
-          <zoom type='entire-view' />
-        </viewpoint>
-        <viewpoint name='Sheet 3' />
-      </viewpoints>
-      <active id='1' />
-    </window>
-    <window class='worksheet' name='Sheet 3'>
+    <window class='worksheet' name='Stats'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -1401,6 +1342,18 @@
           </strip>
         </edge>
       </cards>
+    </window>
+    <window class='dashboard' name='Mode Choice'>
+      <viewpoints>
+        <viewpoint name='Histogram'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Map'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Stats' />
+      </viewpoints>
+      <active id='1' />
     </window>
   </windows>
 </workbook>
