@@ -31,9 +31,9 @@ def write_to_csv(df, output_file, processed_dir=cn.CSV_DIR):
 
 
 
-def make_pickle(processed_dir, reference, pickle_name):
+def make_pickle(processed_dir, df, pickle_name):
     with open(os.path.join(processed_dir, str(pickle_name)), 'wb') as pickle_file:
-        pickle.dump(reference, pickle_file)
+        pickle.dump(df, pickle_file)
 
 
 def open_pickle(processed_dir, pickle_name):

@@ -1028,8 +1028,8 @@
         </view>
         <style>
           <style-rule element='axis'>
-            <encoding attr='space' class='0' field='[federated.0lmns770vhc9ru12ddwwj05d8vhg].[Longitude (generated)]' field-type='quantitative' max='-13606483.619769631' min='-13628421.046887474' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
-            <encoding attr='space' class='0' field='[federated.0lmns770vhc9ru12ddwwj05d8vhg].[Latitude (generated)]' field-type='quantitative' max='6059608.8199629439' min='6030085.0177877955' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+            <encoding attr='space' class='0' field='[federated.0lmns770vhc9ru12ddwwj05d8vhg].[Longitude (generated)]' field-type='quantitative' max='-13602361.063570185' min='-13633450.819074808' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.0lmns770vhc9ru12ddwwj05d8vhg].[Latitude (generated)]' field-type='quantitative' max='6063915.9304586947' min='6022076.7149762828' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
           </style-rule>
           <style-rule element='mark'>
             <encoding attr='color' field='[federated.0e94e350s9c7rr11dosgf1knyyk7].[sum:mode_index:qk]' num-steps='5' palette='red_green_gold_diverging_10_0' reverse='true' type='interpolated' />
@@ -1345,7 +1345,7 @@
       <viewpoints />
       <active id='-1' />
     </window>
-    <window class='dashboard' name='Dashboard 2'>
+    <window class='dashboard' maximized='true' name='Dashboard 2'>
       <viewpoints>
         <viewpoint name='Sheet 1'>
           <zoom type='entire-view' />
@@ -1355,9 +1355,9 @@
         </viewpoint>
         <viewpoint name='Sheet 3' />
       </viewpoints>
-      <active id='9' />
+      <active id='1' />
     </window>
-    <window class='worksheet' maximized='true' name='Sheet 3'>
+    <window class='worksheet' name='Sheet 3'>
       <cards>
         <edge name='left'>
           <strip size='160'>

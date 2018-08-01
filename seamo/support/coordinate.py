@@ -47,6 +47,7 @@ class Coordinate:
         return self
 
     def set_parking_cost(self):
+        self.set_geocode()
         parking_rates = pd.read_csv(cn.BLOCK_GROUP_PARKING_RATES_FP)
         try:
             min(parking_rates.loc[parking_rates[cn.KEY] == self.block_group, cn.RATE])

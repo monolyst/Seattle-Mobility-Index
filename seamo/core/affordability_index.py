@@ -27,7 +27,7 @@ class AffordabilityIndex(IndexBase):
         Inputs: None
         Outputs: Dataframe, columns: key, cost
         """
-        result_df = pd.DataFrame({cn.KEY: [], cn.COST: []})
+        result_data = []#pd.DataFrame({cn.KEY: [], cn.COST: []})
         for key, values in self.viable_modes.items():
             blkgrp = str(key)
             num_trips = len(values)
@@ -36,10 +36,12 @@ class AffordabilityIndex(IndexBase):
             for trip in values:
                 trip.set_cost()
                 cost += trip.cost
+                # cost += 2
             cost /= num_trips
             # print(pd.DataFrame({cn.BLOCK_GROUP: [key], cn.COST: [cost]}))
-            result_df = result_df.append(pd.DataFrame({cn.KEY: [key], cn.COST: [cost]}))
-        return result_df
+            result_data.append({cn.KEY: [key], cn.COST: [cost]})
+            # result_df = result_df.append(pd.DataFrame({cn.KEY: [key], cn.COST: [cost]}))
+        return pd.DataFrame(result_data)
 
 
 

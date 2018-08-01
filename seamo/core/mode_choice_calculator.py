@@ -42,8 +42,18 @@ class ModeChoiceCalculator(IndexBase):
 
         distance = row[cn.DISTANCE]
         duration = row[cn.DURATION]
-        duration_in_traffic = row[cn.DURATION_IN_TRAFFIC]
-        fare_value = row[cn.FARE_VALUE]
+        try:
+            row[cn.DURATION_IN_TRAFFIC]
+        except:
+            duration_in_traffic = 0
+        else:
+            duration_in_traffic = row[cn.DURATION_IN_TRAFFIC]
+        try:
+            row[cn.FARE_VALUE]
+        except:
+            fare_value = 0
+        else:
+            fare_value = row[cn.FARE_VALUE]
 
         basket_category = None
 
