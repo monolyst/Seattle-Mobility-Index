@@ -1047,8 +1047,8 @@
         </view>
         <style>
           <style-rule element='axis'>
-            <encoding attr='space' class='0' field='[federated.0lmns770vhc9ru12ddwwj05d8vhg].[Longitude (generated)]' field-type='quantitative' max='-13530504.833965978' min='-13692225.303947801' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
-            <encoding attr='space' class='0' field='[federated.0lmns770vhc9ru12ddwwj05d8vhg].[Latitude (generated)]' field-type='quantitative' max='6102265.6011603847' min='5988068.6809023321' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+            <encoding attr='space' class='0' field='[federated.0lmns770vhc9ru12ddwwj05d8vhg].[Longitude (generated)]' field-type='quantitative' max='-13601396.071267907' min='-13635639.859939665' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.0lmns770vhc9ru12ddwwj05d8vhg].[Latitude (generated)]' field-type='quantitative' max='6063962.6039865352' min='6022123.3885041233' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
           </style-rule>
           <style-rule element='mark'>
             <encoding attr='color' field='[federated.0e94e350s9c7rr11dosgf1knyyk7].[sum:mode_index:qk]' num-steps='5' palette='red_green_gold_diverging_10_0' reverse='true' type='interpolated' />
@@ -1249,7 +1249,7 @@
     </dashboard>
   </dashboards>
   <windows saved-dpi-scale-factor='1.25' source-height='63'>
-    <window class='worksheet' maximized='true' name='Map'>
+    <window class='worksheet' name='Map'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -1343,7 +1343,7 @@
         </edge>
       </cards>
     </window>
-    <window class='dashboard' name='Mode Choice'>
+    <window class='dashboard' maximized='true' name='Mode Choice'>
       <viewpoints>
         <viewpoint name='Histogram'>
           <zoom type='entire-view' />
