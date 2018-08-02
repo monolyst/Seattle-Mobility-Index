@@ -166,8 +166,8 @@ class ModeChoiceCalculator(IndexBase):
 
         """
         data = []
-        for blkgrp, trips in data_dict.items():
-            mode_scores = calculate_mode_avail(trips)
+        for blkgrp, trips in blkgrp_dict.items():
+            mode_scores = self.calculate_mode_avail(trips)
             row = mode_scores
             mode_index = sum(mode_scores.values()) / 4
             row[cn.BLOCK_GROUP] =  blkgrp
