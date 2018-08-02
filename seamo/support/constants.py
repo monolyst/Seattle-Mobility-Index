@@ -223,6 +223,19 @@ API_DIST_FP = os.path.join(CSV_DIR, 'api_distances.csv')
 RANKED_DEST_FP = os.path.join(CSV_DIR, 'ranked_destinations.csv')
 BASKETS_FP = os.path.join(CSV_DIR, 'baskets.csv')
 INPUT_BASKETS_FP = os.path.join(CSV_DIR, 'input_baskets.csv')
+
+
+# Personas constants
+PERSONAS_CLUSTER_FP = os.path.join(PROCESSED_DIR, 'clustered_psrcreturn.csv')
+
+TYPE_A = "family-(wo)man"
+TYPE_B = "fit-urbanites"
+TYPE_C = "tired-commuter"
+TYPE_D = "jolly-retiree"
+TYPE_E = "olde-Seattleite"
+NEUTRAL = "neutral"
+
 DYNAMODB_OUT_DIR = os.path.join(RAW_DIR + 'dynamodb_out/')
 SEATTLE_BLOCK_GROUPS_FP = os.path.join(CSV_DIR, 'SeattleCensusBlockGroups.csv')
+
 
