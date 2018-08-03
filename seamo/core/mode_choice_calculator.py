@@ -95,7 +95,7 @@ class ModeChoiceCalculator(IndexBase):
         elif trip.mode == cn.BIKING_MODE and trip.duration < self.bike_time_threshold:
             viable = 1
         elif trip.mode == cn.TRANSIT_MODE and trip.duration < self.transit_time_threshold:
-            # If the trip's fare_value is NaN, Google Maps gave walking directions
+            # If the trip's fare_value is None, Google Maps gave walking directions
             # and thus, transit is not viable.
             if trip.fare_value:
                 viable = 1
