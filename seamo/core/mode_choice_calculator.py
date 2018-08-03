@@ -141,7 +141,7 @@ class ModeChoiceCalculator(IndexBase):
     def calculate_mode_avail(self, trips):
         """
         Input: trips (list of Trips)
-        Output: mode index (float)
+        Output: scores (dict)
             for the list of trips as a function of viability
 
         This function assumes that each Trip in trips has a viability attribute
@@ -149,12 +149,14 @@ class ModeChoiceCalculator(IndexBase):
         # Hours of data availability, HOURS constant should be float
         scores = {}
         for mode in [cn.DRIVING_MODE, cn.BIKING_MODE, cn.TRANSIT_MODE, cn.WALKING_MODE]:
-            mode_avail = sum([trip.viable for trip in trips if trip.mode == mode])
-            mode_index = mode_avail
+            # trips_for_mode = [trip for trip in trips if trip.mode == mode]
+            viable_trips = [trip.viable for trip in trips if trip.mode == mode]
+            mode_avail = sum(viable_trips)
             if mode == cn.DRIVING_MODE or mode == cn.TRANSIT_MODE:
-                mode_index /= cn.TRAVEL_HOURS
-            mode_index /= cn.BASKET_SIZE
-            scores[mode] = mode_index
+                mode_avail /= cn.TRAVEL_HOURS
+            mode_avail /= cn.BASKET_SIZE
+            # mode_index = mode_avail / len(trips_for_mode) 
+            scores[mode] = mode_avail
         return scores 
         
 
