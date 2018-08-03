@@ -27,7 +27,8 @@ class AffordabilityIndex(IndexBase):
         Inputs: None
         Outputs: Dataframe, columns: key, cost
         """
-        result_data = []#pd.DataFrame({cn.KEY: [], cn.COST: []})
+        # result_data = []
+        result_df = pd.DataFrame({cn.KEY: [], cn.COST: []})
         for key, values in self.viable_modes.items():
             blkgrp = str(key)
             num_trips = len(values)
@@ -39,19 +40,26 @@ class AffordabilityIndex(IndexBase):
                 # cost += 2
             cost /= num_trips
             # print(pd.DataFrame({cn.BLOCK_GROUP: [key], cn.COST: [cost]}))
-            result_data.append({cn.KEY: [key], cn.COST: [cost]})
-            # result_df = result_df.append(pd.DataFrame({cn.KEY: [key], cn.COST: [cost]}))
-        return pd.DataFrame(result_data)
+            # result_data.append({cn.KEY: [key], cn.COST: [cost]})
+            result_df = result_df.append(pd.DataFrame({cn.KEY: [str(key)], cn.COST: [cost]}))
+            result_df = result_df.reset_index().drop(columns = ['index'])
+        return result_df #pd.DataFrame(result_data)
 
 
 
     def calculate_score(self):
-        income = pd.read_excel(cn.BLOCK_GROUP_DEMOGRAPHICS_FP).loc[:, (cn.INCOME_BLOCKGROUP, cn.MEDIAN_HOUSEHOLD_INCOME)]
-        blkgrp_mode_cost_df = self.create_avg_blockgroup_cost_df()
-        blkgrp_mode_cost_df[cn.ADJUSTED_FOR_INCOME] = blkgrp_mode_cost_df.apply(lambda x: x[cn.COST] /
-            income.loc(x[cn.KEY], cn.MEDIAN_HOUSEHOLD_INCOME))
+        income = pd.read_excel(cn.BLOCK_GROUP_DEMOGRAPHICS_FP, dtype={cn.INCOME_BLOCKGROUP: str})
+        income = income[income['Year'] == 2016].loc[:, (cn.INCOME_BLOCKGROUP, cn.MEDIAN_HOUSEHOLD_INCOME)]
+        # income.loc[income[cn.INCOME_BLOCKGROUP] == '530330111024', :]
+
+        blkgrp_mode_cost_df = self.create_avg_blockgroup_cost_df()        
+        blkgrp_mode_cost_df[cn.ADJUSTED_FOR_INCOME] = blkgrp_mode_cost_df.apply(lambda x: (x[cn.COST] /
+            float(income.loc[income[cn.INCOME_BLOCKGROUP] == x[cn.KEY], cn.MEDIAN_HOUSEHOLD_INCOME])), axis=1)
         # normalization
-        blkgrp_mode_cost_df[cn.NORMALIZED] = blkgrp_mode_cost_df.apply(lambda x: normalize(x[cn.COST]))
-        blkgrp_mode_cost_df[cn.INCOME_NORMALIZED] = blkgrp_mode_cost_df.apply(lambda x: normalize(x[cn.ADJUSTED_FOR_INCOME]))
+        mean_cost = blkgrp_mode_cost_df.cost.mean()
+        std_cost = blkgrp_mode_cost_df.cost.std()
+        # # normalization
+        blkgrp_mode_cost_df[cn.NORMALIZED] = blkgrp_mode_cost_df.apply(lambda x: (x[cn.COST] - mean_cost) / std_cost, axis=1)
+        blkgrp_mode_cost_df['scaled'] = blkgrp_mode_cost_df.apply(lambda x: (x[cn.COST] - blkgrp_mode_cost_df[cn.COST].min()) / (blkgrp_mode_cost_df[cn.COST].max() - blkgrp_mode_cost_df[cn.COST].min()), axis=1)        # blkgrp_mode_cost_df[cn.INCOME_NORMALIZED] = blkgrp_mode_cost_df.apply(lambda x: normalize(x[cn.ADJUSTED_FOR_INCOME]))
         self.affordability_scores = blkgrp_mode_cost_df
         return self.blkgrp_mode_cost_df

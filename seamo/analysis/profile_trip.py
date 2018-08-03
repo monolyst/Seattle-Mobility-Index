@@ -3,7 +3,7 @@ import cProfile
 import os
 import sys
 import pstats
-import trip
+from trip import CarTrip
 import parking_cost as pc
 import geocoder as gc
 import constants as cn
@@ -28,7 +28,23 @@ PARKING_COST = 3.0
 # cProfile.run('trip.CarTrip(SEATTLE_ORIGIN, SEATTLE_DESTINATION, DISTANCE, DURATION, BASKET_CATEGORY, PAIR, DEPARTURE_TIME, RANK, DURATION_IN_TRAFFIC)',
 	# 'OUTFILE')
 
-cProfile.run('gd.run_code()', 'OUTFILE')
+origin = '530330094004'
+origin2 = '530330094004'
+dest_lat = 47.6145
+dest_lon = -122.3210
+duration = 32.183333
+distance = 16.040398
+duration_in_traffic = 3.303167
+basket_category = 'citywide'
+departure_time = '2018-06-06 12:41:31.092964'
+
+
+def test_trip():
+    car = CarTrip(origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time, duration_in_traffic)
+    car.set_cost()
+    cost = car.cost
+
+cProfile.run('test_trip()', 'OUTFILE')
 
 # datadir = os.path.join(cn.TEST_DIR, 'test1000.csv')
 # geo = pc.ParkingCost()

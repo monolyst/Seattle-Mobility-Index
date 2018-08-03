@@ -142,7 +142,7 @@ class CarTrip(Trip):
     def _calculate_car_duration(self, duration, duration_in_traffic=0):
         #TODO: do I want to save the original duration for car trips?
         #TODO: make a specific exception for no min
-        return duration_in_traffic
+        return duration_in_traffic + cn.PARKING_TIME_OFFSET
 
     def _calculate_cost(self, destination, duration, departure_time, mile_rate, value_of_time_rate):
         """
@@ -150,7 +150,7 @@ class CarTrip(Trip):
         """
         self.cost = super()._calculate_base_cost(duration)
         # destination.set_parking_cost()
-        self.cost_to_park = 0#destination.parking_cost
+        self.cost_to_park = 0 #destination.parking_cost
         # try:
         #     destination.set_geocode()
         #     # parking_cost = pd.read_csv(cn.BLOCK_GROUP_PARKING_RATES_FP)
