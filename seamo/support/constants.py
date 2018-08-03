@@ -49,6 +49,11 @@ GEOGRAPHY = 'geography'
 CRS_EPSG = {'init' :'epsg:4326'}
 SHAPE_AREA = 'Shape_area'
 AREA = 'area'
+MODE = 'mode'
+TRIP_ID = 'trip_id'
+VIABLE = 'viable'
+MODE_CHOICE_INDEX = 'mode_index'
+SEATTLE_BLOCK_GROUPS_PICKLE = 'seattle_block_groups.pickle'
 
 # Parking
 BLOCK_FACE = 'block_face'
@@ -124,11 +129,16 @@ EARTH_RADIUS_KM = 6373.0 # Approximate radius of Earth in km
 AAA_RATE = 0.56
 VOT_RATE = 14.10
 BIKE_RATE = 0.15
+CAR_TIME_THRESHOLD = 15 #minutes
+BIKE_TIME_THRESHOLD = 25 #minutes
+TRANSIT_TIME_THRESHOLD = 60 #minutes
+WALK_TIME_THRESHOLD = 45 #minutes
+TRAVEL_HOURS = 14.0 #Total daily hours for which API calls are made
+PARKING_TIME_OFFSET = 9
 
 # API constants
 DIST_MATRIX_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?'
 IMPERIAL_UNITS = 'imperial'
-DRIVING_MODE = 'driving'
 GOOGLE_DIST_MATRIX_OUT = 'google_dist_matrix_out'
 TIMESTAMP = '1531933200' # Wednesday, July 18, 10AM UTC
 API_CALL_LIMIT = 100000
@@ -148,18 +158,20 @@ PLACE_IDS = 'place_ids'
 DURATION = 'duration'
 DURATION_IN_TRAFFIC = 'duration_in_traffic'
 DEPARTURE_TIME = 'departure_time'
-FARE_VALUE = 'fare_value'
+FARE_VALUE = 'fare'
 MODE = 'mode'
 ADDRESS = 'address'
 TYPE = 'type'
 RATING = 'rating'
 FARE = 'fare'
+BLOCK_GROUP_PARKING_RATES = 'BlockGroupParkingRates'
+COORDINATE = 'coordinate'
 
 # modes
-CAR = 'car'
-TRANSIT = 'transit'
-BIKE = 'bike'
-WALK = 'walk'
+DRIVING_MODE = 'driving'
+TRANSIT_MODE = 'transit'
+BIKING_MODE = 'bicycling'
+WALKING_MODE = 'walking'
 # Seattle Census Data naming
 CENSUS_LAT = 'CT_LAT'
 CENSUS_LON = 'CT_LON'
@@ -202,6 +214,34 @@ DISTRICT6_PICKLE = 'parking_district6.pickle'
 DISTRICT7_PICKLE = 'parking_district7.pickle'
 PRIMARY_DISTRICT = 'PRIMARYDIS'
 
+# Time Constants
+MORNING_START = 7
+MORNING_END = 9
+AFTERNOON_START = 9
+AFTERNOON_END = 16
+EVENING_START = 16
+EVENING_END = 20
+PARKING_MORNING_START = 7
+PARKING_MORNING_END = 9
+PARKING_AFTERNOON_START = 9
+PARKING_AFTERNOON_END = 16
+PARKING_EVENING_START = 16
+PARKING_EVENING_END = 20
+MORNING = 'morning'
+AFTERNOON = 'afternoon'
+EVENING = 'evening'
+AFTER_HOURS = 'after_hours'
+SATURDAY = 5
+WEEKDAY = 'weekday'
+WEEKEND = 'weekend'
+PRICE = 'price'
+COST = 'cost'
+ADJUSTED_FOR_INCOME = 'adjusted_for_income'
+MEDIAN_HOUSEHOLD_INCOME = 'Med_Hh_Income'
+INCOME_BLOCKGROUP = 'Blockgroup'
+NORMALIZED = 'normalized'
+INCOME_NORMALIZED = 'income_normalized'
+
 
 
 # Filepaths
@@ -223,6 +263,12 @@ API_DIST_FP = os.path.join(CSV_DIR, 'api_distances.csv')
 RANKED_DEST_FP = os.path.join(CSV_DIR, 'ranked_destinations.csv')
 BASKETS_FP = os.path.join(CSV_DIR, 'baskets.csv')
 INPUT_BASKETS_FP = os.path.join(CSV_DIR, 'input_baskets.csv')
+DYNAMODB_OUT_DIR = os.path.join(RAW_DIR, 'dynamodb_out/')
+MODE_CHOICE_FP = os.path.join(CSV_DIR, 'mode_choice_scores.csv')
+DISTANCES_OUT_FP = os.path.join(CSV_DIR, 'google_dist_matrix_out.csv')
+SEATTLE_BLOCK_GROUPS_FP = os.path.join(CSV_DIR, 'SeattleCensusBlockGroups.csv')
+BLOCK_GROUP_PARKING_RATES_FP = os.path.join(CSV_DIR, 'BlockGroupParkingRates.csv')
+BLOCK_GROUP_DEMOGRAPHICS_FP = os.path.join(RAW_DIR, 'Blockgroup_demographics.xlsx')
 
 
 # Personas constants
@@ -237,5 +283,6 @@ NEUTRAL = "neutral"
 
 DYNAMODB_OUT_DIR = os.path.join(RAW_DIR + 'dynamodb_out/')
 SEATTLE_BLOCK_GROUPS_FP = os.path.join(CSV_DIR, 'SeattleCensusBlockGroups.csv')
+
 
 

@@ -66,10 +66,13 @@ class Geocoder(gbc.GeocodeBase):
         df[cn.LAT] = df[cn.LAT].astype(float)
         df[cn.LON] = df[cn.LON].astype(float)
         df[cn.BLOCK_GROUP] = df[cn.BLOCK_GROUP].astype(np.int64)
-        df[cn.NBHD_LONG] = df[cn.NBHD_LONG].astype(str)
-        df[cn.NBHD_SHORT] = df[cn.NBHD_SHORT].astype(str)
-        df[cn.COUNCIL_DISTRICT] = df[cn.COUNCIL_DISTRICT].astype(str)
-        df[cn.URBAN_VILLAGE] = df[cn.URBAN_VILLAGE].astype(str)
+        for col in [cn.NBHD_LONG, cn.NBHD_SHORT, cn.COUNCIL_DISTRICT, cn.URBAN_VILLAGE]:
+            try:
+                df[col].astype(str)
+            except KeyError:
+                df[col] = None
+            else:
+                df[col] = df[col].astype(str)
         df[cn.ZIPCODE] = df[cn.ZIPCODE].astype(np.int64)
         return df
 

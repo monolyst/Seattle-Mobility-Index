@@ -50,7 +50,7 @@ class ParkingCost(gbc.GeocodeBase):
         try:
             self._find_overlap_in_reference(gdf, pickle_name, reference_gdf)
         except se.NoOverlapSpatialJoinError as e:
-            print('No overlap found')
+            # print('No overlap found')
             df = pd.DataFrame(cn.PARKING_NAN_DF)
             raise se.NoParkingAvailableError("No Parking Available")
         else:
@@ -74,7 +74,7 @@ class ParkingCost(gbc.GeocodeBase):
 
     def geocode_point(self, coord):
         df = super().geocode_point(coord)
-        point = coordinate.Coordinate(df[cn.LAT], df[cn.LON])
+        point = coordinate.Coordinate(df[cn.LAT], df[cn.LON], geocode=True)
         pickle_name = {cn.COUNCIL_DISTRICT1: cn.DISTRICT1_PICKLE,
                     cn.COUNCIL_DISTRICT2: cn.DISTRICT2_PICKLE,
                     cn.COUNCIL_DISTRICT3: cn.DISTRICT3_PICKLE,
