@@ -117,6 +117,7 @@ URBAN_VILLAGE_KEY = 'UV_NAME'
 BLOCK_FACE_FNAME = 'Blockface'
 REFERENCE_PICKLE = 'reference.pickle'
 PARKING_REFERENCE = 'parking_reference.pickle'
+BLOCKGROUP_PICKLE = 'blockgroup.pickle'
 
 # Numeric Constants
 PROXIMITY_THRESHOLD = 0.8 # 5-6 miles in lat-long coords
@@ -241,6 +242,7 @@ MEDIAN_HOUSEHOLD_INCOME = 'Med_Hh_Income'
 INCOME_BLOCKGROUP = 'Blockgroup'
 NORMALIZED = 'normalized'
 INCOME_NORMALIZED = 'income_normalized'
+DEST_BLOCK_GROUP = 'destination_blockgroup'
 
 
 

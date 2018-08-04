@@ -8,6 +8,8 @@ import parking_cost as pc
 import geocoder as gc
 import constants as cn
 import geocoder_driver as gd
+from affordability_index import AffordabilityIndex
+import data_accessor as daq
 
 SEATTLE_ORIGIN = (47.6145, -122.3210)
 SEATTLE_DESTINATION = (47.6145, -122.3210)
@@ -44,7 +46,12 @@ def test_trip():
     car.set_cost()
     cost = car.cost
 
-cProfile.run('test_trip()', 'OUTFILE')
+trips_per_blockgroup = daq.open_pickle(cn.PICKLE_DIR, 'mode_choice_calc.pickle')
+def test_a_index():
+    a_index = AffordabilityIndex(trips_per_blockgroup)
+    cost = a_index.create_avg_blockgroup_cost_df()
+
+cProfile.run('test_a_index()', 'OUTFILE')
 
 # datadir = os.path.join(cn.TEST_DIR, 'test1000.csv')
 # geo = pc.ParkingCost()

@@ -3,6 +3,7 @@ import os
 import constants as cn
 import pandas as pd
 import data_accessor as daq
+from geocoder import Geocoder
 
 class ConvertDynamodb(object):
     def __init__(self):
@@ -24,6 +25,23 @@ class ConvertDynamodb(object):
         df.rename(columns={'name': cn.DESTINATION, 'lng': cn.LON}, inplace=True)
         return df
 
+    def _get_blockgroup(self, df):
+        coords = df.loc[:, (cn.LAT, cn.LON)]
+        geo = Geocoder()
+        blkgrps = geo.get_blockgroup_from_df(coords)
+        blkgrps.columns = [cn.LAT, cn.LON, cn.DEST_BLOCK_GROUP]
+        chunksize = len(df) / 10
+        for i in range(10):
+            chunked_df = df.loc[i*chunksize:i * chunksize, :]
+            df = pd.merge(chunked_df, blkgrps, left_on=[cn.LAT, cn.LON], right_on=[cn.LAT, cn.LON], how='left')
+        return df
+
+    def _process_dynamodb(self, dynamodb_csv, dynamodb_dir=cn.DYNAMODB_OUT_DIR):
+        df = self._read_dynamodb_outfile(dynamodb_csv, dynamodb_dir)
+        df = self._merge_place_data(df)
+        df = self._get_blockgroup(chunked_df)
+        return df
+
 
     def write_to_csv(self, df, output_file, processed_dir=cn.CSV_DIR):
         daq.write_to_csv(df, output_file + '.csv', processed_dir)
@@ -39,11 +57,10 @@ class ConvertDynamodbDriving(ConvertDynamodb):
     
 
     def _process_dynamodb_driving(self, dynamodb_csv='dynamo_out_driving.csv', dynamodb_dir=cn.DYNAMODB_OUT_DIR):
-        df = self._read_dynamodb_outfile(dynamodb_csv, dynamodb_dir)
-        df = self._merge_place_data(df)
+        df = self._process_dynamodb(dynamodb_csv, dynamodb_dir)
         df = df[[cn.BLOCK_GROUP, cn.MODE, cn.DEPARTURE_TIME, cn.DISTANCE, cn.DURATION,
-                cn.DURATION_IN_TRAFFIC, cn.DESTINATION, cn.LAT, cn.LON, cn.ADDRESS,
-                cn.CLASS, cn.TYPE, cn.CITY, cn.RATING]]
+                cn.DURATION_IN_TRAFFIC, cn.DEST_BLOCK_GROUP, cn.DESTINATION, cn.LAT, cn.LON,
+                cn.ADDRESS, cn.CLASS, cn.TYPE, cn.CITY, cn.RATING]]
         return df
 
 
@@ -53,10 +70,9 @@ class ConvertDynamodbTransit(ConvertDynamodb):
 
 
     def _process_dynamodb_transit(self, dynamodb_csv='dynamo_out_transit.csv', dynamodb_dir=cn.DYNAMODB_OUT_DIR):
-        df = self._read_dynamodb_outfile(dynamodb_csv, dynamodb_dir)
-        df = self._merge_place_data(df)
+        df = self._process_dynamodb(dynamodb_csv, dynamodb_dir)
         df = df[[cn.BLOCK_GROUP, cn.MODE, cn.FARE, cn.DEPARTURE_TIME, cn.DISTANCE, 
-                cn.DURATION, cn.DESTINATION, cn.LAT, cn.LON, cn.ADDRESS,
+                cn.DURATION, cn.DEST_BLOCK_GROUP, cn.DESTINATION, cn.LAT, cn.LON, cn.ADDRESS,
                 cn.CLASS, cn.TYPE, cn.CITY, cn.RATING]]
         return df
 
@@ -67,10 +83,9 @@ class ConvertDynamodbBiking(ConvertDynamodb):
 
 
     def _process_dynamodb_biking(self, dynamodb_csv='dynamo_out_bicycling.csv', dynamodb_dir=cn.DYNAMODB_OUT_DIR):
-        df = self._read_dynamodb_outfile(dynamodb_csv, dynamodb_dir)
-        df = self._merge_place_data(df)
+        df = self._process_dynamodb(dynamodb_csv, dynamodb_dir)
         df = df[[cn.BLOCK_GROUP, cn.MODE, cn.DEPARTURE_TIME, cn.DISTANCE, 
-                cn.DURATION, cn.DESTINATION, cn.LAT, cn.LON, cn.ADDRESS,
+                cn.DURATION, cn.DEST_BLOCK_GROUP, cn.DESTINATION, cn.LAT, cn.LON, cn.ADDRESS,
                 cn.CLASS, cn.TYPE, cn.CITY, cn.RATING]]
         return df
 
@@ -81,9 +96,8 @@ class ConvertDynamodbWalking(ConvertDynamodb):
 
 
     def _process_dynamodb_walking(self, dynamodb_csv='dynamo_out_walking.csv', dynamodb_dir=cn.DYNAMODB_OUT_DIR):
-        df = self._read_dynamodb_outfile(dynamodb_csv, dynamodb_dir)
-        df = self._merge_place_data(df)
+        df = self._process_dynamodb(dynamodb_csv, dynamodb_dir)
         df = df[[cn.BLOCK_GROUP, cn.MODE, cn.DEPARTURE_TIME, cn.DISTANCE, 
-                cn.DURATION, cn.DESTINATION, cn.LAT, cn.LON, cn.ADDRESS,
+                cn.DURATION, cn.DEST_BLOCK_GROUP, cn.DESTINATION, cn.LAT, cn.LON, cn.ADDRESS,
                 cn.CLASS, cn.TYPE, cn.CITY, cn.RATING]]
         return df

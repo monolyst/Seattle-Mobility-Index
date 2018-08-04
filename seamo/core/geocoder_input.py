@@ -31,3 +31,20 @@ class GeocoderInput(gib.GeocodeInputBase):
         reference = pd.concat([blkgrp, nbhd_short, nbhd_long, zipcode, council_district, urban_village])
         self.make_pickle(processed_dir, reference, pickle_name)
         return reference
+
+
+class GeocoderBlockgroupInput(gib.GeocodeInputBase):
+    def __init__(self):
+        super().__init__()
+
+    def read_shapefile(self, raw_dir, shapefile, column_name, name):
+        gdf = super().read_shapefile(raw_dir, shapefile)
+        gdf = gdf.loc[:, (column_name, cn.GEOMETRY)]
+        gdf = gdf.to_crs(cn.CRS_EPSG)
+        gdf.columns = [cn.KEY, cn.GEOMETRY]
+        return gdf
+
+    def make_reference(self, raw_dir, processed_dir, pickle_name):
+        gdf = self.read_shapefile(raw_dir, cn.BLKGRP_FNAME, cn.BLKGRP_KEY, cn.BLOCK_GROUP)
+        self.make_pickle(processed_dir, gdf, pickle_name)
+        return gdf
