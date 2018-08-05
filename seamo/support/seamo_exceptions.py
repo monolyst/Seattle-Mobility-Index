@@ -21,3 +21,13 @@ class NoOverlapSpatialJoinError(Exception):
 class NoParkingAvailableError(NoOverlapSpatialJoinError):
     def __init__(self, message):
         self.message = message
+
+
+class NoUrbanVillageError(Exception):
+    def __init__(self, message):
+        self.message = message
+
+
+class NotInSeattleError(Exception):
+    def __init__(self, message):
+        self.message = message

@@ -45,9 +45,6 @@ class TripTest(unittest.TestCase):
     def test_get_place(self):
         pass
 
-    def test_get_trip_id(self):
-        pass
-
 
 suite = unittest.TestLoader().loadTestsFromTestCase(TripTest)
 _ = unittest.TextTestRunner().run(suite)

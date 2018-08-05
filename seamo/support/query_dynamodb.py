@@ -30,7 +30,7 @@ def scanDynamo(LastEvaluatedKey=None):
 
     # MODE = 'walking'
     # MODE = 'transit'
-    #MODE = 'driving'
+    # MODE = 'driving'
     MODE = 'bicycling'
 
     # Get AWS service resource.
