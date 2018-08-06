@@ -30,9 +30,15 @@ class ModeChoiceCalculator(IndexBase):
 
     def trip_from_row(self, row):
         """
-        Given a row in a Pandas dataframe, instantiate a Trip object. 
-        Depending on mode, return a subtype of Trip.
-        Returns trip.
+        Input:
+            row: a row in a Pandas DataFrame
+        Output:
+            trip: a Trip object
+
+        Given a row in a Pandas DataFrame containing attributes of a trip, 
+        instantiate a Trip object. 
+    
+        Depending on the value for the column 'mode', return a subtype of Trip.
         """
         origin = row[cn.BLOCK_GROUP]
         dest_lat = row[cn.LAT]
@@ -42,12 +48,14 @@ class ModeChoiceCalculator(IndexBase):
 
         distance = row[cn.DISTANCE]
         duration = row[cn.DURATION]
+
         try:
             row[cn.DURATION_IN_TRAFFIC]
         except:
             duration_in_traffic = 0
         else:
             duration_in_traffic = row[cn.DURATION_IN_TRAFFIC]
+
         try:
             row[cn.FARE_VALUE]
         except:
@@ -57,19 +65,27 @@ class ModeChoiceCalculator(IndexBase):
 
         basket_category = None
 
-        # Need to convert departure time to date-time object
         departure_time = row[cn.DEPARTURE_TIME]
-        
 
-        # Create a subclass of Trip based on mode
-        trip = {cn.DRIVING_MODE: CarTrip(origin, dest_lat, dest_lon, distance,
-                                         duration, basket_category, departure_time, duration_in_traffic=duration_in_traffic),
-        cn.TRANSIT_MODE: TransitTrip(origin, dest_lat, dest_lon, distance, duration,
-                                     basket_category, departure_time, fare_value=fare_value),
-        cn.BIKING_MODE: BikeTrip(origin, dest_lat, dest_lon, distance, duration,
-                                 basket_category, departure_time),
-        cn.WALKING_MODE: WalkTrip(origin, dest_lat, dest_lon, distance, duration,
-                                  basket_category, departure_time)}[mode]
+        # Create a subclass of Trip based on the mode
+        if mode == cn.DRIVING_MODE:
+            trip = CarTrip(origin, dest_lat, dest_lon, distance, duration,
+                           basket_category, departure_time,
+                           duration_in_traffic=duration_in_traffic),
+        elif mode == cn.TRANSIT_MODE:
+            trip = TransitTrip(origin, dest_lat, dest_lon, distance, duration,
+                               basket_category, departure_time,
+                               fare_value=fare_value),
+        elif mode == cn.BIKING_MODE:
+            trip = BikeTrip(origin, dest_lat, dest_lon, distance, duration,
+                            basket_category, departure_time),
+        elif mode == cn.WALKING_MODE:
+            trip = WalkTrip(origin, dest_lat, dest_lon, distance, duration,
+                            basket_category, departure_time)
+        else:
+            # Should have a custom exception here
+            trip = None
+    
         return trip
 
 
