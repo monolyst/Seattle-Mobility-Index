@@ -20,6 +20,9 @@ class ModeChoiceCalculator(IndexBase):
         Instantiate a ModeChoiceCalculator with different thresholds for the 
         four modes of transportation, using defaults from constants.py.
         Each threshold is a float denoting times in minutes.
+    
+        To toggle a mode off (rule out that mode entirely), set its threshold to
+        0. 
         """
 
         self.car_time_threshold = car_time_threshold
