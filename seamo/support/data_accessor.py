@@ -6,6 +6,7 @@ import os
 import sqlalchemy
 import constants as cn
 import pickle
+import pandas as pd
 
 
 def df_to_sql(df, table_name, db_filename):
@@ -38,3 +39,8 @@ def make_pickle(processed_dir, df, pickle_name):
 def open_pickle(processed_dir, pickle_name):
     fname = processed_dir + str(pickle_name)
     return pickle.load(open(fname, 'rb'))
+
+def read_csv_blockgroup_key(filepath, key):
+    df = pd.read_csv(filepath, dtypes={key: str})
+    df[key] = df.apply(lambda x: x[key].rstrip('.0'), axis=1)
+    return df

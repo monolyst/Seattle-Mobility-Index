@@ -36,7 +36,7 @@ Trip base class.
  
 """
 class Trip(object):
-    def __init__(self, mode, origin, dest_lat, dest_lon, distance, duration, 
+    def __init__(self, mode, origin, dest_blockgroup, dest_lat, dest_lon, distance, duration, 
                 basket_category, departure_time, citywide_type=None, value_of_time_rate=cn.VOT_RATE, place_name=None):
         """
         Input:
@@ -45,7 +45,7 @@ class Trip(object):
             dest_lon: float
         """
         self.origin = origin
-        self.destination = coordinate.Coordinate(dest_lat, dest_lon) 
+        self.destination = coordinate.Coordinate(dest_lat, dest_lon, dest_blockgroup)
         self.mode = mode
         self.departure_time = departure_time
         self.distance = distance

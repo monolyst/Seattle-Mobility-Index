@@ -4,18 +4,19 @@ from math import sin, cos, sqrt, atan2, radians
 from core import geocoder
 import constants as cn
 import seamo_exceptions as se
+import data_accessor as daq
 
 class Coordinate:
     """
     Coordinate class.
     """
-    def __init__(self, lat, lon):
+    def __init__(self, lat, lon, block_group=None):
         """
         Initialize Coordinate with a latitude and a longitude (both floats).
         """
         self.lat = lat
         self.lon = lon
-        self.block_group = None
+        self.block_group = block_group
         self.neighborhood_long = None
         self.neighborhood_short = None
         self.council_district = None
@@ -47,8 +48,13 @@ class Coordinate:
         return self
 
     def set_parking_cost(self):
-        self.set_geocode()
-        parking_rates = pd.read_csv(cn.BLOCK_GROUP_PARKING_RATES_FP)
+        parking_rates = daq.read_csv_blockgroup_key(cn.BLOCK_GROUP_PARKING_RATES_FP, cn.KEY)
+        if self.block_group == None:
+            self.set_geocode()
+        else:
+
+        
+        try:
         try:
             min(parking_rates.loc[parking_rates[cn.KEY] == self.block_group, cn.RATE])
         except (KeyError, ValueError) as e:
