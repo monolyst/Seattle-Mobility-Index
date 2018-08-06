@@ -18,8 +18,11 @@ class ModeChoiceCalculator(IndexBase):
                 walk_time_threshold=cn.WALK_TIME_THRESHOLD):
         """
         Instantiate a ModeChoiceCalculator with different thresholds for the 
-        four modes of transportation.
+        four modes of transportation, using defaults from constants.py.
         Each threshold is a float denoting times in minutes.
+    
+        To toggle a mode off (rule out that mode entirely), set its threshold to
+        0. 
         """
 
         self.car_time_threshold = car_time_threshold
@@ -30,9 +33,15 @@ class ModeChoiceCalculator(IndexBase):
 
     def trip_from_row(self, row):
         """
-        Given a row in a Pandas dataframe, instantiate a Trip object. 
-        Depending on mode, return a subtype of Trip.
-        Returns trip.
+        Input:
+            row: a row in a Pandas DataFrame
+        Output:
+            trip: a Trip object
+
+        Given a row in a Pandas DataFrame containing attributes of a trip, 
+        instantiate a Trip object. 
+    
+        Depending on the value for the column 'mode', return a subtype of Trip.
         """
         origin = row[cn.BLOCK_GROUP]
         dest_lat = row[cn.LAT]
@@ -42,12 +51,14 @@ class ModeChoiceCalculator(IndexBase):
 
         distance = row[cn.DISTANCE]
         duration = row[cn.DURATION]
+
         try:
             row[cn.DURATION_IN_TRAFFIC]
         except:
             duration_in_traffic = 0
         else:
             duration_in_traffic = row[cn.DURATION_IN_TRAFFIC]
+
         try:
             row[cn.FARE_VALUE]
         except:
@@ -57,19 +68,27 @@ class ModeChoiceCalculator(IndexBase):
 
         basket_category = None
 
-        # Need to convert departure time to date-time object
         departure_time = row[cn.DEPARTURE_TIME]
-        
 
-        # Create a subclass of Trip based on mode
-        trip = {cn.DRIVING_MODE: CarTrip(origin, dest_lat, dest_lon, distance,
-                                         duration, basket_category, departure_time, duration_in_traffic=duration_in_traffic),
-        cn.TRANSIT_MODE: TransitTrip(origin, dest_lat, dest_lon, distance, duration,
-                                     basket_category, departure_time, fare_value=fare_value),
-        cn.BIKING_MODE: BikeTrip(origin, dest_lat, dest_lon, distance, duration,
-                                 basket_category, departure_time),
-        cn.WALKING_MODE: WalkTrip(origin, dest_lat, dest_lon, distance, duration,
-                                  basket_category, departure_time)}[mode]
+        # Create a subclass of Trip based on the mode
+        if mode == cn.DRIVING_MODE:
+            trip = CarTrip(origin, dest_lat, dest_lon, distance, duration,
+                           basket_category, departure_time,
+                           duration_in_traffic=duration_in_traffic),
+        elif mode == cn.TRANSIT_MODE:
+            trip = TransitTrip(origin, dest_lat, dest_lon, distance, duration,
+                               basket_category, departure_time,
+                               fare_value=fare_value),
+        elif mode == cn.BIKING_MODE:
+            trip = BikeTrip(origin, dest_lat, dest_lon, distance, duration,
+                            basket_category, departure_time),
+        elif mode == cn.WALKING_MODE:
+            trip = WalkTrip(origin, dest_lat, dest_lon, distance, duration,
+                            basket_category, departure_time)
+        else:
+            # Should have a custom exception here
+            trip = None
+    
         return trip
 
 
@@ -95,14 +114,13 @@ class ModeChoiceCalculator(IndexBase):
         elif trip.mode == cn.BIKING_MODE and trip.duration < self.bike_time_threshold:
             viable = 1
         elif trip.mode == cn.TRANSIT_MODE and trip.duration < self.transit_time_threshold:
-            viable = 1
+            # If the trip's fare_value is None, Google Maps gave walking directions
+            # and thus, transit is not viable.
+            if trip.fare_value:
+                viable = 1
         elif trip.mode == cn.WALKING_MODE and trip.duration < self.walk_time_threshold:
             viable = 1
 
-        # TODO: can we take into account proximity? thinking of nearby locations
-        # with bad connections or disnant locations with good connections.
-        # Most relevant for bus.
-        
         return viable
 
     
@@ -141,41 +159,64 @@ class ModeChoiceCalculator(IndexBase):
     def calculate_mode_avail(self, trips):
         """
         Input: trips (list of Trips)
-        Output: mode index (float)
-            for the list of trips as a function of viability
+        Output: scores (dict)
+                    keys: blockgroup IDs (int)
+                    values: list of Trip objects 
 
-        This function assumes that each Trip in trips has a viability attribute
+        For each mode, calculate the ratio of viable trips to total trips for 
+        that particular mode. Return a dict containing scores for each mode.
+
         """
         # Hours of data availability, HOURS constant should be float
         scores = {}
         for mode in [cn.DRIVING_MODE, cn.BIKING_MODE, cn.TRANSIT_MODE, cn.WALKING_MODE]:
-            mode_avail = sum([trip.viable for trip in trips if trip.mode == mode])
-            mode_index = mode_avail
-            if mode == cn.DRIVING_MODE or mode == cn.TRANSIT_MODE:
-                mode_index /= cn.TRAVEL_HOURS
-            mode_index /= cn.BASKET_SIZE
-            scores[mode] = mode_index
+            # List of 0s and 1s corresponding to binary viability value for each trip
+            viability_per_trip = [trip.viable for trip in trips if trip.mode == mode]
+
+            # Number of viable trips
+            viable_trips = sum(viability_per_trip)
+            mode_avail_score = viable_trips / len(viability_per_trip)
+
+            # if mode == cn.DRIVING_MODE or mode == cn.TRANSIT_MODE:
+            #    mode_avail /= cn.TRAVEL_HOURS
+            # mode_avail /= cn.BASKET_SIZE
+            
+            scores[mode] = mode_avail_score
         return scores 
         
 
-    def create_availability_csv(self, blkgrp_dict):
+    def create_availability_df(self, blkgrp_dict):
         """
-        Takes in a blockgroup dictionary where blokgroups are keys and list of trips from
-        that blockgroups are corresponding values, estimates the availability score for each blockroup
-        and returns the csv with each block group's mobility score.
+        Input:
+            blkgrp_dict (dict)
+                keys: blockgroup IDs (int)
+                values: list of Trips originating from that blockgroup
+        Output:
+            df (Pandas DataFrame)
 
+        Given a dict in which keys are blockgroup IDs and values are a list of
+        trips from that blockgroup, this method calculates a mode availability 
+        score for each blockroup and creates a Pandas DataFrame with a row for 
+        each block group and columns for mode-specific and total availability
+        scores. 
+
+        Mode-specific scores are calculated by the ratio of viable trips to
+        total trips. The final mode availability score is the unweighted mean 
+        of the 4 mode-specific scores. 
         """
         data = []
-        for blkgrp, trips in data_dict.items():
-            mode_scores = calculate_mode_avail(trips)
+        for blkgrp, trips in blkgrp_dict.items():
+            mode_scores = self.calculate_mode_avail(trips)
             row = mode_scores
             mode_index = sum(mode_scores.values()) / 4
             row[cn.BLOCK_GROUP] =  blkgrp
             row[cn.MODE_CHOICE_INDEX] = mode_index
             data.append(row)
             
-        cols=[cn.BLOCK_GROUP, cn.DRIVING_MODE, cn.BIKING_MODE, cn.TRANSIT_MODE, cn.WALKING_MODE, cn.MODE_CHOICE_INDEX]
+        cols=[cn.BLOCK_GROUP, cn.DRIVING_MODE, cn.BIKING_MODE, cn.TRANSIT_MODE,
+              cn.WALKING_MODE, cn.MODE_CHOICE_INDEX]
+
         df = pd.DataFrame(data, columns=cols)
-        # df.to_csv(cn.MODE_CHOICE_FP)
+    
         return df
 
