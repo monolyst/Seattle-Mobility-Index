@@ -95,12 +95,12 @@ class Coordinate:
     def _geocode(self, lat, lon):
         geo = geocoder.Geocoder()
         df = geo.geocode_point((float(lat), float(lon)))
-        self.block_group = min(df[cn.BLOCK_GROUP])
-        self.neighborhood_long = min(df[cn.NBHD_LONG])
-        self.neighborhood_short = min(df[cn.NBHD_SHORT])
-        self.council_district = min(df[cn.COUNCIL_DISTRICT])
-        self.urban_village = min(df[cn.URBAN_VILLAGE])
-        self.zipcode = min(df[cn.ZIPCODE])
+        self.block_group = df[cn.BLOCK_GROUP].item()
+        self.neighborhood_long = df[cn.NBHD_LONG].item()
+        self.neighborhood_short = df[cn.NBHD_SHORT].item()
+        self.council_district = df[cn.COUNCIL_DISTRICT].item()
+        self.urban_village = df[cn.URBAN_VILLAGE].item()
+        self.zipcode = df[cn.ZIPCODE].item()
 
 
     def get_attribute(self, attribute):

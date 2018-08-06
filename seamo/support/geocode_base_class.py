@@ -56,6 +56,13 @@ class GeocodeBase(object):
         data.crs = self.crs
         return data
 
+    def geocode_df(self, df):
+        data = df
+        data[cn.GEOMETRY] = data.apply(lambda x: Point((float(x[1]), float(x[0]))), axis=1)
+        data = gpd.GeoDataFrame(data, geometry=cn.GEOMETRY)
+        data.crs = self.crs
+        return data
+
 
     def _split_coord(self, coord):
         coord = str(coord).split(", ")

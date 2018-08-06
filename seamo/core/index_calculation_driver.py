@@ -24,6 +24,7 @@ else:
 
 # print(trips_per_blockgroup)
 ac = AffordabilityIndex(trips_per_blockgroup)
+print("checkpoint reached")
 
 # # create cost dataframe for each blockgroup
 # # import pdb; pdb.set_trace()

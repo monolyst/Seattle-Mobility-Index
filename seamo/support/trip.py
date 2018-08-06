@@ -67,6 +67,7 @@ class Trip(object):
         Only includes cost value of time.
         """
         self.cost = self._calculate_base_cost(self.duration, self.value_of_time_rate)
+        return self
         
 
     def set_viability(self, viability):
@@ -137,6 +138,7 @@ class CarTrip(Trip):
         """
         self.cost = self._calculate_cost(self.destination, self.duration, self.departure_time,
             self.mile_rate, self.value_of_time_rate)
+        return self
       
 
     def _calculate_car_duration(self, duration, duration_in_traffic=0):
@@ -149,8 +151,8 @@ class CarTrip(Trip):
         Cost methods to estimate costs during car trip (for example gas and parking)
         """
         self.cost = super()._calculate_base_cost(duration)
-        # destination.set_parking_cost()
-        self.cost_to_park = 0 #destination.parking_cost
+        destination.set_parking_cost()
+        self.cost_to_park = destination.parking_cost
         # try:
         #     destination.set_geocode()
         #     # parking_cost = pd.read_csv(cn.BLOCK_GROUP_PARKING_RATES_FP)
@@ -185,6 +187,7 @@ class TransitTrip(Trip):
 
     def set_cost(self):
         self.cost = self._calculate_cost(self.duration, self.fare_value)
+        return self
         
     def _calculate_cost(self, duration, fare_value):
         self.cost = super()._calculate_base_cost(duration)
@@ -198,6 +201,7 @@ class BikeTrip(Trip):
 
     def set_cost(self):
         self.cost = self._calculate_cost(self.distance, self.duration, self.bike_rate)
+        return self
 
     def _calculate_cost(self, distance, duration, bike_rate):
         self.cost = super()._calculate_base_cost(duration)
