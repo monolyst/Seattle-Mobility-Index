@@ -41,6 +41,6 @@ def open_pickle(processed_dir, pickle_name):
     return pickle.load(open(fname, 'rb'))
 
 def read_csv_blockgroup_key(filepath, key):
-    df = pd.read_csv(filepath, dtypes={key: str})
+    df = pd.read_csv(filepath, dtype={key: str})
     df[key] = df.apply(lambda x: x[key].rstrip('.0'), axis=1)
     return df
