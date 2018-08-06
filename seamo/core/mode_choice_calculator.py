@@ -18,7 +18,7 @@ class ModeChoiceCalculator(IndexBase):
                 walk_time_threshold=cn.WALK_TIME_THRESHOLD):
         """
         Instantiate a ModeChoiceCalculator with different thresholds for the 
-        four modes of transportation.
+        four modes of transportation, using defaults from constants.py.
         Each threshold is a float denoting times in minutes.
         """
 
@@ -118,10 +118,6 @@ class ModeChoiceCalculator(IndexBase):
         elif trip.mode == cn.WALKING_MODE and trip.duration < self.walk_time_threshold:
             viable = 1
 
-        # TODO: can we take into account proximity? thinking of nearby locations
-        # with bad connections or disnant locations with good connections.
-        # Most relevant for bus.
-        
         return viable
 
     
@@ -161,30 +157,49 @@ class ModeChoiceCalculator(IndexBase):
         """
         Input: trips (list of Trips)
         Output: scores (dict)
-            for the list of trips as a function of viability
+                    keys: blockgroup IDs (int)
+                    values: list of Trip objects 
 
-        This function assumes that each Trip in trips has a viability attribute
+        For each mode, calculate the ratio of viable trips to total trips for 
+        that particular mode. Return a dict containing scores for each mode.
+
         """
         # Hours of data availability, HOURS constant should be float
         scores = {}
         for mode in [cn.DRIVING_MODE, cn.BIKING_MODE, cn.TRANSIT_MODE, cn.WALKING_MODE]:
-            # trips_for_mode = [trip for trip in trips if trip.mode == mode]
-            viable_trips = [trip.viable for trip in trips if trip.mode == mode]
-            mode_avail = sum(viable_trips)
-            if mode == cn.DRIVING_MODE or mode == cn.TRANSIT_MODE:
-                mode_avail /= cn.TRAVEL_HOURS
-            mode_avail /= cn.BASKET_SIZE
-            # mode_index = mode_avail / len(trips_for_mode) 
-            scores[mode] = mode_avail
+            # List of 0s and 1s corresponding to binary viability value for each trip
+            viability_per_trip = [trip.viable for trip in trips if trip.mode == mode]
+
+            # Number of viable trips
+            viable_trips = sum(viability_per_trip)
+            mode_avail_score = viable_trips / len(viability_per_trip)
+
+            # if mode == cn.DRIVING_MODE or mode == cn.TRANSIT_MODE:
+            #    mode_avail /= cn.TRAVEL_HOURS
+            # mode_avail /= cn.BASKET_SIZE
+            
+            scores[mode] = mode_avail_score
         return scores 
         
 
     def create_availability_df(self, blkgrp_dict):
         """
-        Takes in a blockgroup dictionary where blokgroups are keys and list of trips from
-        that blockgroups are corresponding values, estimates the availability score for each blockroup
-        and returns dataframe with each block group's mobility score.
+        Input:
+            blkgrp_dict (dict)
+                keys: blockgroup IDs (int)
+                values: list of Trips originating from that blockgroup
+        Output:
+            df (Pandas DataFrame)
 
+        Given a dict in which keys are blockgroup IDs and values are a list of
+        trips from that blockgroup, this method calculates a mode availability 
+        score for each blockroup and creates a Pandas DataFrame with a row for 
+        each block group and columns for mode-specific and total availability
+        scores. 
+
+        Mode-specific scores are calculated by the ratio of viable trips to
+        total trips. The final mode availability score is the unweighted mean 
+        of the 4 mode-specific scores. 
         """
         data = []
         for blkgrp, trips in blkgrp_dict.items():
@@ -195,8 +210,10 @@ class ModeChoiceCalculator(IndexBase):
             row[cn.MODE_CHOICE_INDEX] = mode_index
             data.append(row)
             
-        cols=[cn.BLOCK_GROUP, cn.DRIVING_MODE, cn.BIKING_MODE, cn.TRANSIT_MODE, cn.WALKING_MODE, cn.MODE_CHOICE_INDEX]
+        cols=[cn.BLOCK_GROUP, cn.DRIVING_MODE, cn.BIKING_MODE, cn.TRANSIT_MODE,
+              cn.WALKING_MODE, cn.MODE_CHOICE_INDEX]
+
         df = pd.DataFrame(data, columns=cols)
-        # df.to_csv(cn.MODE_CHOICE_FP)
+    
         return df
 
