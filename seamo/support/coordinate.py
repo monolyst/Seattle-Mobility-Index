@@ -51,18 +51,17 @@ class Coordinate:
         parking_rates = daq.read_csv_blockgroup_key(cn.BLOCK_GROUP_PARKING_RATES_FP, cn.KEY)
         if self.block_group == None:
             self.set_geocode()
-        else:
-
+        self.parking_cost = df.loc[cn.KEY == str(self.block_group), cn.RATE].item()
         
-        try:
-        try:
-            min(parking_rates.loc[parking_rates[cn.KEY] == self.block_group, cn.RATE])
-        except (KeyError, ValueError) as e:
-            #TODO: fix!
-            self.parking_cost = 0
-            # raise se.NotInSeattleError("No Parking Data Available")
-        else:
-            self.parking_cost = min(parking_rates.loc[parking_rates[cn.KEY] == self.block_group, cn.RATE])
+        # try:
+        # try:
+        #     min(parking_rates.loc[parking_rates[cn.KEY] == self.block_group, cn.RATE])
+        # except (KeyError, ValueError) as e:
+        #     #TODO: fix!
+        #     self.parking_cost = 0
+        #     # raise se.NotInSeattleError("No Parking Data Available")
+        # else:
+        #     self.parking_cost = min(parking_rates.loc[parking_rates[cn.KEY] == self.block_group, cn.RATE])
         return self
 
 
