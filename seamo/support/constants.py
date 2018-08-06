@@ -280,5 +280,5 @@ DISTANCES_OUT_FP = os.path.join(CSV_DIR, 'weekday_7_25/google_dist_matrix_out.cs
 SEATTLE_BLOCK_GROUPS_FP = os.path.join(CSV_DIR, 'SeattleCensusBlockGroups.csv')
 BLOCK_GROUP_PARKING_RATES_FP = os.path.join(CSV_DIR, 'BlockGroupParkingRates.csv')
 BLOCK_GROUP_DEMOGRAPHICS_FP = os.path.join(RAW_DIR, 'Blockgroup_demographics.xlsx')
-SAMPLE_PERSONA_FP = os.path.join(CSV_DIR, 'sample_return.csv')
+PERSONA_FP = os.path.join(CSV_DIR, 'weighted_thresholds_and_modeweights.csv')
 SEATTLE_BLOCK_GROUPS_FP = os.path.join(CSV_DIR, 'SeattleCensusBlockGroups.csv')
