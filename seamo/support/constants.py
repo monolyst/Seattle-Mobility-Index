@@ -244,9 +244,15 @@ NORMALIZED = 'normalized'
 INCOME_NORMALIZED = 'income_normalized'
 DEST_BLOCK_GROUP = 'destination_blockgroup'
 
+# Personas constants
+TYPE_A = "family-(wo)man"
+TYPE_B = "fit-urbanites"
+TYPE_C = "tired-commuter"
+TYPE_D = "jolly-retiree"
+TYPE_E = "olde-Seattleite"
+NEUTRAL = "neutral"
 
-
-# Filepaths
+# Directories 
 DATADIR = 'data/'
 SHAPEFILE_DIR = os.path.join(DATADIR, 'raw/shapefiles/')
 PROCESSED_DIR = os.path.join(DATADIR, 'processed/')
@@ -259,6 +265,9 @@ DB_DIR = os.path.join(PROCESSED_DIR, 'databases/')
 CSV_DIR = os.path.join(PROCESSED_DIR, 'csv_files/')
 GEN_SHAPEFILE_DIR = os.path.join(PROCESSED_DIR, 'shapefiles/')
 TEST_DIR = os.path.join(DATADIR, 'test/')
+DYNAMODB_OUT_DIR = os.path.join(RAW_DIR + 'dynamodb_out/')
+
+# File paths
 HAVERSINE_DIST_FP = os.path.join(CSV_DIR, 'haversine_distances.csv')
 DISTANCE_QUEUE_FP = os.path.join(CSV_DIR, 'distance_queue.csv')
 API_DIST_FP = os.path.join(CSV_DIR, 'api_distances.csv')
@@ -267,24 +276,10 @@ BASKETS_FP = os.path.join(CSV_DIR, 'baskets.csv')
 INPUT_BASKETS_FP = os.path.join(CSV_DIR, 'input_baskets.csv')
 DYNAMODB_OUT_DIR = os.path.join(RAW_DIR, 'dynamodb_out/')
 MODE_CHOICE_FP = os.path.join(CSV_DIR, 'mode_choice_scores.csv')
-DISTANCES_OUT_FP = os.path.join(CSV_DIR, 'google_dist_matrix_out.csv')
+DISTANCES_OUT_FP = os.path.join(CSV_DIR, 'weekday_7_25/google_dist_matrix_out.csv')
 SEATTLE_BLOCK_GROUPS_FP = os.path.join(CSV_DIR, 'SeattleCensusBlockGroups.csv')
 BLOCK_GROUP_PARKING_RATES_FP = os.path.join(CSV_DIR, 'BlockGroupParkingRates.csv')
 BLOCK_GROUP_DEMOGRAPHICS_FP = os.path.join(RAW_DIR, 'Blockgroup_demographics.xlsx')
-
-
-# Personas constants
-PERSONAS_CLUSTER_FP = os.path.join(PROCESSED_DIR, 'clustered_psrcreturn.csv')
-
-TYPE_A = "family-(wo)man"
-TYPE_B = "fit-urbanites"
-TYPE_C = "tired-commuter"
-TYPE_D = "jolly-retiree"
-TYPE_E = "olde-Seattleite"
-NEUTRAL = "neutral"
-
-DYNAMODB_OUT_DIR = os.path.join(RAW_DIR + 'dynamodb_out/')
+PERSONA_FP = os.path.join(CSV_DIR, 'weighted_thresholds_and_modeweights.csv')
 SEATTLE_BLOCK_GROUPS_FP = os.path.join(CSV_DIR, 'SeattleCensusBlockGroups.csv')
-
-
-
+PERSONAS_CLUSTER_FP = os.path.join(PROCESSED_DIR, 'clustered_psrcreturn.csv')

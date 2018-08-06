@@ -10,7 +10,7 @@ mc = ModeChoiceCalculator()
 try:
     daq.open_pickle(cn.PICKLE_DIR, 'mode_choice_calc.pickle')
 except:
-    total_trips_df = pd.read_csv(os.path.join(cn.CSV_DIR, 'google_dist_matrix_out.csv'))
+    total_trips_df = pd.read_csv(cn.DISTANCES_OUT_FP)
     # Need to drop the duplicates.
     to_drop = total_trips_df[((total_trips_df.destination == "First Hill") | (total_trips_df.destination == "South Lake Union")) & (total_trips_df['class'] == "urban_village")]
 
