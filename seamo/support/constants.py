@@ -243,8 +243,6 @@ NORMALIZED = 'normalized'
 INCOME_NORMALIZED = 'income_normalized'
 
 # Personas constants
-PERSONAS_CLUSTER_FP = os.path.join(PROCESSED_DIR, 'clustered_psrcreturn.csv')
-
 TYPE_A = "family-(wo)man"
 TYPE_B = "fit-urbanites"
 TYPE_C = "tired-commuter"
@@ -282,3 +280,4 @@ BLOCK_GROUP_PARKING_RATES_FP = os.path.join(CSV_DIR, 'BlockGroupParkingRates.csv
 BLOCK_GROUP_DEMOGRAPHICS_FP = os.path.join(RAW_DIR, 'Blockgroup_demographics.xlsx')
 PERSONA_FP = os.path.join(CSV_DIR, 'weighted_thresholds_and_modeweights.csv')
 SEATTLE_BLOCK_GROUPS_FP = os.path.join(CSV_DIR, 'SeattleCensusBlockGroups.csv')
+PERSONAS_CLUSTER_FP = os.path.join(PROCESSED_DIR, 'clustered_psrcreturn.csv')
