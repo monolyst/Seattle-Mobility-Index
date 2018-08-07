@@ -25,19 +25,15 @@ class ConvertDynamodb(object):
         df.rename(columns={'name': cn.DESTINATION, 'lng': cn.LON}, inplace=True)
         return df
 
-    def _chunker(self, df, chunks):
-        size = len(df) // chunks
-        return (df[pos:pos + size] for pos in range(0, len(df), size))
-
     def _get_blockgroup(self, df):
+        coords = df.loc[:, (cn.LAT, cn.LON)]
         geo = Geocoder()
-        temp = []
-        for chunk in self._chunker(df, 100):
-            coords = chunk.loc[:, (cn.LAT, cn.LON)]
-            blkgrps = geo.get_blockgroup_from_df(coords)
-            blkgrps.columns = [cn.LAT, cn.LON, cn.DEST_BLOCK_GROUP]
-            temp.append(pd.merge(chunk, blkgrps, left_on=[cn.LAT, cn.LON], right_on=[cn.LAT, cn.LON], how='left').drop_duplicates())
-        df = pd.concat(temp, sort=False).reset_index()
+        blkgrps = geo.get_blockgroup_from_df(coords)
+        blkgrps.columns = [cn.LAT, cn.LON, cn.DEST_BLOCK_GROUP]
+        chunksize = len(df) / 10
+        for i in range(10):
+            chunked_df = df.loc[i*chunksize:i * chunksize, :]
+            df = pd.merge(chunked_df, blkgrps, left_on=[cn.LAT, cn.LON], right_on=[cn.LAT, cn.LON], how='left')
         return df
 
     def _process_dynamodb(self, dynamodb_csv, dynamodb_dir=cn.DYNAMODB_OUT_DIR):
