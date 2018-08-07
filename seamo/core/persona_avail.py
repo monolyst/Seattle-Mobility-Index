@@ -20,7 +20,7 @@ import time
 import os
 import pandas as pd
 
-PERSONA_DICTS = pd.read_csv(cn.SAMPLE_PERSONA_FP, index_col=0).to_dict('index')
+PERSONA_DICTS = pd.read_csv(cn.PERSONA_FP, index_col=0).to_dict('index')
 
 total_trips_df = pd.read_csv(cn.DISTANCES_OUT_FP)
 # Need to drop the duplicates.
@@ -33,10 +33,10 @@ to_drop = total_trips_df[((total_trips_df.destination == "First Hill") |
 total_trips_df = total_trips_df.drop(to_drop.index)
 
 for persona, attrs in PERSONA_DICTS.items():
-    driving_threshold = attrs['driving_threshold']
-    transit_threshold = attrs['transit_threshold'] 
-    biking_threshold = attrs['biking_threshold']
-    walking_threshold = attrs['walking_threshold']
+    driving_threshold = attrs[cn.DRIVE_THRESHOLD]
+    transit_threshold = attrs[cn.TRANSIT_THRESHOLD] 
+    biking_threshold = attrs[cn.BIKE_THRESHOLD]
+    walking_threshold = attrs[cn.WALK_THRESHOLD]
     mc = ModeChoiceCalculator(driving_threshold,
                               biking_threshold,
                               transit_threshold,
