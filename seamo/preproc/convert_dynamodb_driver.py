@@ -4,12 +4,12 @@ import convert_dynamodb
 import data_accessor as daq
 import constants as cn
 
-driving = convert_dynamodb.ConvertDynamodbDriving()
+driving = convert_dynamodb.ConvertDynamodbDriving('dynamo_out_driving2.csv')
 car = driving.dataframe
 driving.write_to_csv(car, cn.GOOGLE_DIST_MATRIX_OUT + '_driving')
 print('driving done')
 
-transit = convert_dynamodb.ConvertDynamodbTransit()
+transit = convert_dynamodb.ConvertDynamodbTransit('dynamo_out_transit2.csv')
 train = transit.dataframe
 transit.write_to_csv(train, cn.GOOGLE_DIST_MATRIX_OUT + '_transit')
 print('transit done')
@@ -25,6 +25,6 @@ walking.write_to_csv(walk, cn.GOOGLE_DIST_MATRIX_OUT + '_walking')
 print('walking done')
 
 
-df = pd.concat([car, train, bike, walk])
+df = pd.concat([car, train, bike, walk], sort=False)
 daq.write_to_csv(df, cn.GOOGLE_DIST_MATRIX_OUT + '.csv')
 print('done')
