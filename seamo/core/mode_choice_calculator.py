@@ -74,14 +74,14 @@ class ModeChoiceCalculator(IndexBase):
         if mode == cn.DRIVING_MODE:
             trip = CarTrip(origin, dest_lat, dest_lon, distance, duration,
                            basket_category, departure_time,
-                           duration_in_traffic=duration_in_traffic),
+                           duration_in_traffic=duration_in_traffic)
         elif mode == cn.TRANSIT_MODE:
             trip = TransitTrip(origin, dest_lat, dest_lon, distance, duration,
                                basket_category, departure_time,
-                               fare_value=fare_value),
+                               fare_value=fare_value)
         elif mode == cn.BIKING_MODE:
             trip = BikeTrip(origin, dest_lat, dest_lon, distance, duration,
-                            basket_category, departure_time),
+                            basket_category, departure_time)
         elif mode == cn.WALKING_MODE:
             trip = WalkTrip(origin, dest_lat, dest_lon, distance, duration,
                             basket_category, departure_time)
