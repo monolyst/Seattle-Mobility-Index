@@ -36,7 +36,7 @@ Trip base class.
  
 """
 class Trip(object):
-    def __init__(self, mode, origin, dest_blockgroup, dest_lat, dest_lon, distance, duration, 
+    def __init__(self, mode, origin, dest_lat, dest_lon, distance, duration, 
                 basket_category, departure_time, citywide_type=None, value_of_time_rate=cn.VOT_RATE, place_name=None):
         """
         Input:
@@ -45,7 +45,7 @@ class Trip(object):
             dest_lon: float
         """
         self.origin = origin
-        self.destination = coordinate.Coordinate(dest_lat, dest_lon, dest_blockgroup)
+        self.destination = coordinate.Coordinate(dest_lat, dest_lon)
         self.mode = mode
         self.departure_time = departure_time
         self.distance = distance
@@ -59,6 +59,24 @@ class Trip(object):
         self.time_of_day = None
         self.type_of_day = None
         self.viable = None
+        self.dest_blockgroup = None
+        self.neighborhood_long = None
+        self.neighborhood_short = None
+        self.council_district = None
+        self.urban_village = None
+        self.zipcode = None
+
+    def set_geocoded_attributes(self, dest_blockgroup, neighborhood_long, neighborhood_short,
+                                council_district, urban_village, zipcode):
+        self.dest_blockgroup = dest_blockgroup
+        self.neighborhood_long = neighborhood_long
+        self.neighborhood_short = neighborhood_short
+        self.council_district = council_district
+        self.urban_village = urban_village
+        self.zipcode = zipcode
+        self.destination.set_geocoded_attributes(dest_blockgroup, neighborhood_long,
+            neighborhood_short, council_district, urban_village, zipcode)
+        return self
         
 
     def set_cost(self):

@@ -26,15 +26,17 @@ class ConvertDynamodb(object):
         return df
 
     def _get_blockgroup(self, df):
-        coords = df.loc[:, (cn.LAT, cn.LON)]
-        geo = Geocoder()
-        blkgrps = geo.get_blockgroup_from_df(coords)
-        blkgrps.columns = [cn.LAT, cn.LON, cn.DEST_BLOCK_GROUP]
-        chunksize = len(df) / 10
-        for i in range(10):
-            chunked_df = df.loc[i*chunksize:i * chunksize, :]
-            df = pd.merge(chunked_df, blkgrps, left_on=[cn.LAT, cn.LON], right_on=[cn.LAT, cn.LON], how='left')
-        return df
+    geo = Geocoder()
+    temp = []
+    for chunk in self._chunker(df, 10):
+        coords = chunk.loc[:, (cn.LAT, cn.LON)]
+        blkgrps = geo.geocode_df(coords)
+        blkgrps.columns = [cn.LAT, cn.LON, cn.DEST_BLOCK_GROUP, cn.NBHD_LONG, cn.NBHD_SHORT,
+                           cn.COUNCIL_DISTRICT, cn.URBAN_VILLAGE, cn.ZIPCODE]
+        temp.append(pd.merge(chunk, blkgrps, left_on=[cn.LAT, cn.LON],
+            right_on=[cn.LAT, cn.LON], how='left').drop_duplicates())
+    df = pd.concat(temp, sort=False).reset_index()
+    return df
 
     def _process_dynamodb(self, dynamodb_csv, dynamodb_dir=cn.DYNAMODB_OUT_DIR):
         df = self._read_dynamodb_outfile(dynamodb_csv, dynamodb_dir)
@@ -59,8 +61,9 @@ class ConvertDynamodbDriving(ConvertDynamodb):
     def _process_dynamodb_driving(self, dynamodb_csv='dynamo_out_driving.csv', dynamodb_dir=cn.DYNAMODB_OUT_DIR):
         df = self._process_dynamodb(dynamodb_csv, dynamodb_dir)
         df = df[[cn.BLOCK_GROUP, cn.MODE, cn.DEPARTURE_TIME, cn.DISTANCE, cn.DURATION,
-                cn.DURATION_IN_TRAFFIC, cn.DEST_BLOCK_GROUP, cn.DESTINATION, cn.LAT, cn.LON,
-                cn.ADDRESS, cn.CLASS, cn.TYPE, cn.CITY, cn.RATING]]
+            cn.DURATION_IN_TRAFFIC, cn.DEST_BLOCK_GROUP, cn.DESTINATION, cn.LAT, cn.LON,
+            cn.NBHD_LONG, cn.NBHD_SHORT,cn.COUNCIL_DISTRICT, cn.URBAN_VILLAGE, cn.ZIPCODE,
+            cn.ADDRESS, cn.CLASS, cn.TYPE, cn.CITY, cn.RATING]]
         return df
 
 
@@ -71,9 +74,10 @@ class ConvertDynamodbTransit(ConvertDynamodb):
 
     def _process_dynamodb_transit(self, dynamodb_csv='dynamo_out_transit.csv', dynamodb_dir=cn.DYNAMODB_OUT_DIR):
         df = self._process_dynamodb(dynamodb_csv, dynamodb_dir)
-        df = df[[cn.BLOCK_GROUP, cn.MODE, cn.FARE, cn.DEPARTURE_TIME, cn.DISTANCE, 
-                cn.DURATION, cn.DEST_BLOCK_GROUP, cn.DESTINATION, cn.LAT, cn.LON, cn.ADDRESS,
-                cn.CLASS, cn.TYPE, cn.CITY, cn.RATING]]
+        df = df[[cn.BLOCK_GROUP, cn.MODE, cn.FARE, cn.DEPARTURE_TIME, cn.DISTANCE, cn.DURATION,
+            cn.DEST_BLOCK_GROUP, cn.DESTINATION, cn.LAT, cn.LON, cn.NBHD_LONG, cn.NBHD_SHORT,
+            cn.COUNCIL_DISTRICT, cn.URBAN_VILLAGE, cn.ZIPCODE, cn.ADDRESS, cn.CLASS, cn.TYPE,
+            cn.CITY, cn.RATING]]
         return df
 
 
@@ -84,9 +88,10 @@ class ConvertDynamodbBiking(ConvertDynamodb):
 
     def _process_dynamodb_biking(self, dynamodb_csv='dynamo_out_bicycling.csv', dynamodb_dir=cn.DYNAMODB_OUT_DIR):
         df = self._process_dynamodb(dynamodb_csv, dynamodb_dir)
-        df = df[[cn.BLOCK_GROUP, cn.MODE, cn.DEPARTURE_TIME, cn.DISTANCE, 
-                cn.DURATION, cn.DEST_BLOCK_GROUP, cn.DESTINATION, cn.LAT, cn.LON, cn.ADDRESS,
-                cn.CLASS, cn.TYPE, cn.CITY, cn.RATING]]
+        df = df[[cn.BLOCK_GROUP, cn.MODE, cn.DEPARTURE_TIME, cn.DISTANCE, cn.DURATION,
+            cn.DEST_BLOCK_GROUP, cn.DESTINATION, cn.LAT, cn.LON, cn.NBHD_LONG, cn.NBHD_SHORT,
+            cn.COUNCIL_DISTRICT, cn.URBAN_VILLAGE, cn.ZIPCODE, cn.ADDRESS, cn.CLASS, cn.TYPE,
+            cn.CITY, cn.RATING]]
         return df
 
 
@@ -97,7 +102,8 @@ class ConvertDynamodbWalking(ConvertDynamodb):
 
     def _process_dynamodb_walking(self, dynamodb_csv='dynamo_out_walking.csv', dynamodb_dir=cn.DYNAMODB_OUT_DIR):
         df = self._process_dynamodb(dynamodb_csv, dynamodb_dir)
-        df = df[[cn.BLOCK_GROUP, cn.MODE, cn.DEPARTURE_TIME, cn.DISTANCE, 
-                cn.DURATION, cn.DEST_BLOCK_GROUP, cn.DESTINATION, cn.LAT, cn.LON, cn.ADDRESS,
-                cn.CLASS, cn.TYPE, cn.CITY, cn.RATING]]
+        df = df[[cn.BLOCK_GROUP, cn.MODE, cn.DEPARTURE_TIME, cn.DISTANCE, cn.DURATION,
+            cn.DEST_BLOCK_GROUP, cn.DESTINATION, cn.LAT, cn.LON, cn.NBHD_LONG, cn.NBHD_SHORT,
+            cn.COUNCIL_DISTRICT, cn.URBAN_VILLAGE, cn.ZIPCODE, cn.ADDRESS, cn.CLASS, cn.TYPE,
+            cn.CITY, cn.RATING]]
         return df
