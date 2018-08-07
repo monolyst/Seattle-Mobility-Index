@@ -87,6 +87,8 @@ class Geocoder(gbc.GeocodeBase):
                 df[col] = None
             else:
                 df[col] = df[col].astype(str)
+        df = df[[cn.LAT, cn.LON, cn.BLOCK_GROUP, cn.NBHD_LONG, cn.NBHD_SHORT,cn.COUNCIL_DISTRICT,
+                cn.URBAN_VILLAGE, cn.ZIPCODE]]
         return df
 
 
