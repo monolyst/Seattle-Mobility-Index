@@ -10,13 +10,13 @@ class Coordinate:
     """
     Coordinate class.
     """
-    def __init__(self, lat, lon, block_group=None):
+    def __init__(self, lat, lon):
         """
         Initialize Coordinate with a latitude and a longitude (both floats).
         """
         self.lat = lat
         self.lon = lon
-        self.block_group = block_group
+        self.block_group = None
         self.neighborhood_long = None
         self.neighborhood_short = None
         self.council_district = None
@@ -31,6 +31,17 @@ class Coordinate:
         Format is 'lat,lon'
         """
         return "{0}, {1}".format(self.lat, self.lon)
+
+
+    def set_geocoded_attributes(self, dest_blockgroup, neighborhood_long, neighborhood_short,
+                                council_district, urban_village, zipcode):
+        self.dest_blockgroup = dest_blockgroup
+        self.neighborhood_long = neighborhood_long
+        self.neighborhood_short = neighborhood_short
+        self.council_district = council_district
+        self.urban_village = urban_village
+        self.zipcode = zipcode
+        return self
 
 
     def set_geocode(self):

@@ -215,6 +215,8 @@ DISTRICT6_PICKLE = 'parking_district6.pickle'
 DISTRICT7_PICKLE = 'parking_district7.pickle'
 PRIMARY_DISTRICT = 'PRIMARYDIS'
 
+#N
+
 # Time Constants
 MORNING_START = 7
 MORNING_END = 9
