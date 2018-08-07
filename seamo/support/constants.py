@@ -54,6 +54,10 @@ TRIP_ID = 'trip_id'
 VIABLE = 'viable'
 MODE_CHOICE_INDEX = 'mode_index'
 SEATTLE_BLOCK_GROUPS_PICKLE = 'seattle_block_groups.pickle'
+DRIVE_THRESHOLD = 'driving_threshold'
+TRANSIT_THRESHOLD = 'transit_threshold'
+BIKE_THRESHOLD = 'biking_threshold'
+WALK_THRESHOLD = 'walking_threshold'
 
 # Parking
 BLOCK_FACE = 'block_face'
@@ -254,6 +258,7 @@ TYPE_D = "jolly-retiree"
 TYPE_E = "olde-Seattleite"
 NEUTRAL = "neutral"
 
+
 # Directories 
 DATADIR = 'data/'
 SHAPEFILE_DIR = os.path.join(DATADIR, 'raw/shapefiles/')
@@ -278,7 +283,7 @@ BASKETS_FP = os.path.join(CSV_DIR, 'baskets.csv')
 INPUT_BASKETS_FP = os.path.join(CSV_DIR, 'input_baskets.csv')
 DYNAMODB_OUT_DIR = os.path.join(RAW_DIR, 'dynamodb_out/')
 MODE_CHOICE_FP = os.path.join(CSV_DIR, 'mode_choice_scores.csv')
-DISTANCES_OUT_FP = os.path.join(CSV_DIR, 'weekday_7_25/google_dist_matrix_out.csv')
+WEEKDAY_DISTANCES_OUT_FP = os.path.join(CSV_DIR, 'weekday_7_25/google_dist_matrix_out.csv')
 SEATTLE_BLOCK_GROUPS_FP = os.path.join(CSV_DIR, 'SeattleCensusBlockGroups.csv')
 BLOCK_GROUP_PARKING_RATES_FP = os.path.join(CSV_DIR, 'BlockGroupParkingRates.csv')
 BLOCK_GROUP_DEMOGRAPHICS_FP = os.path.join(RAW_DIR, 'Blockgroup_demographics.xlsx')
