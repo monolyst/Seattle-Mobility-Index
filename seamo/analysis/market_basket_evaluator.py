@@ -6,7 +6,7 @@ from sklearn.metrics import mean_squared_error
 
 import init
 import constants as cn
-
+from coordinate import Coordinate
 
 def proximity_ratio(df_destinations):
     """
@@ -66,6 +66,13 @@ def average_distance(df_destinations, df_blockgroup):
     
     return result_merged
 
+def dist_from_cc(df):
+    """
+    Helper function to create a new column in a DataFrame with dist to city center
+    """
+    coordinate = Coordinate(df['dest_lat'], df['dest_lon'])
+    city_center = Coordinate(cn.CITY_CENTER[0], cn.CITY_CENTER[1])
+    return city_center.haversine_distance(coordinate) 
 
 def distance_from_citycenter(df_destinations, df_blockgroup):
     """
@@ -75,11 +82,8 @@ def distance_from_citycenter(df_destinations, df_blockgroup):
     output:
         df_blockgroup - data frame with origin blockgroup and proximity ratio
     """
-   
-    df_destinations['distance_from_citycenter_val'] = pd.DataFrame(np.sqrt(
-                                                ((df_destinations['dest_lat'] - cn.CITY_CENTER[0]) * cn.DEG_INTO_MILES)**2 + 
-                                                ((df_destinations['dest_lon'] - cn.CITY_CENTER[1]) * cn.DEG_INTO_MILES)**2
-                                                ))
+    
+    df_destinations['distance_from_citycenter_val'] = df_destinations.apply(dist_from_df, axis=1) 
     
     df_blockgroup2 = df_destinations.groupby([cn.ORIGIN], as_index=False)['distance_from_citycenter_val'].mean()
     result_merged = pd.merge(left=df_blockgroup, right=df_blockgroup2, how='inner', left_on=cn.ORIGIN, right_on=cn.ORIGIN)
