@@ -61,9 +61,9 @@ class ModeChoiceCalculator(IndexBase):
             try:
                 row[attribute]
             except:
-                mode_specific_attributes[mode_specific_attribute] = 0
+                mode_specific_attributes[attribute] = 0
             else:
-                mode_specific_attributes[mode_specific_attribute] = row[attribute]
+                mode_specific_attributes[attribute] = row[attribute]
 
         basket_category = None
 
