@@ -1,7 +1,7 @@
 import init
 import pandas as pd
 from math import sin, cos, sqrt, atan2, radians
-from core import geocoder
+# from core import geocoder
 import constants as cn
 import seamo_exceptions as se
 import data_accessor as daq
