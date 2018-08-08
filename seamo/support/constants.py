@@ -290,3 +290,5 @@ BLOCK_GROUP_DEMOGRAPHICS_FP = os.path.join(RAW_DIR, 'Blockgroup_demographics.xls
 PERSONA_FP = os.path.join(CSV_DIR, 'weighted_thresholds_and_modeweights.csv')
 SEATTLE_BLOCK_GROUPS_FP = os.path.join(CSV_DIR, 'SeattleCensusBlockGroups.csv')
 PERSONAS_CLUSTER_FP = os.path.join(PROCESSED_DIR, 'clustered_psrcreturn.csv')
+SIMULATED_CAR_DATA_FP = os.path.join(CSV_DIR, 'data_simulation30days.csv')
+
