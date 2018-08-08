@@ -9,7 +9,7 @@ import pickle
 import pandas as pd
 
 
-def df_to_sql(df, table_name, schema=None, db_filename):
+def df_to_sql(df, table_name, db_filename, schema=None):
     db_file = os.path.join(cn.DB_DIR, str(db_filename) + '.db')
     conn = sqlite3.connect(db_file)
     df.to_sql(table_name, conn, schema=schema, if_exists='fail', index=False)

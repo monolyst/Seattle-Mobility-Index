@@ -89,6 +89,7 @@ PARKING_COLUMNS = ['BLOCK_NBR', 'PARKING_CA', 'WKD_RATE1', 'WKD_RATE2', 'WKD_RAT
                 'PRIMARYDIS', GEOMETRY]
 NO_PARKING_ALLOWED = 'No Parking Allowed'
 RATE = 'rate'
+SCALED = 'scaled'
 
 
 # geocode exception handling
