@@ -31,6 +31,7 @@ class AffordabilityIndex(IndexBase):
         # result_data = []
         # result_df = pd.DataFrame({cn.KEY: [], cn.COST: []})
         result_df = pd.DataFrame({cn.KEY: list(self.viable_modes.keys())})
+        # import pdb; pdb.set_trace()
         result_df[cn.COST] = result_df.applymap(lambda x: self._calculate_avg_cost(x))
         return result_df
 
@@ -61,7 +62,7 @@ class AffordabilityIndex(IndexBase):
         # print(self.viable_modes[origin_blockgroup])
         trips = self.viable_modes[origin_blockgroup]
         costs = [trip.set_cost().cost for trip in trips]
-        print(origin_blockgroup, np.mean(costs))
+        # print(origin_blockgroup, np.mean(costs))
         return np.mean(costs)
 
 

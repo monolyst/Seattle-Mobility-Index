@@ -84,7 +84,7 @@ class Trip(object):
         Sets the cost of the trip based on the base rate. 
         Only includes cost value of time.
         """
-        self.cost = self._calculate_base_cost(self.duration, self.value_of_time_rate)
+        self.cost = self._calculate_base_cost(self.duration)
         return self
         
 
@@ -114,11 +114,11 @@ class Trip(object):
         """
         self.persona = persona
 
-    def _calculate_base_cost(self, duration, value_of_time_rate=cn.VOT_RATE):
+    def _calculate_base_cost(self, duration):
         """
         Estimates trip cost from base rate. Includes only costs from time spent on trip.
         """
-        return duration * value_of_time_rate / cn.MIN_TO_HR
+        return duration * self.value_of_time_rate / cn.MIN_TO_HR
 
     def print_destination(self, *args):
         """
@@ -147,30 +147,29 @@ class CarTrip(Trip):
         self.mile_rate = mile_rate
         self.cost_to_park = None
         self.parking_category = None
-        self.duration = duration_in_traffic
+        self.duration = self._calculate_car_duration(duration_in_traffic)
         self.cost = None
 
     def set_cost(self):
         """
         sets cost of a car trip.
         """
-        self.cost = self._calculate_cost(self.destination, self.duration, self.departure_time,
-            self.mile_rate, self.value_of_time_rate)
+        self.cost = self._calculate_cost()
         return self
       
 
-    def _calculate_car_duration(self, duration, duration_in_traffic=0):
+    def _calculate_car_duration(self, duration_in_traffic):
         #TODO: do I want to save the original duration for car trips?
         #TODO: make a specific exception for no min
         return duration_in_traffic + cn.PARKING_TIME_OFFSET
 
-    def _calculate_cost(self, destination, duration, departure_time, mile_rate, value_of_time_rate):
+    def _calculate_cost(self):
         """
         Cost methods to estimate costs during car trip (for example gas and parking)
         """
-        self.cost = super()._calculate_base_cost(duration)
-        destination.set_parking_cost()
-        self.cost_to_park = destination.parking_cost
+        self.cost = super()._calculate_base_cost(self.duration)
+        self.destination.set_parking_cost()
+        self.cost_to_park = self.destination.parking_cost
         # try:
         #     destination.set_geocode()
         #     # parking_cost = pd.read_csv(cn.BLOCK_GROUP_PARKING_RATES_FP)
@@ -186,7 +185,7 @@ class CarTrip(Trip):
         #     self.cost_to_park = 0
         # else:
         #     self.cost_to_park = min(parking_cost.loc[parking_cost[cn.KEY] == destination.block_group, cn.RATE])
-        return self.cost + (self.distance * mile_rate) + self.cost_to_park
+        return self.cost + (self.distance * self.mile_rate) + self.cost_to_park
 
 
 class TransitTrip(Trip):
@@ -204,12 +203,12 @@ class TransitTrip(Trip):
         return fare_value
 
     def set_cost(self):
-        self.cost = self._calculate_cost(self.duration, self.fare_value)
+        self.cost = self._calculate_cost()
         return self
         
-    def _calculate_cost(self, duration, fare_value):
-        self.cost = super()._calculate_base_cost(duration)
-        return self.cost + fare_value
+    def _calculate_cost(self):
+        self.cost = super()._calculate_base_cost(self.duration)
+        return self.cost + self.fare_value
     
 class BikeTrip(Trip):
     def __init__(self, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time, bike_rate=cn.BIKE_RATE):
@@ -218,12 +217,12 @@ class BikeTrip(Trip):
         self.cost = None
 
     def set_cost(self):
-        self.cost = self._calculate_cost(self.distance, self.duration, self.bike_rate)
+        self.cost = self._calculate_cost()
         return self
 
-    def _calculate_cost(self, distance, duration, bike_rate):
-        self.cost = super()._calculate_base_cost(duration)
-        return self.cost + (distance * bike_rate)
+    def _calculate_cost(self):
+        self.cost = super()._calculate_base_cost(self.duration)
+        return self.cost + (self.distance * self.bike_rate)
     
 
 class WalkTrip(Trip):
