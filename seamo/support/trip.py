@@ -1,7 +1,6 @@
 import init
 import pandas as pd
 import constants as cn
-from core import parking_cost, geocoder
 from support import coordinate
 from dateutil import parser
 import datetime as dt
@@ -9,131 +8,205 @@ import support.seamo_exceptions as se
 import numpy as np
 
 """
-Base Trip Class
+Trip base class.
+
+    A trip is one of the base inputs for the Mobility Index. This class is created to facilitate
+    the use of trips as units of analysis within the individual Index Calculators (Mode choice, affordability, reliability).
+    The Trip Object is used to represent an individual Trip and store and keep track of its core attributes and 
+    defining variables.
+
+    Attributes:
+        origin: Block Group ID (string) of place where the trip originated.
+        destination: Coordinates of destination latitude and longitude (dest_lat, dest_lon)
+        mode: mode of the trip (WALKING,TRANSIT, DRIVING, CYCLING)
+        departure_time: string indicating the time when the trip started
+        distance: float indicating distance travelled between origin and destination.
+        duration: float indicating the time elapsed between origin and destination.
+        basket_category: string indicating the type of destination (i.e. school, hospital, pharmacy, post office, citywide destination, urban village, etc.)
+        citywide_type: string that stores categories for citywide destinations
+        value_of_time_rate: float, rate used as base for cost, representing opportunity cost of travel time
+        cost = float indicating the full cost of the trip
+        viable: value between 0 and 1 indicating the level of viability of the trip, as determined by the mode choice calculator.
+
+    TODO:
+    Revise attributes
+            persona = None * is a persona an attribute of a trip? Need to define
+            time_of_day (do we need this?)
+            type_of_day = None (do we need this?)
+ 
 """
 class Trip(object):
-    def __init__(self, origin, destination, mode, distance, duration, basket_category, departure_time, value_of_time_rate=cn.VOT_RATE):
-        self._origin = origin
-        self._destination = self._convert_to_coord(destination)
+    def __init__(self, mode, origin, dest_lat, dest_lon, distance, duration, 
+                basket_category, departure_time, citywide_type=None, value_of_time_rate=cn.VOT_RATE, place_name=None):
+        """
+        Input:
+            origin: string (a block group ID)
+            dest_lat: float
+            dest_lon: float
+        """
+        self.origin = origin
+        self.destination = coordinate.Coordinate(dest_lat, dest_lon) 
         self.mode = mode
+        self.departure_time = departure_time
         self.distance = distance
         self.duration = duration
         self.basket_category = basket_category
-        self.departure_time = departure_time
+        self.citywide_type = citywide_type
         self.value_of_time_rate = cn.VOT_RATE
-        self.cost = self._calculate_base_cost(self.duration, self.value_of_time_rate)
+        self.place_name = place_name
+        self.cost = None
         self.persona = None
         self.time_of_day = None
         self.type_of_day = None
+        self.viable = None
         
 
-    def _convert_to_coord(self, pair):
-        pair = str(pair).split(", ")
-        left = pair[0][1:]
-        right = pair[1][:-1]
-        return coordinate.Coordinate(left, right)
+    def set_cost(self):
+        """
+        Sets the cost of the trip based on the base rate. 
+        Only includes cost value of time.
+        """
+        self.cost = self._calculate_base_cost(self.duration, self.value_of_time_rate)
+        
+
+    def set_viability(self, viability):
+        """
+        Sets the viability of the trip. 
+        The value of viability can be determined using the mode choice calculator.
+        Input:
+            viability (float between 0 and 1)
+        """
+        self.viable = viability
+
 
     def get_origin_coordinate(self):
         """
-        This returns a coordinate object. You can access centroid lat/lon and
-        geocoded information from this object.
+        This function returns a coordinate object that allows you to access the centroid lat/lon
+        of the  origin blockgroup and store the geocoded information of this object.
         """
         seattle_block_groups = pd.read_csv(cn.SEATTLE_BLOCK_GROUPS_FP)
         df = seattle_block_groups[seattle_block_groups[cn.KEY] == self._origin]
         return coordinate.Coordinate(df.lat, df.lon)
 
+    
     def set_persona(self, persona):
+        """
+        TODO: define how personas will relate to trip object. Currently unclear.
+        """
         self.persona = persona
 
     def _calculate_base_cost(self, duration, value_of_time_rate=cn.VOT_RATE):
+        """
+        Estimates trip cost from base rate. Includes only costs from time spent on trip.
+        """
         return duration * value_of_time_rate / cn.MIN_TO_HR
 
-    def destination(self, *args):
+    def print_destination(self, *args):
+        """
+        Prints the geocoded 
+        Arguments are optional and can include any or all of the geocode attributes of a destination
+        such as blockgroup, neighborhood, zip code, council district, urban village, etc.
+
+        TODO: Make sure all the correct possible args are listed.
+        """
         print(self._destination)
         for attribute in args:
             print(self._destination.get_attribute(attribute))
 
 
 class CarTrip(Trip):
-    def __init__(self, origin, destination, distance, duration, basket_category, departure_time,
+    """
+    Child class of Trip for trips made by car.
+    The distingusihing features are that car trips duration is based on time spent in traffic
+    and cost methods are specific to those incurred when driving (for example gas and parking).
+
+    TODO: refactor self.destination in child constructor.
+    """
+    def __init__(self, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time,
         duration_in_traffic=0, mile_rate=cn.AAA_RATE):
-        super().__init__(origin, destination, 'car', distance, duration, basket_category, departure_time)
+        super().__init__(cn.DRIVING_MODE, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time)
         self.mile_rate = mile_rate
-        self.cost_to_park = np.nan
+        self.cost_to_park = None
         self.parking_category = None
-        self.duration_in_traffic = duration_in_traffic
-        self.duration = self._calculate_car_duration(duration, duration_in_traffic)
-        # import pdb; pdb.set_trace()
-        self.cost = self._calculate_cost(self._destination, self.duration, self.departure_time,
+        self.duration = duration_in_traffic
+        self.cost = None
+
+    def set_cost(self):
+        """
+        sets cost of a car trip.
+        """
+        self.cost = self._calculate_cost(self.destination, self.duration, self.departure_time,
             self.mile_rate, self.value_of_time_rate)
+      
 
     def _calculate_car_duration(self, duration, duration_in_traffic=0):
-        # Not sure if this right
-        return duration + duration_in_traffic
+        #TODO: do I want to save the original duration for car trips?
+        #TODO: make a specific exception for no min
+        return duration_in_traffic + cn.PARKING_TIME_OFFSET
 
     def _calculate_cost(self, destination, duration, departure_time, mile_rate, value_of_time_rate):
-        self.cost = super()._calculate_base_cost(self.duration)
-        col = self._get_time_date(duration, departure_time)
-        pc = parking_cost.ParkingCost()
-        try:
-            pc.geocode_point((float(self._destination.lat), float(self._destination.lon)))
-        except se.NoParkingAvailableError as e:
-            print("parking not available")
-            return np.nan
-        else:
-            df = pc.geocode_point((float(self._destination.lat), float(self._destination.lon)))
-
-            options = df.loc[:, (cn.PARKING_CATEGORY, str(col + cn.RATE))]
-            options = options[options[cn.PARKING_CATEGORY] != cn.NO_PARKING_ALLOWED]
-            options = options.loc[options[str(col + cn.RATE)].idxmin()].drop_duplicates()
-            self.cost_to_park = int(options[str(col + cn.RATE)])
-            self.parking_category = min(options[cn.PARKING_CATEGORY])
-            return self.cost + (self.distance * mile_rate) + self.cost_to_park
+        """
+        Cost methods to estimate costs during car trip (for example gas and parking)
+        """
+        self.cost = super()._calculate_base_cost(duration)
+        # destination.set_parking_cost()
+        self.cost_to_park = 0 #destination.parking_cost
+        # try:
+        #     destination.set_geocode()
+        #     # parking_cost = pd.read_csv(cn.BLOCK_GROUP_PARKING_RATES_FP)
+        #     # self.cost_to_park = min(parking_cost.loc[parking_cost[cn.KEY] == destination.block_group, cn.RATE])
+        # except: #(se.NotInSeattleError, ValueError) as e:
+        #     pass
         
-    def _get_time_date(self, duration, departure_time):
-        date_time = parser.parse(departure_time) + dt.timedelta(minutes=float(duration))
-        date = date_time.date()
-        time = date_time.time()
-        
-        if date.weekday() < 5:
-            day_type = 'weekday'
-        else:
-            day_type = 'weekend'
-        if time.hour >= 8 and time.hour <= 11:
-            time_frame = 'morning'
-        elif time.hour > 11 and time.hour <= 17:
-            time_frame = 'afternoon'
-        elif time.hour > 17 and time.hour <= 22:
-            time_frame = 'evening'
-        else:
-            time_frame = None #fix default value
-        return day_type + '_' + time_frame + '_'
+        # else
+        # parking_cost = pd.read_csv(cn.BLOCK_GROUP_PARKING_RATES_FP)
+        # try:
+        #     min(parking_cost.loc[parking_cost[cn.KEY] == destination.block_group, cn.RATE])
+        # except ValueError:
+        #     self.cost_to_park = 0
+        # else:
+        #     self.cost_to_park = min(parking_cost.loc[parking_cost[cn.KEY] == destination.block_group, cn.RATE])
+        return self.cost + (self.distance * mile_rate) + self.cost_to_park
 
 
 class TransitTrip(Trip):
-    def __init__(self, origin, destination, distance, duration, basket_category, departure_time, fare_value):
-        super().__init__(origin, destination, 'car', distance, duration, basket_category, departure_time)
-        self.fare_value = fare_value
-        self.cost = self._calculate_cost(self.fare_value)
+    def __init__(self, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time, fare_value):
+        super().__init__(cn.TRANSIT_MODE, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time)
+        self.fare_value = self.get_fare_value(fare_value) 
+        self.cost = None
+
+    def get_fare_value(self, fare_value):
+        """
+        TODO: check for zero/empty/NaN fare value. Set this to zero or standard fare value. 
+        """
+        if np.isnan(fare_value): 
+            fare_value = 0
+        return fare_value
+
+    def set_cost(self):
+        self.cost = self._calculate_cost(self.duration, self.fare_value)
         
-    def _calculate_cost(self, fare_value):
-        self.cost = super()._calculate_base_cost(self.duration)
+    def _calculate_cost(self, duration, fare_value):
+        self.cost = super()._calculate_base_cost(duration)
         return self.cost + fare_value
     
 class BikeTrip(Trip):
-    def __init__(self, origin, destination, distance, duration, basket_category, departure_time, bike_rate=cn.BIKE_RATE):
-        super().__init__(origin, destination, 'car', distance, duration, basket_category, departure_time)
+    def __init__(self, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time, bike_rate=cn.BIKE_RATE):
+        super().__init__(cn.BIKING_MODE, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time)
         self.bike_rate = bike_rate
+        self.cost = None
+
+    def set_cost(self):
         self.cost = self._calculate_cost(self.distance, self.duration, self.bike_rate)
 
     def _calculate_cost(self, distance, duration, bike_rate):
-        self.cost = super()._calculate_base_cost(self.duration)
+        self.cost = super()._calculate_base_cost(duration)
         return self.cost + (distance * bike_rate)
     
 
 class WalkTrip(Trip):
-    def __init__(self, origin, destination, distance, duration, basket_category, departure_time):
-        super().__init__(origin, destination, 'car', distance, duration, basket_category, departure_time)
+    def __init__(self, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time):
+        super().__init__(cn.WALKING_MODE, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time)
 
 
 

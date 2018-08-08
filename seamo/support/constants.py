@@ -65,12 +65,22 @@ GEOGRAPHY = 'geography'
 CRS_EPSG = {'init' :'epsg:4326'}
 SHAPE_AREA = 'Shape_area'
 AREA = 'area'
+DRIVE_THRESHOLD = 'driving_threshold'
+TRANSIT_THRESHOLD = 'transit_threshold'
+BIKE_THRESHOLD = 'biking_threshold'
+WALK_THRESHOLD = 'walking_threshold'
+MODE = 'mode'
+TRIP_ID = 'trip_id'
+VIABLE = 'viable'
+MODE_CHOICE_INDEX = 'mode_index'
+
 # Columns specific to basket eval
 VERT_HORI_RATIO = 'vert_hori_ratio'
 PROX_RATIO = 'proximity_ratio'
 AVG_DIST = 'average_distance'
 DIST_CITY_CENTER = 'dist_from_city_center'
 
+SEATTLE_BLOCK_GROUPS_PICKLE = 'seattle_block_groups.pickle'
 
 # Parking
 BLOCK_FACE = 'block_face'
@@ -148,11 +158,16 @@ EARTH_RADIUS_KM = 6373.0 # Approximate radius of Earth in km
 AAA_RATE = 0.56
 VOT_RATE = 14.10
 BIKE_RATE = 0.15
+CAR_TIME_THRESHOLD = 15 #minutes
+BIKE_TIME_THRESHOLD = 25 #minutes
+TRANSIT_TIME_THRESHOLD = 60 #minutes
+WALK_TIME_THRESHOLD = 45 #minutes
+TRAVEL_HOURS = 14.0 #Total daily hours for which API calls are made
+PARKING_TIME_OFFSET = 9
 
 # API constants
 DIST_MATRIX_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?'
 IMPERIAL_UNITS = 'imperial'
-DRIVING_MODE = 'driving'
 GOOGLE_DIST_MATRIX_OUT = 'google_dist_matrix_out'
 TIMESTAMP = '1531933200' # Wednesday, July 18, 10AM UTC
 API_CALL_LIMIT = 100000
@@ -172,28 +187,26 @@ PLACE_IDS = 'place_ids'
 DURATION = 'duration'
 DURATION_IN_TRAFFIC = 'duration_in_traffic'
 DEPARTURE_TIME = 'departure_time'
-FARE_VALUE = 'fare_value'
+FARE_VALUE = 'fare'
 MODE = 'mode'
 ADDRESS = 'address'
 TYPE = 'type'
 RATING = 'rating'
 FARE = 'fare'
+BLOCK_GROUP_PARKING_RATES = 'BlockGroupParkingRates'
+COORDINATE = 'coordinate'
 
 # modes
-CAR = 'car'
-TRANSIT = 'transit'
-BIKE = 'bike'
-WALK = 'walk'
+DRIVING_MODE = 'driving'
+TRANSIT_MODE = 'transit'
+BIKING_MODE = 'bicycling'
+WALKING_MODE = 'walking'
 # Seattle Census Data naming
 CENSUS_LAT = 'CT_LAT'
 CENSUS_LON = 'CT_LON'
 BLOCKGROUP = 'BLOCKGROUP'
 CITY = 'city'
 
-
-<<<<<<< HEAD
-# Directory paths
-=======
 # Council Districts
 COUNCIL_DISTRICT1 = 'SCC1'
 COUNCIL_DISTRICT2 = 'SCC2'
@@ -218,7 +231,41 @@ DISTRICT6_PICKLE = 'parking_district6.pickle'
 DISTRICT7_PICKLE = 'parking_district7.pickle'
 PRIMARY_DISTRICT = 'PRIMARYDIS'
 
+# Time Constants
+MORNING_START = 7
+MORNING_END = 9
+AFTERNOON_START = 9
+AFTERNOON_END = 16
+EVENING_START = 16
+EVENING_END = 20
+PARKING_MORNING_START = 7
+PARKING_MORNING_END = 9
+PARKING_AFTERNOON_START = 9
+PARKING_AFTERNOON_END = 16
+PARKING_EVENING_START = 16
+PARKING_EVENING_END = 20
+MORNING = 'morning'
+AFTERNOON = 'afternoon'
+EVENING = 'evening'
+AFTER_HOURS = 'after_hours'
+SATURDAY = 5
+WEEKDAY = 'weekday'
+WEEKEND = 'weekend'
+PRICE = 'price'
+COST = 'cost'
+ADJUSTED_FOR_INCOME = 'adjusted_for_income'
+MEDIAN_HOUSEHOLD_INCOME = 'Med_Hh_Income'
+INCOME_BLOCKGROUP = 'Blockgroup'
+NORMALIZED = 'normalized'
+INCOME_NORMALIZED = 'income_normalized'
 
+# Personas constants
+TYPE_A = "family-(wo)man"
+TYPE_B = "fit-urbanites"
+TYPE_C = "tired-commuter"
+TYPE_D = "jolly-retiree"
+TYPE_E = "olde-Seattleite"
+NEUTRAL = "neutral"
 
 # Directories 
 DATADIR = 'data/'
@@ -230,6 +277,8 @@ DB_DIR = os.path.join(PROCESSED_DIR, 'databases/')
 CSV_DIR = os.path.join(PROCESSED_DIR, 'csv_files/')
 TEST_DIR = os.path.join(DATADIR, 'test/')
 GEN_SHAPEFILE_DIR = os.path.join(PROCESSED_DIR, 'shapefiles/')
+DYNAMODB_OUT_DIR = os.path.join(RAW_DIR + 'dynamodb_out/')
+
 # Filepaths
 ORIGIN_FP = os.path.join(RAW_DIR, 'SeattleCensusBlocksandNeighborhoodCorrelationFile.csv')
 DEST_FP = os.path.join(RAW_DIR, 'GoogleMatrix_Places_Full.csv')
@@ -243,5 +292,12 @@ INPUT_BASKETS_FP = os.path.join(CSV_DIR, 'input_baskets.csv')
 BASKET_COMBO_FP = os.path.join(CSV_DIR, 'basket_combinations.csv')
 MSES_FP = os.path.join(CSV_DIR, 'basket_mses.csv')
 PSRC_FP = os.path.join(RAW_DIR, 'PSRC_full_final.csv')
-DYNAMODB_OUT_DIR = os.path.join(RAW_DIR + 'dynamodb_out/')
 SEATTLE_BLOCK_GROUPS_FP = os.path.join(CSV_DIR, 'SeattleCensusBlockGroups.csv')
+WEEKDAY_MODE_CHOICE_FP = os.path.join(CSV_DIR, 'wkday_mode_avail.csv')
+WEEKDAY_DISTANCES_OUT_FP = os.path.join(CSV_DIR, 'weekday_7_25/google_dist_matrix_out.csv')
+SEATTLE_BLOCK_GROUPS_FP = os.path.join(CSV_DIR, 'SeattleCensusBlockGroups.csv')
+BLOCK_GROUP_PARKING_RATES_FP = os.path.join(CSV_DIR, 'BlockGroupParkingRates.csv')
+BLOCK_GROUP_DEMOGRAPHICS_FP = os.path.join(RAW_DIR, 'Blockgroup_demographics.xlsx')
+PERSONA_FP = os.path.join(CSV_DIR, 'weighted_thresholds_and_modeweights.csv')
+SEATTLE_BLOCK_GROUPS_FP = os.path.join(CSV_DIR, 'SeattleCensusBlockGroups.csv')
+PERSONAS_CLUSTER_FP = os.path.join(PROCESSED_DIR, 'clustered_psrcreturn.csv')
