@@ -1,7 +1,6 @@
 import init
 import constants as cn
 import pandas as pd
-import geopandas as gpd
 import trip
 import data_accessor as daq
 
