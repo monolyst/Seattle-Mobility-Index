@@ -32,7 +32,7 @@ import parking_cost_input as pci
 import constants as cn
 import geocode_base_class as gbc
 import support.seamo_exceptions as se
-import coordinate
+from coordinate import Coordinate
 
 class ParkingCost(gbc.GeocodeBase):
     #Read in shapes files for block group, neighborhoods, zipcode, council district and urban villages
@@ -49,7 +49,7 @@ class ParkingCost(gbc.GeocodeBase):
         reference_gdf = self._get_parking_reference(pickle_name)
         try:
             self._find_overlap_in_reference(gdf, pickle_name, reference_gdf)
-        except se.NoOverlapSpatialJoinError as e:
+        except: #se.NoOverlapSpatialJoinError as e:
             # print('No overlap found')
             df = pd.DataFrame(cn.PARKING_NAN_DF)
             raise se.NoParkingAvailableError("No Parking Available")
@@ -74,7 +74,8 @@ class ParkingCost(gbc.GeocodeBase):
 
     def geocode_point(self, coord):
         df = super().geocode_point(coord)
-        point = coordinate.Coordinate(df[cn.LAT], df[cn.LON], geocode=True)
+        point = Coordinate(df[cn.LAT], df[cn.LON])
+        point.set_geocode()
         pickle_name = {cn.COUNCIL_DISTRICT1: cn.DISTRICT1_PICKLE,
                     cn.COUNCIL_DISTRICT2: cn.DISTRICT2_PICKLE,
                     cn.COUNCIL_DISTRICT3: cn.DISTRICT3_PICKLE,

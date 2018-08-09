@@ -42,7 +42,7 @@ class GenerateParkingData(object):
                 cn.WEEKEND_MORNING_RATE, cn.WEEKEND_AFTERNOON_RATE, cn.WEEKEND_EVENING_RATE]
         try:
             pc.geocode_point((float(blkgrp_lat), float(blkgrp_lon)))
-        except: #se.NoParkingAvailableError as e:
+        except se.NoParkingAvailableError as e:
             return 0
         else:
             df = pc.geocode_point((float(blkgrp_lat), float(blkgrp_lon)))
