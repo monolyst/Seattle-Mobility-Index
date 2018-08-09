@@ -59,16 +59,15 @@ class Coordinate:
         return self
 
     def set_parking_cost(self):
-        df = daq.read_csv_blockgroup_key(cn.BLOCK_GROUP_PARKING_RATES_FP, cn.KEY)
+        parking_dict = daq.open_pickle(cn.PICKLE_DIR, cn.PARKING_RATES_PICKLE)
         if self.block_group == None:
-            print("bad")
             self.set_geocode()
         try:
-            df.loc[df.key == str(block_group), cn.RATE].item()
+            parking_dict[self.block_group]
         except:
             self.parking_cost = 0
         else:
-            self.parking_cost = df.loc[df.key == str(self.block_group), cn.RATE].item()
+            self.parking_cost = parking_dict[self.block_group]
         return self
 
 

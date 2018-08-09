@@ -219,6 +219,7 @@ DISTRICT5_PICKLE = 'parking_district5.pickle'
 DISTRICT6_PICKLE = 'parking_district6.pickle'
 DISTRICT7_PICKLE = 'parking_district7.pickle'
 PRIMARY_DISTRICT = 'PRIMARYDIS'
+PARKING_RATES_PICKLE = 'parking_rates.pickle'
 
 #N
 
