@@ -13,13 +13,6 @@ try:
 except:
     total_trips_df = pd.read_csv(cn.WEEKDAY_DISTANCES_OUT_FP,
         dtype={cn.BLOCK_GROUP: str, cn.DEST_BLOCK_GROUP: str})
-    # Need to drop the duplicates.
-    # to_drop = total_trips_df[((total_trips_df.destination == "First Hill") | (total_trips_df.destination == "South Lake Union")) & (total_trips_df['class'] == "urban_village")]
-
-    # total_trips_df = total_trips_df.drop(to_drop.index)
-
-    # Create a dictionary where keys are blockgroup IDs and values are lists of Trips
-    # import pdb; pdb.set_trace()
     trips_per_blockgroup = mc.trips_per_blockgroup(total_trips_df, viable_only=True)
     daq.make_pickle(cn.PICKLE_DIR, trips_per_blockgroup, 'mode_choice_calc.pickle')
 else:

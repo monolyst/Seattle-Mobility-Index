@@ -36,37 +36,10 @@ class AffordabilityIndex(IndexBase):
         return result_df
 
 
-        # if False:
-        #     for key, values in self.viable_modes.items():
-        #         blkgrp = str(key)
-        #         num_trips = len(values)
-        #         # print(num_trips)
-        #         cost = 0
-        #         for trip in values:
-        #             trip.set_cost()
-        #             cost += trip.cost
-        #             # cost += 2
-        #         cost /= num_trips
-        #         # print(pd.DataFrame({cn.BLOCK_GROUP: [key], cn.COST: [cost]}))
-        #         # result_data.append({cn.KEY: [key], cn.COST: [cost]})
-        #         # result_df = result_df.append(pd.DataFrame({cn.KEY: [str(key)]}))
-        #         result_df = result_df.append(pd.DataFrame({cn.KEY: [str(key)], cn.COST: [cost]}))
-        #         result_df = result_df.reset_index().drop(columns = ['index'])
-        # return result_df #pd.DataFrame(result_data)
-
-
     def _calculate_avg_cost(self, origin_blockgroup):
-        # 
-        # print(type(self.viable_modes))
-        # import pdb; pdb.set_trace()
-        # print(self.viable_modes[origin_blockgroup])
-
-        # parking_cost = self.park_dict[origin_blockgroup]
         trips = self.viable_modes[origin_blockgroup]
         costs = [trip.set_cost().cost for trip in trips]
-        # print(origin_blockgroup, np.mean(costs))
         return np.mean(costs)
-
 
 
     def calculate_score(self, df=None):
