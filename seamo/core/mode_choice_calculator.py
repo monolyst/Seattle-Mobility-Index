@@ -52,23 +52,20 @@ class ModeChoiceCalculator(IndexBase):
         distance = row[cn.DISTANCE]
         duration = row[cn.DURATION]
 
-        try:
-            row[cn.DURATION_IN_TRAFFIC]
-        except:
-            duration_in_traffic = 0
-        else:
-            duration_in_traffic = row[cn.DURATION_IN_TRAFFIC]
-
-        try:
-            row[cn.FARE_VALUE]
-        except:
-            fare_value = 0
-        else:
-            fare_value = row[cn.FARE_VALUE]
+        # TODO: find a way to not instantiate variables as None
+        duration_in_traffic = self._handle_missing_columns(row, cn.DURATION_IN_TRAFFIC)
+        fare_value = self._handle_missing_columns(row, cn.FARE_VALUE)
 
         basket_category = None
 
         departure_time = row[cn.DEPARTURE_TIME]
+
+        dest_blockgroup = row[cn.DEST_BLOCK_GROUP]
+        neighborhood_long = row[cn.NBHD_LONG]
+        neighborhood_short = row[cn.NBHD_SHORT]
+        council_district = row[cn.COUNCIL_DISTRICT]
+        urban_village = row[cn.URBAN_VILLAGE]
+        zipcode = row[cn.ZIPCODE]
 
         # Create a subclass of Trip based on the mode
         if mode == cn.DRIVING_MODE:
@@ -88,8 +85,18 @@ class ModeChoiceCalculator(IndexBase):
         else:
             # Should have a custom exception here
             trip = None
-    
+        trip.set_geocoded_attributes(dest_blockgroup, neighborhood_long,
+            neighborhood_short, council_district, urban_village, zipcode)    
         return trip
+
+
+    def _handle_missing_columns(self, row, attribute):
+        try:
+            row[attribute]
+        except:
+            return None
+        else:
+            return row[attribute]            
 
 
     def is_viable(self, trip):
@@ -144,7 +151,6 @@ class ModeChoiceCalculator(IndexBase):
         for _, row in df.iterrows():
             trip = self.trip_from_row(row)
             blkgrp = trip.origin
-
             viable = self.is_viable(trip)
             trip.set_viability(viable)
             if viable_only:

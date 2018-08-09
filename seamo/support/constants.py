@@ -112,6 +112,7 @@ PARKING_COLUMNS = ['BLOCK_NBR', 'PARKING_CA', 'WKD_RATE1', 'WKD_RATE2', 'WKD_RAT
                 'PRIMARYDIS', GEOMETRY]
 NO_PARKING_ALLOWED = 'No Parking Allowed'
 RATE = 'rate'
+SCALED = 'scaled'
 
 
 # geocode exception handling
@@ -144,6 +145,7 @@ URBAN_VILLAGE_KEY = 'UV_NAME'
 BLOCK_FACE_FNAME = 'Blockface'
 REFERENCE_PICKLE = 'reference.pickle'
 PARKING_REFERENCE = 'parking_reference.pickle'
+BLOCKGROUP_PICKLE = 'blockgroup.pickle'
 
 # Numeric Constants
 BASKET_EVAL_PROX_MIN = 2.0 # miles
@@ -230,6 +232,9 @@ DISTRICT5_PICKLE = 'parking_district5.pickle'
 DISTRICT6_PICKLE = 'parking_district6.pickle'
 DISTRICT7_PICKLE = 'parking_district7.pickle'
 PRIMARY_DISTRICT = 'PRIMARYDIS'
+PARKING_RATES_PICKLE = 'parking_rates.pickle'
+
+#N
 
 # Time Constants
 MORNING_START = 7
@@ -258,6 +263,7 @@ MEDIAN_HOUSEHOLD_INCOME = 'Med_Hh_Income'
 INCOME_BLOCKGROUP = 'Blockgroup'
 NORMALIZED = 'normalized'
 INCOME_NORMALIZED = 'income_normalized'
+DEST_BLOCK_GROUP = 'destination_blockgroup'
 
 # Personas constants
 TYPE_A = "family-(wo)man"

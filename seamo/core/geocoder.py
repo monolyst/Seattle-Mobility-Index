@@ -44,11 +44,11 @@ class Geocoder(gbc.GeocodeBase):
         """ 
         input_file.csv needs header lat, lon
         """
-        reference_gdf = self._get_geocode_reference(pickle_name)
+        reference_gdf = self._get_geocode_reference(0, pickle_name)
         try:
             self._find_overlap_in_reference(gdf, pickle_name, reference_gdf)
         except se.NoOverlapSpatialJoinError:
-            print('No overlap found')
+            # print('No overlap found')
             df = pd.DataFrame(cn.GEOCODE_NAN_DF)
         else:
             df = self._find_overlap_in_reference(gdf, pickle_name, reference_gdf)
@@ -61,25 +61,44 @@ class Geocoder(gbc.GeocodeBase):
         return df
 
 
+    def geocode_blockgroup(self, gdf, pickle_name=cn.BLOCKGROUP_PICKLE):
+        reference_gdf = self._get_geocode_reference(1, pickle_name)
+        # import pdb; pdb.set_trace()
+        try:
+            self._find_overlap_in_reference(gdf, pickle_name, reference_gdf)
+        except se.NoOverlapSpatialJoinError:
+            print('No overlap found')
+            df = pd.DataFrame({cn.KEY: [None]})
+        else:
+            df = self._find_overlap_in_reference(gdf, pickle_name, reference_gdf)
+            df[cn.KEY] = df[cn.KEY].astype(str)
+        return df
+
+
     def _format_output(self, df):
         df = df.reset_index().drop(['level_0'], axis=1)
         df[cn.LAT] = df[cn.LAT].astype(float)
         df[cn.LON] = df[cn.LON].astype(float)
-        df[cn.BLOCK_GROUP] = df[cn.BLOCK_GROUP].astype(np.int64)
-        for col in [cn.NBHD_LONG, cn.NBHD_SHORT, cn.COUNCIL_DISTRICT, cn.URBAN_VILLAGE]:
+        for col in [cn.BLOCK_GROUP, cn.NBHD_LONG, cn.NBHD_SHORT, cn.COUNCIL_DISTRICT,
+                    cn.URBAN_VILLAGE, cn.ZIPCODE]:
             try:
                 df[col].astype(str)
             except KeyError:
                 df[col] = None
             else:
                 df[col] = df[col].astype(str)
-        df[cn.ZIPCODE] = df[cn.ZIPCODE].astype(np.int64)
+        df = df[[cn.LAT, cn.LON, cn.BLOCK_GROUP, cn.NBHD_LONG, cn.NBHD_SHORT,cn.COUNCIL_DISTRICT,
+                cn.URBAN_VILLAGE, cn.ZIPCODE]]
         return df
 
 
-    def _get_geocode_reference(self, pickle_name=cn.REFERENCE_PICKLE):
-        gi = geocoder_input.GeocoderInput()
-        return self._get_reference(pickle_name, gi)
+    def _get_geocode_reference(self, ref_type, pickle_name):
+        if ref_type == 0:
+            gi = geocoder_input.GeocoderInput()
+            return self._get_reference(pickle_name, gi)
+        elif ref_type == 1:
+            gi = geocoder_input.GeocoderBlockgroupInput()
+            return self._get_reference(pickle_name, gi)
 
 
     def geocode_csv(self, input_file, pickle_name=cn.REFERENCE_PICKLE):
@@ -89,3 +108,15 @@ class Geocoder(gbc.GeocodeBase):
     def geocode_point(self, coord, pickle_name=cn.REFERENCE_PICKLE):
         df = super().geocode_point(coord) 
         return self.geocode(df, str(pickle_name))
+
+    def geocode_df(self, df, pickle_name=cn.REFERENCE_PICKLE):
+        df = super().geocode_df(df)
+        return self.geocode(df, str(pickle_name))
+
+    def get_blockgroup_from_point(self, coord, pickle_name=cn.BLOCKGROUP_PICKLE):
+        df = super().geocode_point(coord) 
+        return self.geocode_blockgroup(df, str(pickle_name))
+
+    def get_blockgroup_from_df(self, df, pickle_name=cn.BLOCKGROUP_PICKLE):
+        df = super().geocode_df(df)
+        return self.geocode_blockgroup(df, str(pickle_name))

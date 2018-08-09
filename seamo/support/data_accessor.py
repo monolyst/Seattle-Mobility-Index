@@ -6,21 +6,21 @@ import os
 import sqlalchemy
 import constants as cn
 import pickle
+import pandas as pd
 
 
-def df_to_sql(df, table_name):
-    self.table_name = table_name
-    db_file = os.path.join(cn.DB_DIR, str(self.table_name) + '.db')
+def df_to_sql(df, table_name, db_filename, schema=None):
+    db_file = os.path.join(cn.DB_DIR, str(db_filename) + '.db')
     conn = sqlite3.connect(db_file)
-    df.to_sql(table_name, conn, schema=None, if_exists='fail', index=False)
+    df.to_sql(table_name, conn, schema=schema, if_exists='fail', index=False)
     conn.commit()
     conn.close()
 
 
-def sql_to_df(db_name=cn.GOOGLE_DIST_MATRIX_OUT):
+def sql_to_df(table_name, db_name):
     db_file = os.path.join(cn.DB_DIR, db_name + '.db')
     conn = sqlite3.connect(db_file)
-    df = read_sql_table(db_file, conn)
+    df = pd.read_sql_table(table_name, conn)
     conn.commit()
     conn.close()
     return df
@@ -39,3 +39,8 @@ def make_pickle(processed_dir, df, pickle_name):
 def open_pickle(processed_dir, pickle_name):
     fname = processed_dir + str(pickle_name)
     return pickle.load(open(fname, 'rb'))
+
+def read_csv_blockgroup_key(filepath, key):
+    df = pd.read_csv(filepath, dtype={key: str})
+    df[key] = df.apply(lambda x: x.key[:x.key.index('.')], axis=1)
+    return df

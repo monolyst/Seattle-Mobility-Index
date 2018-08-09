@@ -29,8 +29,8 @@ class DecimalEncoder(json.JSONEncoder):
 def scanDynamo(LastEvaluatedKey=None):
 
     # MODE = 'walking'
-    # MODE = 'transit'
-    # MODE = 'driving'
+    # MODE = 'transit2'
+    # MODE = 'driving2'
     MODE = 'bicycling'
 
     # Get AWS service resource.
