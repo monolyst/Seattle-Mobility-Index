@@ -9,20 +9,35 @@ import pickle
 import pandas as pd
 
 
-def df_to_sql(df, table_name, db_filename, schema=None):
-    db_file = os.path.join(cn.DB_DIR, str(db_filename) + '.db')
+def df_to_sql(df, table_name, db_name, dtype=None, schema=None):
+    db_file = os.path.join(cn.DB_DIR, str(db_name) + '.db')
     conn = sqlite3.connect(db_file)
     df.to_sql(table_name, conn, schema=schema, if_exists='fail', index=False)
     conn.commit()
     conn.close()
 
 
-def sql_to_df(table_name, db_name):
+def sql_to_df(query, db_name):
     db_file = os.path.join(cn.DB_DIR, db_name + '.db')
     conn = sqlite3.connect(db_file)
-    df = pd.read_sql_table(table_name, conn)
+    df = pd.read_sql_query(query, conn)
     conn.commit()
     conn.close()
+    return df
+
+
+def csv_to_sql(csv_file, db_name, dtype=None, processed_dir=cn.CSV_DIR):
+    table_name = re.search(r'([\w]+)[.csv]', csv_file).group(1)
+    df = pd.read_csv(os.path.join(cn.CSV_DIR, csv_file), dtype=dtype)
+    df_to_sql(df, table_name, db_name, dtype)
+
+
+def query_goog_dist_mat_data(month_day, query=None, db_name=cn.GOOGLE_DIST_MATRIX_OUT):
+    table_name = cn.GOOGLE_DIST_MATRIX_OUT + '_' + month_day
+    if query is None:
+        df = sql_to_df('select * from ' + table_name, db_name)
+    else:
+        df = sql_to_df(query, db_name)
     return df
 
 
