@@ -28,10 +28,7 @@ class AffordabilityIndex(IndexBase):
         Inputs: None
         Outputs: Dataframe, columns: key, cost
         """
-        # result_data = []
-        # result_df = pd.DataFrame({cn.KEY: [], cn.COST: []})
         result_df = pd.DataFrame({cn.KEY: list(self.viable_modes.keys())})
-        # import pdb; pdb.set_trace()
         result_df[cn.COST] = result_df.applymap(lambda x: self._calculate_avg_cost(x))
         return result_df
 

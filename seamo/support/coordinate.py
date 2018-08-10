@@ -1,7 +1,7 @@
 import init
 import pandas as pd
 from math import sin, cos, sqrt, atan2, radians
-from core import geocoder
+from geocoder import Geocoder
 import constants as cn
 import seamo_exceptions as se
 import data_accessor as daq
@@ -104,14 +104,16 @@ class Coordinate:
 
 
     def _geocode(self, lat, lon):
-        geo = geocoder.Geocoder()
+        geo = Geocoder()
         df = geo.geocode_point((float(lat), float(lon)))
+        # import pdb; pdb.set_trace()
         self.block_group = df[cn.BLOCK_GROUP].item()
         self.neighborhood_long = df[cn.NBHD_LONG].item()
         self.neighborhood_short = df[cn.NBHD_SHORT].item()
         self.council_district = df[cn.COUNCIL_DISTRICT].item()
         self.urban_village = df[cn.URBAN_VILLAGE].item()
         self.zipcode = df[cn.ZIPCODE].item()
+        return self
 
 
     def get_attribute(self, attribute):
