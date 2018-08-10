@@ -1,6 +1,7 @@
 """
 Constants to be used throughout the code base.
 """
+import itertools
 import os
 import numpy as np
 
@@ -30,6 +31,21 @@ BASKET_CATEGORIES = [URBAN_VILLAGE,
                     SCHOOL,
                     CAFE]
 
+# Ranges of counts for each class of destination
+AA = [1,2,3,4] # urban village
+BB = [8,9,10,11,12,13] # citywide destination
+A = [1,2,3] # destination park
+B = [1,2,3] # supermarket
+C = [1,2,3] # library
+D = [1,2,3] # hospital
+E = [1,2,3] # pharmacy
+F = [1,2,3] # post office
+G = [1,2,3] # school
+H = [1,2,3] # cafe
+
+# Cartesian product. Iterates through all possible basket combinations. 
+BASKET_COMBOS = itertools.product(AA, BB, A, B, C, D, E, F, G, H) 
+
 CLASS = 'class'
 RANK = 'rank'
 
@@ -49,15 +65,22 @@ GEOGRAPHY = 'geography'
 CRS_EPSG = {'init' :'epsg:4326'}
 SHAPE_AREA = 'Shape_area'
 AREA = 'area'
-MODE = 'mode'
-TRIP_ID = 'trip_id'
-VIABLE = 'viable'
-MODE_CHOICE_INDEX = 'mode_index'
-SEATTLE_BLOCK_GROUPS_PICKLE = 'seattle_block_groups.pickle'
 DRIVE_THRESHOLD = 'driving_threshold'
 TRANSIT_THRESHOLD = 'transit_threshold'
 BIKE_THRESHOLD = 'biking_threshold'
 WALK_THRESHOLD = 'walking_threshold'
+MODE = 'mode'
+TRIP_ID = 'trip_id'
+VIABLE = 'viable'
+MODE_CHOICE_INDEX = 'mode_index'
+
+# Columns specific to basket eval
+VERT_HORI_RATIO = 'vert_hori_ratio'
+PROX_RATIO = 'proximity_ratio'
+AVG_DIST = 'average_distance'
+DIST_CITY_CENTER = 'dist_from_city_center'
+
+SEATTLE_BLOCK_GROUPS_PICKLE = 'seattle_block_groups.pickle'
 
 # Parking
 BLOCK_FACE = 'block_face'
@@ -89,6 +112,7 @@ PARKING_COLUMNS = ['BLOCK_NBR', 'PARKING_CA', 'WKD_RATE1', 'WKD_RATE2', 'WKD_RAT
                 'PRIMARYDIS', GEOMETRY]
 NO_PARKING_ALLOWED = 'No Parking Allowed'
 RATE = 'rate'
+SCALED = 'scaled'
 
 
 # geocode exception handling
@@ -124,6 +148,8 @@ PARKING_REFERENCE = 'parking_reference.pickle'
 BLOCKGROUP_PICKLE = 'blockgroup.pickle'
 
 # Numeric Constants
+BASKET_EVAL_PROX_MIN = 2.0 # miles
+BASKET_EVAL_PROX_MAX = 10.0 # miles
 PROXIMITY_THRESHOLD = 0.8 # 5-6 miles in lat-long coords
 METERS_TO_MILES = 1609
 KM_TO_MILES = 0.621371
@@ -183,18 +209,6 @@ CENSUS_LON = 'CT_LON'
 BLOCKGROUP = 'BLOCKGROUP'
 CITY = 'city'
 
-# Parameter domains
-AA = [0,1,2,3,4] # urban village
-BB = [8,9,10,11,12,13] # citywide destination
-A = [0,1,2,3] # destination park
-B = [0,1,2,3] # supermarket
-C = [0,1,2,3] # library
-D = [0,1,2,3] # hospital
-E = [0,1,2,3] # pharmacy
-F = [0,1,2,3] # post office
-G = [0,1,2,3] # school
-H = [0,1,2,3] # cafe
-
 # Council Districts
 COUNCIL_DISTRICT1 = 'SCC1'
 COUNCIL_DISTRICT2 = 'SCC2'
@@ -218,6 +232,7 @@ DISTRICT5_PICKLE = 'parking_district5.pickle'
 DISTRICT6_PICKLE = 'parking_district6.pickle'
 DISTRICT7_PICKLE = 'parking_district7.pickle'
 PRIMARY_DISTRICT = 'PRIMARYDIS'
+PARKING_RATES_PICKLE = 'parking_rates.pickle'
 
 #N
 
@@ -258,31 +273,33 @@ TYPE_D = "jolly-retiree"
 TYPE_E = "olde-Seattleite"
 NEUTRAL = "neutral"
 
-
 # Directories 
 DATADIR = 'data/'
-SHAPEFILE_DIR = os.path.join(DATADIR, 'raw/shapefiles/')
-PROCESSED_DIR = os.path.join(DATADIR, 'processed/')
 RAW_DIR = os.path.join(DATADIR, 'raw/')
+SHAPEFILE_DIR = os.path.join(RAW_DIR, 'shapefiles/')
+PROCESSED_DIR = os.path.join(DATADIR, 'processed/')
 PICKLE_DIR = os.path.join(PROCESSED_DIR, 'pickles/')
+DB_DIR = os.path.join(PROCESSED_DIR, 'databases/')
+CSV_DIR = os.path.join(PROCESSED_DIR, 'csv_files/')
+TEST_DIR = os.path.join(DATADIR, 'test/')
+GEN_SHAPEFILE_DIR = os.path.join(PROCESSED_DIR, 'shapefiles/')
+DYNAMODB_OUT_DIR = os.path.join(RAW_DIR + 'dynamodb_out/')
+
+# Filepaths
 ORIGIN_FP = os.path.join(RAW_DIR, 'SeattleCensusBlocksandNeighborhoodCorrelationFile.csv')
 DEST_FP = os.path.join(RAW_DIR, 'GoogleMatrix_Places_Full.csv')
 GOOGLE_DIST_FP = os.path.join(RAW_DIR, 'GoogleMatrix_Dist_Out.csv')
-DB_DIR = os.path.join(PROCESSED_DIR, 'databases/')
-CSV_DIR = os.path.join(PROCESSED_DIR, 'csv_files/')
-GEN_SHAPEFILE_DIR = os.path.join(PROCESSED_DIR, 'shapefiles/')
-TEST_DIR = os.path.join(DATADIR, 'test/')
-DYNAMODB_OUT_DIR = os.path.join(RAW_DIR + 'dynamodb_out/')
-
-# File paths
 HAVERSINE_DIST_FP = os.path.join(CSV_DIR, 'haversine_distances.csv')
 DISTANCE_QUEUE_FP = os.path.join(CSV_DIR, 'distance_queue.csv')
 API_DIST_FP = os.path.join(CSV_DIR, 'api_distances.csv')
 RANKED_DEST_FP = os.path.join(CSV_DIR, 'ranked_destinations.csv')
 BASKETS_FP = os.path.join(CSV_DIR, 'baskets.csv')
 INPUT_BASKETS_FP = os.path.join(CSV_DIR, 'input_baskets.csv')
-DYNAMODB_OUT_DIR = os.path.join(RAW_DIR, 'dynamodb_out/')
-MODE_CHOICE_FP = os.path.join(CSV_DIR, 'mode_choice_scores.csv')
+BASKET_COMBO_FP = os.path.join(CSV_DIR, 'basket_combinations.csv')
+MSES_FP = os.path.join(CSV_DIR, 'basket_mses.csv')
+PSRC_FP = os.path.join(RAW_DIR, 'PSRC_full_final.csv')
+SEATTLE_BLOCK_GROUPS_FP = os.path.join(CSV_DIR, 'SeattleCensusBlockGroups.csv')
+WEEKDAY_MODE_CHOICE_FP = os.path.join(CSV_DIR, 'wkday_mode_avail.csv')
 WEEKDAY_DISTANCES_OUT_FP = os.path.join(CSV_DIR, 'weekday_7_25/google_dist_matrix_out.csv')
 SEATTLE_BLOCK_GROUPS_FP = os.path.join(CSV_DIR, 'SeattleCensusBlockGroups.csv')
 BLOCK_GROUP_PARKING_RATES_FP = os.path.join(CSV_DIR, 'BlockGroupParkingRates.csv')

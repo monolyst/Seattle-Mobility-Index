@@ -1,7 +1,7 @@
 import init
 import pandas as pd
 from math import sin, cos, sqrt, atan2, radians
-from core import geocoder
+# from core import geocoder
 import constants as cn
 import seamo_exceptions as se
 import data_accessor as daq
@@ -33,9 +33,9 @@ class Coordinate:
         return "{0}, {1}".format(self.lat, self.lon)
 
 
-    def set_geocoded_attributes(self, dest_blockgroup, neighborhood_long, neighborhood_short,
+    def set_geocoded_attributes(self, block_group, neighborhood_long, neighborhood_short,
                                 council_district, urban_village, zipcode):
-        self.dest_blockgroup = dest_blockgroup
+        self.block_group = block_group
         self.neighborhood_long = neighborhood_long
         self.neighborhood_short = neighborhood_short
         self.council_district = council_district
@@ -59,20 +59,15 @@ class Coordinate:
         return self
 
     def set_parking_cost(self):
-        parking_rates = daq.read_csv_blockgroup_key(cn.BLOCK_GROUP_PARKING_RATES_FP, cn.KEY)
+        parking_dict = daq.open_pickle(cn.PICKLE_DIR, cn.PARKING_RATES_PICKLE)
         if self.block_group == None:
             self.set_geocode()
-        self.parking_cost = df.loc[cn.KEY == str(self.block_group), cn.RATE].item()
-        
-        # try:
-        # try:
-        #     min(parking_rates.loc[parking_rates[cn.KEY] == self.block_group, cn.RATE])
-        # except (KeyError, ValueError) as e:
-        #     #TODO: fix!
-        #     self.parking_cost = 0
-        #     # raise se.NotInSeattleError("No Parking Data Available")
-        # else:
-        #     self.parking_cost = min(parking_rates.loc[parking_rates[cn.KEY] == self.block_group, cn.RATE])
+        try:
+            parking_dict[self.block_group]
+        except:
+            self.parking_cost = 0
+        else:
+            self.parking_cost = parking_dict[self.block_group]
         return self
 
 

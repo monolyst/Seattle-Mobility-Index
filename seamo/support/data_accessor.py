@@ -9,18 +9,18 @@ import pickle
 import pandas as pd
 
 
-def df_to_sql(df, table_name, db_filename):
+def df_to_sql(df, table_name, db_filename, schema=None):
     db_file = os.path.join(cn.DB_DIR, str(db_filename) + '.db')
     conn = sqlite3.connect(db_file)
-    df.to_sql(table_name, conn, schema=None, if_exists='fail', index=False)
+    df.to_sql(table_name, conn, schema=schema, if_exists='fail', index=False)
     conn.commit()
     conn.close()
 
 
-def sql_to_df(db_name):
+def sql_to_df(table_name, db_name):
     db_file = os.path.join(cn.DB_DIR, db_name + '.db')
     conn = sqlite3.connect(db_file)
-    df = read_sql_table(db_file, conn)
+    df = pd.read_sql_table(table_name, conn)
     conn.commit()
     conn.close()
     return df
@@ -42,5 +42,5 @@ def open_pickle(processed_dir, pickle_name):
 
 def read_csv_blockgroup_key(filepath, key):
     df = pd.read_csv(filepath, dtype={key: str})
-    df[key] = df.apply(lambda x: x[key].rstrip('.0'), axis=1)
+    df[key] = df.apply(lambda x: x.key[:x.key.index('.')], axis=1)
     return df
