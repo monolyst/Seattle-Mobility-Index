@@ -20,13 +20,13 @@ class ReliabilityIndex(IndexBase):
         Output: Dataframe of duration_in_traffic for all 14 hours for each blockgroup
         """
 
-        # for day in days:
-        #     return self.calc_blkgrp_variance(daq.read_sql(day, blockgroup))
+        for day in days:
+            return self.calc_blkgrp_variance(daq.read_sql(day, blockgroup))
 
-        df = pd.read_csv(cn.SIMULATED_CAR_DATA_FP)
+        # df = pd.read_csv(cn.SIMULATED_CAR_DATA_FP)
 
         # for blockgroup in blockgroups:
-            return df[df.origin == blockgroup]
+            # return df[df.origin == blockgroup]
 
     def calc_blkgrp_variance(self, df):
         """
