@@ -67,7 +67,7 @@ def origins_to_destinations(origin_df=origin_df, dest_df=dest_df,
                    origin_lat, origin_lon, end_lat, end_lon]
             rows.append(row)
 
-    dist_df = pd.DataFrame(rows, columns=cols]
+    dist_df = pd.DataFrame(rows, columns=cols)
     
     return dist_df
 
