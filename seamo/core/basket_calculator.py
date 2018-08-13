@@ -49,31 +49,27 @@ def origins_to_destinations(origin_df=origin_df, dest_df=dest_df,
     cols = [cn.BLOCKGROUP, cn.PAIR, cn.DISTANCE, cn.CLASS,
             cn.GOOGLE_START_LAT, cn.GOOGLE_START_LON,
             cn.GOOGLE_END_LAT, cn.GOOGLE_END_LON]
-    
-    if not os.path.exists(fp):
-        with open(fp, 'w+') as outf:
-            outf.write(','.join(cols))
-            outf.write('\n')
-
-    with open(fp, 'a+') as outf:
-        for i, row in origin_df.iterrows():
-            blockgroup = row[cn.BLOCKGROUP]
-            origin_lat, origin_lon = row[cn.CENSUS_LAT], row[cn.CENSUS_LON]
-            origin = Coordinate(origin_lat, origin_lon)
-            distances = calculate_distances(origin, dest_df, method, threshold)
-            for place_id, data in distances.items():
-                distance = data[cn.DISTANCE]
-                dest_class = data[cn.CLASS]
-                end_lat = data[cn.GOOGLE_END_LAT]
-                end_lon = data[cn.GOOGLE_END_LON]
-                pair = "{0}-{1}".format(blockgroup, place_id)
-                row = [blockgroup, pair, distance, dest_class,
-                       origin_lat, origin_lon, end_lat, end_lon]
-
-                outf.write(','.join([str(e) for e in row]))
-                outf.write('\n')
    
-    return
+    rows = []    
+ 
+    for i, row in origin_df.iterrows():
+        blockgroup = row[cn.BLOCKGROUP]
+        origin_lat, origin_lon = row[cn.CENSUS_LAT], row[cn.CENSUS_LON]
+        origin = Coordinate(origin_lat, origin_lon)
+        distances = calculate_distances(origin, dest_df, method, threshold)
+        for place_id, data in distances.items():
+            distance = data[cn.DISTANCE]
+            dest_class = data[cn.CLASS]
+            end_lat = data[cn.GOOGLE_END_LAT]
+            end_lon = data[cn.GOOGLE_END_LON]
+            pair = "{0}-{1}".format(blockgroup, place_id)
+            row = [blockgroup, pair, distance, dest_class,
+                   origin_lat, origin_lon, end_lat, end_lon]
+            rows.append(row)
+
+    dist_df = pd.DataFrame(rows, columns=cols]
+    
+    return dist_df
 
 
 def rank_destinations(dist_df):
