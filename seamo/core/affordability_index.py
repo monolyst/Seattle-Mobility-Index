@@ -16,6 +16,7 @@ class AffordabilityIndex(IndexBase):
         #     db_name=cn.GOOGLE_DIST_MATRIX_OUT, datadir=DATADIR)
         self.viable_modes = dict(viable_modes)
         self.affordability_scores = None
+        # self.costs = None
 
     # def _get_viable_modes(self):
     #     mc = ModeChoiceCalculator()
@@ -29,13 +30,15 @@ class AffordabilityIndex(IndexBase):
         Outputs: Dataframe, columns: key, cost
         """
         result_df = pd.DataFrame({cn.KEY: list(self.viable_modes.keys())})
-        result_df[cn.COST] = result_df.applymap(lambda x: self._calculate_avg_cost(x))
+        result_df[cn.COST] = result_df.applymap(lambda x: self._calculate_avg_cost(x, cn.COST))
+        result_df[cn.DIRECT_COST] = result_df.applymap(lambda x: self._calculate_avg_cost(x, cn.DIRECT_COST))
         return result_df
 
 
-    def _calculate_avg_cost(self, origin_blockgroup):
+    def _calculate_avg_cost(self, origin_blockgroup, column):
+        # if self.costs is None:
         trips = self.viable_modes[origin_blockgroup]
-        costs = [trip.set_cost().cost for trip in trips]
+        costs = [trip.set_cost().cost[column] for trip in trips]
         return np.mean(costs)
 
 

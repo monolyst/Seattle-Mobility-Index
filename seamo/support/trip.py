@@ -118,7 +118,8 @@ class Trip(object):
         """
         Estimates trip cost from base rate. Includes only costs from time spent on trip.
         """
-        return duration * self.value_of_time_rate / cn.MIN_TO_HR
+        return pd.DataFrame({cn.COST: [duration * self.value_of_time_rate / cn.MIN_TO_HR],
+                            cn.DIRECT_COST: [0]})
 
     def print_destination(self, *args):
         """
@@ -169,8 +170,8 @@ class CarTrip(Trip):
         """
         self.cost = super()._calculate_base_cost(self.duration)
         self.destination.set_parking_cost()
-        self.cost_to_park = self.destination.parking_cost
-        return self.cost + (self.distance * self.mile_rate) + self.cost_to_park
+        self.cost_to_park = self.destination.parking_cost 
+        return self.cost.apply(lambda x: x + (self.distance * self.mile_rate + self.cost_to_park))
 
 
 class TransitTrip(Trip):
@@ -193,7 +194,7 @@ class TransitTrip(Trip):
         
     def _calculate_cost(self):
         self.cost = super()._calculate_base_cost(self.duration)
-        return self.cost + self.fare_value
+        return self.cost.apply(lambda x: x + self.fare_value)
     
 class BikeTrip(Trip):
     def __init__(self, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time, bike_rate=cn.BIKE_RATE):
@@ -207,7 +208,7 @@ class BikeTrip(Trip):
 
     def _calculate_cost(self):
         self.cost = super()._calculate_base_cost(self.duration)
-        return self.cost + (self.distance * self.bike_rate)
+        return self.cost.apply(lambda x: x + (self.distance * self.bike_rate))
     
 
 class WalkTrip(Trip):

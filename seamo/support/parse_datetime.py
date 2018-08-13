@@ -83,5 +83,6 @@ class ParseDatetime(object):
         Inputs: departure time, duration
         Outputs: datetime object
         """
-        date_time = parser.parse(self.departure_time) + dt.timedelta(minutes=float(self.duration))
+        date_time = parser.parse(self.departure_time).replace(tzinfo=None)
+            + dt.timedelta(minutes=float(self.duration))
         return date_time.replace(microsecond=0)

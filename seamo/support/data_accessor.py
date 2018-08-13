@@ -7,19 +7,21 @@ import sqlalchemy
 import constants as cn
 import pickle
 import pandas as pd
+from dateutil import parser
 
 
-def df_to_sql(df, table_name, db_name, dtype=None, schema=None):
-    db_file = os.path.join(cn.DB_DIR, str(db_name) + '.db')
+def df_to_sql(df, table_name, db_name, dtype=None, schema=None, processed_dir=cn.DB_DIR):
+    db_file = os.path.join(processed_dir, str(db_name) + '.db')
     conn = sqlite3.connect(db_file)
     df.to_sql(table_name, conn, schema=schema, if_exists='fail', index=False)
     conn.commit()
     conn.close()
 
 
-def sql_to_df(query, db_name):
-    db_file = os.path.join(cn.DB_DIR, db_name + '.db')
+def sql_to_df(query, db_name, processed_dir=cn.DB_DIR):
+    db_file = os.path.join(processed_dir, db_name + '.db')
     conn = sqlite3.connect(db_file)
+    # cur = conn.cursor()
     df = pd.read_sql_query(query, conn)
     conn.commit()
     conn.close()
@@ -59,3 +61,6 @@ def read_csv_blockgroup_key(filepath, key):
     df = pd.read_csv(filepath, dtype={key: str})
     df[key] = df.apply(lambda x: x.key[:x.key.index('.')], axis=1)
     return df
+
+def format_time(departure_time):
+    return parser.parse(departure_time).replace(microsecond=0).replace(tzinfo=None)

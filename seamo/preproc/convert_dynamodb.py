@@ -16,6 +16,7 @@ class ConvertDynamodb(object):
         df.drop(columns = ['status'], inplace=True)
         df[cn.BLOCK_GROUP] = df.apply(lambda x: x['tripID'].split('++')[0], axis=1)
         df[cn.DESTINATION] = df.apply(lambda x: x['tripID'].split('++')[1], axis=1)
+        df[cn.DEPARTURE_TIME] = df.apply(lambda x: daq.format_time(x[cn.DEPARTURE_TIME]), axis=1)
         return df.drop_duplicates().reset_index()
 
 
