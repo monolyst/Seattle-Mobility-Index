@@ -2,6 +2,10 @@ import unittest
 
 
 class BasketCalcTest(unittest.Testcase):
+
+    def setUp(self):
+        self.basket_calc = Basket
+
     def test_calculate_distance_API():
         def reader():
             # return a JSON string
