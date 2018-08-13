@@ -265,6 +265,13 @@ INCOME_BLOCKGROUP = 'Blockgroup'
 NORMALIZED = 'normalized'
 INCOME_NORMALIZED = 'income_normalized'
 DEST_BLOCK_GROUP = 'destination_blockgroup'
+AVG_DURATION = 'average_duration'
+CHEAPEST = 'cheapest'
+FASTEST = 'fastest'
+ADDITIONAL_TIME_COST = 'additional_time_cost'
+RELATIVE_COST = 'relative_cost'
+RELATIVE_SCALED = 'relative_scaled'
+
 
 # Personas constants
 TYPE_A = "family-(wo)man"
