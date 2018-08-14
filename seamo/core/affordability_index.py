@@ -66,7 +66,7 @@ class AffordabilityIndex(IndexBase):
         else:
             blkgrp_mode_cost_df = df   
         blkgrp_mode_cost_df[cn.ADDITIONAL_TIME_COST] = blkgrp_mode_cost_df.apply(lambda x:
-            (x[cn.AVG_DURATION] - x[cn.FASTEST]) / cn.MIN_TO_HR * cn.VOT_RATE, axis=1)
+            max((x[cn.AVG_DURATION] - x[cn.FASTEST]), 0) / cn.MIN_TO_HR * cn.VOT_RATE, axis=1)
         blkgrp_mode_cost_df[cn.RELATIVE_COST] = blkgrp_mode_cost_df.apply(lambda x:
             x[cn.DIRECT_COST] - x[cn.CHEAPEST] + x[cn.ADDITIONAL_TIME_COST], axis=1)
 
@@ -83,9 +83,9 @@ class AffordabilityIndex(IndexBase):
             ((x[cn.COST] - blkgrp_mode_cost_df[cn.COST].min()) /
                 (blkgrp_mode_cost_df[cn.COST].max() - blkgrp_mode_cost_df[cn.COST].min())) + 1, axis=1)
 
-        blkgrp_mode_cost_df[cn.RELATIVE_SCALED] = blkgrp_mode_cost_df.apply(lambda x: -1 *
+        blkgrp_mode_cost_df[cn.RELATIVE_SCALED] = blkgrp_mode_cost_df.apply(lambda x: 
             ((x[cn.RELATIVE_COST] - blkgrp_mode_cost_df[cn.RELATIVE_COST].min()) /
                 (blkgrp_mode_cost_df[cn.RELATIVE_COST].max() -
-                    blkgrp_mode_cost_df[cn.RELATIVE_COST].min())) + 1, axis=1)
+                    blkgrp_mode_cost_df[cn.RELATIVE_COST].min())), axis=1)
         self.affordability_scores = blkgrp_mode_cost_df
         return self.affordability_scores
