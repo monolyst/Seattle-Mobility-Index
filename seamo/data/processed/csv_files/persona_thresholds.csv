@@ -1,0 +1,7 @@
+,driving_threshold,transit_threshold,biking_threshold,walking_threshold
+BASELINE,30,60,45,45
+family_woman,27,52,64,40
+jolly_retiree,25,49,53,32
+tired_commuter,29,60,53,41
+olde_Seattlite,30,46,10,67
+fit_urbanite,27,35,10,54
