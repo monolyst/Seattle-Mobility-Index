@@ -273,6 +273,13 @@ TYPE_D = "jolly-retiree"
 TYPE_E = "olde-Seattleite"
 NEUTRAL = "neutral"
 
+#DB
+GOOGLE_DIST_MATRIX_OUT_SCHEMA = {BLOCK_GROUP: str, MODE: str, DEPARTURE_TIME: str,
+    DISTANCE: float, DURATION: float, DURATION_IN_TRAFFIC: float, DEST_BLOCK_GROUP: str,
+    DESTINATION: str, LAT: float, LON: float, NBHD_LONG: str, NBHD_SHORT: str,
+    COUNCIL_DISTRICT: str, URBAN_VILLAGE: str, ZIPCODE: str, ADDRESS: str, CLASS: str,
+    TYPE: str, CITY: str, RATING: float, FARE: float}
+
 # Directories 
 DATADIR = 'data/'
 RAW_DIR = os.path.join(DATADIR, 'raw/')
@@ -284,6 +291,7 @@ CSV_DIR = os.path.join(PROCESSED_DIR, 'csv_files/')
 TEST_DIR = os.path.join(DATADIR, 'test/')
 GEN_SHAPEFILE_DIR = os.path.join(PROCESSED_DIR, 'shapefiles/')
 DYNAMODB_OUT_DIR = os.path.join(RAW_DIR + 'dynamodb_out/')
+SEATTLE_GEOGRAPHIES_DB = 'seattle_geographies'
 
 # Filepaths
 ORIGIN_FP = os.path.join(RAW_DIR, 'SeattleCensusBlocksandNeighborhoodCorrelationFile.csv')
@@ -308,3 +316,4 @@ PERSONA_FP = os.path.join(CSV_DIR, 'weighted_thresholds_and_modeweights.csv')
 PERSONA_THRESHOLD_FP = os.path.join(CSV_DIR, 'persona_thresholds.csv')
 SEATTLE_BLOCK_GROUPS_FP = os.path.join(CSV_DIR, 'SeattleCensusBlockGroups.csv')
 PERSONAS_CLUSTER_FP = os.path.join(PROCESSED_DIR, 'clustered_psrcreturn.csv')
+
