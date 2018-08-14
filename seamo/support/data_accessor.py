@@ -22,7 +22,7 @@ def sql_to_df(query, db_name, processed_dir=cn.DB_DIR):
     db_file = os.path.join(processed_dir, db_name + '.db')
     conn = sqlite3.connect(db_file)
     # cur = conn.cursor()
-    df = pd.read_sql_query(query, conn)
+    df = pd.read_sql(query, conn)
     conn.commit()
     conn.close()
     return df

@@ -288,6 +288,8 @@ GOOGLE_DIST_MATRIX_OUT_SCHEMA = {BLOCK_GROUP: str, MODE: str, DEPARTURE_TIME: st
     COUNCIL_DISTRICT: str, URBAN_VILLAGE: str, ZIPCODE: str, ADDRESS: str, CLASS: str,
     TYPE: str, CITY: str, RATING: float, FARE: float}
 
+SEAMOUSER = 'seamouser'
+
 # Directories 
 DATADIR = 'data/'
 RAW_DIR = os.path.join(DATADIR, 'raw/')
