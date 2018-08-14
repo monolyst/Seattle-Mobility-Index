@@ -38,7 +38,8 @@ print(end-start, 'seconds')
 
 #calculate affordability index scores
 block_cost_index = ac.calculate_score(block_cost_df)
-a_scores = block_cost_index.loc[:, (cn.KEY, cn.COST, cn.SCALED)]
-print(a_scores.head())
-# daq.write_to_csv(a_scores, 'sample_affordability.csv')
+a_scores = block_cost_index.loc[:, (cn.KEY, cn.COST, cn.RELATIVE_COST, cn.SCALED, cn.RELATIVE_SCALED,
+    cn.AVG_DURATION, cn.FASTEST, cn.DIRECT_COST, cn.CHEAPEST)]
+print(a_scores.sort_values(by=cn.RELATIVE_COST).head())
+daq.write_to_csv(a_scores, 'sample_affordability_with_rel.csv')
 

@@ -258,12 +258,20 @@ WEEKDAY = 'weekday'
 WEEKEND = 'weekend'
 PRICE = 'price'
 COST = 'cost'
+DIRECT_COST = 'direct_cost'
 ADJUSTED_FOR_INCOME = 'adjusted_for_income'
 MEDIAN_HOUSEHOLD_INCOME = 'Med_Hh_Income'
 INCOME_BLOCKGROUP = 'Blockgroup'
 NORMALIZED = 'normalized'
 INCOME_NORMALIZED = 'income_normalized'
 DEST_BLOCK_GROUP = 'destination_blockgroup'
+AVG_DURATION = 'average_duration'
+CHEAPEST = 'cheapest'
+FASTEST = 'fastest'
+ADDITIONAL_TIME_COST = 'additional_time_cost'
+RELATIVE_COST = 'relative_cost'
+RELATIVE_SCALED = 'relative_scaled'
+
 
 # Personas constants
 TYPE_A = "family-(wo)man"
@@ -272,6 +280,13 @@ TYPE_C = "tired-commuter"
 TYPE_D = "jolly-retiree"
 TYPE_E = "olde-Seattleite"
 NEUTRAL = "neutral"
+
+#DB
+GOOGLE_DIST_MATRIX_OUT_SCHEMA = {BLOCK_GROUP: str, MODE: str, DEPARTURE_TIME: str,
+    DISTANCE: float, DURATION: float, DURATION_IN_TRAFFIC: float, DEST_BLOCK_GROUP: str,
+    DESTINATION: str, LAT: float, LON: float, NBHD_LONG: str, NBHD_SHORT: str,
+    COUNCIL_DISTRICT: str, URBAN_VILLAGE: str, ZIPCODE: str, ADDRESS: str, CLASS: str,
+    TYPE: str, CITY: str, RATING: float, FARE: float}
 
 # Directories 
 DATADIR = 'data/'
@@ -284,6 +299,7 @@ CSV_DIR = os.path.join(PROCESSED_DIR, 'csv_files/')
 TEST_DIR = os.path.join(DATADIR, 'test/')
 GEN_SHAPEFILE_DIR = os.path.join(PROCESSED_DIR, 'shapefiles/')
 DYNAMODB_OUT_DIR = os.path.join(RAW_DIR + 'dynamodb_out/')
+SEATTLE_GEOGRAPHIES_DB = 'seattle_geographies'
 
 # Filepaths
 ORIGIN_FP = os.path.join(RAW_DIR, 'SeattleCensusBlocksandNeighborhoodCorrelationFile.csv')
@@ -307,3 +323,4 @@ BLOCK_GROUP_DEMOGRAPHICS_FP = os.path.join(RAW_DIR, 'Blockgroup_demographics.xls
 PERSONA_FP = os.path.join(CSV_DIR, 'weighted_thresholds_and_modeweights.csv')
 SEATTLE_BLOCK_GROUPS_FP = os.path.join(CSV_DIR, 'SeattleCensusBlockGroups.csv')
 PERSONAS_CLUSTER_FP = os.path.join(PROCESSED_DIR, 'clustered_psrcreturn.csv')
+SIMULATED_CAR_DATA_FP = os.path.join(CSV_DIR, 'data_simulation30days.csv')
