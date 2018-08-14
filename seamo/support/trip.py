@@ -55,6 +55,7 @@ class Trip(object):
         self.value_of_time_rate = cn.VOT_RATE
         self.place_name = place_name
         self.cost = None
+        self.direct_cost = None
         self.persona = None
         self.time_of_day = None
         self.type_of_day = None
@@ -85,6 +86,7 @@ class Trip(object):
         Only includes cost value of time.
         """
         self.cost = self._calculate_base_cost(self.duration)
+        self.direct_cost = 0
         return self
         
 
@@ -148,13 +150,14 @@ class CarTrip(Trip):
         self.cost_to_park = None
         self.parking_category = None
         self.duration = self._calculate_car_duration(duration_in_traffic)
-        self.cost = None
 
     def set_cost(self):
         """
         sets cost of a car trip.
         """
-        self.cost = self._calculate_cost()
+        self.cost = super()._calculate_base_cost(self.duration)
+        self.direct_cost = self._calculate_cost()
+        self.cost += self.direct_cost
         return self
       
 
@@ -167,17 +170,15 @@ class CarTrip(Trip):
         """
         Cost methods to estimate costs during car trip (for example gas and parking)
         """
-        self.cost = super()._calculate_base_cost(self.duration)
         self.destination.set_parking_cost()
-        self.cost_to_park = self.destination.parking_cost
-        return self.cost + (self.distance * self.mile_rate) + self.cost_to_park
+        self.cost_to_park = self.destination.parking_cost 
+        return self.distance * self.mile_rate + self.cost_to_park
 
 
 class TransitTrip(Trip):
     def __init__(self, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time, fare_value):
         super().__init__(cn.TRANSIT_MODE, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time)
         self.fare_value = self.get_fare_value(fare_value) 
-        self.cost = None
 
     def get_fare_value(self, fare_value):
         """
@@ -188,26 +189,27 @@ class TransitTrip(Trip):
         return fare_value
 
     def set_cost(self):
-        self.cost = self._calculate_cost()
+        self.cost = super()._calculate_base_cost(self.duration)
+        self.direct_cost = self._calculate_cost()
+        self.cost += self.direct_cost
         return self
         
     def _calculate_cost(self):
-        self.cost = super()._calculate_base_cost(self.duration)
-        return self.cost + self.fare_value
+        return self.fare_value
     
 class BikeTrip(Trip):
     def __init__(self, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time, bike_rate=cn.BIKE_RATE):
         super().__init__(cn.BIKING_MODE, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time)
         self.bike_rate = bike_rate
-        self.cost = None
 
     def set_cost(self):
-        self.cost = self._calculate_cost()
+        self.cost = super()._calculate_base_cost(self.duration)
+        self.direct_cost = self._calculate_cost()
+        self.cost += self.direct_cost
         return self
 
     def _calculate_cost(self):
-        self.cost = super()._calculate_base_cost(self.duration)
-        return self.cost + (self.distance * self.bike_rate)
+        return self.distance * self.bike_rate
     
 
 class WalkTrip(Trip):
