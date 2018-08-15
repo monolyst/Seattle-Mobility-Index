@@ -282,13 +282,73 @@ TYPE_E = "olde-Seattleite"
 NEUTRAL = "neutral"
 
 #DB
+MEAN = 'mean'
+VARIANCE = 'var'
+STANDARD_DEVIATION = 'stdev'
+HOUR = 'hr'
+THRESHOLD = 'threshold'
+RATIO = 'ratio'
 GOOGLE_DIST_MATRIX_OUT_SCHEMA = {BLOCK_GROUP: str, MODE: str, DEPARTURE_TIME: str,
     DISTANCE: float, DURATION: float, DURATION_IN_TRAFFIC: float, DEST_BLOCK_GROUP: str,
     DESTINATION: str, LAT: float, LON: float, NBHD_LONG: str, NBHD_SHORT: str,
     COUNCIL_DISTRICT: str, URBAN_VILLAGE: str, ZIPCODE: str, ADDRESS: str, CLASS: str,
     TYPE: str, CITY: str, RATING: float, FARE: float}
+THRESHOLD_SCHEMA = schema = {BLOCK_GROUP: str, HOUR: int, DESTINATION: str, MEAN: float,
+    VARIANCE: float, STANDARD_DEVIATION: float, THRESHOLD: float}
+OD_HR_STATS = 'od_hr_stats'
+RELIABILITY_TOTAL = 'reliability_total'
+OD_HR_THRESHOLDS = 'od_hr_thresholds'
+RELIABILITY_THRESHOLD_COUNTS = 'reliability_threshold_counts'
+RELIABILITY_SCORES = 'reliability_scores'
 
-SEAMOUSER = 'seamouser'
+#Queries
+DROP_TABLE_IF_EXISTS = 'drop table if exists '
+SELECT_ALL_FROM = 'select * from '
+CREATE_TABLE_OD_HR_STATS = """
+    CREATE TABLE od_hr_stats AS
+    SELECT
+        block_group,
+        strftime('%H', departure_time) AS hr,
+        destination,
+        avg(simulated_traffic_time) AS mean,
+        SUM((simulated_traffic_time - (SELECT AVG(simulated_traffic_time) 
+            FROM simulated_data_30days)) *
+            (simulated_traffic_time - (SELECT AVG(simulated_traffic_time) 
+            FROM simulated_data_30days))) / (COUNT(simulated_traffic_time)-1) AS var
+    FROM simulated_data_30days
+    GROUP BY block_group, hr, destination;
+    """
+CREATE_TABLE_TOTAL_COUNTS = """
+    CREATE TABLE reliability_total AS
+    SELECT 
+        block_group,
+        COUNT(*) AS total
+    FROM simulated_data_30days
+    GROUP BY block_group;
+    """
+CREATE_TABLE_THRESHOLD_COUNTS = """
+    CREATE TABLE reliability_threshold_counts AS
+    SELECT 
+        d.block_group,
+        COUNT(*) AS count
+    FROM simulated_data_30days d, od_hr_thresholds t
+    where d.block_group=t.block_group AND
+        strftime('%H', d.departure_time)=t.hr AND
+        d.destination=t.destination AND
+        d.simulated_traffic_time < t.threshold
+    GROUP BY d.block_group;
+    """
+CREATE_TABLE_RELIABILITY_SCORES = """
+    CREATE TABLE reliability_scores AS
+    SELECT
+        d.block_group,
+        1.0 * t.count / d.total AS ratio
+    FROM reliability_total d, reliability_threshold_counts t
+    WHERE d.block_group=t.block_group;
+    """
+
+
+
 
 # Directories 
 DATADIR = 'data/'
