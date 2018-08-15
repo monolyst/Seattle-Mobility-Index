@@ -1957,7 +1957,7 @@
           </metadata-records>
         </connection>
       </extract>
-      <layout dim-ordering='alphabetic' dim-percentage='0.521851' measure-ordering='alphabetic' measure-percentage='0.478149' show-structure='true' user-set-layout='true' />
+      <layout dim-ordering='alphabetic' dim-percentage='0.523136' measure-ordering='alphabetic' measure-percentage='0.476864' show-structure='true' user-set-layout='true' />
       <semantic-values>
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
@@ -2536,6 +2536,9 @@
             <column caption='In Urban Village' datatype='string' name='[Calculation_1819172801032105986]' role='dimension' type='nominal'>
               <calculation class='tableau' formula='IF ISNULL([urban_village]) THEN &quot;Outside Urban Village&quot;&#13;&#10;ELSE &quot;In Urban Village&quot;&#13;&#10;END' />
             </column>
+            <column caption='Show Neighborhood Short if No Broader Term' datatype='string' name='[Calculation_1819172801037238276]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [neighborhood_long] = &quot;NO BROADER TERM&quot;&#13;&#10;THEN UPPER([neighborhood_short]) ELSE [neighborhood_long]&#13;&#10;END' />
+            </column>
             <column aggregation='None' datatype='integer' name='[Mode Index (bin)]' role='dimension' type='quantitative'>
               <calculation class='bin' decimals='-2' formula='[mode_index]' peg='0' size='0.0181' />
             </column>
@@ -2543,6 +2546,7 @@
             <column-instance column='[mode_index]' derivation='Count' name='[cnt:mode_index:qk]' pivot='key' type='quantitative' />
             <column caption='Mode Index' datatype='real' name='[mode_index]' role='measure' type='quantitative' />
             <column caption='Neighborhood Long' datatype='string' name='[neighborhood_long]' role='dimension' type='nominal' />
+            <column caption='Neighborhood Short' datatype='string' name='[neighborhood_short]' role='dimension' type='nominal' />
             <column-instance column='[Mode Index (bin)]' derivation='None' name='[none:Mode Index (bin):qk]' pivot='key' type='quantitative' />
             <column caption='Urban Village' datatype='string' name='[urban_village]' role='dimension' type='nominal' />
           </datasource-dependencies>
@@ -2555,10 +2559,14 @@
           <filter class='categorical' column='[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Neighborhood Long)]'>
             <groupfilter function='level-members' level='[neighborhood_long]' user:ui-action-filter='[Action3]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
+          <filter class='categorical' column='[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Show Neighborhood Short if No Broader Term)]'>
+            <groupfilter function='level-members' level='[Calculation_1819172801037238276]' user:ui-action-filter='[Action5]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
           <slices>
             <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Blkgrp Str)]</column>
             <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Neighborhood Long)]</column>
             <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (In Urban Village)]</column>
+            <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Show Neighborhood Short if No Broader Term)]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -2596,7 +2604,7 @@
             <datasource caption='blkgrp10_shore' name='federated.1vmhr2y11w0na212hwraf0n0hai7' />
           </datasources>
           <mapsources>
-            <mapsource name='black_background' />
+            <mapsource name='Tableau' />
           </mapsources>
           <datasource-dependencies datasource='federated.1vmhr2y11w0na212hwraf0n0hai7'>
             <column caption='In Urban Village' datatype='string' name='[Calculation_1819172801032105986]' role='dimension' type='nominal'>
@@ -2651,10 +2659,30 @@
             <format attr='line-visibility' scope='rows' value='off' />
           </style-rule>
           <style-rule element='map-layer'>
-            <format attr='enabled' id='cjkm52d5s74c32spfcxy007fs' value='true' />
+            <format attr='enabled' id='tab_base' value='true' />
+            <format attr='enabled' id='um_lcover' value='true' />
+            <format attr='enabled' id='tab_coastline' value='false' />
+            <format attr='enabled' id='pp2_line' value='false' />
+            <format attr='enabled' id='light_adm0_bnd' value='false' />
+            <format attr='enabled' id='light_adm0_lbl' value='false' />
+            <format attr='enabled' id='um_adm0_bnd' value='true' />
+            <format attr='enabled' id='um_adm0_lbl' value='true' />
+            <format attr='enabled' id='light_pp2_statebounds' value='false' />
+            <format attr='enabled' id='light_pp2_statelabels' value='false' />
+            <format attr='enabled' id='pp2_adminlabels' value='false' />
+            <format attr='enabled' id='pp2_statebounds' value='true' />
+            <format attr='enabled' id='pp2_statelabels' value='true' />
+            <format attr='enabled' id='countybounds' value='false' />
+            <format attr='enabled' id='countylabels' value='false' />
+            <format attr='enabled' id='zipbounds' value='false' />
+            <format attr='enabled' id='ziplabels' value='false' />
+            <format attr='enabled' id='tab_areabounds' value='false' />
+            <format attr='enabled' id='tab_arealabels' value='false' />
+            <format attr='enabled' id='tab_msabounds' value='false' />
+            <format attr='enabled' id='tab_msalabels' value='false' />
           </style-rule>
           <style-rule element='map'>
-            <format attr='washout' value='0' />
+            <format attr='washout' value='0.0' />
           </style-rule>
         </style>
         <panes>
@@ -2733,7 +2761,7 @@
             <groupfilter function='level-members' level='[neighborhood_long]' user:ui-action-filter='[Action3]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
           <filter class='categorical' column='[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Show Neighborhood Short if No Broader Term)]'>
-            <groupfilter function='member' level='[Calculation_1819172801037238276]' member='&quot;WINDERMERE&quot;' user:ui-action-filter='[Action3]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+            <groupfilter function='level-members' level='[Calculation_1819172801037238276]' user:ui-action-filter='[Action3]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
           <slices>
             <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[:Measure Names]</column>
@@ -2794,12 +2822,16 @@
             <column caption='In Urban Village' datatype='string' name='[Calculation_1819172801032105986]' role='dimension' type='nominal'>
               <calculation class='tableau' formula='IF ISNULL([urban_village]) THEN &quot;Outside Urban Village&quot;&#13;&#10;ELSE &quot;In Urban Village&quot;&#13;&#10;END' />
             </column>
+            <column caption='Show Neighborhood Short if No Broader Term' datatype='string' name='[Calculation_1819172801037238276]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [neighborhood_long] = &quot;NO BROADER TERM&quot;&#13;&#10;THEN UPPER([neighborhood_short]) ELSE [neighborhood_long]&#13;&#10;END' />
+            </column>
             <column-instance column='[cost]' derivation='Avg' name='[avg:cost:qk]' pivot='key' type='quantitative' />
             <column-instance column='[mode_index_scaled]' derivation='Avg' name='[avg:mode_index_scaled:qk]' pivot='key' type='quantitative' />
             <column caption='Cost' datatype='real' name='[cost]' role='measure' type='quantitative' />
             <column-instance column='[mode_index_scaled]' derivation='Median' name='[med:mode_index_scaled:qk]' pivot='key' type='quantitative' />
             <column caption='Mode Index Scaled' datatype='real' name='[mode_index_scaled]' role='measure' type='quantitative' />
             <column caption='Neighborhood Long' datatype='string' name='[neighborhood_long]' role='dimension' type='nominal' />
+            <column caption='Neighborhood Short' datatype='string' name='[neighborhood_short]' role='dimension' type='nominal' />
             <column-instance column='[Calculation_1819172801032105986]' derivation='None' name='[none:Calculation_1819172801032105986:nk]' pivot='key' type='nominal' />
             <column caption='Urban Village' datatype='string' name='[urban_village]' role='dimension' type='nominal' />
           </datasource-dependencies>
@@ -2809,10 +2841,14 @@
           <filter class='categorical' column='[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Neighborhood Long)]'>
             <groupfilter function='level-members' level='[neighborhood_long]' user:ui-action-filter='[Action3]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
+          <filter class='categorical' column='[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Show Neighborhood Short if No Broader Term)]'>
+            <groupfilter function='level-members' level='[Calculation_1819172801037238276]' user:ui-action-filter='[Action5]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
           <computed-sort column='[federated.1vmhr2y11w0na212hwraf0n0hai7].[none:Calculation_1819172801032105986:nk]' direction='DESC' using='[federated.1vmhr2y11w0na212hwraf0n0hai7].[avg:cost:qk]' />
           <slices>
             <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Blkgrp Str)]</column>
             <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Neighborhood Long)]</column>
+            <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Show Neighborhood Short if No Broader Term)]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -3485,7 +3521,7 @@
         </edge>
       </cards>
     </window>
-    <window class='dashboard' name='Affordability'>
+    <window class='dashboard' maximized='true' name='Affordability'>
       <viewpoints>
         <viewpoint name='Affordability Histogram'>
           <zoom type='entire-view' />
@@ -3499,7 +3535,7 @@
         </viewpoint>
         <viewpoint name='Affordability Urban Villages' />
       </viewpoints>
-      <active id='9' />
+      <active id='14' />
     </window>
     <window class='worksheet' name='Mode Choice Map'>
       <cards>
@@ -3643,9 +3679,9 @@
         <viewpoint name='Mode Choice Urban Villages' />
         <viewpoint name='Mode Index Neighborhoods' />
       </viewpoints>
-      <active id='3' />
+      <active id='21' />
     </window>
-    <window class='worksheet' maximized='true' name='Sheet 13'>
+    <window class='worksheet' name='Sheet 13'>
       <cards>
         <edge name='left'>
           <strip size='160'>

@@ -49,9 +49,6 @@ class AffordabilityIndex(IndexBase):
             np.mean(time), np.mean(list(cheapest.values())), np.mean(list(fastest.values())))
 
 
-    def _get_cheapest_trip(self, origin_blockgroup):
-        trips = self.viable_modes[origin_blockgroup]
-
 
     def calculate_score(self, df=None):
         # income = pd.read_excel(cn.BLOCK_GROUP_DEMOGRAPHICS_FP, dtype={cn.INCOME_BLOCKGROUP: str})
