@@ -17,15 +17,32 @@ def df_to_sql(df, table_name, db_name, dtype=None, schema=None, processed_dir=cn
     conn.commit()
     conn.close()
 
+def execute_query(queries, db_name, processed_dir=cn.DB_DIR):
+    db_file = os.path.join(processed_dir, db_name + '.db')
+    conn = sqlite3.connect(db_file)
+    cur = conn.cursor()
+    if type(queries) is list:
+        for query in queries:
+            cur.execute(query)
+    else:
+        cur.execute(queries)
+    conn.commit()
+    conn.close()
+
 
 def sql_to_df(query, db_name, processed_dir=cn.DB_DIR):
     db_file = os.path.join(processed_dir, db_name + '.db')
     conn = sqlite3.connect(db_file)
-    # cur = conn.cursor()
-    df = pd.read_sql_query(query, conn)
+    df = pd.read_sql(query, conn)
     conn.commit()
     conn.close()
     return df
+
+def drop_table_if_exists(table_name):
+    return cn.DROP_TABLE_IF_EXISTS + str(table_name) + ';'
+
+def select_all_from(table_name):
+    return cn.SELECT_ALL_FROM + str(table_name) + ';'
 
 
 def csv_to_sql(csv_file, db_name, dtype=None, processed_dir=cn.CSV_DIR):
