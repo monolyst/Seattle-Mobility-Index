@@ -83,7 +83,7 @@ def distance_from_citycenter(df_destinations, df_blockgroup):
         df_blockgroup - data frame with origin blockgroup and proximity ratio
     """
     
-    df_destinations['distance_from_citycenter_val'] = df_destinations.apply(dist_from_df, axis=1) 
+    df_destinations['distance_from_citycenter_val'] = df_destinations.apply(dist_from_cc, axis=1) 
     
     df_blockgroup2 = df_destinations.groupby([cn.ORIGIN], as_index=False)['distance_from_citycenter_val'].mean()
     result_merged = pd.merge(left=df_blockgroup, right=df_blockgroup2, how='inner', left_on=cn.ORIGIN, right_on=cn.ORIGIN)
