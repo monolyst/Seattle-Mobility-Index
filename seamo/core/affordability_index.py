@@ -1,18 +1,27 @@
 import init
 import pandas as pd
 import constants as cn
-import trip as tp
-import data_accessor as daq
 from index_base_class import IndexBase
 import numpy as np
 from collections import defaultdict
 
 class AffordabilityIndex(IndexBase):
-    DATADIR = cn.CSV_DIR #db dir?
-
+    """
+    The affordability index calculates the relative cost of all trips from an
+    origin block group.
+    This index currently outputs two affordability scores:
+        1) relative cost based off direct and indirect costs scaled from 0-100
+        2) relative cost based off the average cheapest and fastest trips,
+           scaled from 0-100
+    """
     def __init__(self, viable_modes):
-        # super().__init__(self, time_of_day, type_of_day, travel_mode,
-        #     db_name=cn.GOOGLE_DIST_MATRIX_OUT, datadir=DATADIR)
+        """
+        Constructor for instatiating the affordability index. Scores are set as
+        instance variable when calculated.
+        Input: viable_modes (dictionary data type), which is the output from
+                the mode choice calculator. Key is origin block group, value is
+                list of viable trips.
+        """
         self.viable_modes = dict(viable_modes)
         self.affordability_scores = None
 
@@ -20,70 +29,86 @@ class AffordabilityIndex(IndexBase):
     def create_avg_blockgroup_cost_df(self):
         """
         This method calculates all of the average cost for all trips in a blockgroup.
-        Inputs: None
-        Outputs: Dataframe, columns: key, cost
+        It also populates the dataframe with the average cheapest and average fastest
+        trips per desination category.
+        All columns are populated using vectorized operations.
+        Outputs: Dataframe, columns: key, cost, direct cost, average duration,
+                 average cheapest trip, and average fastest trip
         """
         result_df = pd.DataFrame({cn.KEY: list(self.viable_modes.keys())})
         result_df['temp_cost'] = result_df.applymap(lambda x: self._calculate_avg_cost(x))
-        result_df[cn.COST] = result_df.apply(lambda x: float(x['temp_cost'].split(', ')[0]), axis=1)
-        result_df[cn.DIRECT_COST] = result_df.apply(lambda x: float(x['temp_cost'].split(', ')[1]), axis=1)
-        result_df[cn.AVG_DURATION] = result_df.apply(lambda x: float(x['temp_cost'].split(', ')[2]), axis=1)
-        result_df[cn.CHEAPEST] = result_df.apply(lambda x: float(x['temp_cost'].split(', ')[3]), axis=1)
-        result_df[cn.FASTEST] = result_df.apply(lambda x: float(x['temp_cost'].split(', ')[4]), axis=1)
+        result_df[cn.COST] = result_df.apply(lambda x: x['temp_cost'][0], axis=1)
+        result_df[cn.DIRECT_COST] = result_df.apply(lambda x: x['temp_cost'][1], axis=1)
+        result_df[cn.AVG_DURATION] = result_df.apply(lambda x: x['temp_cost'][2], axis=1)
+        result_df[cn.CHEAPEST] = result_df.apply(lambda x: x['temp_cost'][3], axis=1)
+        result_df[cn.FASTEST] = result_df.apply(lambda x: x['temp_cost'][4], axis=1)
         result_df.drop(columns = ['temp_cost'], inplace=True)
         return result_df
 
 
     def _calculate_avg_cost(self, origin_blockgroup):
+        """
+        For a specific attribute, this method creates a list containing values
+        for all trips associated with a block group.
+        Inputs: origin_blockgroup
+        Outputs: mean values for cost, direct cost, duration, average cheapest
+                 trip, and average fastest trip
+        """
+        # collect all trips associated with the origin block group
         trips = self.viable_modes[origin_blockgroup]
+        # run set_cost method from trip class for each trip. This populates the
+        # trip object with cost attributes
         costs = [trip.set_cost().cost for trip in trips]
         direct_costs = [trip.direct_cost for trip in trips]
         time = [trip.duration for trip in trips]
         
+        # define default dictionary
         groups = defaultdict(list)
-        # import pdb; pdb.set_trace()
+        # keys are destination lat, grouping trips by their destination
         [groups[trip.destination.lat].append(trip) for trip in trips]
-        # import pdb; pdb.set_trace()
+        # for the trips in each destination group, find the minimum value
         cheapest = {k: min([trip.direct_cost for trip in v]) for k, v in groups.items()}
         fastest = {k: min([trip.duration for trip in v]) for k, v in groups.items()}
-        return '{}, {}, {}, {}, {}'.format(np.mean(costs), np.mean(direct_costs),
-            np.mean(time), np.mean(list(cheapest.values())), np.mean(list(fastest.values())))
-
+        # the mean values of all of the lists created are returned to the dataframe
+        return [np.mean(costs), np.mean(direct_costs),
+            np.mean(time), np.mean(list(cheapest.values())), np.mean(list(fastest.values()))]
 
 
     def calculate_score(self, df=None):
-        # income = pd.read_excel(cn.BLOCK_GROUP_DEMOGRAPHICS_FP, dtype={cn.INCOME_BLOCKGROUP: str})
-        # income = income[income['Year'] == 2016].loc[:, (cn.INCOME_BLOCKGROUP, cn.MEDIAN_HOUSEHOLD_INCOME)]
-        # income.loc[income[cn.INCOME_BLOCKGROUP] == '530330111024', :]
-        # blkgrp_mode_cost_df[cn.ADJUSTED_FOR_INCOME] = blkgrp_mode_cost_df.apply(lambda x: (x[cn.COST] /
-        #     float(income.loc[income[cn.INCOME_BLOCKGROUP] == x[cn.KEY], cn.MEDIAN_HOUSEHOLD_INCOME])), axis=1)
-
-        # import pdb; pdb.set_trace()
+        """
+        This method calculates the affordability score. 
+        Input: dataframe (optional), containing appropriate values
+        Output: dataframe with each block group assigned affordability score
+        """
+        # check if dataframe was passed to method, if not then generate it
         if df is None:
             blkgrp_mode_cost_df = self.create_avg_blockgroup_cost_df()
         else:
-            blkgrp_mode_cost_df = df   
+            blkgrp_mode_cost_df = df
+        # score 1, relative cost from direct and indirect costs:
+        blkgrp_mode_cost_df = self._scale_score(blkgrp_mode_cost_df, cn.COST, cn.SCALED)
+        # score 2, relative cost based off the average cheapest and fastest trips
+        # compute additional time beyond average fastest trip, max is taken to
+        # ensure value is positive
         blkgrp_mode_cost_df[cn.ADDITIONAL_TIME_COST] = blkgrp_mode_cost_df.apply(lambda x:
             max((x[cn.AVG_DURATION] - x[cn.FASTEST]), 0) / cn.MIN_TO_HR * cn.VOT_RATE, axis=1)
+        # calculate relative cost 
         blkgrp_mode_cost_df[cn.RELATIVE_COST] = blkgrp_mode_cost_df.apply(lambda x:
             x[cn.DIRECT_COST] - x[cn.CHEAPEST] + x[cn.ADDITIONAL_TIME_COST], axis=1)
-
-
-        # normalization
-        mean_cost = blkgrp_mode_cost_df.cost.mean()
-        std_cost = blkgrp_mode_cost_df.cost.std()
-        mean_relative_cost = blkgrp_mode_cost_df.relative_cost.mean()
-        std_relative_cost = blkgrp_mode_cost_df.relative_cost.std()
-        # # normalization
-        blkgrp_mode_cost_df[cn.NORMALIZED] = blkgrp_mode_cost_df.apply(lambda x: (x[cn.COST] -
-            mean_cost) / std_cost, axis=1)
-        blkgrp_mode_cost_df[cn.SCALED] = blkgrp_mode_cost_df.apply(lambda x: -1 *
-            ((x[cn.COST] - blkgrp_mode_cost_df[cn.COST].min()) /
-                (blkgrp_mode_cost_df[cn.COST].max() - blkgrp_mode_cost_df[cn.COST].min())) + 1, axis=1)
-
-        blkgrp_mode_cost_df[cn.RELATIVE_SCALED] = blkgrp_mode_cost_df.apply(lambda x: 
-            ((x[cn.RELATIVE_COST] - blkgrp_mode_cost_df[cn.RELATIVE_COST].min()) /
-                (blkgrp_mode_cost_df[cn.RELATIVE_COST].max() -
-                    blkgrp_mode_cost_df[cn.RELATIVE_COST].min())), axis=1)
+        # scaled score
+        blkgrp_mode_cost_df = self._scale_score(blkgrp_mode_cost_df,
+            cn.RELATIVE_COST, cn.RELATIVE_SCALED)
+        # set dataframe to instance variable
         self.affordability_scores = blkgrp_mode_cost_df
         return self.affordability_scores
+
+
+    def _scale_score(self, df, column, scaled_name):
+        """
+        Method for scaling score from 0-100
+        Inputs: dataframe, column to scale, scaled column name
+        Outputs: dataframe with new scaled value
+        """
+        df[scaled_name] = df.apply(lambda x: (x[column] - df[column].min()) /
+                (df[column].max() - df[column].min()), axis=1)
+        return df
