@@ -20,7 +20,7 @@ import time
 import os
 import pandas as pd
 
-PERSONA_DICTS = pd.read_csv(cn.PERSONA_FP, index_col=0).to_dict('index')
+PERSONA_DICTS = pd.read_csv(cn.PERSONA_THRESHOLD_FP, index_col=0).to_dict('index')
 
 total_trips_df = pd.read_csv(cn.WEEKDAY_DISTANCES_OUT_FP)
 # Need to drop the duplicates.
@@ -41,6 +41,27 @@ for persona, attrs in PERSONA_DICTS.items():
                               biking_threshold,
                               transit_threshold,
                               walking_threshold)
-    trips = mc.trips_per_blockgroup(total_trips_df)
-    avail_df = mc.create_availability_df(trips) 
-    avail_df.to_csv(os.path.join(cn.CSV_DIR, 'wkday_mode_avail_{0}.csv'.format(persona)))
+    trips = mc.trips_per_blockgroup(total_trips_df) 
+    #viable trips
+    viable_trips = mc.trips_per_blockgroup(total_trips_df, viable_only=True) 
+
+    # avail_df = mc.create_availability_df(trips) 
+    # avail_df.to_csv(os.path.join(cn.CSV_DIR, 'wkday_mode_avail_{0}.csv'.format(persona)))
+
+    ac = AffordabilityIndex(viable_trips)
+    # try:
+    #     daq.open_pickle(cn.PICKLE_DIR, 'afford_costs.pickle')
+    # except:
+    # block_cost_df = ac.create_avg_blockgroup_cost_df()
+    #     daq.make_pickle(cn.PICKLE_DIR, block_cost_df, 'afford_costs.pickle')
+    # else:
+    # block_cost_df = daq.open_pickle(cn.PICKLE_DIR, 'afford_costs.pickle')
+
+    block_cost_index = ac.calculate_score()
+    a_scores = block_cost_index.loc[:, (cn.KEY, cn.COST, cn.RELATIVE_COST, cn.SCALED, cn.RELATIVE_SCALED,
+        cn.AVG_DURATION, cn.FASTEST, cn.DIRECT_COST, cn.CHEAPEST)]
+    print(a_scores.sort_values(by=cn.RELATIVE_COST).head())
+    daq.write_to_csv(a_scores, 'wkday_affordability_{0}.csv'.format(persona))
+    # a_scores.to_csv(os.path.join(cn.CSV_DIR, 'wkday_affordability_{0}.csv'.format(persona)))
+
+

@@ -44,31 +44,42 @@ class ModeChoiceCalculator(IndexBase):
         Depending on the value for the column 'mode', return a subtype of Trip.
         """
         origin = row[cn.BLOCK_GROUP]
-        dest_lat = row[cn.LAT]
-        dest_lon = row[cn.LON]
-    
+
+        if cn.LAT in row:
+            dest_lat = row[cn.LAT]
+        else:
+            dest_lat = cn.CITY_CENTER[0]
+        if cn.LON in row:
+            dest_lon = row[cn.LON]
+        else:
+            dest_lon = cn.CITY_CENTER[1]
+
         mode = row[cn.MODE]
 
         distance = row[cn.DISTANCE]
         duration = row[cn.DURATION]
 
-        try:
-            row[cn.DURATION_IN_TRAFFIC]
-        except:
-            duration_in_traffic = 0
-        else:
-            duration_in_traffic = row[cn.DURATION_IN_TRAFFIC]
-
-        try:
-            row[cn.FARE_VALUE]
-        except:
-            fare_value = 0
-        else:
-            fare_value = row[cn.FARE_VALUE]
+        # TODO: find a way to not instantiate variables as None
+        # duration_in_traffic = self._handle_missing_columns(row, cn.DURATION_IN_TRAFFIC)
+        duration_in_traffic = duration
+        # fare_value = self._handle_missing_columns(row, cn.FARE_VALUE)
+        fare_value = row[cn.FARE_VALUE]
 
         basket_category = None
 
         departure_time = row[cn.DEPARTURE_TIME]
+
+        dest_blockgroup = row[cn.DEST_BLOCK_GROUP]
+        # neighborhood_long = row[cn.NBHD_LONG]
+        # neighborhood_short = row[cn.NBHD_SHORT]
+        # council_district = row[cn.COUNCIL_DISTRICT]
+        # urban_village = row[cn.URBAN_VILLAGE]
+        # zipcode = row[cn.ZIPCODE]
+        neighborhood_long = None
+        neighborhood_short = None
+        council_district = None
+        urban_village = None
+        zipcode = None
 
         # Create a subclass of Trip based on the mode
         if mode == cn.DRIVING_MODE:
@@ -88,8 +99,18 @@ class ModeChoiceCalculator(IndexBase):
         else:
             # Should have a custom exception here
             trip = None
-    
+        trip.set_geocoded_attributes(dest_blockgroup, neighborhood_long,
+            neighborhood_short, council_district, urban_village, zipcode)    
         return trip
+
+
+    def _handle_missing_columns(self, row, attribute):
+        try:
+            row[attribute]
+        except:
+            return None
+        else:
+            return row[attribute]            
 
 
     def is_viable(self, trip):
@@ -144,7 +165,6 @@ class ModeChoiceCalculator(IndexBase):
         for _, row in df.iterrows():
             trip = self.trip_from_row(row)
             blkgrp = trip.origin
-
             viable = self.is_viable(trip)
             trip.set_viability(viable)
             if viable_only:
@@ -172,10 +192,12 @@ class ModeChoiceCalculator(IndexBase):
         for mode in [cn.DRIVING_MODE, cn.BIKING_MODE, cn.TRANSIT_MODE, cn.WALKING_MODE]:
             # List of 0s and 1s corresponding to binary viability value for each trip
             viability_per_trip = [trip.viable for trip in trips if trip.mode == mode]
-
             # Number of viable trips
             viable_trips = sum(viability_per_trip)
-            mode_avail_score = viable_trips / len(viability_per_trip)
+            if viable_trips <= 0:
+                mode_avail_score = 0
+            else:
+                mode_avail_score = viable_trips / len(viability_per_trip)
 
             # if mode == cn.DRIVING_MODE or mode == cn.TRANSIT_MODE:
             #    mode_avail /= cn.TRAVEL_HOURS

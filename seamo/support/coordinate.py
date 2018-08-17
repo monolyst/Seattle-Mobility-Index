@@ -1,9 +1,10 @@
 import init
 import pandas as pd
 from math import sin, cos, sqrt, atan2, radians
-from core import geocoder
+from geocoder import Geocoder
 import constants as cn
 import seamo_exceptions as se
+import data_accessor as daq
 
 class Coordinate:
     """
@@ -32,6 +33,17 @@ class Coordinate:
         return "{0}, {1}".format(self.lat, self.lon)
 
 
+    def set_geocoded_attributes(self, block_group, neighborhood_long, neighborhood_short,
+                                council_district, urban_village, zipcode):
+        self.block_group = block_group
+        self.neighborhood_long = neighborhood_long
+        self.neighborhood_short = neighborhood_short
+        self.council_district = council_district
+        self.urban_village = urban_village
+        self.zipcode = zipcode
+        return self
+
+
     def set_geocode(self):
         try:
             self._geocode(self.lat, self.lon)
@@ -47,16 +59,15 @@ class Coordinate:
         return self
 
     def set_parking_cost(self):
-        self.set_geocode()
-        parking_rates = pd.read_csv(cn.BLOCK_GROUP_PARKING_RATES_FP)
+        parking_dict = daq.open_pickle(cn.PICKLE_DIR, cn.PARKING_RATES_PICKLE)
+        if self.block_group == None:
+            self.set_geocode()
         try:
-            min(parking_rates.loc[parking_rates[cn.KEY] == self.block_group, cn.RATE])
-        except (KeyError, ValueError) as e:
-            #TODO: fix!
+            parking_dict[self.block_group]
+        except:
             self.parking_cost = 0
-            # raise se.NotInSeattleError("No Parking Data Available")
         else:
-            self.parking_cost = min(parking_rates.loc[parking_rates[cn.KEY] == self.block_group, cn.RATE])
+            self.parking_cost = parking_dict[self.block_group]
         return self
 
 
@@ -93,14 +104,16 @@ class Coordinate:
 
 
     def _geocode(self, lat, lon):
-        geo = geocoder.Geocoder()
+        geo = Geocoder()
         df = geo.geocode_point((float(lat), float(lon)))
-        self.block_group = min(df[cn.BLOCK_GROUP])
-        self.neighborhood_long = min(df[cn.NBHD_LONG])
-        self.neighborhood_short = min(df[cn.NBHD_SHORT])
-        self.council_district = min(df[cn.COUNCIL_DISTRICT])
-        self.urban_village = min(df[cn.URBAN_VILLAGE])
-        self.zipcode = min(df[cn.ZIPCODE])
+        # import pdb; pdb.set_trace()
+        self.block_group = df[cn.BLOCK_GROUP].item()
+        self.neighborhood_long = df[cn.NBHD_LONG].item()
+        self.neighborhood_short = df[cn.NBHD_SHORT].item()
+        self.council_district = df[cn.COUNCIL_DISTRICT].item()
+        self.urban_village = df[cn.URBAN_VILLAGE].item()
+        self.zipcode = df[cn.ZIPCODE].item()
+        return self
 
 
     def get_attribute(self, attribute):

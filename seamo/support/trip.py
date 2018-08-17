@@ -45,7 +45,7 @@ class Trip(object):
             dest_lon: float
         """
         self.origin = origin
-        self.destination = coordinate.Coordinate(dest_lat, dest_lon) 
+        self.destination = coordinate.Coordinate(dest_lat, dest_lon)
         self.mode = mode
         self.departure_time = departure_time
         self.distance = distance
@@ -55,10 +55,29 @@ class Trip(object):
         self.value_of_time_rate = cn.VOT_RATE
         self.place_name = place_name
         self.cost = None
+        self.direct_cost = None
         self.persona = None
         self.time_of_day = None
         self.type_of_day = None
         self.viable = None
+        self.dest_blockgroup = None
+        self.neighborhood_long = None
+        self.neighborhood_short = None
+        self.council_district = None
+        self.urban_village = None
+        self.zipcode = None
+
+    def set_geocoded_attributes(self, dest_blockgroup, neighborhood_long, neighborhood_short,
+                                council_district, urban_village, zipcode):
+        self.dest_blockgroup = dest_blockgroup
+        self.neighborhood_long = neighborhood_long
+        self.neighborhood_short = neighborhood_short
+        self.council_district = council_district
+        self.urban_village = urban_village
+        self.zipcode = zipcode
+        self.destination.set_geocoded_attributes(dest_blockgroup, neighborhood_long,
+            neighborhood_short, council_district, urban_village, zipcode)
+        return self
         
 
     def set_cost(self):
@@ -66,7 +85,9 @@ class Trip(object):
         Sets the cost of the trip based on the base rate. 
         Only includes cost value of time.
         """
-        self.cost = self._calculate_base_cost(self.duration, self.value_of_time_rate)
+        self.cost = self._calculate_base_cost(self.duration)
+        self.direct_cost = 0
+        return self
         
 
     def set_viability(self, viability):
@@ -95,11 +116,11 @@ class Trip(object):
         """
         self.persona = persona
 
-    def _calculate_base_cost(self, duration, value_of_time_rate=cn.VOT_RATE):
+    def _calculate_base_cost(self, duration):
         """
         Estimates trip cost from base rate. Includes only costs from time spent on trip.
         """
-        return duration * value_of_time_rate / cn.MIN_TO_HR
+        return duration * self.value_of_time_rate / cn.MIN_TO_HR
 
     def print_destination(self, *args):
         """
@@ -128,52 +149,36 @@ class CarTrip(Trip):
         self.mile_rate = mile_rate
         self.cost_to_park = None
         self.parking_category = None
-        self.duration = duration_in_traffic
-        self.cost = None
+        self.duration = self._calculate_car_duration(duration_in_traffic)
 
     def set_cost(self):
         """
         sets cost of a car trip.
         """
-        self.cost = self._calculate_cost(self.destination, self.duration, self.departure_time,
-            self.mile_rate, self.value_of_time_rate)
+        self.cost = super()._calculate_base_cost(self.duration)
+        self.direct_cost = self._calculate_cost()
+        self.cost += self.direct_cost
+        return self
       
 
-    def _calculate_car_duration(self, duration, duration_in_traffic=0):
+    def _calculate_car_duration(self, duration_in_traffic):
         #TODO: do I want to save the original duration for car trips?
         #TODO: make a specific exception for no min
         return duration_in_traffic + cn.PARKING_TIME_OFFSET
 
-    def _calculate_cost(self, destination, duration, departure_time, mile_rate, value_of_time_rate):
+    def _calculate_cost(self):
         """
         Cost methods to estimate costs during car trip (for example gas and parking)
         """
-        self.cost = super()._calculate_base_cost(duration)
-        # destination.set_parking_cost()
-        self.cost_to_park = 0 #destination.parking_cost
-        # try:
-        #     destination.set_geocode()
-        #     # parking_cost = pd.read_csv(cn.BLOCK_GROUP_PARKING_RATES_FP)
-        #     # self.cost_to_park = min(parking_cost.loc[parking_cost[cn.KEY] == destination.block_group, cn.RATE])
-        # except: #(se.NotInSeattleError, ValueError) as e:
-        #     pass
-        
-        # else
-        # parking_cost = pd.read_csv(cn.BLOCK_GROUP_PARKING_RATES_FP)
-        # try:
-        #     min(parking_cost.loc[parking_cost[cn.KEY] == destination.block_group, cn.RATE])
-        # except ValueError:
-        #     self.cost_to_park = 0
-        # else:
-        #     self.cost_to_park = min(parking_cost.loc[parking_cost[cn.KEY] == destination.block_group, cn.RATE])
-        return self.cost + (self.distance * mile_rate) + self.cost_to_park
+        self.destination.set_parking_cost()
+        self.cost_to_park = self.destination.parking_cost 
+        return self.distance * self.mile_rate + self.cost_to_park
 
 
 class TransitTrip(Trip):
     def __init__(self, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time, fare_value):
         super().__init__(cn.TRANSIT_MODE, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time)
         self.fare_value = self.get_fare_value(fare_value) 
-        self.cost = None
 
     def get_fare_value(self, fare_value):
         """
@@ -184,24 +189,27 @@ class TransitTrip(Trip):
         return fare_value
 
     def set_cost(self):
-        self.cost = self._calculate_cost(self.duration, self.fare_value)
+        self.cost = super()._calculate_base_cost(self.duration)
+        self.direct_cost = self._calculate_cost()
+        self.cost += self.direct_cost
+        return self
         
-    def _calculate_cost(self, duration, fare_value):
-        self.cost = super()._calculate_base_cost(duration)
-        return self.cost + fare_value
+    def _calculate_cost(self):
+        return self.fare_value
     
 class BikeTrip(Trip):
     def __init__(self, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time, bike_rate=cn.BIKE_RATE):
         super().__init__(cn.BIKING_MODE, origin, dest_lat, dest_lon, distance, duration, basket_category, departure_time)
         self.bike_rate = bike_rate
-        self.cost = None
 
     def set_cost(self):
-        self.cost = self._calculate_cost(self.distance, self.duration, self.bike_rate)
+        self.cost = super()._calculate_base_cost(self.duration)
+        self.direct_cost = self._calculate_cost()
+        self.cost += self.direct_cost
+        return self
 
-    def _calculate_cost(self, distance, duration, bike_rate):
-        self.cost = super()._calculate_base_cost(duration)
-        return self.cost + (distance * bike_rate)
+    def _calculate_cost(self):
+        return self.distance * self.bike_rate
     
 
 class WalkTrip(Trip):

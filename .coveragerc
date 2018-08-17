@@ -1,7 +1,0 @@
-[run]
-branch = True
-source = seamo/*
-include = seamo/*
-omit = */setup.py
-[report]
-include = seamo/*
