@@ -11,12 +11,12 @@ mc = ModeChoiceCalculator()
 # try:
 #     daq.open_pickle(cn.PICKLE_DIR, 'mode_choice_calc.pickle')
 # except:
-total_trips_df = pd.read_csv(cn.WEEKDAY_DISTANCES_OUT_FP,
-    dtype={cn.BLOCK_GROUP: str, cn.DEST_BLOCK_GROUP: str})
-trips_per_blockgroup = mc.trips_per_blockgroup(total_trips_df, viable_only=True)
+# total_trips_df = pd.read_csv(cn.WEEKDAY_DISTANCES_OUT_FP,
+#     dtype={cn.BLOCK_GROUP: str, cn.DEST_BLOCK_GROUP: str})
+# trips_per_blockgroup = mc.trips_per_blockgroup(total_trips_df, viable_only=True)
 #     daq.make_pickle(cn.PICKLE_DIR, trips_per_blockgroup, 'mode_choice_calc.pickle')
 # # else:
-#     trips_per_blockgroup = daq.open_pickle(cn.PICKLE_DIR, 'mode_choice_calc.pickle')
+trips_per_blockgroup = daq.open_pickle(cn.PICKLE_DIR, 'mode_choice_calc.pickle')
 
 
 ac = AffordabilityIndex(trips_per_blockgroup)
@@ -41,5 +41,5 @@ block_cost_index = ac.calculate_score()
 a_scores = block_cost_index.loc[:, (cn.KEY, cn.COST, cn.RELATIVE_COST, cn.SCALED, cn.RELATIVE_SCALED,
     cn.AVG_DURATION, cn.FASTEST, cn.DIRECT_COST, cn.CHEAPEST)]
 print(a_scores.sort_values(by=cn.RELATIVE_COST).head())
-daq.write_to_csv(a_scores, 'sample_affordability_with_rel.csv')
+# daq.write_to_csv(a_scores, 'sample_affordability_with_rel.csv')
 

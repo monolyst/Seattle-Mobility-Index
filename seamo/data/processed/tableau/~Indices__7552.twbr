@@ -1046,6 +1046,7 @@
       <column caption='Cost' datatype='real' name='[cost]' role='measure' type='quantitative' />
       <column caption='Driving' datatype='real' name='[driving]' role='measure' type='quantitative' />
       <column caption='Geometry1' datatype='string' name='[geometry]' role='dimension' type='nominal' />
+      <column datatype='string' name='[key (BlockGroupGeocoded.csv)]' role='dimension' type='nominal' />
       <column caption='Key (Sample Affordability With Rel.Csv)' datatype='string' name='[key (sample_affordability_with_rel.csv)]' role='dimension' type='nominal' />
       <column caption='Key' datatype='string' name='[key]' role='dimension' type='nominal' />
       <column caption='Mode Index' datatype='real' name='[mode_index]' role='measure' type='quantitative' />
@@ -1097,6 +1098,11 @@
         <groupfilter function='crossjoin'>
           <groupfilter function='level-members' level='[Calculation_1819172801037238276]' />
           <groupfilter function='level-members' level='[neighborhood_long]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (key (BlockGroupGeocoded.csv))' hidden='true' name='[Action (key (BlockGroupGeocoded.csv))]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[key (BlockGroupGeocoded.csv)]' />
         </groupfilter>
       </group>
       <drill-paths>
@@ -2082,6 +2088,7 @@
             <column-instance column='[cost]' derivation='Avg' name='[avg:cost:qk]' pivot='key' type='quantitative' />
             <column-instance column='[cost]' derivation='Count' name='[cnt:cost:qk]' pivot='key' type='quantitative' />
             <column caption='Cost' datatype='real' name='[cost]' role='measure' type='quantitative' />
+            <column datatype='string' name='[key (BlockGroupGeocoded.csv)]' role='dimension' type='nominal' />
             <column caption='Neighborhood Long' datatype='string' name='[neighborhood_long]' role='dimension' type='nominal' />
             <column caption='Neighborhood Short' datatype='string' name='[neighborhood_short]' role='dimension' type='nominal' />
             <column-instance column='[Cost (bin)]' derivation='None' name='[none:Cost (bin):qk]' pivot='key' type='quantitative' />
@@ -2099,11 +2106,31 @@
           <filter class='categorical' column='[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Show Neighborhood Short if No Broader Term)]'>
             <groupfilter function='level-members' level='[Calculation_1819172801037238276]' user:ui-action-filter='[Action3]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
+          <filter class='categorical' column='[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (key (BlockGroupGeocoded.csv))]'>
+            <groupfilter function='union' user:ui-action-filter='[Action1]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330043021&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330043022&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330044003&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330044004&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330045001&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330052001&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330052002&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330052005&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053011&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053012&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053013&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053014&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053021&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053022&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053023&quot;' />
+            </groupfilter>
+          </filter>
           <slices>
             <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Blkgrp Str)]</column>
             <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Neighborhood Long)]</column>
             <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (In Urban Village)]</column>
             <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Show Neighborhood Short if No Broader Term)]</column>
+            <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (key (BlockGroupGeocoded.csv))]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -2138,7 +2165,7 @@
             <datasource caption='blkgrp10_shore' name='federated.1vmhr2y11w0na212hwraf0n0hai7' />
           </datasources>
           <mapsources>
-            <mapsource name='Tableau' />
+            <mapsource name='black_background' />
           </mapsources>
           <datasource-dependencies datasource='federated.1vmhr2y11w0na212hwraf0n0hai7'>
             <column caption='Affordability Score' datatype='real' name='[Calculation_100768070394662912]' role='measure' type='quantitative'>
@@ -2191,8 +2218,8 @@
         </view>
         <style>
           <style-rule element='axis'>
-            <encoding attr='space' class='0' field='[federated.1vmhr2y11w0na212hwraf0n0hai7].[Longitude (generated)]' field-type='quantitative' max='-13599518.80057859' min='-13637573.460759994' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
-            <encoding attr='space' class='0' field='[federated.1vmhr2y11w0na212hwraf0n0hai7].[Latitude (generated)]' field-type='quantitative' max='6064525.77653223' min='6020308.8560373625' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+            <encoding attr='space' class='0' field='[federated.1vmhr2y11w0na212hwraf0n0hai7].[Longitude (generated)]' field-type='quantitative' max='-13599530.373968819' min='-13637841.546328446' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.1vmhr2y11w0na212hwraf0n0hai7].[Latitude (generated)]' field-type='quantitative' max='6065424.0185386455' min='6021235.5628101081' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
           </style-rule>
           <style-rule element='mark'>
             <encoding attr='color' field='[federated.1vmhr2y11w0na212hwraf0n0hai7].[sum:Calculation_100768070394662912:qk]' num-steps='5' palette='red_green_gold_diverging_10_0' type='interpolated' />
@@ -2202,30 +2229,10 @@
             <format attr='line-visibility' scope='rows' value='off' />
           </style-rule>
           <style-rule element='map-layer'>
-            <format attr='enabled' id='tab_base' value='true' />
-            <format attr='enabled' id='um_lcover' value='true' />
-            <format attr='enabled' id='tab_coastline' value='false' />
-            <format attr='enabled' id='pp2_line' value='true' />
-            <format attr='enabled' id='light_adm0_bnd' value='false' />
-            <format attr='enabled' id='light_adm0_lbl' value='false' />
-            <format attr='enabled' id='um_adm0_bnd' value='true' />
-            <format attr='enabled' id='um_adm0_lbl' value='true' />
-            <format attr='enabled' id='light_pp2_statebounds' value='false' />
-            <format attr='enabled' id='light_pp2_statelabels' value='false' />
-            <format attr='enabled' id='pp2_adminlabels' value='false' />
-            <format attr='enabled' id='pp2_statebounds' value='true' />
-            <format attr='enabled' id='pp2_statelabels' value='true' />
-            <format attr='enabled' id='countybounds' value='false' />
-            <format attr='enabled' id='countylabels' value='false' />
-            <format attr='enabled' id='zipbounds' value='false' />
-            <format attr='enabled' id='ziplabels' value='false' />
-            <format attr='enabled' id='tab_areabounds' value='false' />
-            <format attr='enabled' id='tab_arealabels' value='false' />
-            <format attr='enabled' id='tab_msabounds' value='false' />
-            <format attr='enabled' id='tab_msalabels' value='false' />
+            <format attr='enabled' id='cjkm52d5s74c32spfcxy007fs' value='true' />
           </style-rule>
           <style-rule element='map'>
-            <format attr='washout' value='0.0' />
+            <format attr='washout' value='0' />
           </style-rule>
         </style>
         <panes>
@@ -2276,6 +2283,7 @@
             </column>
             <column-instance column='[cost]' derivation='Avg' name='[avg:cost:qk]' pivot='key' type='quantitative' />
             <column caption='Cost' datatype='real' name='[cost]' role='measure' type='quantitative' />
+            <column datatype='string' name='[key (BlockGroupGeocoded.csv)]' role='dimension' type='nominal' />
             <column caption='Neighborhood Long' datatype='string' name='[neighborhood_long]' role='dimension' type='nominal' />
             <column caption='Neighborhood Short' datatype='string' name='[neighborhood_short]' role='dimension' type='nominal' />
             <column-instance column='[Calculation_1819172801032802307]' derivation='None' name='[none:Calculation_1819172801032802307:nk]' pivot='key' type='nominal' />
@@ -2288,6 +2296,25 @@
           <filter class='categorical' column='[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (In Urban Village)]'>
             <groupfilter function='level-members' level='[Calculation_1819172801032105986]' user:ui-action-filter='[Action4]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
+          <filter class='categorical' column='[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (key (BlockGroupGeocoded.csv))]'>
+            <groupfilter function='union' user:ui-action-filter='[Action1]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330043021&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330043022&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330044003&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330044004&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330045001&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330052001&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330052002&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330052005&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053011&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053012&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053013&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053014&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053021&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053022&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053023&quot;' />
+            </groupfilter>
+          </filter>
           <filter class='categorical' column='[federated.1vmhr2y11w0na212hwraf0n0hai7].[none:Calculation_1819172801032802307:nk]'>
             <groupfilter function='member' level='[none:Calculation_1819172801032802307:nk]' member='true' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
           </filter>
@@ -2295,10 +2322,17 @@
             <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Blkgrp Str)]</column>
             <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[none:Calculation_1819172801032802307:nk]</column>
             <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (In Urban Village)]</column>
+            <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (key (BlockGroupGeocoded.csv))]</column>
           </slices>
           <aggregation value='true' />
         </view>
         <style>
+          <style-rule element='axis'>
+            <format attr='height' field='[federated.1vmhr2y11w0na212hwraf0n0hai7].[avg:cost:qk]' value='62' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='height' field='[federated.1vmhr2y11w0na212hwraf0n0hai7].[none:Calculation_1819172801037238276:nk]' value='21' />
+          </style-rule>
           <style-rule element='mark'>
             <encoding attr='color' field='[federated.1vmhr2y11w0na212hwraf0n0hai7].[avg:cost:qk]' num-steps='5' palette='red_green_gold_diverging_10_0' reverse='true' type='interpolated' />
           </style-rule>
@@ -2344,6 +2378,7 @@
             </column>
             <column-instance column='[cost]' derivation='Avg' name='[avg:cost:qk]' pivot='key' type='quantitative' />
             <column caption='Cost' datatype='real' name='[cost]' role='measure' type='quantitative' />
+            <column datatype='string' name='[key (BlockGroupGeocoded.csv)]' role='dimension' type='nominal' />
             <column-instance column='[cost]' derivation='Median' name='[med:cost:qk]' pivot='key' type='quantitative' />
             <column caption='Neighborhood Long' datatype='string' name='[neighborhood_long]' role='dimension' type='nominal' />
             <column caption='Neighborhood Short' datatype='string' name='[neighborhood_short]' role='dimension' type='nominal' />
@@ -2367,12 +2402,32 @@
           <filter class='categorical' column='[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Show Neighborhood Short if No Broader Term)]'>
             <groupfilter function='level-members' level='[Calculation_1819172801037238276]' user:ui-action-filter='[Action3]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
+          <filter class='categorical' column='[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (key (BlockGroupGeocoded.csv))]'>
+            <groupfilter function='union' user:ui-action-filter='[Action1]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330043021&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330043022&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330044003&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330044004&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330045001&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330052001&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330052002&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330052005&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053011&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053012&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053013&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053014&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053021&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053022&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053023&quot;' />
+            </groupfilter>
+          </filter>
           <slices>
             <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[:Measure Names]</column>
             <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Blkgrp Str)]</column>
             <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Neighborhood Long)]</column>
             <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (In Urban Village)]</column>
             <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Show Neighborhood Short if No Broader Term)]</column>
+            <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (key (BlockGroupGeocoded.csv))]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -2422,6 +2477,7 @@
             </column>
             <column-instance column='[cost]' derivation='Avg' name='[avg:cost:qk]' pivot='key' type='quantitative' />
             <column caption='Cost' datatype='real' name='[cost]' role='measure' type='quantitative' />
+            <column datatype='string' name='[key (BlockGroupGeocoded.csv)]' role='dimension' type='nominal' />
             <column-instance column='[cost]' derivation='Median' name='[med:cost:qk]' pivot='key' type='quantitative' />
             <column caption='Neighborhood Long' datatype='string' name='[neighborhood_long]' role='dimension' type='nominal' />
             <column caption='Neighborhood Short' datatype='string' name='[neighborhood_short]' role='dimension' type='nominal' />
@@ -2437,11 +2493,31 @@
           <filter class='categorical' column='[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Show Neighborhood Short if No Broader Term)]'>
             <groupfilter function='level-members' level='[Calculation_1819172801037238276]' user:ui-action-filter='[Action3]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
+          <filter class='categorical' column='[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (key (BlockGroupGeocoded.csv))]'>
+            <groupfilter function='union' user:ui-action-filter='[Action1]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330043021&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330043022&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330044003&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330044004&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330045001&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330052001&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330052002&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330052005&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053011&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053012&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053013&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053014&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053021&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053022&quot;' />
+              <groupfilter function='member' level='[key (BlockGroupGeocoded.csv)]' member='&quot;530330053023&quot;' />
+            </groupfilter>
+          </filter>
           <computed-sort column='[federated.1vmhr2y11w0na212hwraf0n0hai7].[none:Calculation_1819172801032105986:nk]' direction='DESC' using='[federated.1vmhr2y11w0na212hwraf0n0hai7].[avg:cost:qk]' />
           <slices>
             <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Blkgrp Str)]</column>
             <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Neighborhood Long)]</column>
             <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (Show Neighborhood Short if No Broader Term)]</column>
+            <column>[federated.1vmhr2y11w0na212hwraf0n0hai7].[Action (key (BlockGroupGeocoded.csv))]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -3049,8 +3125,8 @@
         </view>
         <style>
           <style-rule element='axis'>
-            <encoding attr='space' class='0' field='[federated.1vmhr2y11w0na212hwraf0n0hai7].[Longitude (generated)]' field-type='quantitative' max='-13584018.728870794' min='-13650575.265499739' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
-            <encoding attr='space' class='0' field='[federated.1vmhr2y11w0na212hwraf0n0hai7].[Latitude (generated)]' field-type='quantitative' max='6063957.3551560463' min='6022325.7281863904' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+            <encoding attr='space' class='0' field='[federated.1vmhr2y11w0na212hwraf0n0hai7].[Longitude (generated)]' field-type='quantitative' max='-13602937.196474226' min='-13630745.064517828' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.1vmhr2y11w0na212hwraf0n0hai7].[Latitude (generated)]' field-type='quantitative' max='6079155.0112960916' min='6006444.2719901772' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
           </style-rule>
           <style-rule element='mark'>
             <encoding attr='color' field='[federated.1vmhr2y11w0na212hwraf0n0hai7].[sum:relative_scaled:qk]' num-steps='5' palette='red_green_gold_diverging_10_0' type='interpolated' />
@@ -3498,7 +3574,7 @@
         </edge>
       </cards>
     </window>
-    <window class='worksheet' name='Affordability Stats'>
+    <window class='worksheet' maximized='true' name='Affordability Stats'>
       <cards>
         <edge name='left'>
           <strip size='128'>
@@ -3521,7 +3597,7 @@
         </edge>
       </cards>
     </window>
-    <window class='dashboard' maximized='true' name='Affordability'>
+    <window class='dashboard' name='Affordability'>
       <viewpoints>
         <viewpoint name='Affordability Histogram'>
           <zoom type='entire-view' />
@@ -3535,7 +3611,7 @@
         </viewpoint>
         <viewpoint name='Affordability Urban Villages' />
       </viewpoints>
-      <active id='14' />
+      <active id='1' />
     </window>
     <window class='worksheet' name='Mode Choice Map'>
       <cards>

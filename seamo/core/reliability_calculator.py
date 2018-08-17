@@ -8,6 +8,10 @@ from math import sqrt
 class ReliabilityIndex(IndexBase):
 
     def __init__(self, db_filepath, db_name):
+        """
+        Constructor for Reliability Index. Users can access reliability scores.
+        Inputs: path to database file, database filename.
+        """
         self.db_filepath = db_filepath
         self.db_name = db_name
         self.reliability_scores = self.get_score()

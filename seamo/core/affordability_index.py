@@ -41,6 +41,7 @@ class AffordabilityIndex(IndexBase):
         time = [trip.duration for trip in trips]
         
         groups = defaultdict(list)
+        # import pdb; pdb.set_trace()
         [groups[trip.destination.lat].append(trip) for trip in trips]
         # import pdb; pdb.set_trace()
         cheapest = {k: min([trip.direct_cost for trip in v]) for k, v in groups.items()}
