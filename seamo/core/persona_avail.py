@@ -45,7 +45,8 @@ for persona, attrs in PERSONA_DICTS.items():
     #viable trips
     viable_trips = mc.trips_per_blockgroup(total_trips_df, viable_only=True) 
 
-    # avail_df = mc.create_availability_df(trips) 
+    avail_df = mc.create_availability_df(trips) 
+    daq.write_to_csv(avail_df, 'wkday_mode_avail_{0}.csv'.format(persona))
     # avail_df.to_csv(os.path.join(cn.CSV_DIR, 'wkday_mode_avail_{0}.csv'.format(persona)))
 
     ac = AffordabilityIndex(viable_trips)
