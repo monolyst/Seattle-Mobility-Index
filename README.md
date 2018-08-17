@@ -20,6 +20,13 @@ The Seattle Mobility Indices are based on the ability to reach a market basket o
 
 
 
+### Seattle Mobility Index
+
+The Seattle Mobility Index Project measures transportation mode choice, affordability, and reliability at 481 Census Block Groups in Seattle. The project is a low-cost, granular approach to understanding, measuring and communicating mobility.
+
+The Seattle Mobility Indices are based on the ability to reach a market basket of destinations derived from actual travel patterns, not solely on locations nearby. 
+
+
 ### Organization of the project
 
 The project has the following structure:

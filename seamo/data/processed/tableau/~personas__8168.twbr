@@ -3573,7 +3573,7 @@
             <datasource caption='blkgrp10_shore.shp+ (Multiple Connections)' name='federated.0hv9sp009dzjur18w0y3604giprc' />
           </datasources>
           <mapsources>
-            <mapsource name='black_map' />
+            <mapsource name='Tableau' />
           </mapsources>
           <datasource-dependencies datasource='federated.0hv9sp009dzjur18w0y3604giprc'>
             <column caption='Show Neighborhoods' datatype='string' name='[Calculation_991354899194720257]' role='dimension' type='nominal'>
@@ -3604,17 +3604,37 @@
         </view>
         <style>
           <style-rule element='axis'>
-            <encoding attr='space' class='0' field='[federated.0hv9sp009dzjur18w0y3604giprc].[Longitude (generated)]' field-type='quantitative' max='-13612495.362579539' min='-13617770.510816626' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
-            <encoding attr='space' class='0' field='[federated.0hv9sp009dzjur18w0y3604giprc].[Latitude (generated)]' field-type='quantitative' max='6052870.4285474811' min='6047948.3148329621' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+            <encoding attr='space' class='0' field='[federated.0hv9sp009dzjur18w0y3604giprc].[Longitude (generated)]' field-type='quantitative' max='-13612021.1645636' min='-13618272.90887703' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.0hv9sp009dzjur18w0y3604giprc].[Latitude (generated)]' field-type='quantitative' max='6053140.9625883549' min='6047307.6104297489' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
           </style-rule>
           <style-rule element='mark'>
             <encoding attr='color' field='[federated.0hv9sp009dzjur18w0y3604giprc].[sum:scaled:qk]' max='1.0' min='0.0' num-steps='5' palette='red_green_gold_diverging_10_0' type='interpolated' />
           </style-rule>
           <style-rule element='map-layer'>
-            <format attr='enabled' id='cjkiuhmbj3ytv2sn6cd4m4j56' value='true' />
+            <format attr='enabled' id='tab_base' value='true' />
+            <format attr='enabled' id='um_lcover' value='true' />
+            <format attr='enabled' id='tab_coastline' value='false' />
+            <format attr='enabled' id='pp2_line' value='true' />
+            <format attr='enabled' id='light_adm0_bnd' value='false' />
+            <format attr='enabled' id='light_adm0_lbl' value='false' />
+            <format attr='enabled' id='um_adm0_bnd' value='true' />
+            <format attr='enabled' id='um_adm0_lbl' value='true' />
+            <format attr='enabled' id='light_pp2_statebounds' value='false' />
+            <format attr='enabled' id='light_pp2_statelabels' value='false' />
+            <format attr='enabled' id='pp2_adminlabels' value='true' />
+            <format attr='enabled' id='pp2_statebounds' value='true' />
+            <format attr='enabled' id='pp2_statelabels' value='true' />
+            <format attr='enabled' id='countybounds' value='false' />
+            <format attr='enabled' id='countylabels' value='false' />
+            <format attr='enabled' id='zipbounds' value='false' />
+            <format attr='enabled' id='ziplabels' value='false' />
+            <format attr='enabled' id='tab_areabounds' value='false' />
+            <format attr='enabled' id='tab_arealabels' value='false' />
+            <format attr='enabled' id='tab_msabounds' value='false' />
+            <format attr='enabled' id='tab_msalabels' value='false' />
           </style-rule>
           <style-rule element='map'>
-            <format attr='washout' value='0' />
+            <format attr='washout' value='0.0' />
           </style-rule>
         </style>
         <panes>
@@ -3633,9 +3653,8 @@
             </encodings>
             <style>
               <style-rule element='mark'>
-                <format attr='mark-transparency' value='155' />
                 <format attr='has-stroke' value='true' />
-                <format attr='stroke-color' value='#ffffff' />
+                <format attr='mark-transparency' value='206' />
               </style-rule>
             </style>
           </pane>
@@ -3651,12 +3670,9 @@
             <datasource caption='blkgrp10_shore.shp+ (Multiple Connections)' name='federated.0hv9sp009dzjur18w0y3604giprc' />
           </datasources>
           <mapsources>
-            <mapsource name='black_map' />
+            <mapsource name='Tableau' />
           </mapsources>
           <datasource-dependencies datasource='federated.0hv9sp009dzjur18w0y3604giprc'>
-            <column caption='Show Neighborhoods' datatype='string' name='[Calculation_991354899194720257]' role='dimension' type='nominal'>
-              <calculation class='tableau' formula='IF [neighborhood_long] = &quot;NO BROADER TERM&quot;&#13;&#10;THEN UPPER([neighborhood_short]) ELSE [neighborhood_long]&#13;&#10;END' />
-            </column>
             <column datatype='spatial' name='[Geometry]' role='measure' type='nominal' />
             <column-instance column='[neighborhood_long]' derivation='Attribute' name='[attr:neighborhood_long:nk]' pivot='key' type='nominal' />
             <column-instance column='[neighborhood_short]' derivation='Attribute' name='[attr:neighborhood_short:nk]' pivot='key' type='nominal' />
@@ -3668,31 +3684,47 @@
             <column-instance column='[key]' derivation='None' name='[none:key:nk]' pivot='key' type='nominal' />
             <column-instance column='[mode_index]' derivation='Sum' name='[sum:mode_index:qk]' pivot='key' type='quantitative' />
           </datasource-dependencies>
-          <filter class='categorical' column='[federated.0hv9sp009dzjur18w0y3604giprc].[Action (Show Neighborhoods)]'>
-            <groupfilter function='member' level='[Calculation_991354899194720257]' member='&quot;UNIVERSITY DISTRICT&quot;' user:ui-action-filter='[Action4]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
-          </filter>
           <filter class='categorical' column='[federated.0hv9sp009dzjur18w0y3604giprc].[none:key:nk]'>
             <groupfilter from='&quot;530330001001&quot;' function='range' level='[none:key:nk]' to='&quot;530330265001&quot;' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
           </filter>
           <slices>
             <column>[federated.0hv9sp009dzjur18w0y3604giprc].[none:key:nk]</column>
-            <column>[federated.0hv9sp009dzjur18w0y3604giprc].[Action (Show Neighborhoods)]</column>
           </slices>
           <aggregation value='true' />
         </view>
         <style>
           <style-rule element='axis'>
-            <encoding attr='space' class='0' field='[federated.0hv9sp009dzjur18w0y3604giprc].[Longitude (generated)]' field-type='quantitative' max='-13611125.840337504' min='-13617857.644117452' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
-            <encoding attr='space' class='0' field='[federated.0hv9sp009dzjur18w0y3604giprc].[Latitude (generated)]' field-type='quantitative' max='6052955.5680349227' min='6047500.2685388699' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+            <encoding attr='space' class='0' field='[federated.0hv9sp009dzjur18w0y3604giprc].[Longitude (generated)]' field-type='quantitative' max='-13574987.320916642' min='-13648772.27993314' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.0hv9sp009dzjur18w0y3604giprc].[Latitude (generated)]' field-type='quantitative' max='6064327.4494902166' min='6022705.1649168087' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
           </style-rule>
           <style-rule element='mark'>
             <encoding attr='color' field='[federated.0hv9sp009dzjur18w0y3604giprc].[sum:mode_index:qk]' max='0.87571428571428578' min='0.46999999999999997' num-steps='5' palette='red_green_gold_diverging_10_0' type='interpolated' />
           </style-rule>
           <style-rule element='map-layer'>
-            <format attr='enabled' id='cjkiuhmbj3ytv2sn6cd4m4j56' value='true' />
+            <format attr='enabled' id='tab_base' value='true' />
+            <format attr='enabled' id='um_lcover' value='true' />
+            <format attr='enabled' id='tab_coastline' value='false' />
+            <format attr='enabled' id='pp2_line' value='true' />
+            <format attr='enabled' id='light_adm0_bnd' value='false' />
+            <format attr='enabled' id='light_adm0_lbl' value='false' />
+            <format attr='enabled' id='um_adm0_bnd' value='true' />
+            <format attr='enabled' id='um_adm0_lbl' value='true' />
+            <format attr='enabled' id='light_pp2_statebounds' value='false' />
+            <format attr='enabled' id='light_pp2_statelabels' value='false' />
+            <format attr='enabled' id='pp2_adminlabels' value='true' />
+            <format attr='enabled' id='pp2_statebounds' value='true' />
+            <format attr='enabled' id='pp2_statelabels' value='true' />
+            <format attr='enabled' id='countybounds' value='false' />
+            <format attr='enabled' id='countylabels' value='false' />
+            <format attr='enabled' id='zipbounds' value='false' />
+            <format attr='enabled' id='ziplabels' value='false' />
+            <format attr='enabled' id='tab_areabounds' value='false' />
+            <format attr='enabled' id='tab_arealabels' value='false' />
+            <format attr='enabled' id='tab_msabounds' value='false' />
+            <format attr='enabled' id='tab_msalabels' value='false' />
           </style-rule>
           <style-rule element='map'>
-            <format attr='washout' value='0' />
+            <format attr='washout' value='0.0' />
           </style-rule>
         </style>
         <panes>
@@ -3711,13 +3743,12 @@
             </encodings>
             <style>
               <style-rule element='mark'>
-                <format attr='mark-transparency' value='155' />
                 <format attr='has-stroke' value='true' />
-                <format attr='stroke-color' value='#ffffff' />
+                <format attr='mark-transparency' value='206' />
               </style-rule>
               <style-rule element='pane'>
-                <format attr='minwidth' value='950' />
-                <format attr='maxwidth' value='950' />
+                <format attr='minwidth' value='1365' />
+                <format attr='maxwidth' value='1365' />
                 <format attr='minheight' value='770' />
                 <format attr='maxheight' value='770' />
                 <format attr='aspect' value='0' />
@@ -3736,7 +3767,7 @@
             <datasource caption='blkgrp10_shore.shp+ (Multiple Connections)' name='federated.0hv9sp009dzjur18w0y3604giprc' />
           </datasources>
           <mapsources>
-            <mapsource name='black_map' />
+            <mapsource name='Tableau' />
           </mapsources>
           <datasource-dependencies datasource='federated.0hv9sp009dzjur18w0y3604giprc'>
             <column caption='Show Neighborhoods' datatype='string' name='[Calculation_991354899194720257]' role='dimension' type='nominal'>
@@ -3764,14 +3795,38 @@
           <aggregation value='true' />
         </view>
         <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.0hv9sp009dzjur18w0y3604giprc].[Longitude (generated)]' field-type='quantitative' max='-13612300.11872147' min='-13617984.079209894' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.0hv9sp009dzjur18w0y3604giprc].[Latitude (generated)]' field-type='quantitative' max='6053099.3139256341' min='6047587.3203602228' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+          </style-rule>
           <style-rule element='mark'>
             <encoding attr='color' field='[federated.0hv9sp009dzjur18w0y3604giprc].[sum:scaled (wkday_affordability_fit_urbanite.csv):qk]' max='1.0' min='0.0' num-steps='5' palette='red_green_gold_diverging_10_0' type='interpolated' />
           </style-rule>
           <style-rule element='map-layer'>
-            <format attr='enabled' id='cjkiuhmbj3ytv2sn6cd4m4j56' value='true' />
+            <format attr='enabled' id='tab_base' value='true' />
+            <format attr='enabled' id='um_lcover' value='true' />
+            <format attr='enabled' id='tab_coastline' value='false' />
+            <format attr='enabled' id='pp2_line' value='true' />
+            <format attr='enabled' id='light_adm0_bnd' value='false' />
+            <format attr='enabled' id='light_adm0_lbl' value='false' />
+            <format attr='enabled' id='um_adm0_bnd' value='true' />
+            <format attr='enabled' id='um_adm0_lbl' value='true' />
+            <format attr='enabled' id='light_pp2_statebounds' value='false' />
+            <format attr='enabled' id='light_pp2_statelabels' value='false' />
+            <format attr='enabled' id='pp2_adminlabels' value='true' />
+            <format attr='enabled' id='pp2_statebounds' value='true' />
+            <format attr='enabled' id='pp2_statelabels' value='true' />
+            <format attr='enabled' id='countybounds' value='false' />
+            <format attr='enabled' id='countylabels' value='false' />
+            <format attr='enabled' id='zipbounds' value='false' />
+            <format attr='enabled' id='ziplabels' value='false' />
+            <format attr='enabled' id='tab_areabounds' value='false' />
+            <format attr='enabled' id='tab_arealabels' value='false' />
+            <format attr='enabled' id='tab_msabounds' value='false' />
+            <format attr='enabled' id='tab_msalabels' value='false' />
           </style-rule>
           <style-rule element='map'>
-            <format attr='washout' value='0' />
+            <format attr='washout' value='0.0' />
           </style-rule>
         </style>
         <panes>
@@ -3806,7 +3861,7 @@
             <datasource caption='blkgrp10_shore.shp+ (Multiple Connections)' name='federated.0hv9sp009dzjur18w0y3604giprc' />
           </datasources>
           <mapsources>
-            <mapsource name='black_map' />
+            <mapsource name='Tableau' />
           </mapsources>
           <datasource-dependencies datasource='federated.0hv9sp009dzjur18w0y3604giprc'>
             <column caption='Show Neighborhoods' datatype='string' name='[Calculation_991354899194720257]' role='dimension' type='nominal'>
@@ -3835,17 +3890,37 @@
         </view>
         <style>
           <style-rule element='axis'>
-            <encoding attr='space' class='0' field='[federated.0hv9sp009dzjur18w0y3604giprc].[Longitude (generated)]' field-type='quantitative' max='-13609342.297628526' min='-13620731.316350073' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
-            <encoding attr='space' class='0' field='[federated.0hv9sp009dzjur18w0y3604giprc].[Latitude (generated)]' field-type='quantitative' max='6055985.7939995276' min='6044983.5724568143' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+            <encoding attr='space' class='0' field='[federated.0hv9sp009dzjur18w0y3604giprc].[Longitude (generated)]' field-type='quantitative' max='-13612218.432356507' min='-13618150.801758012' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.0hv9sp009dzjur18w0y3604giprc].[Latitude (generated)]' field-type='quantitative' max='6052981.14956058' min='6047498.88402298' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
           </style-rule>
           <style-rule element='mark'>
             <encoding attr='color' field='[federated.0hv9sp009dzjur18w0y3604giprc].[sum:mode_index (wkday_mode_avail_fit_urbanite.csv):qk]' max='0.81357142857142861' min='0.21428571428571427' num-steps='5' palette='red_green_gold_diverging_10_0' type='interpolated' />
           </style-rule>
           <style-rule element='map-layer'>
-            <format attr='enabled' id='cjkiuhmbj3ytv2sn6cd4m4j56' value='true' />
+            <format attr='enabled' id='tab_base' value='true' />
+            <format attr='enabled' id='um_lcover' value='true' />
+            <format attr='enabled' id='tab_coastline' value='false' />
+            <format attr='enabled' id='pp2_line' value='true' />
+            <format attr='enabled' id='light_adm0_bnd' value='false' />
+            <format attr='enabled' id='light_adm0_lbl' value='false' />
+            <format attr='enabled' id='um_adm0_bnd' value='true' />
+            <format attr='enabled' id='um_adm0_lbl' value='true' />
+            <format attr='enabled' id='light_pp2_statebounds' value='false' />
+            <format attr='enabled' id='light_pp2_statelabels' value='false' />
+            <format attr='enabled' id='pp2_adminlabels' value='true' />
+            <format attr='enabled' id='pp2_statebounds' value='true' />
+            <format attr='enabled' id='pp2_statelabels' value='true' />
+            <format attr='enabled' id='countybounds' value='false' />
+            <format attr='enabled' id='countylabels' value='false' />
+            <format attr='enabled' id='zipbounds' value='false' />
+            <format attr='enabled' id='ziplabels' value='false' />
+            <format attr='enabled' id='tab_areabounds' value='false' />
+            <format attr='enabled' id='tab_arealabels' value='false' />
+            <format attr='enabled' id='tab_msabounds' value='false' />
+            <format attr='enabled' id='tab_msalabels' value='false' />
           </style-rule>
           <style-rule element='map'>
-            <format attr='washout' value='0' />
+            <format attr='washout' value='0.0' />
           </style-rule>
         </style>
         <panes>
@@ -4231,12 +4306,9 @@
             <datasource caption='blkgrp10_shore.shp+ (Multiple Connections)' name='federated.0hv9sp009dzjur18w0y3604giprc' />
           </datasources>
           <mapsources>
-            <mapsource name='black_map' />
+            <mapsource name='Tableau' />
           </mapsources>
           <datasource-dependencies datasource='federated.0hv9sp009dzjur18w0y3604giprc'>
-            <column caption='Show Neighborhoods' datatype='string' name='[Calculation_991354899194720257]' role='dimension' type='nominal'>
-              <calculation class='tableau' formula='IF [neighborhood_long] = &quot;NO BROADER TERM&quot;&#13;&#10;THEN UPPER([neighborhood_short]) ELSE [neighborhood_long]&#13;&#10;END' />
-            </column>
             <column datatype='spatial' name='[Geometry]' role='measure' type='nominal' />
             <column-instance column='[neighborhood_long]' derivation='Attribute' name='[attr:neighborhood_long:nk]' pivot='key' type='nominal' />
             <column-instance column='[neighborhood_short]' derivation='Attribute' name='[attr:neighborhood_short:nk]' pivot='key' type='nominal' />
@@ -4248,31 +4320,47 @@
             <column caption='Scaled (Sample Reliability Scores.Csv)' datatype='real' name='[scaled (sample_reliability_scores.csv)]' role='measure' type='quantitative' />
             <column-instance column='[scaled (sample_reliability_scores.csv)]' derivation='Sum' name='[sum:scaled (sample_reliability_scores.csv):qk]' pivot='key' type='quantitative' />
           </datasource-dependencies>
-          <filter class='categorical' column='[federated.0hv9sp009dzjur18w0y3604giprc].[Action (Show Neighborhoods)]'>
-            <groupfilter function='member' level='[Calculation_991354899194720257]' member='&quot;UNIVERSITY DISTRICT&quot;' user:ui-action-filter='[Action7]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
-          </filter>
           <filter class='categorical' column='[federated.0hv9sp009dzjur18w0y3604giprc].[none:key:nk]'>
             <groupfilter from='&quot;530330001001&quot;' function='range' level='[none:key:nk]' to='&quot;530330265001&quot;' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
           </filter>
           <slices>
             <column>[federated.0hv9sp009dzjur18w0y3604giprc].[none:key:nk]</column>
-            <column>[federated.0hv9sp009dzjur18w0y3604giprc].[Action (Show Neighborhoods)]</column>
           </slices>
           <aggregation value='true' />
         </view>
         <style>
           <style-rule element='axis'>
-            <encoding attr='space' class='0' field='[federated.0hv9sp009dzjur18w0y3604giprc].[Longitude (generated)]' field-type='quantitative' max='-13612011.223282129' min='-13617856.113187335' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
-            <encoding attr='space' class='0' field='[federated.0hv9sp009dzjur18w0y3604giprc].[Latitude (generated)]' field-type='quantitative' max='6053097.8834431041' min='6047579.488026862' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+            <encoding attr='space' class='0' field='[federated.0hv9sp009dzjur18w0y3604giprc].[Longitude (generated)]' field-type='quantitative' max='-13584095.544773674' min='-13650544.319866393' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.0hv9sp009dzjur18w0y3604giprc].[Latitude (generated)]' field-type='quantitative' max='6063987.966983241' min='6022480.8737847665' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
           </style-rule>
           <style-rule element='mark'>
             <encoding attr='color' field='[federated.0hv9sp009dzjur18w0y3604giprc].[sum:scaled (sample_reliability_scores.csv):qk]' max='1.0' min='0.0' num-steps='5' palette='red_green_gold_diverging_10_0' reverse='true' type='interpolated' />
           </style-rule>
           <style-rule element='map-layer'>
-            <format attr='enabled' id='cjkiuhmbj3ytv2sn6cd4m4j56' value='true' />
+            <format attr='enabled' id='tab_base' value='true' />
+            <format attr='enabled' id='um_lcover' value='true' />
+            <format attr='enabled' id='tab_coastline' value='false' />
+            <format attr='enabled' id='pp2_line' value='true' />
+            <format attr='enabled' id='light_adm0_bnd' value='false' />
+            <format attr='enabled' id='light_adm0_lbl' value='false' />
+            <format attr='enabled' id='um_adm0_bnd' value='true' />
+            <format attr='enabled' id='um_adm0_lbl' value='true' />
+            <format attr='enabled' id='light_pp2_statebounds' value='false' />
+            <format attr='enabled' id='light_pp2_statelabels' value='false' />
+            <format attr='enabled' id='pp2_adminlabels' value='true' />
+            <format attr='enabled' id='pp2_statebounds' value='true' />
+            <format attr='enabled' id='pp2_statelabels' value='true' />
+            <format attr='enabled' id='countybounds' value='false' />
+            <format attr='enabled' id='countylabels' value='false' />
+            <format attr='enabled' id='zipbounds' value='false' />
+            <format attr='enabled' id='ziplabels' value='false' />
+            <format attr='enabled' id='tab_areabounds' value='false' />
+            <format attr='enabled' id='tab_arealabels' value='false' />
+            <format attr='enabled' id='tab_msabounds' value='false' />
+            <format attr='enabled' id='tab_msalabels' value='false' />
           </style-rule>
           <style-rule element='map'>
-            <format attr='washout' value='0' />
+            <format attr='washout' value='0.0' />
           </style-rule>
         </style>
         <panes>
@@ -4292,8 +4380,7 @@
             <style>
               <style-rule element='mark'>
                 <format attr='has-stroke' value='true' />
-                <format attr='stroke-color' value='#ffffff' />
-                <format attr='mark-transparency' value='155' />
+                <format attr='mark-transparency' value='206' />
               </style-rule>
             </style>
           </pane>
@@ -4773,7 +4860,7 @@
         <zone h='100000' id='2' type='layout-basic' w='100000' x='0' y='0'>
           <zone h='98000' id='5' param='horz' type='layout-flow' w='98400' x='800' y='1000'>
             <zone h='98000' id='3' type='layout-basic' w='98400' x='800' y='1000'>
-              <zone h='98000' id='1' name='FI_A' w='75600' x='800' y='1000'>
+              <zone h='98000' id='1' name='FI_A' w='80200' x='800' y='1000'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -4781,7 +4868,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='49000' id='6' name='Sheet 7' w='22800' x='76400' y='50000'>
+              <zone h='49000' id='6' name='Sheet 7' w='18200' x='81000' y='50000'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -4789,7 +4876,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='49000' id='7' name='Sheet 16' w='22800' x='76400' y='1000'>
+              <zone h='49000' id='7' name='Sheet 16' w='18200' x='81000' y='1000'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -4815,7 +4902,7 @@
         <zone h='100000' id='2' type='layout-basic' w='100000' x='0' y='0'>
           <zone h='98000' id='5' param='horz' type='layout-flow' w='98400' x='800' y='1000'>
             <zone h='98000' id='3' type='layout-basic' w='98400' x='800' y='1000'>
-              <zone h='98000' id='1' name='FI_MC' w='75900' x='800' y='1000'>
+              <zone h='98000' id='1' name='FI_MC' w='79300' x='800' y='1000'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -4823,7 +4910,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='49000' id='6' name='Sheet 7' w='22500' x='76700' y='50000'>
+              <zone h='49000' id='6' name='Sheet 7' w='19100' x='80100' y='50000'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -4831,7 +4918,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='49000' id='7' name='Sheet 15' w='22500' x='76700' y='1000'>
+              <zone h='49000' id='7' name='Sheet 15' w='19100' x='80100' y='1000'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -4851,7 +4938,7 @@
       </zones>
     </dashboard>
   </dashboards>
-  <windows saved-dpi-scale-factor='1.25' source-height='37'>
+  <windows source-height='37'>
     <window class='worksheet' name='Baseline_MC'>
       <cards>
         <edge name='left'>
@@ -4868,12 +4955,9 @@
           <strip size='2147483647'>
             <card type='rows' />
           </strip>
-          <strip size='24'>
-            <card type='title' />
-          </strip>
         </edge>
         <edge name='right'>
-          <strip size='128'>
+          <strip size='100'>
             <card pane-specification-id='0' param='[federated.0hv9sp009dzjur18w0y3604giprc].[sum:mode_index:qk]' type='color' />
           </strip>
         </edge>
@@ -4916,9 +5000,6 @@
           </strip>
           <strip size='2147483647'>
             <card type='rows' />
-          </strip>
-          <strip size='2147483647'>
-            <card type='title' />
           </strip>
         </edge>
         <edge name='right'>
@@ -4993,9 +5074,6 @@
           </strip>
           <strip size='2147483647'>
             <card type='rows' />
-          </strip>
-          <strip size='2147483647'>
-            <card type='title' />
           </strip>
         </edge>
         <edge name='right'>
@@ -5098,7 +5176,7 @@
         </edge>
       </cards>
     </window>
-    <window class='dashboard' name='Dashboard 2'>
+    <window class='dashboard' maximized='true' name='Dashboard 2'>
       <viewpoints>
         <viewpoint name='Baseline_MC'>
           <zoom type='entire-view' />
@@ -5308,9 +5386,9 @@
         <viewpoint name='Sheet 16' />
         <viewpoint name='Sheet 7' />
       </viewpoints>
-      <active id='-1' />
+      <active id='1' />
     </window>
-    <window class='dashboard' maximized='true' name='Dashboard 7'>
+    <window class='dashboard' name='Dashboard 7'>
       <viewpoints>
         <viewpoint name='FI_MC'>
           <zoom type='entire-view' />
