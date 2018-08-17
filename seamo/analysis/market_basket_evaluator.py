@@ -154,7 +154,9 @@ def calculate_mse(psrc_output, google_input):
     combinations = []
 
     for x in cn.BASKET_COMBOS:
-        if (sum(x) == cn.BASKET_SIZE):
+        if sum(x) == cn.BASKET_SIZE:
+        # To do a faster test run, comment out the above and use the following:
+        # if sum(x) == 40:
             combinations.append(x)
             df_google = calculate_features(google_input, list(x))
             googled_psrc = psrc_output.loc[psrc_output[cn.ORIGIN].isin(df_google[cn.ORIGIN])]
